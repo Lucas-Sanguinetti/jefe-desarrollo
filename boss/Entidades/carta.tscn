@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlykyhjrmcfhg"]
+
+[ext_resource type="Texture2D" uid="uid://c8v0higtml4rp" path="res://Assets/monsterCard.png" id="1_kf2pc"]
+[ext_resource type="Texture2D" uid="uid://vprpuh4oajrp" path="res://Assets/weaponCard.png" id="2_uh3e6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3ok"]
+size = Vector2(327, 488)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdnt1"]
+size = Vector2(327, 490)
+
+[node name="Carta" type="Node2D"]
+
+[node name="Monstruo" type="Node2D" parent="."]
+position = Vector2(591, 291)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Monstruo"]
+texture = ExtResource("1_kf2pc")
+
+[node name="Area2D" type="Area2D" parent="Monstruo"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Monstruo/Area2D"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_xu3ok")
+
+[node name="Arma" type="Node2D" parent="."]
+position = Vector2(183, 289)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Arma"]
+texture = ExtResource("2_uh3e6")
+
+[node name="Area2D" type="Area2D" parent="Arma"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arma/Area2D"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_vdnt1")

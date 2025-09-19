@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://7tjf1gfpknq1"]
+
+[ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/card_manager.tscn" id="1_1a6n1"]
+[ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/carta.tscn" id="2_1fbpr"]
+
+[node name="Main" type="Node"]
+
+[node name="CardManager" parent="." instance=ExtResource("1_1a6n1")]
+
+[node name="Carta" parent="CardManager" instance=ExtResource("2_1fbpr")]
