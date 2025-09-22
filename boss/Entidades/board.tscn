@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvtbctljo4ol3"]
+
+[ext_resource type="Texture2D" uid="uid://b7uwewy3m4o74" path="res://Assets/background/background.png" id="1_j4tl6"]
+
+[node name="Board" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_j4tl6")

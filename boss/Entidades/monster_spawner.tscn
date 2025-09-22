@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://7rgw566lpfxe"]
+
+[ext_resource type="Script" uid="uid://bn8l8wfdq5mu3" path="res://Entidades/monster_spawner.gd" id="1_g6bsy"]
+[ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://Entidades/monster_deck.tscn" id="2_62ujj"]
+
+[node name="MonsterSpawner" type="Node"]
+script = ExtResource("1_g6bsy")
+monsterDeck = ExtResource("2_62ujj")

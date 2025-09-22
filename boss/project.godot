@@ -12,8 +12,16 @@ config_version=5
 
 config/name="Boss"
 run/main_scene="uid://7tjf1gfpknq1"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Assets/icon.svg"
+
+[display]
+
+window/size/viewport_width=357
+window/size/viewport_height=361
+window/size/window_width_override=893
+window/size/window_height_override=903
+window/stretch/mode="canvas_items"
 
 [rendering]
 

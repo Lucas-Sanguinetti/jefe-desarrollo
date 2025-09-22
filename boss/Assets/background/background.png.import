@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlro5wwxw6nrc"
-path="res://.godot/imported/spellCard.png-e4403897aea2e716ee19b994dd9acffa.ctex"
+uid="uid://b7uwewy3m4o74"
+path="res://.godot/imported/background.png-1b6c90803c2168e6b08ee219c0601e0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/spellCard.png"
-dest_files=["res://.godot/imported/spellCard.png-e4403897aea2e716ee19b994dd9acffa.ctex"]
+source_file="res://Assets/background/background.png"
+dest_files=["res://.godot/imported/background.png-1b6c90803c2168e6b08ee219c0601e0a.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
