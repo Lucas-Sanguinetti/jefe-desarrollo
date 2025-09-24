@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=3 format=3 uid="uid://1chp51lvkq0q"]
+
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Cartas/monsterData.gd" id="1_hk80w"]
+[ext_resource type="Texture2D" uid="uid://cn4blxbn0mb8x" path="res://Assets/cards/monsterCard.png" id="2_5nl17"]
+
+[resource]
+script = ExtResource("1_hk80w")
+hp = 50
+attack = 5
+sprite = ExtResource("2_5nl17")
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

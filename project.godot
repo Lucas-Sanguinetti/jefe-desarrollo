@@ -13,7 +13,6 @@ config_version=5
 config/name="Boss"
 run/main_scene="uid://7tjf1gfpknq1"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://Assets/icon.svg"
 
 [display]
 
@@ -27,3 +26,4 @@ window/stretch/mode="canvas_items"
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_vertices_to_pixel=true
