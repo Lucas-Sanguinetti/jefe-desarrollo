@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://r3uw2a7pd3o6"]
 
 [ext_resource type="Script" uid="uid://cli218hw4m8vd" path="res://Entidades/monster_deck.gd" id="1_8nkwt"]
-[ext_resource type="Texture2D" uid="uid://dv1nr58au6dg8" path="res://Assets/cards/deck.png" id="2_2yjiu"]
+[ext_resource type="Texture2D" uid="uid://4meheoaljcjk" path="res://Assets/cards/reescalado/deck.png" id="2_2yjiu"]
 
 [node name="MonsterDeck" type="Node2D"]
 texture_filter = 1
@@ -10,4 +10,6 @@ scale = Vector2(1.0121951, 1.0070423)
 script = ExtResource("1_8nkwt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(20.746986, 35.74825)
+scale = Vector2(1.0060241, 1.0034965)
 texture = ExtResource("2_2yjiu")

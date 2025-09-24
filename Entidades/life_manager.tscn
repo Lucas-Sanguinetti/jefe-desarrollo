@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs1jxfpbg20dx"]
+
+[ext_resource type="Script" uid="uid://bag6xlucqrw32" path="res://Entidades/life_manager.gd" id="1_3av6v"]
+[ext_resource type="Texture2D" uid="uid://cvsglk5brgefd" path="res://Assets/elements_In_Board/life1.png" id="1_gaquy"]
+[ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_qppaa"]
+
+[node name="LifeManager" type="Node2D"]
+script = ExtResource("1_3av6v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_gaquy")
+
+[node name="Vida" type="Label" parent="."]
+texture_filter = 1
+offset_left = -18.0
+offset_top = -11.0
+offset_right = 22.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("2_qppaa")
+theme_override_font_sizes/font_size = 30
+text = "50"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0

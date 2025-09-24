@@ -14,10 +14,14 @@ config/name="Boss"
 run/main_scene="uid://7tjf1gfpknq1"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
+[autoload]
+
+PlayerLife="*res://singleton/player_life.gd"
+
 [display]
 
-window/size/viewport_width=357
-window/size/viewport_height=361
+window/size/viewport_width=714
+window/size/viewport_height=722
 window/size/window_width_override=893
 window/size/window_height_override=903
 window/stretch/mode="canvas_items"

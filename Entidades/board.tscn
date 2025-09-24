@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cvtbctljo4ol3"]
 
-[ext_resource type="Texture2D" uid="uid://b7uwewy3m4o74" path="res://Assets/background/background.png" id="1_j4tl6"]
+[ext_resource type="Texture2D" uid="uid://crt1cwue4mo02" path="res://Assets/background/reescalado/background.png" id="1_j4tl6"]
 
 [node name="Board" type="CanvasLayer"]
 
