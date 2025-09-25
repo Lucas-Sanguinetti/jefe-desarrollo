@@ -22,6 +22,7 @@ theme_override_font_sizes/font_size = 30
 text = "50"
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -19.0
 offset_right = 20.0

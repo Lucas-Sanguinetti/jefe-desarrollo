@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponCardData" load_steps=3 format=3 uid="uid://2630l8e8maqo"]
 
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Cartas/armasData.gd" id="1_7q35r"]
-[ext_resource type="Texture2D" uid="uid://do6c41f4ml3wo" path="res://Assets/cards/weaponCard.png" id="2_djpva"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/reescalado/weaponrCard.png" id="2_djpva"]
 
 [resource]
 script = ExtResource("1_7q35r")

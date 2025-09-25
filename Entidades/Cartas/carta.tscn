@@ -11,7 +11,6 @@ script = ExtResource("1_wjgbj")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
 
 [node name="Area" type="Area2D" parent="."]
 
@@ -27,6 +26,7 @@ offset_right = 42.0
 offset_bottom = 62.0
 
 [node name="Ataque" type="Label" parent="Panel"]
+texture_filter = 1
 layout_mode = 0
 offset_left = 66.0
 offset_top = 109.0
@@ -40,12 +40,13 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Vida" type="Label" parent="Panel"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 offset_left = 2.0
-offset_top = 108.0
+offset_top = 109.0
 offset_right = 18.0
-offset_bottom = 124.0
+offset_bottom = 125.0
 theme_override_fonts/font = ExtResource("3_pt1tv")
 theme_override_font_sizes/font_size = 16
 text = "50"

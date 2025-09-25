@@ -2,12 +2,15 @@
 extends Node2D
 class_name CardSlot
 
+
+
 @export var is_occupied: bool = false
 var current_card: Node2D = null
 
 func place_card(card: Node2D) -> bool:
 	if is_occupied:
 		return false
+		
 	
 	current_card = card
 	is_occupied = true

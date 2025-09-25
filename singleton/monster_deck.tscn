@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://r3uw2a7pd3o6"]
+
+[ext_resource type="Script" uid="uid://cli218hw4m8vd" path="res://singleton/monster_deck.gd" id="1_svbph"]
+[ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/monstruo1.tres" id="2_3hl6n"]
+[ext_resource type="Resource" uid="uid://cwcsd2cagjb73" path="res://Resources/Monstruos/monstruo2.tres" id="3_ukxup"]
+[ext_resource type="Texture2D" uid="uid://4meheoaljcjk" path="res://Assets/cards/reescalado/deck.png" id="4_6w28h"]
+
+[node name="MonsterDeck" type="Node2D"]
+texture_filter = 1
+position = Vector2(20.75, 35.75)
+scale = Vector2(1.0121951, 1.0070423)
+script = ExtResource("1_svbph")
+monster1 = ExtResource("2_3hl6n")
+monster2 = ExtResource("3_ukxup")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(20.746986, 35.74825)
+scale = Vector2(1.0060241, 1.0034965)
+texture = ExtResource("4_6w28h")

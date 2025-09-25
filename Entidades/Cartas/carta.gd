@@ -4,12 +4,13 @@ class_name Carta
 @export var data: CardData
 
 @onready var sprite: Sprite2D = $Sprite
+var grid_pos:Vector2
 signal mouseSobreCarta
 signal mouseFueraCarta
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_parent().connect_card_signals(self)
+	#get_parent().connect_card_signals(self)
 	sprite.texture = data.sprite
 	
 	 #Lógica condicional según el tipo de carta
@@ -26,7 +27,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+func setup(data: CardData):
+	self.data = data
+	# Podés usar los datos acá
+	
 func _on_area_mouse_entered() -> void:
 	emit_signal("mouseSobreCarta",self)
 
