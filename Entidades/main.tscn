@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=11 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="1_1a6n1"]
+[ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/main.gd" id="1_3akp0"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/board.tscn" id="1_two4o"]
 [ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/carta.tscn" id="2_1fbpr"]
 [ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/arma1.tres" id="4_n8fjv"]
@@ -9,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://Entidades/monster_deck.tscn" id="5_j43no"]
 [ext_resource type="PackedScene" uid="uid://ftsm1b1thgfn" path="res://Entidades/card_slot.tscn" id="6_yojer"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://singleton/life_manager.tscn" id="9_3akp0"]
+[ext_resource type="Script" uid="uid://brt8rjbtiqry8" path="res://Entidades/GridMonstruos.gd" id="10_rq0b7"]
 
 [node name="Main" type="Node"]
+script = ExtResource("1_3akp0")
 
 [node name="Board" parent="." instance=ExtResource("1_two4o")]
 layer = -1
@@ -18,21 +21,149 @@ layer = -1
 [node name="CardManager" parent="." instance=ExtResource("1_1a6n1")]
 
 [node name="Carta" parent="CardManager" instance=ExtResource("2_1fbpr")]
-position = Vector2(282, 264)
+visible = false
+position = Vector2(239, 206)
 data = ExtResource("4_n8fjv")
 
 [node name="Carta2" parent="CardManager" instance=ExtResource("2_1fbpr")]
-position = Vector2(93, 265)
+visible = false
+position = Vector2(129, 214)
 data = ExtResource("5_3akp0")
 
 [node name="monsterSpawner" parent="." instance=ExtResource("4_yojer")]
+monsterDeck = null
 
 [node name="MonsterDeck" parent="." instance=ExtResource("5_j43no")]
 position = Vector2(23, 38)
 scale = Vector2(1.0182925, 1.0105634)
 
-[node name="CardSlot" parent="." instance=ExtResource("6_yojer")]
+[node name="GrillasVisibles" type="Node2D" parent="."]
 visible = false
 
 [node name="LifeManager" parent="." instance=ExtResource("9_3akp0")]
 position = Vector2(641, 655)
+
+[node name="GrillaMonstruos" type="Node2D" parent="GrillasVisibles"]
+position = Vector2(56, 15)
+metadata/_edit_group_ = true
+
+[node name="CardSlot" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(19, 28)
+
+[node name="CardSlot2" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(72, 28)
+
+[node name="CardSlot3" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(124, 28)
+
+[node name="CardSlot4" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(176, 28)
+
+[node name="CardSlot5" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(20, 101)
+
+[node name="CardSlot6" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(73, 101)
+
+[node name="CardSlot7" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(125, 101)
+
+[node name="CardSlot8" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(177, 101)
+
+[node name="CardSlot9" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(20, 172)
+
+[node name="CardSlot10" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(73, 172)
+
+[node name="CardSlot11" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(125, 172)
+
+[node name="CardSlot12" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(177, 172)
+
+[node name="CardSlot13" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(20, 244)
+
+[node name="CardSlot14" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(73, 244)
+
+[node name="CardSlot15" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(125, 244)
+
+[node name="CardSlot16" parent="GrillasVisibles/GrillaMonstruos" instance=ExtResource("6_yojer")]
+position = Vector2(177, 244)
+
+[node name="GrillaArmas" type="Node2D" parent="GrillasVisibles"]
+position = Vector2(261, 84)
+metadata/_edit_group_ = true
+
+[node name="CardSlot" parent="GrillasVisibles/GrillaArmas" instance=ExtResource("6_yojer")]
+position = Vector2(22, 31)
+
+[node name="CardSlot2" parent="GrillasVisibles/GrillaArmas" instance=ExtResource("6_yojer")]
+position = Vector2(73, 31)
+
+[node name="CardSlot3" parent="GrillasVisibles/GrillaArmas" instance=ExtResource("6_yojer")]
+position = Vector2(23, 103)
+
+[node name="CardSlot4" parent="GrillasVisibles/GrillaArmas" instance=ExtResource("6_yojer")]
+position = Vector2(75, 102)
+
+[node name="CardSlot5" parent="GrillasVisibles/GrillaArmas" instance=ExtResource("6_yojer")]
+position = Vector2(23, 174)
+
+[node name="CardSlot6" parent="GrillasVisibles/GrillaArmas" instance=ExtResource("6_yojer")]
+position = Vector2(75, 175)
+
+[node name="GrillaJugador" type="Node2D" parent="GrillasVisibles"]
+position = Vector2(28, 298)
+metadata/_edit_group_ = true
+
+[node name="CardSlot" parent="GrillasVisibles/GrillaJugador" instance=ExtResource("6_yojer")]
+position = Vector2(19, 30)
+
+[node name="CardSlot2" parent="GrillasVisibles/GrillaJugador" instance=ExtResource("6_yojer")]
+position = Vector2(71, 30)
+
+[node name="CardSlot3" parent="GrillasVisibles/GrillaJugador" instance=ExtResource("6_yojer")]
+position = Vector2(124, 30)
+
+[node name="CardSlot4" parent="GrillasVisibles/GrillaJugador" instance=ExtResource("6_yojer")]
+position = Vector2(176, 30)
+
+[node name="CardSlot5" parent="GrillasVisibles/GrillaJugador" instance=ExtResource("6_yojer")]
+position = Vector2(228, 30)
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = -0.081
+anchor_top = 0.44900003
+anchor_right = 0.143
+anchor_bottom = 0.59800005
+offset_left = 331.917
+offset_top = 137.911
+offset_right = 331.949
+offset_bottom = 138.12198
+text = "Terminar
+Turno"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ContadorTurno" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.65500003
+anchor_right = 0.123
+anchor_bottom = 0.77300006
+offset_left = 315.073
+offset_top = -220.45502
+offset_right = 326.089
+offset_bottom = -214.05301
+text = "Turno:
+1"
+
+[node name="GridMonstruos" type="Node2D" parent="."]
+position = Vector2(54, 12)
+script = ExtResource("10_rq0b7")
