@@ -5,7 +5,5 @@
 
 [resource]
 script = ExtResource("1_7q35r")
-damage = 10
-durability = 1
 sprite = ExtResource("2_djpva")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"
