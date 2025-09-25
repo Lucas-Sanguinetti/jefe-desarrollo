@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=3 format=3 uid="uid://dpgums16lds27"]
+
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Cartas/WeaponCardData.gd" id="1_buhnq"]
+[ext_resource type="Texture2D" uid="uid://do6c41f4ml3wo" path="res://Assets/cards/weaponCard.png" id="2_xbu3e"]
+
+[resource]
+script = ExtResource("1_buhnq")
+attack = 3
+sprite = ExtResource("2_xbu3e")
+metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"
