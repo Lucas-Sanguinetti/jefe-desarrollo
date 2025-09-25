@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
 
-PlayerLife="*res://singleton/player_life.gd"
+LifeManager="*res://singleton/life_manager.gd"
 
 [display]
 

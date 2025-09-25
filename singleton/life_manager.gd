@@ -1,21 +1,21 @@
 extends Node2D
 
-
+@export var vidaRestante = 50
 @onready var vida: Label = $Vida
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	PlayerLife.restante.restante = 50
-	vida.text = str(PlayerLife.restante)
+	vidaRestante = 50
+	vida.text = str(vidaRestante)
 
 func gainLife(life: int ):
-	PlayerLife.restante += life
-	vida.text = str(PlayerLife.restante)
+	vidaRestante += life
+	vida.text = str(vidaRestante)
 	
 func looseLife(life: int):
-	PlayerLife.restante -= life
-	vida.text = str(PlayerLife.restante)
+	vidaRestante -= life
+	vida.text = str(vidaRestante)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
