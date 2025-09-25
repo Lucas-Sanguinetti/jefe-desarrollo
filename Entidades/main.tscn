@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/monstruo1.tres" id="5_3akp0"]
 [ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://Entidades/monster_deck.tscn" id="5_j43no"]
 [ext_resource type="PackedScene" uid="uid://ftsm1b1thgfn" path="res://Entidades/card_slot.tscn" id="6_yojer"]
+[ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://singleton/life_manager.tscn" id="9_3akp0"]
 [ext_resource type="Script" uid="uid://brt8rjbtiqry8" path="res://Entidades/GridMonstruos.gd" id="10_rq0b7"]
 
 [node name="Main" type="Node"]
@@ -33,11 +34,14 @@ data = ExtResource("5_3akp0")
 monsterDeck = null
 
 [node name="MonsterDeck" parent="." instance=ExtResource("5_j43no")]
-position = Vector2(22.874998, 37.125)
+position = Vector2(23, 38)
 scale = Vector2(1.0182925, 1.0105634)
 
 [node name="GrillasVisibles" type="Node2D" parent="."]
 visible = false
+
+[node name="LifeManager" parent="." instance=ExtResource("9_3akp0")]
+position = Vector2(641, 655)
 
 [node name="GrillaMonstruos" type="Node2D" parent="GrillasVisibles"]
 position = Vector2(56, 15)
