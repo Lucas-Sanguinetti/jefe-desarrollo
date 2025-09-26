@@ -2,8 +2,9 @@ extends Node2D
 class_name Carta
 
 @export var data: CardData
-@export var can_attack: bool = true  # Para controlar si el arma puede atacar
+@export var can_attack: bool = true 
 
+var grid_pos:Vector2
 @onready var sprite: Sprite2D = $Sprite
 @onready var resaltadoDeAtaque: Panel = $Resaltado  # Panel para resaltado de ataque
 
@@ -20,9 +21,7 @@ enum CardState {
 
 var current_state: CardState = CardState.NORMAL
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_parent().connect_card_signals(self)
 	sprite.texture = data.sprite
 	
 	if not has_node("resaltadoDeAtaque"):
@@ -38,6 +37,10 @@ func _ready() -> void:
 	
 	if get_parent().has_method("connect_combat_signals"):
 		get_parent().connect_combat_signals(self)
+		get_parent().connect_card_signals(self)
+
+func setup(data: CardData):
+	self.data = data
 
 func setup_card_ui():
 	# Lógica condicional según el tipo de carta

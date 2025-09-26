@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=10 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="1_1a6n1"]
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/main.gd" id="1_3akp0"]
@@ -6,10 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/carta.tscn" id="2_1fbpr"]
 [ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/arma1.tres" id="4_n8fjv"]
 [ext_resource type="PackedScene" uid="uid://7rgw566lpfxe" path="res://Entidades/Monstruos/monster_spawner.tscn" id="4_yojer"]
-[ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://Entidades/Monstruos/monster_deck.tscn" id="5_j43no"]
+[ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://singleton/monster_deck.tscn" id="5_j43no"]
 [ext_resource type="Resource" uid="uid://dpgums16lds27" path="res://Resources/Armas/arma2.tres" id="6_kgvkj"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="9_3akp0"]
-[ext_resource type="Script" uid="uid://brt8rjbtiqry8" path="res://Entidades/Monstruos/GridMonstruos.gd" id="10_rq0b7"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3akp0")
@@ -28,15 +27,11 @@ position = Vector2(97, 656)
 data = ExtResource("6_kgvkj")
 
 [node name="monsterSpawner" parent="." instance=ExtResource("4_yojer")]
-monsterDeck = null
+position = Vector2(150, 88)
 
 [node name="MonsterDeck" parent="." instance=ExtResource("5_j43no")]
-visible = false
-position = Vector2(23, 38)
+position = Vector2(23, 39)
 scale = Vector2(1.0182925, 1.0105634)
-
-[node name="LifeManager" parent="." instance=ExtResource("9_3akp0")]
-visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -64,11 +59,6 @@ offset_top = -14.910034
 offset_right = 0.17799377
 offset_bottom = -68.10602
 text = "Turno: 1"
-
-[node name="GridMonstruos" type="Node2D" parent="."]
-visible = false
-position = Vector2(54, 12)
-script = ExtResource("10_rq0b7")
 
 [node name="LifeHUD" parent="." instance=ExtResource("9_3akp0")]
 position = Vector2(648, 654)

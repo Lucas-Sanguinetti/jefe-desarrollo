@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
 
+MonsterDeck="*res://singleton/monster_deck.tscn"
 LifeManager="*res://singleton/life_manager.gd"
 
 [display]
