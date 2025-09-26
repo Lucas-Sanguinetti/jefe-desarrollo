@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://r3uw2a7pd3o6"]
 
-[ext_resource type="Script" uid="uid://cli218hw4m8vd" path="res://Entidades/monster_deck.gd" id="1_8nkwt"]
+[ext_resource type="Script" uid="uid://cli218hw4m8vd" path="res://singleton/monster_deck.gd" id="1_8nkwt"]
 [ext_resource type="Texture2D" uid="uid://4meheoaljcjk" path="res://Assets/cards/reescalado/deck.png" id="2_2yjiu"]
 
 [node name="MonsterDeck" type="Node2D"]

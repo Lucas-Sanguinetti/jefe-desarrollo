@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://7rgw566lpfxe"]
+
+[ext_resource type="Script" uid="uid://bn8l8wfdq5mu3" path="res://Entidades/monster_spawner.gd" id="1_g6bsy"]
+[ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://singleton/monster_deck.tscn" id="2_62ujj"]
+[ext_resource type="Script" uid="uid://brt8rjbtiqry8" path="res://Entidades/GridMonstruos.gd" id="3_12n11"]
+[ext_resource type="Script" uid="uid://by313uxqf4b20" path="res://Entidades/deck_drawer.gd" id="4_bk33t"]
+
+[node name="MonsterSpawner" type="Node2D"]
+script = ExtResource("1_g6bsy")
+
+[node name="GridMonstruos" type="Node2D" parent="."]
+script = ExtResource("3_12n11")
+ficha_scene = ExtResource("2_62ujj")
+
+[node name="DeckDrawer" type="Node" parent="."]
+script = ExtResource("4_bk33t")
+monsterDeck = ExtResource("2_62ujj")

@@ -1,23 +1,19 @@
 extends Node2D
 
-@export var vidaRestante = 50
-@onready var vida: Label = $Vida
+signal vida_cambiada(nueva_vida)
 
+var vida: int = 50 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	vidaRestante = 50
-	vida.text = str(vidaRestante)
+func set_vida(value):
+	vida = clamp(value, 0, 50)
+	emit_signal("vida_cambiada", vida)
 
-func gainLife(life: int ):
-	vidaRestante += life
-	vida.text = str(vidaRestante)
+func gainLife(cant: int ):
+	set_vida(vida + cant)
 	
-func looseLife(life: int):
-	vidaRestante -= life
-	vida.text = str(vidaRestante)
+func looseLife(cant: int):
+	set_vida(vida - cant)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+#Debug
+func life():
+	print(vida)
