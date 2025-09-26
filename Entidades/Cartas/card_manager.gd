@@ -112,6 +112,12 @@ func reset_all_weapons():
 			card.reset_attack_ability()
 	cancel_weapon_selection()
 	
+func block_all_weapons():
+	var all_cards = get_all_cards_in_scene()
+	for card in all_cards:
+		if card.data is WeaponCardData:
+			card.block_attack_ability()
+
 func get_all_cards_in_scene() -> Array:
 	var cards = []
 	find_cards_recursive(get_tree().current_scene, cards)

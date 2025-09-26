@@ -6,7 +6,10 @@ class_name Carta
 
 var grid_pos:Vector2
 @onready var sprite: Sprite2D = $Sprite
-@onready var resaltadoDeAtaque: Panel = $Resaltado  # Panel para resaltado de ataque
+var resaltadoDeAtaque: Panel # Panel para resaltado de ataque
+var style_normal: StyleBoxFlat
+var style_selected: StyleBoxFlat  
+var style_cannot_attack: StyleBoxFlat
 
 signal mouseSobreCarta
 signal mouseFueraCarta
@@ -24,14 +27,22 @@ var current_state: CardState = CardState.NORMAL
 func _ready() -> void:
 	sprite.texture = data.sprite
 	
-	if not has_node("resaltadoDeAtaque"):
-		resaltadoDeAtaque = Panel.new()
-		resaltadoDeAtaque.name = "resaltadoDeAtaque"
-		resaltadoDeAtaque.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		resaltadoDeAtaque.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		resaltadoDeAtaque.add_theme_color_override("resaltado",Color(1, 0, 0, 0.3) )
-		resaltadoDeAtaque.visible = false
-		add_child(resaltadoDeAtaque)
+	style_normal = StyleBoxFlat.new()
+	style_normal.bg_color = Color.TRANSPARENT
+	
+	style_selected = StyleBoxFlat.new() 
+	style_selected.bg_color = Color(0, 1, 0, 0.4) 
+	
+	style_cannot_attack = StyleBoxFlat.new()
+	style_cannot_attack.bg_color = Color(0.36, 0.35, 0.337, 0.0)
+	
+	resaltadoDeAtaque = Panel.new()
+	resaltadoDeAtaque.name = "resaltadoDeAtaque"
+	resaltadoDeAtaque.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	resaltadoDeAtaque.visible = false
+	resaltadoDeAtaque.position = Vector2(-42, -62)
+	resaltadoDeAtaque.size = Vector2(84, 124)
+	add_child(resaltadoDeAtaque)
 	
 	setup_card_ui()
 	
@@ -66,11 +77,12 @@ func update_visual_state():
 			self.set_rotation_degrees(0)
 		CardState.SELECTED_FOR_ATTACK:
 			resaltadoDeAtaque.visible = true
-			resaltadoDeAtaque.add_theme_color_override("resaltado",Color(0, 1, 0, 0.3))
+			resaltadoDeAtaque.add_theme_stylebox_override("panel", style_selected)
 		CardState.CANNOT_ATTACK:
-			resaltadoDeAtaque.visible = false
+			resaltadoDeAtaque.visible = true
+			resaltadoDeAtaque.add_theme_stylebox_override("panel", style_cannot_attack)
 			self.set_rotation_degrees(90)
-			modulate = Color(0.5, 0.5, 0.5)  # Gris para no puede atacar
+			modulate = Color(0.7, 0.7, 0.7)  # Gris para no puede atacar
 
 func set_card_state(new_state: CardState):
 	current_state = new_state
@@ -164,6 +176,11 @@ func reset_attack_ability():
 		can_attack = true
 		set_card_state(CardState.NORMAL)
 		
+func block_attack_ability():
+	if data is WeaponCardData:
+		can_attack = true
+		set_card_state(CardState.CANNOT_ATTACK)
+
 func _on_area_mouse_entered() -> void:
 	emit_signal("mouseSobreCarta",self)
 

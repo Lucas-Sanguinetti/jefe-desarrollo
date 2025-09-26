@@ -12,9 +12,12 @@ func _on_turn_button_pressed():
 	current_turn += 1
 	turn_label.text = "Turno: " + str(current_turn)
 	
-	# Resetear habilidades de ataque de todas las armas
-	if card_manager:
-		card_manager.reset_all_weapons()
+	if LifeManager.vida > 0:
+		if card_manager:
+			card_manager.reset_all_weapons()
+	else:
+		if card_manager:
+			card_manager.block_all_weapons()
 	print("Nuevo turno iniciado. Todas las armas pueden atacar nuevamente.")
 
 func _process(delta: float) -> void:
