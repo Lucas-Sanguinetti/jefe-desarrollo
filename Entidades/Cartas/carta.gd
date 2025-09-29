@@ -5,7 +5,7 @@ class_name Carta
 @export var can_attack: bool = true 
 
 var grid_pos:Vector2
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: TextureRect = $Sprite
 var resaltadoDeAtaque: Panel # Panel para resaltado de ataque
 var style_normal: StyleBoxFlat
 var style_selected: StyleBoxFlat  

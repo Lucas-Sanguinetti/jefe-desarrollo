@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmeoueu10fxj2"]
+
+[ext_resource type="Script" uid="uid://dtpgy83jhfk1l" path="res://Entidades/Armas/weapon_spawner.gd" id="1_guscm"]
+[ext_resource type="Script" uid="uid://du8xs2poumyyc" path="res://Entidades/Armas/WeaponGrid.gd" id="2_guscm"]
+
+[node name="WeaponSpawner" type="Node2D"]
+script = ExtResource("1_guscm")
+
+[node name="WeaponGrid" type="Node2D" parent="."]
+script = ExtResource("2_guscm")

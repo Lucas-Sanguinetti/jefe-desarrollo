@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=12 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="1_1a6n1"]
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/main.gd" id="1_3akp0"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://singleton/monster_deck.tscn" id="5_j43no"]
 [ext_resource type="Resource" uid="uid://dpgums16lds27" path="res://Resources/Armas/arma2.tres" id="6_kgvkj"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="9_3akp0"]
+[ext_resource type="PackedScene" uid="uid://bmeoueu10fxj2" path="res://Entidades/Armas/weapon_spawner.tscn" id="10_kgvkj"]
+[ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="10_rq0b7"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3akp0")
@@ -19,19 +21,22 @@ layer = -1
 [node name="CardManager" parent="." instance=ExtResource("1_1a6n1")]
 
 [node name="Arma1" parent="CardManager" instance=ExtResource("2_1fbpr")]
-position = Vector2(305, 656)
+position = Vector2(358, 658)
 data = ExtResource("4_n8fjv")
 
 [node name="Arma2" parent="CardManager" instance=ExtResource("2_1fbpr")]
-position = Vector2(97, 656)
+position = Vector2(215, 658)
 data = ExtResource("6_kgvkj")
 
-[node name="monsterSpawner" parent="." instance=ExtResource("4_yojer")]
-position = Vector2(150, 88)
+[node name="MonsterSpawner" parent="." instance=ExtResource("4_yojer")]
+position = Vector2(150, 84)
+
+[node name="WeaponDeck" parent="." instance=ExtResource("10_rq0b7")]
 
 [node name="MonsterDeck" parent="." instance=ExtResource("5_j43no")]
-position = Vector2(23, 39)
-scale = Vector2(1.0182925, 1.0105634)
+
+[node name="WeaponSpawner" parent="." instance=ExtResource("10_kgvkj")]
+position = Vector2(565, 228)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -41,10 +46,10 @@ anchor_left = -0.081
 anchor_top = 0.44900003
 anchor_right = 0.143
 anchor_bottom = 0.59800005
-offset_left = 67.834
-offset_top = 167.82199
-offset_right = -8.133987
-offset_bottom = 122.03302
+offset_left = 958.19
+offset_top = 327.822
+offset_right = 833.43
+offset_bottom = 282.03302
 text = "Terminar
 Turno"
 
@@ -54,11 +59,11 @@ anchor_left = 0.011000001
 anchor_top = 0.65500003
 anchor_right = 0.123
 anchor_bottom = 0.77300006
-offset_left = 7.1459994
-offset_top = -14.910034
-offset_right = 0.17799377
-offset_bottom = -68.10602
+offset_left = 866.11
+offset_top = 152.08997
+offset_right = 859.14197
+offset_bottom = 98.89398
 text = "Turno: 1"
 
 [node name="LifeHUD" parent="." instance=ExtResource("9_3akp0")]
-position = Vector2(648, 654)
+position = Vector2(790, 655)
