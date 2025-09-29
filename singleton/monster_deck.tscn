@@ -1,23 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://r3uw2a7pd3o6"]
+[gd_scene load_steps=9 format=3 uid="uid://r3uw2a7pd3o6"]
 
 [ext_resource type="Script" uid="uid://cli218hw4m8vd" path="res://singleton/monster_deck.gd" id="1_svbph"]
 [ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/monstruo1.tres" id="2_3hl6n"]
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Cartas/MonsterCardData.gd" id="2_46c8m"]
 [ext_resource type="Resource" uid="uid://cwcsd2cagjb73" path="res://Resources/Monstruos/monstruo2.tres" id="3_ukxup"]
-[ext_resource type="Texture2D" uid="uid://4meheoaljcjk" path="res://Assets/cards/reescalado/deck.png" id="4_6w28h"]
 [ext_resource type="Resource" uid="uid://b38mrmntoefr5" path="res://Resources/Monstruos/monstruo3.tres" id="5_iaqll"]
 [ext_resource type="Resource" uid="uid://chendedgm7761" path="res://Resources/Monstruos/monstruo4.tres" id="6_mk08i"]
 [ext_resource type="Resource" uid="uid://b2xpawi6cr1dm" path="res://Resources/Monstruos/monstruo5.tres" id="7_h2b5e"]
 [ext_resource type="Resource" uid="uid://c4wnahibut2rw" path="res://Resources/Monstruos/monstruo6.tres" id="8_v7a3c"]
 
-[node name="MonsterDeck" type="Node2D"]
-texture_filter = 1
-position = Vector2(20.75, 35.75)
-scale = Vector2(1.0121951, 1.0070423)
+[node name="MonsterDeck" type="Node"]
 script = ExtResource("1_svbph")
-monster_cards = Array[ExtResource("2_46c8m")]([ExtResource("2_3hl6n"), ExtResource("3_ukxup"), ExtResource("5_iaqll"), ExtResource("6_mk08i"), ExtResource("7_h2b5e"), ExtResource("8_v7a3c")])
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(20.746986, 35.74825)
-scale = Vector2(1.0060241, 1.0034965)
-texture = ExtResource("4_6w28h")
+monster_data_cards = Array[ExtResource("2_46c8m")]([ExtResource("2_3hl6n"), ExtResource("3_ukxup"), ExtResource("5_iaqll"), ExtResource("6_mk08i"), ExtResource("7_h2b5e"), ExtResource("8_v7a3c")])

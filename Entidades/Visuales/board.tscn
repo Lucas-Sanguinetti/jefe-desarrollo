@@ -1,11 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvtbctljo4ol3"]
+[gd_scene load_steps=4 format=3 uid="uid://cvtbctljo4ol3"]
 
-[ext_resource type="Texture2D" uid="uid://crt1cwue4mo02" path="res://Assets/background/reescalado/background.png" id="1_j4tl6"]
+[ext_resource type="Texture2D" uid="uid://cmablquxfp1ye" path="res://Assets/background/reescalado/backgroundV2R.png" id="1_ua3xp"]
+[ext_resource type="Texture2D" uid="uid://c8gaxpugvi0gq" path="res://Assets/cards/reescalado/deckArmas.png" id="2_jlxkg"]
+[ext_resource type="Texture2D" uid="uid://4meheoaljcjk" path="res://Assets/cards/reescalado/deck.png" id="3_pkwy2"]
 
 [node name="Board" type="CanvasLayer"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("1_j4tl6")
+texture = ExtResource("1_ua3xp")
+
+[node name="WeaponDeck" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 524.0
+offset_top = 4.0
+offset_right = 606.0
+offset_bottom = 146.0
+texture = ExtResource("2_jlxkg")
+
+[node name="MonsterDeck" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 86.0
+offset_bottom = 146.0
+texture = ExtResource("3_pkwy2")

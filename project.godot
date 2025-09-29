@@ -16,12 +16,13 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
 
-MonsterDeck="*res://singleton/monster_deck.tscn"
 LifeManager="*res://singleton/life_manager.gd"
+WeaponDeck="*res://singleton/weapon_deck.tscn"
+MonsterDeck="*res://singleton/monster_deck.tscn"
 
 [display]
 
-window/size/viewport_width=714
+window/size/viewport_width=990
 window/size/viewport_height=722
 window/size/window_width_override=893
 window/size/window_height_override=903

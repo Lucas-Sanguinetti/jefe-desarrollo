@@ -5,7 +5,7 @@ extends Node
 #var wave1Monsters:Array = []
 #var wave2Monsters:Array = []
 #var wave3Monsters:Array = []
-@export var monster_cards: Array[MonsterCardData] 
+@export var monster_data_cards: Array[MonsterCardData] 
 
 #@export var monster1:MonsterCardData
 #@export var monster2:MonsterCardData
@@ -18,16 +18,16 @@ func _ready() -> void:
 	#wave1Monsters.push_back(monster2)
 	
 	#luego se mezclan los mazos
-	print(monster_cards)
-	monster_cards.shuffle()
+	print(monster_data_cards)
+	monster_data_cards.shuffle()
 	#wave2Monsters.shuffle()
 	#wave3Monsters.shuffle()
 
 ##funcion para el state
 func draw1():
 	print("robe una carta")
-	var monster:MonsterCardData = monster_cards[0]
-	monster_cards.remove_at(0)
+	var monster:MonsterCardData = monster_data_cards[0]
+	monster_data_cards.remove_at(0)
 	return monster
 
 ##funcion para el state	
@@ -45,4 +45,4 @@ func draw3():
 	#return monster
 
 func size():
-	return monster_cards.size()
+	return monster_data_cards.size()

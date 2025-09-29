@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@onready var grid_monstruos: Node2D = $GridMonstruos
+@onready var grid_monstruos: Node2D = $MonsterGrid
 @onready var deck_drawer: Node = $DeckDrawer
 @onready var turn_button = $"../CanvasLayer/PasarTurno"
 

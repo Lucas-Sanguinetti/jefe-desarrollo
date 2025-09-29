@@ -1,0 +1,14 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0ah8qij8o442"]
+
+[ext_resource type="Script" uid="uid://h57xu7varvij" path="res://singleton/weapon_deck.gd" id="1_yl64i"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Cartas/WeaponCardData.gd" id="2_fcv3a"]
+[ext_resource type="Resource" uid="uid://c0itiolm4uay8" path="res://Resources/Armas/arma3.tres" id="3_g2gk4"]
+[ext_resource type="Resource" uid="uid://c2d322or4k66j" path="res://Resources/Armas/arma4.tres" id="4_rtuda"]
+[ext_resource type="Resource" uid="uid://b8ap0ir3le4k7" path="res://Resources/Armas/arma5.tres" id="5_nud52"]
+[ext_resource type="Resource" uid="uid://cpnq7xdnrtyf2" path="res://Resources/Armas/arma6.tres" id="6_dbjkk"]
+[ext_resource type="Resource" uid="uid://b0sgqig3gvs3o" path="res://Resources/Armas/arma7.tres" id="7_e76mx"]
+[ext_resource type="Resource" uid="uid://dlljf57rqu077" path="res://Resources/Armas/arma8.tres" id="8_0f01i"]
+
+[node name="WeaponDeck" type="Node"]
+script = ExtResource("1_yl64i")
+weapons_data_cards = Array[ExtResource("2_fcv3a")]([ExtResource("3_g2gk4"), ExtResource("4_rtuda"), ExtResource("5_nud52"), ExtResource("6_dbjkk"), ExtResource("7_e76mx"), ExtResource("8_0f01i")])

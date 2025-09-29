@@ -1,6 +1,7 @@
 extends Node2D
 
-const GRID_SIZE = 4        # 4x4
+const GRID_COLLUMNS = 2        # 4x4
+const GRID_ROWS = 3
 const CELL_SIZE = 64       # ancho/alto de cada celda (en píxeles)
 const CellHeigth = 144     
 const CellWeigth = 104
@@ -10,10 +11,10 @@ var grid = []  # array 2D de referencias a fichas
 
 func _ready():
 	# Inicializar grilla vacía
-	grid.resize(GRID_SIZE)
-	for x in range(GRID_SIZE):
+	grid.resize(GRID_COLLUMNS * GRID_ROWS )
+	for x in range(GRID_COLLUMNS):
 		grid[x] = []
-		for y in range(GRID_SIZE):
+		for y in range(GRID_ROWS):
 			grid[x].append(null)
 
 # Convierte posición lógica (x,y) en coordenada de pantalla
@@ -21,7 +22,7 @@ func grid_to_world(x: int, y: int) -> Vector2:
 	return Vector2(x, y) * Vector2(CellWeigth, CellHeigth)
 
 # Colocar ficha en una posición lógica
-func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
+func place_piece(x: int, y: int, cardData: WeaponCardData) -> bool:
 	if grid[x][y] != null:
 		return false  # ya ocupado
 	
@@ -39,10 +40,10 @@ func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
 	
 
 #Buscar una celda libre al azar e invocar allí
-func invoke_random_piece(carta: MonsterCardData):
+func invoke_random_piece(carta: WeaponCardData):
 	var empty_cells = []
-	for x in range(GRID_SIZE):
-		for y in range(GRID_SIZE):
+	for x in range(GRID_COLLUMNS):
+		for y in range(GRID_ROWS):
 			if grid[x][y] == null:
 				empty_cells.append(Vector2(x, y))
 
@@ -52,11 +53,3 @@ func invoke_random_piece(carta: MonsterCardData):
 
 	var pos = empty_cells[randi() % empty_cells.size()]
 	place_piece(pos.x, pos.y, carta)
-
-#funcion puramente para visualizar las celdas y el espaciado
-#func _draw():
-	#for x in range(GRID_SIZE):
-		#for y in range(GRID_SIZE):
-			#var rect = Rect2(Vector2(x, y) * Vector2(CellWeigth, CellHeigth), Vector2(CellWeigth, CellHeigth))
-			#draw_rect(rect, Color(1, 1, 1, 0.1), true)   # relleno semitransparente
-			#draw_rect(rect, Color(1, 1, 1), false, 2.0) # borde blanco
