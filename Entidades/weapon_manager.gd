@@ -9,6 +9,7 @@ var player_grid: PlayerWeaponGrid = null  # "Equipadas"
 func _ready():
 	# Buscar los grids en la escena
 	call_deferred("initialize_grids")
+	
 
 func initialize_grids():
 	# Buscar WeaponGrid

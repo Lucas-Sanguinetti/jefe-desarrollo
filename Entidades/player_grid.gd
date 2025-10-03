@@ -71,11 +71,11 @@ func equip_weapon(weapon: Carta, x: int = -1, y: int = -1) -> bool:
 	weapon.parent_grid = self
 	grid[x][y] = weapon
 	
-	if card_manager:
-		if not weapon.mouseSobreCarta.is_connected(card_manager.on_hovered_over_card):
-			card_manager.connect_card_signals(weapon)
-		if not weapon.card_selected_for_attack.is_connected(card_manager._on_card_selected_for_attack):
-			card_manager.connect_combat_signals(weapon)
+	#if card_manager:
+		#if not weapon.mouseSobreCarta.is_connected(card_manager.on_hovered_over_card):
+			#card_manager.connect_card_signals(weapon)
+		#if not weapon.card_selected_for_attack.is_connected(card_manager._on_card_selected_for_attack):
+			#card_manager.connect_combat_signals(weapon)
 	
 	# Habilitar combate para esta arma
 	weapon.can_attack = true

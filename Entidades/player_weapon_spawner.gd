@@ -6,11 +6,10 @@ extends Node2D
 @export var initial_weapons: Array[WeaponCardData] = []
 
 func _ready():
-	if player_grid:
-		player_grid.weapon_equipped.connect(_on_weapon_equipped)
-		player_grid.weapon_removed.connect(_on_weapon_removed)
-		player_grid.grid_full.connect(_on_grid_full)
-		player_grid.grid_has_space.connect(_on_grid_has_space)
+	player_grid.weapon_equipped.connect(_on_weapon_equipped)
+	player_grid.weapon_removed.connect(_on_weapon_removed)
+	player_grid.grid_full.connect(_on_grid_full)
+	player_grid.grid_has_space.connect(_on_grid_has_space)
 	
 	initial_load()
 
@@ -40,13 +39,11 @@ func _on_grid_has_space():
 
 
 func reset_weapons_for_new_turn():
-	if player_grid:
-		player_grid.reset_all_weapons()
+	player_grid.reset_all_weapons()
 
 
 func block_weapons():
-	if player_grid:
-		player_grid.block_all_weapons()
+	player_grid.block_all_weapons()
 
 # Para futura eleccion de arma
 func equip_weapon(weapon: Carta) -> bool:

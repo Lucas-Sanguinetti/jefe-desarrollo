@@ -62,8 +62,8 @@ func connect_to_manager():
 		if manager.has_method("connect_card_signals"):
 			manager.connect_card_signals(self)
 
-func setup(data: CardData):
-	self.data = data
+func setup(datos: CardData):
+	self.data = datos
 
 func setup_card_ui():
 	if data is MonsterCardData:
