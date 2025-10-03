@@ -4,7 +4,6 @@ const GRID_SIZE = 4        # 4x4
 const CELL_SIZE = 64       # ancho/alto de cada celda (en píxeles)
 const CellHeigth = 144     
 const CellWeigth = 104
-@export var ficha_scene: PackedScene
 
 var grid = []  # array 2D de referencias a fichas
 

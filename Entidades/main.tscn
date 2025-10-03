@@ -1,16 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=11 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="1_1a6n1"]
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/main.gd" id="1_3akp0"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="1_two4o"]
-[ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/carta.tscn" id="2_1fbpr"]
-[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/arma1.tres" id="4_n8fjv"]
 [ext_resource type="PackedScene" uid="uid://7rgw566lpfxe" path="res://Entidades/Monstruos/monster_spawner.tscn" id="4_yojer"]
 [ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://singleton/monster_deck.tscn" id="5_j43no"]
-[ext_resource type="Resource" uid="uid://dpgums16lds27" path="res://Resources/Armas/arma2.tres" id="6_kgvkj"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="9_3akp0"]
+[ext_resource type="PackedScene" uid="uid://dfmm3iy8hd5vr" path="res://Entidades/Armas/player_weapon_spawner.tscn" id="9_rq0b7"]
 [ext_resource type="PackedScene" uid="uid://bmeoueu10fxj2" path="res://Entidades/Armas/weapon_spawner.tscn" id="10_kgvkj"]
 [ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="10_rq0b7"]
+[ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/weapon_manager.gd" id="14_g2hw1"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3akp0")
@@ -19,14 +18,6 @@ script = ExtResource("1_3akp0")
 layer = -1
 
 [node name="CardManager" parent="." instance=ExtResource("1_1a6n1")]
-
-[node name="Arma1" parent="CardManager" instance=ExtResource("2_1fbpr")]
-position = Vector2(358, 658)
-data = ExtResource("4_n8fjv")
-
-[node name="Arma2" parent="CardManager" instance=ExtResource("2_1fbpr")]
-position = Vector2(215, 658)
-data = ExtResource("6_kgvkj")
 
 [node name="MonsterSpawner" parent="." instance=ExtResource("4_yojer")]
 position = Vector2(150, 84)
@@ -37,6 +28,13 @@ position = Vector2(150, 84)
 
 [node name="WeaponSpawner" parent="." instance=ExtResource("10_kgvkj")]
 position = Vector2(565, 228)
+
+[node name="PlayerWeaponSpawner" parent="." instance=ExtResource("9_rq0b7")]
+position = Vector2(73, 657)
+
+[node name="WeaponManager" type="Node2D" parent="."]
+position = Vector2(44, 136)
+script = ExtResource("14_g2hw1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
