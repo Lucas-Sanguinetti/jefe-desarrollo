@@ -18,7 +18,6 @@ signal grid_full
 signal grid_has_space
 
 func _ready():
-	# Inicializar grilla vacía
 	grid.resize(GRID_COLUMNS)
 	for x in range(GRID_COLUMNS):
 		grid[x] = []
@@ -28,10 +27,8 @@ func _ready():
 	# Buscar el CardManager en la escena
 	card_manager = get_node_or_null("/root/Main/CardManager")
 	if not card_manager:
-		push_warning("No se encontró CardManager en la escena")
-	
-	# Cargar armas iniciales si están definidas
-	load_initial_weapons()
+		push_warning("No se encontró CardManager en la escena")#Debug
+
 
 # Convierte posición lógica (x,y) en coordenada de pantalla
 func grid_to_world(x: int, y: int) -> Vector2:
@@ -42,7 +39,7 @@ func grid_to_world(x: int, y: int) -> Vector2:
 	return base_pos + margin_offset
 
 
-# Método principal: Equipar un arma EXISTENTE (instancia de Carta)
+# Equipar un arma EXISTENTE (instancia de Carta)
 func equip_weapon(weapon: Carta, x: int = -1, y: int = -1) -> bool:
 	if not weapon or not weapon.data is WeaponCardData:
 		push_warning("Solo se pueden equipar armas (WeaponCardData)")
@@ -74,7 +71,6 @@ func equip_weapon(weapon: Carta, x: int = -1, y: int = -1) -> bool:
 	weapon.parent_grid = self
 	grid[x][y] = weapon
 	
-	# Conectar señales del CardManager si existe
 	if card_manager:
 		if not weapon.mouseSobreCarta.is_connected(card_manager.on_hovered_over_card):
 			card_manager.connect_card_signals(weapon)
@@ -93,7 +89,7 @@ func equip_weapon(weapon: Carta, x: int = -1, y: int = -1) -> bool:
 	print("Arma equipada en PlayerWeaponGrid: ", weapon.name)
 	return true
 
-# Método alternativo: Crear arma desde CardData
+#Crear arma desde CardData
 func create_and_equip_weapon(cardData: WeaponCardData, x: int = -1, y: int = -1) -> bool:
 	var weapon = cardData.escena.instantiate()
 	if weapon.has_method("setup"):
@@ -128,19 +124,6 @@ func find_empty_slot() -> Vector2:
 				return Vector2(x, y)
 	return Vector2(-1, -1)
 
-# Actualizar la posición en el grid cuando una carta muere
-func update_on_card_death(card: Carta):
-	if card.grid_pos == null or card.grid_pos == Vector2(-1, -1):
-		return
-	
-	var x = int(card.grid_pos.x)
-	var y = int(card.grid_pos.y)
-	
-	if is_valid_position(x, y) and grid[x][y] == card:
-		grid[x][y] = null
-		emit_signal("weapon_removed", card)
-		emit_signal("grid_has_space")
-
 # Obtener todas las armas equipadas
 func get_all_weapons() -> Array:
 	var weapons = []
@@ -153,26 +136,24 @@ func get_all_weapons() -> Array:
 # Resetear todas las armas (al inicio del turno)
 func reset_all_weapons():
 	var weapons = get_all_weapons()
-	print("PlayerWeaponGrid: Reseteando ", weapons.size(), " armas")
+	print("PlayerWeaponGrid: Reseteando ", weapons.size(), " armas")#Debug
 	for weapon in weapons:
 		if weapon.has_method("reset_attack_ability"):
 			weapon.reset_attack_ability()
-	print("PlayerWeaponGrid: Reset completado")
+	print("PlayerWeaponGrid: Reset completado")#Debug
 
 # Bloquear todas las armas
 func block_all_weapons():
 	var weapons = get_all_weapons()
-	print("PlayerWeaponGrid: Bloqueando ", weapons.size(), " armas")
+	print("PlayerWeaponGrid: Bloqueando ", weapons.size(), " armas")#Debug
 	for weapon in weapons:
 		if weapon.has_method("block_attack_ability"):
 			weapon.block_attack_ability()
-	print("PlayerWeaponGrid: Bloqueo completado")
+	print("PlayerWeaponGrid: Bloqueo completado")#Debug
 
-# Verificar si una posición es válida
 func is_valid_position(x: int, y: int) -> bool:
 	return x >= 0 and x < GRID_COLUMNS and y >= 0 and y < GRID_ROWS
 
-# Obtener cantidad de espacios libres
 func get_empty_slots_count() -> int:
 	var count = 0
 	for x in range(GRID_COLUMNS):
@@ -184,16 +165,6 @@ func get_empty_slots_count() -> int:
 # Verificar si el grid está lleno
 func is_full() -> bool:
 	return get_empty_slots_count() == 0
-
-# Cargar armas iniciales predefinidas
-func load_initial_weapons():
-	# Esta función se puede llamar desde el editor o desde código
-	# Para definir armas iniciales, usa el @export en la escena
-	#var arma1 = preload("uid://2630l8e8maqo")
-	#var arma2 = preload("uid://dpgums16lds27")
-	#create_and_equip_weapon(arma1)
-	#create_and_equip_weapon(arma2)
-	pass
 
 # Debug: Visualizar las celdas
 func _draw():

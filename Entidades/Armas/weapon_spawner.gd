@@ -1,8 +1,6 @@
 extends Node2D
 
 @onready var grid: Node2D = $WeaponGrid
-@onready var deck_drawer: Node = $DeckDrawer
-
 
 var cards: int = 6  # Cantidad de cartas 
 

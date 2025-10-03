@@ -29,6 +29,13 @@ position = Vector2(150, 84)
 [node name="WeaponSpawner" parent="." instance=ExtResource("10_kgvkj")]
 position = Vector2(565, 228)
 
+[node name="PlayerWeaponSpawner" parent="." instance=ExtResource("9_rq0b7")]
+position = Vector2(73, 657)
+
+[node name="WeaponManager" type="Node2D" parent="."]
+position = Vector2(44, 136)
+script = ExtResource("14_g2hw1")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PasarTurno" type="Button" parent="CanvasLayer"]
@@ -58,10 +65,3 @@ text = "Turno: 1"
 
 [node name="LifeHUD" parent="." instance=ExtResource("9_3akp0")]
 position = Vector2(790, 655)
-
-[node name="PlayerWeaponSpawner" parent="." instance=ExtResource("9_rq0b7")]
-position = Vector2(73, 657)
-
-[node name="WeaponManager" type="Node2D" parent="."]
-position = Vector2(44, 136)
-script = ExtResource("14_g2hw1")

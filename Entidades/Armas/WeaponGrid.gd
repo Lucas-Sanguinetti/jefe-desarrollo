@@ -10,7 +10,6 @@ const CellWeigth = 104
 var grid = []  # array 2D de referencias a fichas
 
 func _ready():
-	# Inicializar grilla vacía
 	grid.resize(GRID_COLLUMNS * GRID_ROWS )
 	for x in range(GRID_COLLUMNS):
 		grid[x] = []
@@ -27,7 +26,6 @@ func place_piece(x: int, y: int, cardData: WeaponCardData) -> bool:
 		return false  # ya ocupado
 	
 	# Setup con los datos de la carta
-	
 	var cardPiece = cardData.escena.instantiate()
 	if cardPiece.has_method("setup"):
 		cardPiece.setup(cardData)
@@ -61,3 +59,8 @@ func get_all_weapons() -> Array:
 			if grid[x][y] != null:
 				weapons.append(grid[x][y])
 	return weapons
+
+# Para agarrar un arma particular
+func take_weapon(x: int, y: int):
+	var weapon = grid[x][y]
+	return weapon
