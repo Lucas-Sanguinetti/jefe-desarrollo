@@ -1,11 +1,11 @@
 extends Node2D
+class_name WeaponGrid
 
 const GRID_COLLUMNS = 2        # 4x4
 const GRID_ROWS = 3
 const CELL_SIZE = 64       # ancho/alto de cada celda (en píxeles)
 const CellHeigth = 144     
 const CellWeigth = 104
-@export var ficha_scene: PackedScene
 
 var grid = []  # array 2D de referencias a fichas
 
@@ -53,3 +53,11 @@ func invoke_random_piece(carta: WeaponCardData):
 
 	var pos = empty_cells[randi() % empty_cells.size()]
 	place_piece(pos.x, pos.y, carta)
+
+func get_all_weapons() -> Array:
+	var weapons = []
+	for x in range(GRID_COLLUMNS):
+		for y in range(GRID_ROWS):
+			if grid[x][y] != null:
+				weapons.append(grid[x][y])
+	return weapons

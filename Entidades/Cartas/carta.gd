@@ -4,9 +4,10 @@ class_name Carta
 @export var data: CardData
 @export var can_attack: bool = true 
 
-var grid_pos:Vector2
+var grid_pos: Vector2
+var parent_grid: Node2D = null  # Referencia al grid padre
 @onready var sprite: TextureRect = $Sprite
-var resaltadoDeAtaque: Panel # Panel para resaltado de ataque
+var resaltadoDeAtaque: Panel
 var style_normal: StyleBoxFlat
 var style_selected: StyleBoxFlat  
 var style_cannot_attack: StyleBoxFlat
@@ -15,6 +16,7 @@ signal mouseSobreCarta
 signal mouseFueraCarta
 signal card_selected_for_attack
 signal card_targeted_for_attack
+signal card_died
 
 enum CardState {
 	NORMAL,
@@ -46,15 +48,24 @@ func _ready() -> void:
 	
 	setup_card_ui()
 	
-	if get_parent().has_method("connect_combat_signals"):
-		get_parent().connect_combat_signals(self)
-		get_parent().connect_card_signals(self)
+	# Guardar referencia al grid padre
+	parent_grid = get_parent()
+	
+	# Conectar señales con CardManager
+	call_deferred("connect_to_manager")
+
+func connect_to_manager():
+	var manager = get_node_or_null("/root/Main/CardManager")
+	if manager:
+		if manager.has_method("connect_combat_signals"):
+			manager.connect_combat_signals(self)
+		if manager.has_method("connect_card_signals"):
+			manager.connect_card_signals(self)
 
 func setup(data: CardData):
 	self.data = data
 
 func setup_card_ui():
-	# Lógica condicional según el tipo de carta
 	if data is MonsterCardData:
 		$Ataque.text = str(data.attack)
 		$Vida.text = str(data.hp)
@@ -65,7 +76,6 @@ func setup_card_ui():
 		$Vida.visible = false
 		$Ataque.visible = true
 
-@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	update_visual_state()
 
@@ -82,13 +92,19 @@ func update_visual_state():
 			resaltadoDeAtaque.visible = true
 			resaltadoDeAtaque.add_theme_stylebox_override("panel", style_cannot_attack)
 			self.set_rotation_degrees(90)
-			modulate = Color(0.7, 0.7, 0.7)  # Gris para no puede atacar
+			modulate = Color(0.7, 0.7, 0.7)
 
 func set_card_state(new_state: CardState):
 	current_state = new_state
 
 func can_be_selected_for_attack() -> bool:
-	return data is WeaponCardData and can_attack and current_state != CardState.CANNOT_ATTACK
+	# Solo las armas en el PlayerWeaponGrid pueden atacar
+	# Verificar que parent_grid sea específicamente PlayerWeaponGrid
+	var is_in_player_grid = false
+	if parent_grid != null:
+		is_in_player_grid = parent_grid.get_script() and parent_grid.get_script().get_global_name() == "PlayerWeaponGrid"
+	
+	return data is WeaponCardData and can_attack and current_state != CardState.CANNOT_ATTACK and is_in_player_grid
 
 func can_be_targeted() -> bool:
 	return data is MonsterCardData
@@ -107,17 +123,14 @@ func attack(target: Carta) -> bool:
 		return false
 	
 	if data is WeaponCardData and target.data is MonsterCardData:
-		# Realizar el ataque
 		var weapon_attack = data.attack
 		target.take_damage(weapon_attack)
 		LifeManager.looseLife(target.data.attack)
 		LifeManager.life()
 		
-		can_attack = false # El arma ya no puede atacar este turno
-		
+		can_attack = false
 		set_card_state(CardState.CANNOT_ATTACK)
-
-		create_attack_effect(target) # Efecto visual de ataque
+		create_attack_effect(target)
 		
 		print("Arma atacó al monstruo por ", weapon_attack, " de daño")
 		return true
@@ -129,62 +142,57 @@ func take_damage(damage: int):
 		var monster_data = data as MonsterCardData
 		monster_data.hp -= damage
 		$Vida.text = str(monster_data.hp)
-
-		create_damage_effect() # Efecto visual de daño
-		# Verificar si el monstruo murió
+		create_damage_effect()
+		
 		if monster_data.hp <= 0:
 			die()
 
 func die():
-	print("El monstruo ha muerto")
+	print("La carta ha muerto: ", name)
+	emit_signal("card_died")
+	create_death_effect()
 	
-	create_death_effect() # Efecto de muerte
+	# Notificar al grid padre
+	if parent_grid and parent_grid.has_method("update_on_card_death"):
+		parent_grid.update_on_card_death(self)
 	
-	# Remover de la grilla 
-	
-	
-	# Remover la carta de la escena después del efecto
+	# Remover después de la animación
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.5)
 	tween.tween_callback(queue_free)
 
 func create_attack_effect(target: Carta):
-	# Efecto visual simple de ataque
 	var tween = create_tween()
 	var original_pos = global_position
 	var target_pos = target.global_position
 	
-	# Mover hacia el objetivo y regresar
 	tween.tween_property(self, "global_position", target_pos, 0.2)
 	tween.tween_property(self, "global_position", original_pos, 0.2)
 
 func create_damage_effect():
-	# Efecto visual de daño recibido
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color.RED, 0.1)
 	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
 
 func create_death_effect():
-	# Efecto visual de muerte
 	var tween = create_tween()
 	tween.parallel().tween_property(self, "rotation", PI, 0.5)
 	tween.parallel().tween_property(self, "scale", Vector2.ZERO, 0.5)
 
 func reset_attack_ability():
-	# Restaurar la capacidad de ataque (llamar al inicio de cada turno)
 	if data is WeaponCardData:
 		can_attack = true
 		set_card_state(CardState.NORMAL)
+		print("Arma ", name, " reseteada - puede atacar")
 		
 func block_attack_ability():
 	if data is WeaponCardData:
-		can_attack = true
+		can_attack = false
 		set_card_state(CardState.CANNOT_ATTACK)
+		print("Arma ", name, " bloqueada - no puede atacar")
 
 func _on_area_mouse_entered() -> void:
-	emit_signal("mouseSobreCarta",self)
+	emit_signal("mouseSobreCarta", self)
 
 func _on_area_mouse_exited() -> void:
-	emit_signal("mouseFueraCarta",self)
-	
-	
+	emit_signal("mouseFueraCarta", self)

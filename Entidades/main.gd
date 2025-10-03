@@ -3,22 +3,44 @@ extends Node
 @onready var turn_button = $CanvasLayer/PasarTurno
 @onready var turn_label = $CanvasLayer/ContadorTurno
 @onready var card_manager = $CardManager
+@onready var player_weapon_spawner = $PlayerWeaponSpawner
+@onready var monster_spawner = $MonsterSpawner
+
 var current_turn = 1
 
 func _ready() -> void:
 	turn_button.pressed.connect(_on_turn_button_pressed)
+	
+	# Conectar tecla de debug (T para transferir arma al azar)
+	# Esto es solo para testing, puedes removerlo después
+
+#func _input(event):
+	## DEBUG: Presionar T para transferir arma del almacén al jugador
+	#if event is InputEventKey and event.pressed and event.keycode == KEY_T:
+		#if weapon_manager and weapon_manager.has_method("transfer_random_weapon_to_player"):
+			#weapon_manager.transfer_random_weapon_to_player()
 
 func _on_turn_button_pressed():
 	current_turn += 1
 	turn_label.text = "Turno: " + str(current_turn)
 	
+	# Resetear habilidades de ataque de las armas EQUIPADAS
 	if LifeManager.vida > 0:
-		if card_manager:
-			card_manager.reset_all_weapons()
+		reset_player_weapons()
+		print("Armas del jugador reseteadas - Pueden atacar nuevamente")
 	else:
-		if card_manager:
-			card_manager.block_all_weapons()
-	print("Nuevo turno iniciado. Todas las armas pueden atacar nuevamente.")
+		block_player_weapons()
+		print("Game Over - Todas las armas del jugador bloqueadas")
+	
+	print("Turno ", current_turn, " iniciado. Armas equipadas reseteadas.")
 
-func _process(delta: float) -> void:
-	pass
+func reset_player_weapons():
+	if player_weapon_spawner and player_weapon_spawner.has_method("reset_weapons_for_new_turn"):
+		player_weapon_spawner.reset_weapons_for_new_turn()
+		print("Reset ejecutado en PlayerWeaponSpawner")
+	else:
+		push_warning("No se encontró PlayerWeaponSpawner o no tiene el método reset_weapons_for_new_turn")
+
+func block_player_weapons():
+	if player_weapon_spawner and player_weapon_spawner.has_method("block_weapons"):
+		player_weapon_spawner.block_weapons()
