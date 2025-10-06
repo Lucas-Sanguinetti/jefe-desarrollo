@@ -32,6 +32,8 @@ func _on_turn_button_pressed():
 		print("Game Over - Todas las armas del jugador bloqueadas")#Debug
 	
 	print("Turno ", current_turn, " iniciado. Armas equipadas reseteadas.")#Debug
+	
+	weapon_manager.reset_turn()
 
 func reset_player_weapons():
 	player_weapon_spawner.reset_weapons_for_new_turn()

@@ -3,11 +3,17 @@ class_name WeaponManager
 
 var weapon_grid: WeaponGrid = null  # "Almacén"
 var player_grid: PlayerWeaponGrid = null  # "Equipadas"
+var monster_grid: MonsterGrid = null
 
 @export var initial_equipped_weapons: Array[WeaponCardData] = []
 
+var limiteArmasTurno: int = 1
+var armasTransferidas:int = 0
+var monstruoMurio: bool = false
+
 func _ready():
 	# Buscar los grids en la escena
+
 	call_deferred("initialize_grids")
 	
 
@@ -21,13 +27,27 @@ func initialize_grids():
 	var player_spawner = get_node_or_null("../PlayerWeaponSpawner")
 	if player_spawner:
 		player_grid = player_spawner.get_node_or_null("PlayerGrid")
+		
+	var monster_spawner = get_node_or_null("../MonsterSpawner")
+	if monster_spawner:
+		monster_grid = monster_spawner.get_node_or_null("MonsterGrid")
 	
 	if not weapon_grid:
 		push_warning("WeaponManager: No se encontró WeaponGrid")
 	if not player_grid:
 		push_warning("WeaponManager: No se encontró PlayerWeaponGrid")
+	if not monster_grid:
+		push_warning("WeaponManager: No se encontró MonsterGrid")
+	
+	weapon_grid.carta_Clickeada.connect(_on_carta_clikeada)
+	monster_grid.monster_died.connect(_on_monster_die)
 	
 	#equip_initial_weapons()
+
+@warning_ignore("unused_parameter") #para proximas mejoras en el sistema
+func _on_monster_die(monster: Carta):
+	monstruoMurio = true
+	pass
 
 # Metodo alternativo de armas iniciales
 func equip_initial_weapons():
@@ -41,13 +61,8 @@ func equip_initial_weapons():
 
 # Mover un arma del WeaponGrid al PlayerWeaponGrid
 func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
-	if not weapon_grid or not player_grid:
-		push_warning("WeaponManager: Grids no inicializados") #Debug
-		return false
 	
-	# Verificar si hay espacio
-	if player_grid.is_full():
-		print("WeaponManager: PlayerWeaponGrid está lleno") #Debug
+	if !verificar_transferencia():
 		return false
 	
 	# Tomar arma del almacén
@@ -62,11 +77,13 @@ func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 	if not success:
 		# Si falló, devolver al almacén
 		push_warning("WeaponManager: No se pudo equipar el arma") #Debug
-		# Agregar al weapon grid?
+		# Agregar al weapon grid / devolver al lugar de donde la saque
 		weapon.queue_free()
 		return false
 	
 	print("WeaponManager: Arma transferida exitosamente")
+	armasTransferidas += 1
+	
 	return true
 
 # Modificar para deck segun decision empresarial
@@ -99,10 +116,49 @@ func transfer_random_weapon_to_player() -> bool:
 	
 	var available_weapons = weapon_grid.get_all_weapons()
 	if available_weapons.is_empty():
-		print("WeaponManager: No hay armas disponibles en el almacén")  #Debug
 		return false
 	
 	var random_weapon = available_weapons[randi() % available_weapons.size()]
 	var pos = random_weapon.grid_pos
 	
 	return transfer_weapon_to_player(int(pos.x), int(pos.y))
+
+func verificar_transferencia() -> bool:
+	#Verificar monstruo derrotado
+	if !monstruoMurio:
+		push_warning("WeaponManager: No se mato ningun monstruo") #Debug
+		return false
+	#Verificar cantidad de armas transferidas
+	if armasTransferidas >= limiteArmasTurno:
+		print("WeaponManager: No se pueden agarrar mas de: "+str(limiteArmasTurno)+" armas por turno") #Debug
+		return false
+	
+	# Verificar si hay espacio
+	if player_grid.is_full():
+		print("WeaponManager: PlayerWeaponGrid está lleno") #Debug
+		return false
+	
+	#Verificar armas disponibles
+	var available_weapons = weapon_grid.get_all_weapons()
+	if available_weapons.is_empty():
+		print("WeaponManager: No hay armas disponibles en el almacén")  #Debug
+		return false
+	
+	return true
+
+func reset_turn():
+	armasTransferidas = 0
+	monstruoMurio = false
+	pass
+
+func _on_carta_clikeada(carta:Carta):
+	if !verificar_transferencia():
+		return
+	
+	var postion = carta.grid_pos
+	var success = transfer_weapon_to_player(postion.x, postion.y)
+	
+	if success:
+		print("WeaponManager: Arma equipada exitosamente mediante doble click")
+	else:
+		print("WeaponManager: Fallo al equipar arma mediante doble click")
