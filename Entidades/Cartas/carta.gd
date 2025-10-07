@@ -12,18 +12,15 @@ var style_normal: StyleBoxFlat
 var style_selected: StyleBoxFlat  
 var style_cannot_attack: StyleBoxFlat
 @onready var area: Area2D = $Area
-# Variables para detectar doble click
-var click_timer: float = 0.0
-var click_threshold: float = 0.3  # 300ms para detectar doble click
-var click_count: int = 0
 
-signal mouseSobreCarta
->>>>>>> 2304fd13a724065abff7b078b09cf947b4c5e4e7
+
+
+
+signal mouseSobreCarta(carta: Carta)
 signal mouseFueraCarta
 signal card_selected_for_attack
 signal card_targeted_for_attack
 signal card_died
-signal card_double_clicked(carta: Carta)
 
 enum CardState {
 	NORMAL,
@@ -88,7 +85,6 @@ func setup_card_ui():
 		$Vida.visible = false
 		$Ataque.visible = true
 
-@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	update_visual_state()
 	
@@ -109,17 +105,6 @@ func update_visual_state():
 
 func set_card_state(new_state: CardState):
 	current_state = new_state
-	
-# Solo las armas en el WeaponGrid pueden ser seleccionadas
-func can_be_double_clicked() -> bool:
-	if not data is WeaponCardData:
-		return false
-	if parent_grid == null:
-		return false
-	# Verificar que el grid padre sea WeaponGrid
-	var is_weapon_grid = parent_grid.get_script() and parent_grid.get_script().get_global_name() == "WeaponGrid"
-	
-	return is_weapon_grid
 
 func can_be_selected_for_attack() -> bool:
 	# Solo las armas en el PlayerWeaponGrid pueden atacar
@@ -225,31 +210,3 @@ func _on_area_mouse_entered() -> void:
 
 func _on_area_mouse_exited() -> void:
 	emit_signal("mouseFueraCarta", self)
-
-
-@warning_ignore("unused_parameter")
-func _on_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		_handle_click()
-
-func _handle_click():
-	# Solo procesar doble click si la carta puede ser seleccionada
-	if not can_be_double_clicked():
-		return
-	
-	click_count += 1
-	click_timer = click_threshold
-	
-	if click_count >= 2:
-		# Doble click detectado
-		_on_double_click()
-		click_count = 0
-		click_timer = 0
-
-func _on_double_click():
-	print("Carta: Doble click detectado en ", name)
-	emit_signal("card_double_clicked", self)
-
-
-func _on_click_timer_timeout() -> void:
-	pass # Replace with function body.
