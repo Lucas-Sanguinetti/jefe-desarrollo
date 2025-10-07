@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlykyhjrmcfhg"]
+[gd_scene load_steps=5 format=3 uid="uid://dlykyhjrmcfhg"]
 
 [ext_resource type="Script" uid="uid://jknsby0twxx" path="res://Entidades/Cartas/carta.gd" id="1_wjgbj"]
+[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/arma1.tres" id="2_pt1tv"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="3_pt1tv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3ok"]
@@ -17,6 +18,13 @@ offset_top = -62.0
 offset_right = 41.0
 offset_bottom = 62.0
 
+[node name="element" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 21.0
+offset_top = -60.0
+offset_right = 39.0
+offset_bottom = -46.0
+
 [node name="Area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
@@ -25,29 +33,32 @@ scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_xu3ok")
 
 [node name="Ataque" type="Label" parent="."]
+texture_filter = 1
 offset_left = 24.0
 offset_top = 47.0
 offset_right = 40.0
 offset_bottom = 63.0
 theme_override_fonts/font = ExtResource("3_pt1tv")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 12
 text = "50"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Vida" type="Label" parent="."]
-offset_left = -40.0
-offset_top = 46.0
-offset_right = -24.0
-offset_bottom = 62.0
+texture_filter = 1
+offset_left = -38.0
+offset_top = 47.0
+offset_right = -22.0
+offset_bottom = 63.0
 theme_override_fonts/font = ExtResource("3_pt1tv")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 text = "50"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
 [node name="ClickTimer" type="Timer" parent="."]
 
 [connection signal="input_event" from="Area" to="." method="_on_area_input_event"]

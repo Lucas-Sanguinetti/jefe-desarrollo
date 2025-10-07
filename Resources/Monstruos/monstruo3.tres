@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/carta.tscn" id="1_g1c20"]
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Cartas/MonsterCardData.gd" id="1_p7k3n"]
-[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/reescalado/monsterCard.png" id="3_g1c20"]
+[ext_resource type="Texture2D" uid="uid://ch1xteva6t3k3" path="res://Assets/cards/reescalado/monster/monsterCardWater.png" id="3_g1c20"]
 
 [resource]
 script = ExtResource("1_p7k3n")

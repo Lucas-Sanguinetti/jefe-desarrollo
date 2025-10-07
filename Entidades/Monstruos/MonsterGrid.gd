@@ -7,6 +7,7 @@ const CellHeigth = 144
 const CellWeigth = 104
 
 var grid = []  # array 2D de referencias a fichas
+signal mouseEntered(carta: Carta)
 
 signal monster_died(monster: Carta)
 
@@ -33,14 +34,20 @@ func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
 	if cardPiece.has_method("setup"):
 		cardPiece.setup(cardData)
 	add_child(cardPiece)
-	
+
+	cardPiece.mouseSobreCarta.connect(Callable(self, "_conectUp"))
+
 	cardPiece.position = grid_to_world(x, y)
 	cardPiece.grid_pos = Vector2(x, y)
 	grid[x][y] = cardPiece
 	cardPiece.card_died.connect(_on_monster_died.bind(cardPiece))
 	
 	return true
+
+func _conectUp(carta: Carta):
+	emit_signal("mouseEntered", carta)
 	
+
 
 #Buscar una celda libre al azar e invocar allí
 func invoke_random_piece(carta: MonsterCardData):

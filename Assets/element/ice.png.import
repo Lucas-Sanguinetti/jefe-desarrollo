@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp1ske3lphppj"
-path="res://.godot/imported/weaponrCard.png-ac216a88bf6f577d0a289ad1019d15ff.ctex"
+uid="uid://bq1x2xdytdtxl"
+path="res://.godot/imported/ice.png-7603fc93a5c8ccfddcb9592cd21b7c8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cards/reescalado/weaponrCard.png"
-dest_files=["res://.godot/imported/weaponrCard.png-ac216a88bf6f577d0a289ad1019d15ff.ctex"]
+source_file="res://Assets/element/ice.png"
+dest_files=["res://.godot/imported/ice.png-7603fc93a5c8ccfddcb9592cd21b7c8e.ctex"]
 
 [params]
 
