@@ -6,11 +6,13 @@ extends Node
 @onready var player_weapon_spawner = $PlayerWeaponSpawner
 @onready var monster_spawner = $MonsterSpawner
 @onready var weapon_manager: WeaponManager = $WeaponManager
+@onready var card_info: Node2D = $InfoDisplay
 
-var current_turn = 1
+var current_turn = 1.
 
 func _ready() -> void:
 	turn_button.pressed.connect(_on_turn_button_pressed)
+	
 
 func _input(event):
 	# DEBUG: Presionar T para transferir arma del almacén al jugador

@@ -1,4 +1,5 @@
 extends Node2D
+class_name MonsterGrid
 
 const GRID_SIZE = 4        # 4x4
 const CELL_SIZE = 64       # ancho/alto de cada celda (en píxeles)
@@ -6,6 +7,7 @@ const CellHeigth = 144
 const CellWeigth = 104
 
 var grid = []  # array 2D de referencias a fichas
+signal mouseEntered(carta: Carta)
 
 func _ready():
 	# Inicializar grilla vacía
@@ -30,12 +32,18 @@ func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
 	if cardPiece.has_method("setup"):
 		cardPiece.setup(cardData)
 	add_child(cardPiece)
-	
+
+	cardPiece.mouseSobreCarta.connect(Callable(self, "_conectUp"))
+
 	cardPiece.position = grid_to_world(x, y)
 	cardPiece.grid_pos = Vector2(x, y)
 	grid[x][y] = cardPiece
 	return true
+
+func _conectUp(carta: Carta):
+	emit_signal("mouseEntered", carta)
 	
+
 
 #Buscar una celda libre al azar e invocar allí
 func invoke_random_piece(carta: MonsterCardData):

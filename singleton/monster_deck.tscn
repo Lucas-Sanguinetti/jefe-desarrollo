@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://r3uw2a7pd3o6"]
+[gd_scene load_steps=10 format=3 uid="uid://r3uw2a7pd3o6"]
 
 [ext_resource type="Script" uid="uid://cli218hw4m8vd" path="res://singleton/monster_deck.gd" id="1_svbph"]
 [ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/monstruo1.tres" id="2_3hl6n"]
@@ -8,7 +8,8 @@
 [ext_resource type="Resource" uid="uid://chendedgm7761" path="res://Resources/Monstruos/monstruo4.tres" id="6_mk08i"]
 [ext_resource type="Resource" uid="uid://b2xpawi6cr1dm" path="res://Resources/Monstruos/monstruo5.tres" id="7_h2b5e"]
 [ext_resource type="Resource" uid="uid://c4wnahibut2rw" path="res://Resources/Monstruos/monstruo6.tres" id="8_v7a3c"]
+[ext_resource type="Resource" uid="uid://bccsvhqd20i5a" path="res://Resources/Monstruos/monstruo7.tres" id="9_iaqll"]
 
 [node name="MonsterDeck" type="Node"]
 script = ExtResource("1_svbph")
-monster_data_cards = Array[ExtResource("2_46c8m")]([ExtResource("2_3hl6n"), ExtResource("3_ukxup"), ExtResource("5_iaqll"), ExtResource("6_mk08i"), ExtResource("7_h2b5e"), ExtResource("8_v7a3c")])
+monster_data_cards = Array[ExtResource("2_46c8m")]([ExtResource("2_3hl6n"), ExtResource("3_ukxup"), ExtResource("5_iaqll"), ExtResource("6_mk08i"), ExtResource("7_h2b5e"), ExtResource("8_v7a3c"), ExtResource("9_iaqll")])

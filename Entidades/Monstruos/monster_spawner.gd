@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name MonsterSpawner
 
 @onready var grid_monstruos: Node2D = $MonsterGrid
 @onready var deck_drawer: Node = $DeckDrawer

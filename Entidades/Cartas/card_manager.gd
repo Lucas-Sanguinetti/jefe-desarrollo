@@ -63,12 +63,16 @@ func attack_target(weapon: Carta, target: Carta):
 		print("No se pudo realizar el ataque")
 
 func connect_card_signals(card):
-	card.connect("mouseSobreCarta",on_hovered_over_card)
-	card.connect("mouseFueraCarta",on_hovered_off_card)
+	if not card.mouseSobreCarta.is_connected(on_hovered_over_card):
+		card.connect("mouseSobreCarta",on_hovered_over_card)
+	if not card.mouseFueraCarta.is_connected(on_hovered_off_card):
+		card.connect("mouseFueraCarta",on_hovered_off_card)
 	
 func connect_combat_signals(card):
-	card.connect("card_selected_for_attack", _on_card_selected_for_attack)
-	card.connect("card_targeted_for_attack", _on_card_targeted_for_attack)
+	if not card.card_selected_for_attack.is_connected(_on_card_selected_for_attack):
+		card.connect("card_selected_for_attack", _on_card_selected_for_attack)
+	if not card.card_targeted_for_attack.is_connected(_on_card_targeted_for_attack):
+		card.connect("card_targeted_for_attack", _on_card_targeted_for_attack)
 
 func _on_card_selected_for_attack(card: Carta):
 	selected_weapon = card

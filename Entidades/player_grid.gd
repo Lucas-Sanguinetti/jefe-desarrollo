@@ -16,6 +16,7 @@ signal weapon_equipped(weapon: Carta)
 signal weapon_removed(weapon: Carta)
 signal grid_full
 signal grid_has_space
+signal mouseEntered(carta: Carta)
 
 func _ready():
 	grid.resize(GRID_COLUMNS)
@@ -64,6 +65,7 @@ func equip_weapon(weapon: Carta, x: int = -1, y: int = -1) -> bool:
 		old_parent.remove_child(weapon)
 	
 	add_child(weapon)
+	weapon.mouseSobreCarta.connect(Callable(self, "_conectUp"))
 	
 	# Actualizar posición y referencias
 	weapon.position = grid_to_world(x, y)
@@ -94,7 +96,6 @@ func create_and_equip_weapon(cardData: WeaponCardData, x: int = -1, y: int = -1)
 	var weapon = cardData.escena.instantiate()
 	if weapon.has_method("setup"):
 		weapon.setup(cardData)
-	
 	return equip_weapon(weapon, x, y)
 
 # Desequipar un arma (retornarla al WeaponGrid u otro lugar)
@@ -165,6 +166,10 @@ func get_empty_slots_count() -> int:
 # Verificar si el grid está lleno
 func is_full() -> bool:
 	return get_empty_slots_count() == 0
+
+func _conectUp(carta: Carta):
+	emit_signal("mouseEntered", carta)
+	
 
 # Debug: Visualizar las celdas
 func _draw():

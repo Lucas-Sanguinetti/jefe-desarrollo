@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by452ho46kenb"
-path="res://.godot/imported/monsterCard.png-13c90de83e8a1b44790fd5417438470e.ctex"
+uid="uid://x7aoomc5y2fq"
+path="res://.godot/imported/wind.png-0dbc52b1bb4dc48648f2ff4abe83074d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cards/reescalado/monsterCard.png"
-dest_files=["res://.godot/imported/monsterCard.png-13c90de83e8a1b44790fd5417438470e.ctex"]
+source_file="res://Assets/element/wind.png"
+dest_files=["res://.godot/imported/wind.png-0dbc52b1bb4dc48648f2ff4abe83074d.ctex"]
 
 [params]
 

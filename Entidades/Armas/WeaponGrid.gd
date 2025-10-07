@@ -8,6 +8,7 @@ const CellHeigth = 144
 const CellWeigth = 104
 
 var grid = []  # array 2D de referencias a fichas
+signal mouseEntered(carta: Carta)
 
 func _ready():
 	grid.resize(GRID_COLLUMNS * GRID_ROWS )
@@ -15,10 +16,15 @@ func _ready():
 		grid[x] = []
 		for y in range(GRID_ROWS):
 			grid[x].append(null)
+			
+
 
 # Convierte posición lógica (x,y) en coordenada de pantalla
 func grid_to_world(x: int, y: int) -> Vector2:
 	return Vector2(x, y) * Vector2(CellWeigth, CellHeigth)
+	
+func _conectUp(carta: Carta): 
+	emit_signal("mouseEntered", carta)
 
 # Colocar ficha en una posición lógica
 func place_piece(x: int, y: int, cardData: WeaponCardData) -> bool:
@@ -30,6 +36,8 @@ func place_piece(x: int, y: int, cardData: WeaponCardData) -> bool:
 	if cardPiece.has_method("setup"):
 		cardPiece.setup(cardData)
 	add_child(cardPiece)
+	
+	cardPiece.mouseSobreCarta.connect(Callable(self, "_conectUp"))
 	
 	cardPiece.position = grid_to_world(x, y)
 	cardPiece.grid_pos = Vector2(x, y)

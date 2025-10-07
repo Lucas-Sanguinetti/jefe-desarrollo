@@ -11,8 +11,12 @@ var resaltadoDeAtaque: Panel
 var style_normal: StyleBoxFlat
 var style_selected: StyleBoxFlat  
 var style_cannot_attack: StyleBoxFlat
+@onready var area: Area2D = $Area
 
-signal mouseSobreCarta
+
+
+
+signal mouseSobreCarta(carta: Carta)
 signal mouseFueraCarta
 signal card_selected_for_attack
 signal card_targeted_for_attack
@@ -27,6 +31,7 @@ enum CardState {
 var current_state: CardState = CardState.NORMAL
 
 func _ready() -> void:
+	
 	sprite.texture = data.sprite
 	
 	style_normal = StyleBoxFlat.new()
@@ -53,6 +58,10 @@ func _ready() -> void:
 	
 	# Conectar señales con CardManager
 	call_deferred("connect_to_manager")
+	
+	#se conecta para el info display
+	
+
 
 func connect_to_manager():
 	var manager = get_node_or_null("/root/Main/CardManager")
@@ -78,7 +87,7 @@ func setup_card_ui():
 
 func _process(delta: float) -> void:
 	update_visual_state()
-
+	
 func update_visual_state():
 	match current_state:
 		CardState.NORMAL:
@@ -190,6 +199,11 @@ func block_attack_ability():
 		can_attack = false
 		set_card_state(CardState.CANNOT_ATTACK)
 		print("Arma ", name, " bloqueada - no puede atacar")
+		
+func actLabel(label: Label):
+	data.actLabel(label)
+
+
 
 func _on_area_mouse_entered() -> void:
 	emit_signal("mouseSobreCarta", self)
