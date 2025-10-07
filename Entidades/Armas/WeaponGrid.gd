@@ -10,6 +10,8 @@ const CellWeigth = 104
 var grid = []  # array 2D de referencias a fichas
 signal mouseEntered(carta: Carta)
 
+signal carta_Clickeada (carta:Carta)
+
 func _ready():
 	grid.resize(GRID_COLLUMNS * GRID_ROWS )
 	for x in range(GRID_COLLUMNS):
@@ -42,9 +44,12 @@ func place_piece(x: int, y: int, cardData: WeaponCardData) -> bool:
 	cardPiece.position = grid_to_world(x, y)
 	cardPiece.grid_pos = Vector2(x, y)
 	grid[x][y] = cardPiece
+	
+	if cardPiece.has_signal("card_double_clicked"):
+		cardPiece.card_double_clicked.connect(_on_weapon_double_clicked)
+	
 	return true
 	
-
 #Buscar una celda libre al azar e invocar allí
 func invoke_random_piece(carta: WeaponCardData):
 	var empty_cells = []
@@ -71,4 +76,10 @@ func get_all_weapons() -> Array:
 # Para agarrar un arma particular
 func take_weapon(x: int, y: int):
 	var weapon = grid[x][y]
+	grid[x][y] = null
 	return weapon
+
+func _on_weapon_double_clicked(carta: Carta):
+	print("WeaponGrid: Arma con doble click en posición ", carta.grid_pos)
+	# Notificar al WeaponManager
+	emit_signal("carta_Clickeada",carta)

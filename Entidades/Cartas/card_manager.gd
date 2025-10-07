@@ -13,6 +13,7 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			handle_card_click()
+			
 func handle_card_click():
 	var clicked_card = raycast_check_for_card()
 	
@@ -136,6 +137,7 @@ func find_cards_recursive(node: Node, cards_array: Array):
 func _ready() -> void:
 	pass
 
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	update_cursor_state()
 

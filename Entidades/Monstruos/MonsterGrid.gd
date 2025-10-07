@@ -9,6 +9,8 @@ const CellWeigth = 104
 var grid = []  # array 2D de referencias a fichas
 signal mouseEntered(carta: Carta)
 
+signal monster_died(monster: Carta)
+
 func _ready():
 	# Inicializar grilla vacía
 	grid.resize(GRID_SIZE)
@@ -38,6 +40,8 @@ func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
 	cardPiece.position = grid_to_world(x, y)
 	cardPiece.grid_pos = Vector2(x, y)
 	grid[x][y] = cardPiece
+	cardPiece.card_died.connect(_on_monster_died.bind(cardPiece))
+	
 	return true
 
 func _conectUp(carta: Carta):
@@ -59,6 +63,15 @@ func invoke_random_piece(carta: MonsterCardData):
 
 	var pos = empty_cells[randi() % empty_cells.size()]
 	place_piece(pos.x, pos.y, carta)
+
+func _on_monster_died(monster: Carta):
+	
+	var pos = monster.grid_pos
+	#Deberia corroborarlo como buena practica?
+	grid[int(pos.x)][int(pos.y)] = null
+	
+	emit_signal("monster_died",monster)
+	pass
 
 #funcion puramente para visualizar las celdas y el espaciado
 #func _draw():

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bmeoueu10fxj2" path="res://Entidades/Armas/weapon_spawner.tscn" id="10_kgvkj"]
 [ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="10_rq0b7"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="11_kgvkj"]
-[ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/weapon_manager.gd" id="14_g2hw1"]
+[ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="14_g2hw1"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3akp0")
