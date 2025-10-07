@@ -5,7 +5,7 @@ const GRID_COLUMNS = 5
 const GRID_ROWS = 1
 const CELL_HEIGHT = 144
 const CELL_WIDTH = 104
-const CELL_MARGIN_X = 39  # Margen horizontal entre celdas 
+const CELL_MARGIN_X = 38  # Margen horizontal entre celdas 
 const CELL_MARGIN_Y = 0  # Margen vertical entre celdas 
 
 var grid = []  # array 2D de referencias a cartas
