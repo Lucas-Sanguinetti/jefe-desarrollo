@@ -12,7 +12,9 @@ var current_turn = 1.
 
 func _ready() -> void:
 	turn_button.pressed.connect(_on_turn_button_pressed)
-	
+
+	LifeManager.vida_cambiada.connect(_on_vida_cambiada)
+
 
 func _input(event):
 	# DEBUG: Presionar T para transferir arma del almacén al jugador
@@ -35,12 +37,14 @@ func _on_turn_button_pressed():
 	print("Turno ", current_turn, " iniciado. Armas equipadas reseteadas.")#Debug
 
 func reset_player_weapons():
-	if player_weapon_spawner and player_weapon_spawner.has_method("reset_weapons_for_new_turn"):
-		player_weapon_spawner.reset_weapons_for_new_turn()
-		print("Reset ejecutado en PlayerWeaponSpawner")#Debug
-	else:
-		push_warning("No se encontró PlayerWeaponSpawner o no tiene el método reset_weapons_for_new_turn")#Debug
+	player_weapon_spawner.reset_weapons_for_new_turn()
+	
 
 func block_player_weapons():
-	if player_weapon_spawner and player_weapon_spawner.has_method("block_weapons"):
-		player_weapon_spawner.block_weapons()
+	player_weapon_spawner.block_weapons()
+
+func _on_vida_cambiada(nueva_vida: int):
+	if nueva_vida <= 0:
+		block_player_weapons()
+		print("Game Over - Sin vida, armas bloqueadas")
+	
