@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Endurecer" load_steps=2 format=3 uid="uid://2xugmgcp6m0e"]
+
+[ext_resource type="Script" uid="uid://br8i4gwwpmh7n" path="res://Traits/endurecer.gd" id="1_w0u13"]
+
+[resource]
+script = ExtResource("1_w0u13")
+trait_name = "Endurecer"
+metadata/_custom_type_script = "uid://br8i4gwwpmh7n"
