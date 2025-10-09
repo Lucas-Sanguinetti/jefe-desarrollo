@@ -13,6 +13,7 @@ func gainLife(cant: int ):
 	
 func looseLife(cant: int):
 	set_vida(vida - cant)
+	
 
 #Debug
 func life():

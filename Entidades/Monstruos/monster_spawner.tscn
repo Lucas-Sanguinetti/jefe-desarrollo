@@ -12,3 +12,5 @@ script = ExtResource("2_svx6r")
 
 [node name="DeckDrawer" type="Node" parent="."]
 script = ExtResource("4_bk33t")
+
+[connection signal="mouseEntered" from="MonsterGrid" to="." method="_on_monster_grid_mouse_entered"]
