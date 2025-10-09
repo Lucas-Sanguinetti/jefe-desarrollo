@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlykyhjrmcfhg"]
+[gd_scene load_steps=4 format=3 uid="uid://dlykyhjrmcfhg"]
 
 [ext_resource type="Script" uid="uid://jknsby0twxx" path="res://Entidades/Cartas/carta.gd" id="1_wjgbj"]
-[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/arma1.tres" id="2_pt1tv"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="3_pt1tv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3ok"]
@@ -58,9 +57,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
 [node name="ClickTimer" type="Timer" parent="."]
 
+[connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
 [connection signal="input_event" from="Area" to="." method="_on_area_input_event"]
 [connection signal="mouse_entered" from="Area" to="." method="_on_area_mouse_entered"]
 [connection signal="mouse_exited" from="Area" to="." method="_on_area_mouse_exited"]
