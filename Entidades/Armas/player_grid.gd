@@ -9,7 +9,6 @@ const CELL_MARGIN_X = 38  # Margen horizontal entre celdas
 const CELL_MARGIN_Y = 0  # Margen vertical entre celdas 
 
 var grid = []  # array 2D de referencias a cartas
-var card_manager: Node2D = null
 var max_capacity: int = GRID_COLUMNS * GRID_ROWS
 
 signal weapon_equipped(weapon: Carta)
@@ -24,11 +23,6 @@ func _ready():
 		grid[x] = []
 		for y in range(GRID_ROWS):
 			grid[x].append(null)
-	
-	# Buscar el CardManager en la escena
-	card_manager = get_node_or_null("/root/Main/CardManager")
-	if not card_manager:
-		push_warning("No se encontró CardManager en la escena")#Debug
 
 
 # Convierte posición lógica (x,y) en coordenada de pantalla
@@ -72,12 +66,6 @@ func equip_weapon(weapon: Carta, x: int = -1, y: int = -1) -> bool:
 	weapon.grid_pos = Vector2(x, y)
 	weapon.parent_grid = self
 	grid[x][y] = weapon
-	
-	#if card_manager:
-		#if not weapon.mouseSobreCarta.is_connected(card_manager.on_hovered_over_card):
-			#card_manager.connect_card_signals(weapon)
-		#if not weapon.card_selected_for_attack.is_connected(card_manager._on_card_selected_for_attack):
-			#card_manager.connect_combat_signals(weapon)
 	
 	# Habilitar combate para esta arma
 	weapon.can_attack = true

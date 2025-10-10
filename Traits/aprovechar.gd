@@ -10,7 +10,6 @@ func do_damage(attacker: Carta, defender: Carta, damage: int) -> int:
 		print("%s (Power Trait): Daño aumentado de %d a %d" % [attacker.name, damage, boost_Damage])
 	return boost_Damage
 
-@warning_ignore("unused_parameter")
 func on_player_damage(damage: int, monster: Carta) -> int:
 	var boost_Damage:int = damage
 	if LifeManager.get_life() < LifeManager.get_maxLife():

@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="11_kgvkj"]
 [ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="14_g2hw1"]
 
-[node name="Main" type="Node"]
+[node name="Game" type="Node"]
 script = ExtResource("1_3akp0")
 
 [node name="Board" parent="." instance=ExtResource("1_two4o")]
@@ -72,3 +72,7 @@ position = Vector2(791, 675)
 
 [node name="InfoDisplay" parent="." instance=ExtResource("11_kgvkj")]
 position = Vector2(855, 207)
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 989.0
+offset_bottom = 744.0

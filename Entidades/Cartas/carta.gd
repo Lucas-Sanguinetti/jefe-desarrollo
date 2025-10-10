@@ -151,8 +151,6 @@ func attack(target: Carta) -> bool:
 		for rasgo in data.traits:
 			weapon_attack = rasgo.do_damage(self, target, weapon_attack)
 		
-		
-		
 		var player_damage = target.data.attack
 		var player_damage_monster = target.data.attack
 		
