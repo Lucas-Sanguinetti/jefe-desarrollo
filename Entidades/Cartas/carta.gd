@@ -13,9 +13,6 @@ var style_selected: StyleBoxFlat
 var style_cannot_attack: StyleBoxFlat
 @onready var area: Area2D = $Area
 
-
-
-
 # Variables para detectar doble click
 var click_timer: float = 0.0
 var click_threshold: float = 0.3  # 300ms para detectar doble click
@@ -150,8 +147,25 @@ func attack(target: Carta) -> bool:
 	
 	if data is WeaponCardData and target.data is MonsterCardData:
 		var weapon_attack = data.attack
+		
+		for rasgo in data.traits:
+			weapon_attack = rasgo.do_damage(self, target, weapon_attack)
+		
+		var player_damage = target.data.attack
+		var player_damage_monster = target.data.attack
+		
+		for rasgo in data.traits:
+			player_damage = rasgo.on_player_damage(player_damage, target)
+		
+		for rasgo in target.data.traits:
+			player_damage_monster = rasgo.on_player_damage(player_damage_monster, target)
+			
+		if player_damage != 0:
+			player_damage = player_damage_monster	
+		
 		target.take_damage(weapon_attack)
-		LifeManager.looseLife(target.data.attack)
+		
+		LifeManager.looseLife(player_damage)
 		LifeManager.life()
 		
 		can_attack = false
@@ -163,8 +177,11 @@ func attack(target: Carta) -> bool:
 	
 	return false
 	
-func take_damage(damage: int):
+func take_damage(damage: int, attacker: Carta = null):
 	if data is MonsterCardData:
+		for rasgo in data.traits:
+			damage = rasgo.take_damage(attacker, self, damage)
+		
 		var monster_data = data as MonsterCardData
 		monster_data.hp -= damage
 		$Vida.text = str(monster_data.hp)
@@ -220,7 +237,9 @@ func block_attack_ability():
 func actLabel(label: Label):
 	data.actLabel(label)
 
-
+func reset_traits_for_new_turn():
+	for rasgo in data.traits:
+		rasgo.on_turn_reset(self)
 
 func _on_area_mouse_entered() -> void:
 	emit_signal("mouseSobreCarta", self)
@@ -252,6 +271,9 @@ func _on_double_click():
 	print("Carta: Doble click detectado en ", name)
 	emit_signal("card_double_clicked", self)
 
-
-func _on_click_timer_timeout() -> void:
-	pass # Replace with function body.
+func get_monster_hps():
+	var vidas:Array = []
+	if data is MonsterCardData:
+		vidas.append(data.hp)
+		vidas.append(data.maxHp)
+	return vidas

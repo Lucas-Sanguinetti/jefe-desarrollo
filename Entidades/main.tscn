@@ -10,10 +10,10 @@
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_crs8u"]
 [ext_resource type="PackedScene" uid="uid://bmeoueu10fxj2" path="res://Entidades/Armas/weapon_spawner.tscn" id="10_kgvkj"]
 [ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="10_rq0b7"]
-[ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="14_g2hw1"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="11_kgvkj"]
+[ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="14_g2hw1"]
 
-[node name="Main" type="Node"]
+[node name="Game" type="Node"]
 script = ExtResource("1_3akp0")
 
 [node name="Board" parent="." instance=ExtResource("1_two4o")]
@@ -72,3 +72,7 @@ position = Vector2(791, 675)
 
 [node name="InfoDisplay" parent="." instance=ExtResource("11_kgvkj")]
 position = Vector2(855, 207)
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 989.0
+offset_bottom = 744.0

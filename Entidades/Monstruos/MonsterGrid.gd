@@ -7,8 +7,8 @@ const CellHeigth = 144
 const CellWeigth = 104
 
 var grid = []  # array 2D de referencias a fichas
-signal mouseEntered(carta: Carta)
 
+signal mouseEntered(carta: Carta)
 signal monster_died(monster: Carta)
 
 func _ready():
@@ -48,7 +48,6 @@ func _conectUp(carta: Carta):
 	emit_signal("mouseEntered", carta)
 	
 
-
 #Buscar una celda libre al azar e invocar allí
 func invoke_random_piece(carta: MonsterCardData):
 	var empty_cells = []
@@ -72,6 +71,19 @@ func _on_monster_died(monster: Carta):
 	
 	emit_signal("monster_died",monster)
 	pass
+
+func get_all_monsters() -> Array:
+	var monsters = []
+	for x in range(GRID_SIZE):
+		for y in range(GRID_SIZE):
+			if grid[x][y] != null:
+				monsters.append(grid[x][y])
+	return monsters
+
+func reset_all_monster_traits():
+	var monsters = get_all_monsters()
+	for monster in monsters:
+		monster.reset_traits_for_new_turn()
 
 #funcion puramente para visualizar las celdas y el espaciado
 #func _draw():
