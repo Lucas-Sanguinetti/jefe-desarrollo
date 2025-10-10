@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmlfbb0u38130"]
+
+[ext_resource type="Script" uid="uid://bn8l8wfdq5mu3" path="res://Entidades/Monstruos/monster_spawner.gd" id="1_61tu4"]
+[ext_resource type="Script" uid="uid://ckkp8tbn5jhgj" path="res://Entidades/Monstruos/MonsterGrid.gd" id="2_n47wo"]
+[ext_resource type="Script" uid="uid://1noxelchquiy" path="res://Entidades/tutorial/deck_drawer_tutorial.gd" id="3_eqc1y"]
+
+[node name="MonsterSpawner" type="Node2D"]
+script = ExtResource("1_61tu4")
+
+[node name="MonsterGrid" type="Node2D" parent="."]
+script = ExtResource("2_n47wo")
+GRID_SIZE = 1
+
+[node name="DeckDrawer" type="Node" parent="."]
+script = ExtResource("3_eqc1y")
+
+[connection signal="mouseEntered" from="MonsterGrid" to="." method="_on_monster_grid_mouse_entered"]

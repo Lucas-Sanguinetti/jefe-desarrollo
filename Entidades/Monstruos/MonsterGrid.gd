@@ -1,7 +1,7 @@
 extends Node2D
 class_name MonsterGrid
 
-const GRID_SIZE = 4        # 4x4
+@export var GRID_SIZE = 4        # 4x4
 const CELL_SIZE = 64       # ancho/alto de cada celda (en píxeles)
 const CellHeigth = 144     
 const CellWeigth = 104

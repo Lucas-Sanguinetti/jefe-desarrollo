@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://7tjf1gfpknq1"]
+
+[ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
+[ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
+[ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="3_cgrtl"]
+[ext_resource type="PackedScene" uid="uid://7rgw566lpfxe" path="res://Entidades/Monstruos/monster_spawner.tscn" id="4_xugfq"]
+[ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="5_eq8nk"]
+[ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://singleton/monster_deck.tscn" id="6_gxhcr"]
+[ext_resource type="PackedScene" uid="uid://bmeoueu10fxj2" path="res://Entidades/Armas/weapon_spawner.tscn" id="7_00onx"]
+[ext_resource type="PackedScene" uid="uid://dfmm3iy8hd5vr" path="res://Entidades/Armas/player_weapon_spawner.tscn" id="8_rwqrq"]
+[ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="9_hf2jd"]
+[ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_ohvqk"]
+[ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_2jhs2"]
+[ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0w1ek"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_a0hfb")
+
+[node name="Board" parent="." instance=ExtResource("2_8hmk7")]
+layer = -1
+
+[node name="CardManager" parent="." instance=ExtResource("3_cgrtl")]
+
+[node name="MonsterSpawner" parent="." instance=ExtResource("4_xugfq")]
+position = Vector2(150, 84)
+
+[node name="WeaponDeck" parent="." instance=ExtResource("5_eq8nk")]
+
+[node name="MonsterDeck" parent="." instance=ExtResource("6_gxhcr")]
+
+[node name="WeaponSpawner" parent="." instance=ExtResource("7_00onx")]
+position = Vector2(565, 228)
+
+[node name="PlayerWeaponSpawner" parent="." instance=ExtResource("8_rwqrq")]
+position = Vector2(73, 676)
+
+[node name="WeaponManager" type="Node2D" parent="."]
+position = Vector2(44, 136)
+script = ExtResource("9_hf2jd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PasarTurno" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = -0.081
+anchor_top = 0.44900003
+anchor_right = 0.143
+anchor_bottom = 0.59800005
+offset_left = 958.19
+offset_top = 327.822
+offset_right = 833.43
+offset_bottom = 282.03302
+text = "Terminar
+Turno"
+
+[node name="ContadorTurno" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.65500003
+anchor_right = 0.123
+anchor_bottom = 0.77300006
+offset_left = 866.11
+offset_top = 152.08997
+offset_right = 859.14197
+offset_bottom = 98.89398
+theme_override_fonts/font = ExtResource("10_ohvqk")
+text = "Turno: 1"
+
+[node name="LifeHUD" parent="." instance=ExtResource("11_2jhs2")]
+position = Vector2(791, 675)
+
+[node name="InfoDisplay" parent="." instance=ExtResource("12_0w1ek")]
+position = Vector2(855, 207)
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_right = 989.0
+offset_bottom = 744.0
