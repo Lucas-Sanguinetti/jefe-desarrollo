@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_w0u13")
+resistencia = 5
 trait_name = "Endurecer"
 metadata/_custom_type_script = "uid://br8i4gwwpmh7n"

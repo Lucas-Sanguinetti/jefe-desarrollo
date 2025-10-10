@@ -151,12 +151,21 @@ func attack(target: Carta) -> bool:
 		for rasgo in data.traits:
 			weapon_attack = rasgo.do_damage(self, target, weapon_attack)
 		
-		target.take_damage(weapon_attack)
+		
 		
 		var player_damage = target.data.attack
+		var player_damage_monster = target.data.attack
 		
 		for rasgo in data.traits:
 			player_damage = rasgo.on_player_damage(player_damage, target)
+		
+		for rasgo in target.data.traits:
+			player_damage_monster = rasgo.on_player_damage(player_damage_monster, target)
+			
+		if player_damage != 0:
+			player_damage = player_damage_monster	
+		
+		target.take_damage(weapon_attack)
 		
 		LifeManager.looseLife(player_damage)
 		LifeManager.life()
