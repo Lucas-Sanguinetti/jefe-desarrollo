@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Boss"
-run/main_scene="uid://7tjf1gfpknq1"
+run/main_scene="uid://c328vnnnt73tq"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]

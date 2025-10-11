@@ -1,8 +1,8 @@
 extends Node2D
 class_name WeaponGrid
 
-const GRID_COLLUMNS = 2        # 4x4
-const GRID_ROWS = 3
+@export var GRID_COLLUMNS = 2 
+@export var GRID_ROWS = 3
 const CELL_SIZE = 64       # ancho/alto de cada celda (en píxeles)
 const CellHeigth = 144     
 const CellWeigth = 104

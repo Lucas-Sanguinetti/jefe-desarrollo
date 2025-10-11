@@ -11,6 +11,8 @@ var limiteArmasTurno: int = 1
 var armasTransferidas:int = 0
 var monstruoMurio: bool = false
 
+signal armaTransferida
+
 func _ready():
 	# Buscar los grids en la escena
 
@@ -83,7 +85,7 @@ func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 	
 	print("WeaponManager: Arma transferida exitosamente")
 	armasTransferidas += 1
-	
+	emit_signal("armaTransferida")
 	return true
 
 # Modificar para deck segun decision empresarial

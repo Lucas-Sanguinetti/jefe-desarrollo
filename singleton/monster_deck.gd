@@ -5,6 +5,7 @@ extends Node
 #var wave1Monsters:Array = []
 #var wave2Monsters:Array = []
 #var wave3Monsters:Array = []
+@export var tutorial_monster: MonsterCardData 
 @export var monster_data_cards: Array[MonsterCardData] 
 
 #@export var monster1:MonsterCardData
@@ -43,6 +44,11 @@ func draw3():
 	#var monster:Carta = wave1Monsters[0]
 	#wave1Monsters.remove_at(0)
 	#return monster
+	
+##funcion para el state	
+func drawTutorial():
+	return tutorial_monster
+
 
 func size():
 	return monster_data_cards.size()
