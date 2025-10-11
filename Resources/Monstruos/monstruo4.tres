@@ -1,16 +1,23 @@
-[gd_resource type="Resource" script_class="MonsterCardData" load_steps=6 format=3 uid="uid://chendedgm7761"]
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=7 format=3 uid="uid://chendedgm7761"]
 
 [ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/carta.tscn" id="1_y5e30"]
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Cartas/MonsterCardData.gd" id="2_e4l8y"]
 [ext_resource type="Texture2D" uid="uid://cp0ok12pllt6f" path="res://Assets/cards/reescalado/monster/monsterCardTech.png" id="3_4352c"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_8jg78"]
-[ext_resource type="Resource" uid="uid://2b3vwsuba582" path="res://Resources/Traits/Monster/venganza.tres" id="5_rc61k"]
+[ext_resource type="Script" uid="uid://caqj4m5fkdwcq" path="res://Traits/venganza.gd" id="5_8jg78"]
+
+[sub_resource type="Resource" id="Resource_rc61k"]
+script = ExtResource("5_8jg78")
+trait_name = "Venganza"
+trait_description = null
+metadata/_custom_type_script = "uid://caqj4m5fkdwcq"
 
 [resource]
 script = ExtResource("2_e4l8y")
 hp = 50
 attack = 5
-traits = Array[ExtResource("4_8jg78")]([ExtResource("5_rc61k")])
+traits = Array[ExtResource("4_8jg78")]([SubResource("Resource_rc61k")])
 escena = ExtResource("1_y5e30")
 sprite = ExtResource("3_4352c")
+name = "mons1"
 metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("1_p7k3n")
 hp = 15
-attack = 7
+attack = 1
 escena = ExtResource("1_g1c20")
 sprite = ExtResource("3_g1c20")
 metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

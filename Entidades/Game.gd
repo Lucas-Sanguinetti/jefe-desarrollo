@@ -35,6 +35,7 @@ func _on_turn_button_pressed():
 	print("Turno ", current_turn, " iniciado. Armas equipadas reseteadas.")#Debug
 	
 	weapon_manager.reset_turn()
+	reset_monster_traits()
 
 func reset_player_weapons():
 	player_weapon_spawner.reset_weapons_for_new_turn()
@@ -48,7 +49,7 @@ func _on_vida_cambiada(nueva_vida: int):
 		print("Game Over - Sin vida, armas bloqueadas")
 	
 func reset_monster_traits():
-	var monster_grid = monster_spawner.get_node_or_null("MonsterGrid")
+	var monster_grid = monster_spawner.get_node("MonsterGrid")
 	if not monster_grid:
 		return
 		

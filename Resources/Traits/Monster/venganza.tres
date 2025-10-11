@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Venganza" load_steps=2 format=3 uid="uid://2b3vwsuba582"]
-
-[ext_resource type="Script" uid="uid://caqj4m5fkdwcq" path="res://Traits/venganza.gd" id="1_3s7u0"]
-
-[resource]
-script = ExtResource("1_3s7u0")
-trait_name = "Venganza"
-metadata/_custom_type_script = "uid://caqj4m5fkdwcq"

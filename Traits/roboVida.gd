@@ -4,8 +4,12 @@ class_name RobaVida
 
 @warning_ignore("unused_parameter")
 func do_damage(attacker: Carta, defender: Carta, damage: int) -> int:
-	if LifeManager.get_life() <= damage:
-		return damage
-	LifeManager.gainLife(damage)
-	print("%s (Lifesteal Trait): Se recuperaron %d de vida" % [attacker.name, damage])
 	return damage
+
+func get_lifesteal_amount(weapon_damage: int, defender: Carta) -> int:
+	var actual_damage = weapon_damage
+	for rasgo in defender.data.traits:
+		actual_damage = rasgo.take_damage(null, defender, actual_damage)
+	
+	print("%s (Lifesteal Trait): Vida a recuperar: %d (ataque: %d - defensas: %d)" % [defender.name, actual_damage, weapon_damage, weapon_damage - actual_damage])
+	return actual_damage

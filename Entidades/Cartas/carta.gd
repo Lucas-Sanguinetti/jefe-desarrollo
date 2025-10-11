@@ -172,10 +172,20 @@ func attack(target: Carta) -> bool:
 		if player_damage != 0:
 			player_damage = player_damage_monster	
 		
-		target.take_damage(weapon_attack)
+		var damage_to_monster = weapon_attack
+		for rasgo in target.data.traits:
+			damage_to_monster = rasgo.take_damage(self, target, damage_to_monster)
+		
+		var lifesteal_amount = 0
+		for rasgo in data.traits:
+			if rasgo is RobaVida:
+				lifesteal_amount = rasgo.get_lifesteal_amount(weapon_attack, target)
 		
 		LifeManager.looseLife(player_damage)
-		LifeManager.life()
+		target.take_damage(weapon_attack)
+		
+		if lifesteal_amount > 0 && LifeManager.get_life() > 0:
+			LifeManager.gainLife(lifesteal_amount)
 		
 		can_attack = false
 		set_card_state(CardState.CANNOT_ATTACK)
@@ -290,5 +300,5 @@ func get_monster_hps():
 func get_str_traits(datos):
 	var texto:String = ""
 	for rasgo in datos.traits:
-		texto += "• %s\n" % [rasgo.trait_name]
+		texto += "* %s\n" % [rasgo.trait_name]
 	return texto
