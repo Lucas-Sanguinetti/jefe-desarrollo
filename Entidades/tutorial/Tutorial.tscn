@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3fqcbncv77to"]
+[gd_scene load_steps=18 format=3 uid="uid://c3fqcbncv77to"]
 
 [ext_resource type="Script" uid="uid://cphl4pmuuqorw" path="res://Entidades/tutorial/tutorial.gd" id="1_pmcij"]
-[ext_resource type="PackedScene" uid="uid://c328vnnnt73tq" path="res://Entidades/Main.tscn" id="2_8cx54"]
+[ext_resource type="PackedScene" uid="uid://7tjf1gfpknq1" path="res://Entidades/Game.tscn" id="2_8cx54"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_lyuau"]
 [ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="3_8cx54"]
 [ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="4_n6u6b"]
@@ -15,6 +15,18 @@
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Cartas/WeaponCardData.gd" id="11_n6u6b"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0rbba"]
 [ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/arma1.tres" id="12_ba64b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n6u6b"]
+font = ExtResource("10_3db23")
+font_size = 24
+shadow_size = 12
+shadow_color = Color(0.2901961, 0.16862746, 0.08235294, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ba64b"]
+font = ExtResource("10_3db23")
+font_size = 24
+shadow_size = 12
+shadow_color = Color(0.12156863, 0.101960786, 0.2, 1)
 
 [node name="Tutorial" type="Node"]
 script = ExtResource("1_pmcij")
@@ -79,17 +91,116 @@ position = Vector2(791, 675)
 [node name="InfoDisplay" parent="." instance=ExtResource("12_0rbba")]
 position = Vector2(855, 207)
 
-[node name="Panel" type="Panel" parent="."]
-visible = false
+[node name="sombra1_tut1" type="Panel" parent="."]
 offset_right = 989.0
-offset_bottom = 744.0
+offset_bottom = 589.0
+
+[node name="sombra2_tut1" type="Panel" parent="."]
+visible = false
+offset_left = 722.0
+offset_top = 585.0
+offset_right = 988.0
+offset_bottom = 742.0
 
 [node name="Label_tut1" type="Label" parent="."]
 texture_filter = 1
-offset_left = 155.0
-offset_top = 665.0
-offset_right = 724.0
-offset_bottom = 689.0
+offset_left = 128.0
+offset_top = 666.0
+offset_right = 697.0
+offset_bottom = 690.0
 theme_override_fonts/font = ExtResource("10_3db23")
 theme_override_font_sizes/font_size = 24
-text = "haz click sobre una de tus armas para usarla"
+text = "< haz click sobre una de tus armas para usarla"
+
+[node name="sombra1_tut2" type="Panel" parent="."]
+visible = false
+offset_left = 2.0
+offset_top = 588.0
+offset_right = 991.0
+offset_bottom = 741.0
+
+[node name="sombra2_tut2" type="Panel" parent="."]
+visible = false
+offset_left = 515.0
+offset_top = 2.0
+offset_right = 991.0
+offset_bottom = 587.0
+
+[node name="Label_tut2" type="Label" parent="."]
+texture_filter = 1
+offset_left = 125.0
+offset_top = 173.0
+offset_right = 446.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 24
+text = "^
+haz click sobre el monstruo
+para atacarlo"
+label_settings = SubResource("LabelSettings_n6u6b")
+
+[node name="sombra1_tut3" type="Panel" parent="."]
+visible = false
+offset_left = 2.0
+offset_top = 588.0
+offset_right = 991.0
+offset_bottom = 741.0
+
+[node name="sombra2_tut3" type="Panel" parent="."]
+visible = false
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 517.0
+offset_bottom = 587.0
+
+[node name="sombra3_tut3" type="Panel" parent="."]
+visible = false
+offset_left = 722.0
+offset_top = -2.0
+offset_right = 990.0
+offset_bottom = 587.0
+
+[node name="Label_tut3" type="Label" parent="."]
+texture_filter = 1
+offset_left = 528.0
+offset_top = 303.0
+offset_right = 740.0
+offset_bottom = 381.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 24
+text = "^
+haz doble click 
+sobre el arma
+para reclarmar
+tu recompensa
+por matarlo
+"
+label_settings = SubResource("LabelSettings_ba64b")
+
+[node name="sombra1_tut4" type="Panel" parent="."]
+visible = false
+offset_left = 2.0
+offset_top = 588.0
+offset_right = 726.0
+offset_bottom = 741.0
+
+[node name="sombra2_tut4" type="Panel" parent="."]
+visible = false
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 988.0
+offset_bottom = 587.0
+
+[node name="Label_tut4" type="Label" parent="."]
+texture_filter = 1
+offset_left = 775.0
+offset_top = 466.0
+offset_right = 966.0
+offset_bottom = 583.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 24
+text = "Haz click sobre 
+Terminar Turno
+para acabar el
+mini-tutorial"
+label_settings = SubResource("LabelSettings_ba64b")

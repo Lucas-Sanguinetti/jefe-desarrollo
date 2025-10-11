@@ -17,10 +17,14 @@ func actLabel(label: Label):
 	# Agregar traits
 	if not traits.is_empty():
 		for rasgo in traits:
-			text += "• %s\n" % [rasgo.trait_name]
-			text += "  %s\n" % [rasgo.trait_description]
 			if rasgo.trait_name == "Endurecer":
+				text += "• %s " % [rasgo.trait_name]
 				text += "  %s\n" % [rasgo.resistencia]
+			else:
+				text += "• %s\n" % [rasgo.trait_name]
+			text += "  %s\n" % [rasgo.trait_description]
+			
+				
 	else:
 		text += "Sin traits\n"
 	

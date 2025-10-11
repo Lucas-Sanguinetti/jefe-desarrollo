@@ -66,7 +66,10 @@ func _ready() -> void:
 
 
 func connect_to_manager():
-	var manager = get_node_or_null("/root/Main/CardManager")
+	if not is_inside_tree():
+		await tree_entered
+
+	var manager = get_tree().get_first_node_in_group("CardManager")
 	if manager:
 		if manager.has_method("connect_combat_signals"):
 			manager.connect_combat_signals(self)
@@ -82,10 +85,16 @@ func setup_card_ui():
 		$Vida.text = str(data.hp)
 		$Vida.visible = true
 		$Ataque.visible = true
+		$MonsterTraits.visible= true
+		$MonsterTraits.text = get_str_traits(data)
+		$WeaponTraits.visible = false
 	elif data is WeaponCardData:
 		$Ataque.text = str(data.attack)
 		$Vida.visible = false
+		$MonsterTraits.visible = false
 		$Ataque.visible = true
+		$WeaponTraits.visible= true
+		$WeaponTraits.text = get_str_traits(data)
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
@@ -277,3 +286,9 @@ func get_monster_hps():
 		vidas.append(data.hp)
 		vidas.append(data.maxHp)
 	return vidas
+
+func get_str_traits(datos):
+	var texto:String = ""
+	for rasgo in datos.traits:
+		texto += "• %s\n" % [rasgo.trait_name]
+	return texto

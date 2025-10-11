@@ -72,8 +72,3 @@ position = Vector2(791, 675)
 
 [node name="InfoDisplay" parent="." instance=ExtResource("12_0w1ek")]
 position = Vector2(855, 207)
-
-[node name="Panel" type="Panel" parent="."]
-visible = false
-offset_right = 989.0
-offset_bottom = 744.0

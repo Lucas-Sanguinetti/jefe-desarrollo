@@ -1,4 +1,5 @@
 extends Node2D
+class_name CardManager
 
 enum CombatState {
 	NORMAL,
@@ -8,6 +9,9 @@ enum CombatState {
 
 var combat_state: CombatState = CombatState.NORMAL
 var selected_weapon: Carta = null
+
+signal armaSeleccionada
+signal armaUsada
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -44,6 +48,7 @@ func select_weapon(weapon: Carta):
 	selected_weapon = weapon
 	weapon.select_for_attack()
 	combat_state = CombatState.WEAPON_SELECTED
+	emit_signal("armaSeleccionada")
 	print("Arma seleccionada para atacar")
 
 func cancel_weapon_selection():
@@ -60,6 +65,7 @@ func attack_target(weapon: Carta, target: Carta):
 		# Resetear el estado de combate
 		selected_weapon = null
 		combat_state = CombatState.NORMAL
+		emit_signal("armaUsada")
 	else:
 		print("No se pudo realizar el ataque")
 

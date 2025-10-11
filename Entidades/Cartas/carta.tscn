@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlykyhjrmcfhg"]
+[gd_scene load_steps=6 format=3 uid="uid://dlykyhjrmcfhg"]
 
 [ext_resource type="Script" uid="uid://jknsby0twxx" path="res://Entidades/Cartas/carta.gd" id="1_wjgbj"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="3_pt1tv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3ok"]
 size = Vector2(42, 62)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v1hku"]
+font = ExtResource("3_pt1tv")
+font_size = 8
+font_color = Color(0.16470589, 0.16470589, 0.16470589, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pacq5"]
+font = ExtResource("3_pt1tv")
+font_size = 8
 
 [node name="Carta" type="Node2D"]
 script = ExtResource("1_wjgbj")
@@ -55,6 +64,27 @@ text = "50"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="MonsterTraits" type="Label" parent="."]
+texture_filter = 1
+offset_left = -23.0
+offset_top = 17.0
+offset_right = 23.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("3_pt1tv")
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_v1hku")
+horizontal_alignment = 1
+
+[node name="WeaponTraits" type="Label" parent="."]
+texture_filter = 1
+offset_left = -34.0
+offset_top = 13.0
+offset_right = 17.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("3_pt1tv")
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_pacq5")
 
 [connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
 [connection signal="input_event" from="Area" to="." method="_on_area_input_event"]
