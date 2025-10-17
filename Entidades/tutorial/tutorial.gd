@@ -43,7 +43,6 @@ func _input(event):
 			weapon_manager.transfer_random_weapon_to_player()
 
 func _on_turn_button_pressed():
-	pass
 	get_tree().change_scene_to_file("res://Entidades/Main.tscn")
 
 func reset_player_weapons():
