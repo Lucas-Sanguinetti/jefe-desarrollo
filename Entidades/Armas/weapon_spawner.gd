@@ -1,12 +1,13 @@
 extends Node2D
 
 @onready var grid: Node2D = $WeaponGrid
+@onready var turn_button = $"../CanvasLayer/PasarTurno"
 
-var cards: int = 6  # Cantidad de cartas 
 
 
 func _ready():
 	turn_loader()
+	turn_button.pressed.connect(_on_turn_button_pressed)
 
 func _on_turn_button_pressed():
 	if WeaponDeck.size() > 0:
@@ -14,9 +15,9 @@ func _on_turn_button_pressed():
 	pass
 
 func turn_loader():
-	for i in cards:
-		place_monster()
+	for i in grid.get_empty_slots().size():
+		place_weapon()
 
-func place_monster():
+func place_weapon():
 	var weapon:WeaponCardData = WeaponDeck.draw()
 	grid.invoke_random_piece(weapon)
