@@ -52,12 +52,7 @@ func place_piece(x: int, y: int, cardData: WeaponCardData) -> bool:
 	
 #Buscar una celda libre al azar e invocar allí
 func invoke_random_piece(carta: WeaponCardData):
-	var empty_cells = []
-	for x in range(GRID_COLLUMNS):
-		for y in range(GRID_ROWS):
-			if grid[x][y] == null:
-				empty_cells.append(Vector2(x, y))
-
+	var empty_cells = get_empty_slots()
 	if empty_cells.is_empty():
 		print("No hay más espacios")
 		return
@@ -83,3 +78,12 @@ func _on_weapon_double_clicked(carta: Carta):
 	print("WeaponGrid: Arma con doble click en posición ", carta.grid_pos)
 	# Notificar al WeaponManager
 	emit_signal("carta_Clickeada",carta)
+
+func get_empty_slots() -> Array:
+	var empty_cells = []
+	for x in range(GRID_COLLUMNS):
+		for y in range(GRID_ROWS):
+			if grid[x][y] == null:
+				empty_cells.append(Vector2(x, y))
+	return empty_cells
+ 
