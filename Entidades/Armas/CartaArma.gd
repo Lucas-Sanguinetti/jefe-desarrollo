@@ -4,8 +4,8 @@ class_name CartaArma
 # Estado específico de armas
 @export var can_attack: bool = true
 # Referencias específicas
-@onready var ataque_label: Label = $Ataque
-@onready var traits_label: Label = $WeaponTraits
+var ataque_label: Label
+var traits_label: Label 
 
 var ataque:int 
 # Doble click (solo armas en WeaponGrid)
@@ -13,13 +13,18 @@ var click_timer: float = 0.0
 var click_threshold: float = 0.3
 var click_count: int = 0
 
-signal card_selected_for_attack
-signal card_targeted_for_attack
 
 
 # IMPLEMENTACIÓN DE MÉTODOS VIRTUALES
 func _initialize_references() -> void:
 	super._initialize_references()
+	ataque_label = get_node_or_null("Ataque")
+	traits_label = get_node_or_null("WeaponTraits")
+	
+	if not ataque_label:
+		push_error("CartaArma: Falta nodo 'Ataque'")
+	if not traits_label:
+		push_error("CartaArma: Falta nodo 'WeaponTraits'")
 
 func _setup_specific_ui() -> void:
 	var weapon_data = data as WeaponCardData
@@ -27,12 +32,13 @@ func _setup_specific_ui() -> void:
 		push_error("CartaArma requiere WeaponCardData")
 		return
 	ataque = weapon_data.attack
-	traits_label.text = _get_traits_text(weapon_data)
+	if traits_label:
+		traits_label.text = _get_traits_text(weapon_data)
 
 
 func _apply_data_to_ui() -> void:
-	
-	ataque_label.text = str(ataque)
+	if ataque_label:
+		ataque_label.text = str(ataque)
 	
 
 

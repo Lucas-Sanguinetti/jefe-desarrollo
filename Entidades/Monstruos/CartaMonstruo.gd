@@ -2,19 +2,31 @@ extends Carta
 class_name CartaMonstruo
 
 # Referencias específicas de monstruos
-@onready var vida_label: Label = $Vida
-@onready var ataque_label: Label = $Ataque
-@onready var traits_label: Label = $MonsterTraits
+var vida_label: Label
+var ataque_label: Label
+var traits_label: Label
+ 
 var hp_actual:int
 var ataque:int
 var max_hp:int
+
 var golpeado:bool = false
 
 
 # IMPLEMENTACIÓN DE MÉTODOS VIRTUALES
 func _initialize_references() -> void:
-	super._initialize_references()  # Llamar al padre primero
-	# Las referencias @onready ya están disponibles
+	super._initialize_references()
+	vida_label = get_node_or_null("Vida")
+	ataque_label = get_node_or_null("Ataque")
+	traits_label = get_node_or_null("MonsterTraits")
+	
+	# Validación
+	if not vida_label:
+		push_error("CartaMonstruo: Falta nodo 'Vida'")
+	if not ataque_label:
+		push_error("CartaMonstruo: Falta nodo 'Ataque'")
+	if not traits_label:
+		push_error("CartaMonstruo: Falta nodo 'MonsterTraits'")
 
 func _setup_specific_ui() -> void:
 	var monster_data = data as MonsterCardData
@@ -25,11 +37,14 @@ func _setup_specific_ui() -> void:
 	hp_actual = monster_data.hp
 	ataque = monster_data.attack
 	max_hp = monster_data.hp
-	traits_label.text = _get_traits_text(monster_data)
+	if traits_label:
+		traits_label.text = _get_traits_text(monster_data)
 
 func _apply_data_to_ui() -> void:
-	ataque_label.text = str(ataque)
-	vida_label.text = str(hp_actual)
+	if ataque_label:
+		ataque_label.text = str(ataque)
+	if vida_label:
+		vida_label.text = str(hp_actual)
 	
 
 # CAPACIDADES DE COMBATE

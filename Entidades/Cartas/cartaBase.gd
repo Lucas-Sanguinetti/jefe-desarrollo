@@ -26,6 +26,8 @@ signal mouseSobreCarta(carta: Carta)
 signal mouseFueraCarta
 signal card_died
 signal card_double_clicked(carta: Carta)
+signal card_selected_for_attack 
+signal card_targeted_for_attack
 
 # CICLO DE VIDA
 func _ready() -> void:
@@ -77,6 +79,9 @@ func can_be_double_clicked() -> bool:
 func take_damage(damage: int, attacker: Carta = null) -> void:
 	push_warning("%s debe implementar take_damage()" % [get_script().resource_path])
 
+func target_for_attack(attacker: Carta):
+	if can_be_targeted():
+		emit_signal("card_targeted_for_attack", attacker, self)
 
 # MÉTODOS CONCRETOS (compartidos por todos)
 func _setup_visual_styles() -> void:
