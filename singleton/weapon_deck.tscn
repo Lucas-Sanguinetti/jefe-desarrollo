@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://c0ah8qij8o442"]
 
 [ext_resource type="Script" uid="uid://h57xu7varvij" path="res://singleton/weapon_deck.gd" id="1_yl64i"]
-[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Cartas/WeaponCardData.gd" id="2_fcv3a"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_fcv3a"]
 [ext_resource type="Resource" uid="uid://c0itiolm4uay8" path="res://Resources/Armas/arma3.tres" id="3_g2gk4"]
 [ext_resource type="Resource" uid="uid://c2d322or4k66j" path="res://Resources/Armas/arma4.tres" id="4_rtuda"]
 [ext_resource type="Resource" uid="uid://b8ap0ir3le4k7" path="res://Resources/Armas/arma5.tres" id="5_nud52"]
 [ext_resource type="Resource" uid="uid://cpnq7xdnrtyf2" path="res://Resources/Armas/arma6.tres" id="6_dbjkk"]
 [ext_resource type="Resource" uid="uid://b0sgqig3gvs3o" path="res://Resources/Armas/arma7.tres" id="7_e76mx"]
 [ext_resource type="Resource" uid="uid://dlljf57rqu077" path="res://Resources/Armas/arma8.tres" id="8_0f01i"]
-[ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/carta.tscn" id="9_r64fq"]
+[ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/cartaOriginal.tscn" id="9_r64fq"]
 [ext_resource type="Texture2D" uid="uid://cmxqp7tofkvpr" path="res://Assets/cards/reescalado/weapon/weaponrCardIce.png" id="10_ly0sw"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="11_qh4af"]
 

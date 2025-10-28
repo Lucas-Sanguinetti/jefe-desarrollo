@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="WeaponCardData" load_steps=5 format=3 uid="uid://2630l8e8maqo"]
 
-[ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/carta.tscn" id="1_8cebr"]
-[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Cartas/WeaponCardData.gd" id="1_djpva"]
+[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="1_xdm5x"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_6b3wu"]
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/reescalado/weapon/weaponrCard.png" id="3_8cebr"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_xdm5x"]
 
 [resource]
-script = ExtResource("1_djpva")
+script = ExtResource("2_6b3wu")
 attack = 12
-escena = ExtResource("1_8cebr")
+escena = ExtResource("1_xdm5x")
 sprite = ExtResource("3_8cebr")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

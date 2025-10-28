@@ -1,5 +1,5 @@
 extends Node2D
-class_name Carta
+class_name CartaComplicada
 
 @export var data: CardData
 @export var can_attack: bool = true 
