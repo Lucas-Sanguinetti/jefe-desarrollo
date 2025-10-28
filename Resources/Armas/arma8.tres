@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="WeaponCardData" load_steps=6 format=3 uid="uid://dlljf57rqu077"]
 
-[ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/carta.tscn" id="1_13wap"]
-[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Cartas/WeaponCardData.gd" id="2_esdqy"]
+[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="1_q7s78"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_ymna3"]
 [ext_resource type="Texture2D" uid="uid://cjue0ru5t5563" path="res://Assets/cards/reescalado/weapon/weaponrCardTech.png" id="3_13wap"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_q7s78"]
 [ext_resource type="Resource" uid="uid://cltr6rwpeyoa0" path="res://Resources/Traits/aprovechar.tres" id="5_q7s78"]
 
 [resource]
-script = ExtResource("2_esdqy")
+script = ExtResource("2_ymna3")
 attack = 10
 traits = Array[ExtResource("4_q7s78")]([ExtResource("5_q7s78")])
-escena = ExtResource("1_13wap")
+escena = ExtResource("1_q7s78")
 sprite = ExtResource("3_13wap")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

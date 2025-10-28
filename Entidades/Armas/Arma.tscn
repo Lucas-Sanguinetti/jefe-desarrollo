@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://denw6r4uahlvf"]
+
+[ext_resource type="Script" uid="uid://cs0wcebtdgsma" path="res://Entidades/Armas/CartaArma.gd" id="1_wjq3x"]
+[ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_54r67"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3ok"]
+size = Vector2(42, 62)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pacq5"]
+font = ExtResource("2_54r67")
+font_size = 8
+
+[node name="Arma" type="Node2D"]
+script = ExtResource("1_wjq3x")
+
+[node name="Sprite" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -42.0
+offset_top = -62.0
+offset_right = 41.0
+offset_bottom = 62.0
+
+[node name="element" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 21.0
+offset_top = -60.0
+offset_right = 39.0
+offset_bottom = -46.0
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+texture_filter = 1
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_xu3ok")
+
+[node name="Ataque" type="Label" parent="."]
+texture_filter = 1
+offset_left = 24.0
+offset_top = 47.0
+offset_right = 40.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("2_54r67")
+theme_override_font_sizes/font_size = 12
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="WeaponTraits" type="Label" parent="."]
+texture_filter = 1
+offset_left = -34.0
+offset_top = 13.0
+offset_right = 17.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("2_54r67")
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_pacq5")
+
+[connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
+[connection signal="input_event" from="Area" to="." method="_on_area_input_event"]
+[connection signal="mouse_entered" from="Area" to="." method="_on_area_mouse_entered"]
+[connection signal="mouse_exited" from="Area" to="." method="_on_area_mouse_exited"]

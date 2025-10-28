@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://r3uw2a7pd3o6"]
+[gd_scene load_steps=14 format=3 uid="uid://r3uw2a7pd3o6"]
 
 [ext_resource type="Script" uid="uid://cli218hw4m8vd" path="res://singleton/monster_deck.gd" id="1_svbph"]
 [ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/monstruo1.tres" id="2_3hl6n"]
-[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Cartas/MonsterCardData.gd" id="2_46c8m"]
-[ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/carta.tscn" id="2_v7a3c"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_46c8m"]
+[ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/cartaOriginal.tscn" id="2_v7a3c"]
 [ext_resource type="Resource" uid="uid://cwcsd2cagjb73" path="res://Resources/Monstruos/monstruo2.tres" id="3_ukxup"]
 [ext_resource type="Texture2D" uid="uid://d0uky38qmk1t8" path="res://Assets/cards/reescalado/monster/monsterCardIce.png" id="4_8jsbe"]
 [ext_resource type="Resource" uid="uid://b38mrmntoefr5" path="res://Resources/Monstruos/monstruo3.tres" id="5_iaqll"]
@@ -12,8 +12,6 @@
 [ext_resource type="Resource" uid="uid://b2xpawi6cr1dm" path="res://Resources/Monstruos/monstruo5.tres" id="7_h2b5e"]
 [ext_resource type="Resource" uid="uid://c4wnahibut2rw" path="res://Resources/Monstruos/monstruo6.tres" id="8_v7a3c"]
 [ext_resource type="Resource" uid="uid://bccsvhqd20i5a" path="res://Resources/Monstruos/monstruo7.tres" id="9_iaqll"]
-[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/reescalado/monster/monsterCard.png" id="13_l382o"]
-[ext_resource type="Texture2D" uid="uid://cif3k06i4hjhj" path="res://Assets/cards/reescalado/monster/monsterCardWind.png" id="14_jej3k"]
 
 [sub_resource type="Resource" id="Resource_jej3k"]
 script = ExtResource("2_46c8m")
@@ -23,31 +21,7 @@ escena = ExtResource("2_v7a3c")
 sprite = ExtResource("4_8jsbe")
 metadata/_custom_type_script = "uid://bc4y8iqy4olrb"
 
-[sub_resource type="Resource" id="Resource_q3knx"]
-script = ExtResource("2_46c8m")
-hp = 15
-attack = 1
-escena = ExtResource("2_v7a3c")
-sprite = ExtResource("13_l382o")
-metadata/_custom_type_script = "uid://bc4y8iqy4olrb"
-
-[sub_resource type="Resource" id="Resource_vb4c2"]
-script = ExtResource("2_46c8m")
-hp = 15
-attack = 3
-escena = ExtResource("2_v7a3c")
-sprite = ExtResource("4_8jsbe")
-metadata/_custom_type_script = "uid://bc4y8iqy4olrb"
-
-[sub_resource type="Resource" id="Resource_5kv46"]
-script = ExtResource("2_46c8m")
-hp = 50
-attack = 3
-escena = ExtResource("2_v7a3c")
-sprite = ExtResource("14_jej3k")
-metadata/_custom_type_script = "uid://bc4y8iqy4olrb"
-
 [node name="MonsterDeck" type="Node"]
 script = ExtResource("1_svbph")
 tutorial_monster = SubResource("Resource_jej3k")
-monster_data_cards = Array[ExtResource("2_46c8m")]([ExtResource("2_3hl6n"), ExtResource("3_ukxup"), ExtResource("5_iaqll"), ExtResource("6_mk08i"), ExtResource("7_h2b5e"), ExtResource("8_v7a3c"), ExtResource("9_iaqll"), SubResource("Resource_q3knx"), SubResource("Resource_vb4c2"), SubResource("Resource_5kv46")])
+monster_data_cards = Array[ExtResource("2_46c8m")]([ExtResource("2_3hl6n"), ExtResource("3_ukxup"), ExtResource("5_iaqll"), ExtResource("6_mk08i"), ExtResource("7_h2b5e"), ExtResource("8_v7a3c"), ExtResource("9_iaqll")])
