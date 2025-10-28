@@ -39,6 +39,7 @@ func _setup_specific_ui() -> void:
 	max_hp = monster_data.hp
 	if traits_label:
 		traits_label.text = _get_traits_text(monster_data)
+	_apply_data_to_ui()
 
 func _apply_data_to_ui() -> void:
 	if ataque_label:

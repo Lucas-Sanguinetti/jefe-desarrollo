@@ -34,6 +34,7 @@ func _setup_specific_ui() -> void:
 	ataque = weapon_data.attack
 	if traits_label:
 		traits_label.text = _get_traits_text(weapon_data)
+	_apply_data_to_ui()
 
 
 func _apply_data_to_ui() -> void:

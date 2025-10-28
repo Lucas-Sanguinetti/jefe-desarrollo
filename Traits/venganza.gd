@@ -11,7 +11,7 @@ func take_damage(attacker: Carta, defender: Carta, damage: int) -> int:
 	return damage
 	
 func on_player_damage(damage: int, monster: Carta) -> int:
-	push_error(golpeado,monster.data.name)
+	#push_error(golpeado,monster.data.name)
 	var boost_Damage:int = damage
 	if golpeado:
 		boost_Damage = int(damage * multiplicador)
@@ -21,4 +21,4 @@ func on_player_damage(damage: int, monster: Carta) -> int:
 @warning_ignore("unused_parameter")
 func on_turn_reset(card: Carta) -> void:
 	golpeado = false
-	push_error(golpeado,card.data.name)
+	#push_error(golpeado,card.data.name)
