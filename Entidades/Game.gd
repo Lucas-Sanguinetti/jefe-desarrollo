@@ -8,6 +8,7 @@ extends Node
 @onready var weapon_manager: WeaponManager = $WeaponManager
 @onready var card_info: Node2D = $InfoDisplay
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var pasar_turno: Button = $CanvasLayer/PasarTurno
 
 
 
@@ -28,6 +29,7 @@ func _input(event):
 func _on_turn_button_pressed():
 	current_turn += 1
 	turn_label.text = "Turno: " + str(current_turn)
+	pasar_turno.pressPlay()
 	
 	# Resetear habilidades de ataque de las armas EQUIPADAS
 	if LifeManager.vida > 0:
@@ -38,6 +40,7 @@ func _on_turn_button_pressed():
 		print("Game Over - Todas las armas del jugador bloqueadas")#Debug
 	
 	print("Turno ", current_turn, " iniciado. Armas equipadas reseteadas.")#Debug
+	
 	
 	weapon_manager.reset_turn()
 	reset_monster_traits()

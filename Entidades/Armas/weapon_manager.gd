@@ -5,6 +5,8 @@ var weapon_grid: WeaponGrid = null  # "Almacén"
 var player_grid: PlayerWeaponGrid = null  # "Equipadas"
 var monster_grid: MonsterGrid = null
 
+@onready var blacksmith: AudioStreamPlayer = $Blacksmith
+
 @export var initial_equipped_weapons: Array[WeaponCardData] = []
 
 var limiteArmasTurno: int = 99
@@ -75,6 +77,7 @@ func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 	
 	# Equipar en el grid del jugador
 	var success = player_grid.equip_weapon(weapon)
+	blacksmith.play()
 	
 	if not success:
 		# Si falló, devolver al almacén

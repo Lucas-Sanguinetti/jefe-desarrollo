@@ -4,6 +4,7 @@ class_name WeaponCardData
 @export var attack: int
 @export var traits: Array[TraitBase] = []
 @export var nivel:int = 1
+@export var element:Texture2D = preload("uid://cfghlodo6mm6e")
 
 func actLabel(label: Label):
 	#var effect = "placeholder"

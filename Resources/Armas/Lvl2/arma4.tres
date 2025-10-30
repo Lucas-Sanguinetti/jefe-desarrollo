@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="1_ymtsa"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_s3cmu"]
-[ext_resource type="Texture2D" uid="uid://cthpr5e8nhfio" path="res://Assets/cards/weapon/weaponrCardFire.png" id="3_ymtsa"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="3_t50c6"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_ymtsa"]
 [ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="5_ymtsa"]
 
@@ -12,5 +12,5 @@ attack = 5
 traits = Array[ExtResource("4_ymtsa")]([ExtResource("5_ymtsa")])
 nivel = 2
 escena = ExtResource("1_ymtsa")
-sprite = ExtResource("3_ymtsa")
+sprite = ExtResource("3_t50c6")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

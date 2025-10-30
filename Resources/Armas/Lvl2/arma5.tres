@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="1_tay1n"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_ua55m"]
-[ext_resource type="Texture2D" uid="uid://cmxqp7tofkvpr" path="res://Assets/cards/weapon/weaponrCardIce.png" id="3_tay1n"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="3_yaqlf"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_tay1n"]
 [ext_resource type="Resource" uid="uid://cltr6rwpeyoa0" path="res://Resources/Traits/aprovechar.tres" id="5_tay1n"]
 
@@ -12,5 +12,5 @@ attack = 10
 traits = Array[ExtResource("4_tay1n")]([ExtResource("5_tay1n")])
 nivel = 2
 escena = ExtResource("1_tay1n")
-sprite = ExtResource("3_tay1n")
+sprite = ExtResource("3_yaqlf")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

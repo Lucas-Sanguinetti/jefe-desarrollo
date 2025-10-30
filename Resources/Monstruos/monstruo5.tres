@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="MonsterCardData" load_steps=8 format=3 uid="uid://b2xpawi6cr1dm"]
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=10 format=3 uid="uid://b2xpawi6cr1dm"]
 
+[ext_resource type="Texture2D" uid="uid://bm7c1ddxe8pm6" path="res://Assets/cards/monster/monstruos/Image1.png" id="1_deuv5"]
 [ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_tu4ud"]
+[ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="2_cohel"]
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_fwj0p"]
 [ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="3_tu4ud"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_tu4ud"]
