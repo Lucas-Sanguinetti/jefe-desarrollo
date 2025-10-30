@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=18 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -9,7 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://bmeoueu10fxj2" path="res://Entidades/Armas/weapon_spawner.tscn" id="7_00onx"]
 [ext_resource type="PackedScene" uid="uid://dfmm3iy8hd5vr" path="res://Entidades/Armas/player_weapon_spawner.tscn" id="8_rwqrq"]
 [ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="9_hf2jd"]
+[ext_resource type="Script" uid="uid://2bc043lq2daj" path="res://Entidades/press.gd" id="10_eq8nk"]
+[ext_resource type="AudioStream" uid="uid://df1guwtyjobyt" path="res://Audio/SFX/blacksmith-hammer.mp3" id="10_gxhcr"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_ohvqk"]
+[ext_resource type="AudioStream" uid="uid://byhk8raqtbh4h" path="res://Audio/SFX/button-pressed.mp3" id="10_xugfq"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_2jhs2"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0w1ek"]
 [ext_resource type="AudioStream" uid="uid://d0686mu6qgmo7" path="res://Audio/musica/Game.mp3" id="13_8hmk7"]
@@ -40,6 +43,10 @@ position = Vector2(415, 760)
 position = Vector2(44, 136)
 script = ExtResource("9_hf2jd")
 
+[node name="Blacksmith" type="AudioStreamPlayer" parent="WeaponManager"]
+stream = ExtResource("10_gxhcr")
+volume_db = -20.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PasarTurno" type="Button" parent="CanvasLayer"]
@@ -54,6 +61,10 @@ offset_right = 1102.0599
 offset_bottom = 227.99994
 text = "Terminar
 Turno"
+script = ExtResource("10_eq8nk")
+
+[node name="press" type="AudioStreamPlayer" parent="CanvasLayer/PasarTurno"]
+stream = ExtResource("10_xugfq")
 
 [node name="ContadorTurno" type="Label" parent="CanvasLayer"]
 texture_filter = 1
