@@ -7,12 +7,17 @@ extends Node
 @onready var monster_spawner = $MonsterSpawner
 @onready var weapon_manager: WeaponManager = $WeaponManager
 @onready var card_info: Node2D = $InfoDisplay
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+
+
 
 var current_turn = 1.
 
 func _ready() -> void:
 	turn_button.pressed.connect(_on_turn_button_pressed)
 	LifeManager.vida_cambiada.connect(_on_vida_cambiada)
+	audio_stream_player.play()
 
 func _input(event):
 	# DEBUG: Presionar T para transferir arma del almacén al jugador
