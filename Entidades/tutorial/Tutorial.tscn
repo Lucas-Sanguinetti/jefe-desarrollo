@@ -61,6 +61,7 @@ initial_equipped_weapons = Array[ExtResource("11_n6u6b")]([ExtResource("12_ba64b
 
 [node name="Blacksmith" type="AudioStreamPlayer" parent="WeaponManager"]
 stream = ExtResource("14_rbkq8")
+volume_db = -20.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
