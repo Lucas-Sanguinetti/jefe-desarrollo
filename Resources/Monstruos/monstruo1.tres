@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://caqj4m5fkdwcq"
 
 [resource]
 script = ExtResource("2_jkt4c")
-hp = 50
+hp = 5
 attack = 5
 traits = Array[ExtResource("4_04um5")]([SubResource("Resource_jkt4c"), SubResource("Resource_ue30m")])
 backsprite = ExtResource("1_ue30m")
