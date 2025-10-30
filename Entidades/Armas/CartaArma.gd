@@ -8,7 +8,9 @@ var ataque_label: Label
 var traits_label: Label 
 var niveles_sprite: Sprite2D
 var element_sprite: TextureRect
+var backsprite_sprite: TextureRect
 
+var backsprite: Texture2D
 var ataque:int 
 var nivel:int 
 var element:Texture2D
@@ -30,6 +32,7 @@ func _initialize_references() -> void:
 	traits_label = get_node_or_null("WeaponTraits")
 	niveles_sprite = get_node_or_null("Niveles")
 	element_sprite = get_node_or_null("Element")
+	backsprite_sprite = get_node_or_null("BackSprite")
 	
 	if not ataque_label:
 		push_error("CartaArma: Falta nodo 'Ataque'")
@@ -45,6 +48,7 @@ func _setup_specific_ui() -> void:
 		return
 	ataque = weapon_data.attack
 	element = weapon_data.element
+	backsprite = weapon_data.backsprite
 	if traits_label:
 		traits_label.text = _get_traits_text(weapon_data)
 	nivel = weapon_data.nivel
@@ -58,6 +62,9 @@ func _apply_data_to_ui() -> void:
 		niveles_sprite.set_nivel(nivel)
 	if element_sprite:
 		element_sprite.texture = element
+	if backsprite_sprite:
+		backsprite_sprite.texture = backsprite
+		backsprite_sprite.scale = Vector2(0.5, 0.5)
 	
 
 
