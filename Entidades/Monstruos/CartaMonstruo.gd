@@ -1,7 +1,7 @@
 extends Carta
 class_name CartaMonstruo
 
-# Referencias específicas de monstruos
+
 var vida_label: Label
 var ataque_label: Label
 var traits_label: Label
@@ -16,7 +16,7 @@ var rasgos:Array
 var golpeado:bool = false
 
 
-# IMPLEMENTACIÓN DE MÉTODOS VIRTUALES
+
 func _initialize_references() -> void:
 	super._initialize_references()
 	vida_label = get_node_or_null("Vida")
@@ -58,7 +58,7 @@ func _apply_data_to_ui() -> void:
 		vida_label.text = str(hp_actual)
 	
 
-# CAPACIDADES DE COMBATE
+
 func can_be_targeted() -> bool:
 	for rasgo in rasgos:
 		if rasgo is Valiente:
@@ -88,7 +88,7 @@ func can_be_targeted() -> bool:
 						return false
 	return true 
 
-# LÓGICA ESPECÍFICA DE MONSTRUOS
+
 func take_damage(damage: int, attacker: Carta = null) -> void:
 	
 	# Aplicar reducción de traits
@@ -127,11 +127,11 @@ func die(nivel:int) -> void:
 	if parent_grid and parent_grid.has_method("update_on_card_death"):
 		parent_grid.update_on_card_death(self)
 
-func get_monster_hps() -> Array:
-	var vidas: Array = []
-	vidas.append(hp_actual)
-	vidas.append(max_hp)
-	return vidas
+#func get_monster_hps() -> Array:
+	#var vidas: Array = []
+	#vidas.append(hp_actual)
+	#vidas.append(max_hp)
+	#return vidas
 
 
 # UTILIDADES PRIVADAS
@@ -140,3 +140,21 @@ func _get_traits_text(monster_data: MonsterCardData) -> String:
 	for traits in monster_data.traits:
 		texto += "* %s\n" % [traits.trait_name]
 	return texto
+
+#Utilidad de info
+func actLabel(label: Label) -> void:
+	var text = "Ataque: %d\n" % [ataque]
+	text += "Vida: %d\n" % [hp_actual]
+	# Agregar traits
+	if not rasgos.is_empty():
+		for rasgo in rasgos:
+			if rasgo is Endurecer:
+				text += "* %s " % [rasgo.trait_name]
+				text += "  %s\n" % [rasgo.resistencia]
+			else:
+				text += "* %s\n" % [rasgo.trait_name]
+			text += " %s\n" % [rasgo.trait_description]
+	else:
+		text += "Sin traits\n"
+		
+	label.text = text

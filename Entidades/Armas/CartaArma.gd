@@ -10,6 +10,7 @@ var niveles_sprite: Sprite2D
 
 var ataque:int 
 var nivel:int 
+var rasgos:Array
 # Doble click (solo armas en WeaponGrid)
 var click_timer: float = 0.0
 var click_threshold: float = 0.3
@@ -41,6 +42,7 @@ func _setup_specific_ui() -> void:
 	if traits_label:
 		traits_label.text = _get_traits_text(weapon_data)
 	nivel = weapon_data.nivel
+	rasgos = weapon_data.traits
 	_apply_data_to_ui()
 
 
@@ -98,6 +100,10 @@ func attack(target: CartaMonstruo) -> bool:
 	
 	# Lifesteal
 	_apply_lifesteal(weapon_attack, target)
+	
+	#Primer ataque
+	if parent_grid and parent_grid is PlayerWeaponGrid:
+		parent_grid.mark_attack_used()
 	
 	# Bloquear arma
 	can_attack = false
@@ -169,4 +175,14 @@ func _get_traits_text(weapon_data: WeaponCardData) -> String:
 		texto += "* %s\n" % [traits.trait_name]
 	return texto
 
-## Estructura de las Escenas
+func actLabel(label: Label) -> void:
+	var text = "Ataque: %d\n" % [ataque]
+	# Agregar traits
+	if not rasgos.is_empty():
+		for rasgo in rasgos:
+			text += "* %s\n" % [rasgo.trait_name]
+			text += " %s\n" % [rasgo.trait_description]
+	else:
+		text += "Sin traits\n"
+	
+	label.text = text

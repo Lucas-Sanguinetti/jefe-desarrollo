@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_3s7u0")
 trait_name = "Venganza"
-trait_description = "Devolvera el doble de daño si ya le haz golpeado"
+trait_description = "Duplica el ataque si ya ha sido golpeado este turno"
 metadata/_custom_type_script = "uid://caqj4m5fkdwcq"

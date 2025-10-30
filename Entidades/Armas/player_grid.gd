@@ -10,6 +10,7 @@ const CELL_MARGIN_Y = 0  # Margen vertical entre celdas
 
 var grid = []  # array 2D de referencias a cartas
 var max_capacity: int = GRID_COLUMNS * GRID_ROWS
+var first_attack_of_turn: bool = true
 
 signal weapon_equipped(weapon: Carta)
 signal weapon_removed(weapon: Carta)
@@ -126,6 +127,9 @@ func get_all_weapons() -> Array:
 func reset_all_weapons():
 	var weapons = get_all_weapons()
 	print("PlayerWeaponGrid: Reseteando ", weapons.size(), " armas")#Debug
+	
+	first_attack_of_turn = true
+	
 	for weapon in weapons:
 		if weapon.has_method("reset_attack_ability"):
 			weapon.reset_attack_ability()
@@ -158,6 +162,12 @@ func is_full() -> bool:
 func _conectUp(carta: Carta):
 	emit_signal("mouseEntered", carta)
 	
+
+func is_first_attack_of_turn() -> bool:
+	return first_attack_of_turn
+
+func mark_attack_used():
+	first_attack_of_turn = false
 
 # Debug: Visualizar las celdas
 func _draw():

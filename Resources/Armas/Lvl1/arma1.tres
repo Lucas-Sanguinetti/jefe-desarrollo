@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="WeaponCardData" load_steps=5 format=3 uid="uid://2630l8e8maqo"]
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=6 format=3 uid="uid://2630l8e8maqo"]
 
 [ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="1_adkmc"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_1fhv2"]
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="3_fjuth"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_clpgk"]
+[ext_resource type="Resource" uid="uid://bteyahi75iyib" path="res://Resources/Traits/Armas/rapida.tres" id="5_1fhv2"]
 
 [resource]
 script = ExtResource("2_1fhv2")
 attack = 12
+traits = Array[ExtResource("4_clpgk")]([ExtResource("5_1fhv2")])
 escena = ExtResource("1_adkmc")
 sprite = ExtResource("3_fjuth")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

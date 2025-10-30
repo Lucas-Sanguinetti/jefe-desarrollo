@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_ujrt3")
 trait_name = "Valiente"
-trait_description = "Protege a los monstruos de alredero"
+trait_description = "Protege a los monstruos adyacentes de ser atacados "
 metadata/_custom_type_script = "uid://dyutwq2y5wlk4"
