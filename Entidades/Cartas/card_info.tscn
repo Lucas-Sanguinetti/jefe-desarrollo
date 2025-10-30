@@ -12,11 +12,12 @@ WeaponBasicInfo = ExtResource("2_gxher")
 texture_filter = 1
 texture_repeat = 1
 offset_left = -120.0
-offset_top = 206.0
-offset_right = -64.0
-offset_bottom = 229.0
+offset_top = 190.0
+offset_right = 125.0
+offset_bottom = 350.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_wdwl0")
 text = "
 "
+autowrap_mode = 1

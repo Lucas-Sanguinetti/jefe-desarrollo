@@ -74,7 +74,7 @@ func select_for_attack() -> void:
 		set_card_state(CardState.SELECTED_FOR_ATTACK)
 		emit_signal("card_selected_for_attack", self)
 
-func attack(target: Carta) -> bool:
+func attack(target: CartaMonstruo) -> bool:
 	if not can_be_selected_for_attack():
 		return false
 	if not target.can_be_targeted():
@@ -152,11 +152,13 @@ func _calculate_player_damage(target: Carta) -> int:
 		player_damage = traits.on_player_damage(player_damage, target)
 	return player_damage
 
-func _apply_lifesteal(weapon_attack: int, target: Carta) -> void:
+func _apply_lifesteal(weapon_attack: int, target: CartaMonstruo) -> void:
 	var lifesteal_amount = 0
 	for traits in data.traits:
 		if traits is RobaVida:
 			lifesteal_amount = traits.get_lifesteal_amount(weapon_attack, target)
+	
+	lifesteal_amount = min(lifesteal_amount, target.hp_actual)
 	
 	if lifesteal_amount > 0 and LifeManager.get_life() > 0:
 		LifeManager.gainLife(lifesteal_amount)
