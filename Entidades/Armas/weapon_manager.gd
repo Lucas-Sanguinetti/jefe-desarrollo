@@ -7,7 +7,7 @@ var monster_grid: MonsterGrid = null
 
 @export var initial_equipped_weapons: Array[WeaponCardData] = []
 
-var limiteArmasTurno: int = 1
+var limiteArmasTurno: int = 99
 var armasTransferidas:int = 0
 var monstruoMurio: bool = false
 

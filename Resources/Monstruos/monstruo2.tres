@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_2b4rk"]
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_3n54q"]
-[ext_resource type="Texture2D" uid="uid://cif3k06i4hjhj" path="res://Assets/cards/monster/monsterCardWind.png" id="3_k1qcm"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="3_2b4rk"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_2b4rk"]
 [ext_resource type="Resource" uid="uid://cltr6rwpeyoa0" path="res://Resources/Traits/aprovechar.tres" id="5_3n54q"]
 
@@ -12,5 +12,5 @@ hp = 25
 attack = 3
 traits = Array[ExtResource("4_2b4rk")]([ExtResource("5_3n54q")])
 escena = ExtResource("1_2b4rk")
-sprite = ExtResource("3_k1qcm")
+sprite = ExtResource("3_2b4rk")
 metadata/_custom_type_script = "uid://bc4y8iqy4olrb"
