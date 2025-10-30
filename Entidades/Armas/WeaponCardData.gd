@@ -3,6 +3,7 @@ class_name WeaponCardData
 
 @export var attack: int
 @export var traits: Array[TraitBase] = []
+@export var nivel:int = 1
 
 func actLabel(label: Label):
 	#var effect = "placeholder"

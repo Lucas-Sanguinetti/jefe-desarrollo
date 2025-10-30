@@ -4,6 +4,7 @@ class_name MonsterCardData
 @export var hp: int
 @export var attack: int
 @export var traits: Array[TraitBase] = []
+@export var nivel:int = 1
 var maxHp:int = hp
 
 

@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 LifeManager="*res://singleton/life_manager.gd"
 WeaponDeck="*res://singleton/weapon_deck.tscn"
 MonsterDeck="*res://singleton/monster_deck.tscn"
+MoneyManager="*res://singleton/money_manager.gd"
 
 [display]
 

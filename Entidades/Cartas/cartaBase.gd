@@ -135,9 +135,10 @@ func _update_visual_state() -> void:
 			modulate = Color(0.7, 0.7, 0.7)
 
 # Muerte común para todas las cartas
-func die() -> void:
+func die(nivel:int ) -> void:
 	print("La carta ha muerto: ", name)
 	emit_signal("card_died")
+	MoneyManager.ganarMonedas(nivel)
 	_play_death_animation()
 	
 	if parent_grid and parent_grid.has_method("update_on_card_death"):

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=6 format=3 uid="uid://ci1ovlf2sdngb"]
+
+[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="1_t82id"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_1e8yw"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="3_4nnr0"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_mwdob"]
+[ext_resource type="Resource" uid="uid://cltr6rwpeyoa0" path="res://Resources/Traits/aprovechar.tres" id="5_ct2i5"]
+
+[resource]
+script = ExtResource("2_1e8yw")
+attack = 15
+traits = Array[ExtResource("4_mwdob")]([ExtResource("5_ct2i5")])
+nivel = 3
+escena = ExtResource("1_t82id")
+sprite = ExtResource("3_4nnr0")
+name = "LongSword"
+metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

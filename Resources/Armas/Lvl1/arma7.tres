@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=5 format=3 uid="uid://b0sgqig3gvs3o"]
+
+[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="1_xyx68"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_ww7si"]
+[ext_resource type="Texture2D" uid="uid://cpo4cq827sx32" path="res://Assets/cards/weapon/weaponrCardPoison.png" id="3_xyx68"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_xyx68"]
+
+[resource]
+script = ExtResource("2_ww7si")
+attack = 10
+escena = ExtResource("1_xyx68")
+sprite = ExtResource("3_xyx68")
+metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

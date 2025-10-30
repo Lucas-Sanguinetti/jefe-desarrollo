@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_lglcu"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="11_n6u6b"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0rbba"]
-[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/arma1.tres" id="12_ba64b"]
+[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/Lvl1/arma1.tres" id="12_ba64b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n6u6b"]
 font = ExtResource("10_3db23")

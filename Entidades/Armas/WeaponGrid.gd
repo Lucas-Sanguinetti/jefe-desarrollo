@@ -8,8 +8,8 @@ const CellHeigth = 144
 const CellWeigth = 104
 
 var grid = []  # array 2D de referencias a fichas
+var armas_por_celda := {} # Diccionario: Vector2i -> CartaArma
 signal mouseEntered(carta: Carta)
-
 signal carta_Clickeada (carta:Carta)
 
 func _ready():
@@ -44,6 +44,7 @@ func place_piece(x: int, y: int, cardData: WeaponCardData) -> bool:
 	cardPiece.position = grid_to_world(x, y)
 	cardPiece.grid_pos = Vector2(x, y)
 	grid[x][y] = cardPiece
+	registrar_arma(cardPiece,Vector2i(x,y))
 	
 	if cardPiece.has_signal("card_double_clicked"):
 		cardPiece.card_double_clicked.connect(_on_weapon_double_clicked)
@@ -59,14 +60,6 @@ func invoke_random_piece(carta: WeaponCardData):
 
 	var pos = empty_cells[randi() % empty_cells.size()]
 	place_piece(pos.x, pos.y, carta)
-
-func get_all_weapons() -> Array:
-	var weapons = []
-	for x in range(GRID_COLLUMNS):
-		for y in range(GRID_ROWS):
-			if grid[x][y] != null:
-				weapons.append(grid[x][y])
-	return weapons
 
 # Para agarrar un arma particular
 func take_weapon(x: int, y: int):
@@ -86,4 +79,22 @@ func get_empty_slots() -> Array:
 			if grid[x][y] == null:
 				empty_cells.append(Vector2(x, y))
 	return empty_cells
- 
+
+func get_all_weapons() -> Array:
+	var weapons = []
+	for x in range(GRID_COLLUMNS):
+		for y in range(GRID_ROWS):
+			if grid[x][y] != null:
+				weapons.append(grid[x][y])
+	return weapons
+	
+func registrar_arma(arma: CartaArma, celda:Vector2i):
+	armas_por_celda[celda] = arma
+
+func obtener_arma_en(celda:Vector2i) -> CartaArma:
+	return armas_por_celda.get(celda,null)
+
+func verificar_saldo_suficiente(x: int, y: int) -> bool:
+	var arma = obtener_arma_en(Vector2i(x,y))
+	return arma.nivel <= MoneyManager.get_money()
+	

@@ -7,7 +7,7 @@ var monster_grid: MonsterGrid = null
 
 @export var initial_equipped_weapons: Array[WeaponCardData] = []
 
-var limiteArmasTurno: int = 1
+var limiteArmasTurno: int = 99
 var armasTransferidas:int = 0
 var monstruoMurio: bool = false
 
@@ -64,7 +64,7 @@ func equip_initial_weapons():
 # Mover un arma del WeaponGrid al PlayerWeaponGrid
 func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 	
-	if !verificar_transferencia():
+	if !verificar_transferencia(from_x, from_y):
 		return false
 	
 	# Tomar arma del almacén
@@ -82,6 +82,10 @@ func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 		# Agregar al weapon grid / devolver al lugar de donde la saque
 		weapon.queue_free()
 		return false
+	
+	# Reducir monedas
+	var arma = weapon_grid.obtener_arma_en(Vector2i(from_x,from_y))
+	MoneyManager.perderMonedas(arma.nivel)
 	
 	print("WeaponManager: Arma transferida exitosamente")
 	armasTransferidas += 1
@@ -125,11 +129,11 @@ func transfer_random_weapon_to_player() -> bool:
 	
 	return transfer_weapon_to_player(int(pos.x), int(pos.y))
 
-func verificar_transferencia() -> bool:
+func verificar_transferencia(from_x: int, from_y: int) -> bool:
 	#Verificar monstruo derrotado
-	if !monstruoMurio:
-		push_warning("WeaponManager: No se mato ningun monstruo") #Debug
-		return false
+	#if !monstruoMurio:
+		#push_warning("WeaponManager: No se mato ningun monstruo") #Debug
+		#return false
 	#Verificar cantidad de armas transferidas
 	if armasTransferidas >= limiteArmasTurno:
 		print("WeaponManager: No se pueden agarrar mas de: "+str(limiteArmasTurno)+" armas por turno") #Debug
@@ -146,7 +150,9 @@ func verificar_transferencia() -> bool:
 		print("WeaponManager: No hay armas disponibles en el almacén")  #Debug
 		return false
 	
-	return true
+	var validacion_final:bool = weapon_grid.verificar_saldo_suficiente(from_x,from_y)
+
+	return validacion_final
 
 func reset_turn():
 	armasTransferidas = 0
@@ -154,9 +160,7 @@ func reset_turn():
 	pass
 
 func _on_carta_clikeada(carta:Carta):
-	if !verificar_transferencia():
-		return
-	
+
 	var postion = carta.grid_pos
 	var success = transfer_weapon_to_player(postion.x, postion.y)
 	

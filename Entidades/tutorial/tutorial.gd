@@ -36,11 +36,6 @@ func _ready() -> void:
 	$sombra1_tut4.visible = false 
 	$sombra2_tut4.visible = false
 	
-func _input(event):
-	# DEBUG: Presionar T para transferir arma del almacén al jugador
-	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
-		if weapon_manager and weapon_manager.has_method("transfer_random_weapon_to_player"):
-			weapon_manager.transfer_random_weapon_to_player()
 
 func _on_turn_button_pressed():
 	get_tree().change_scene_to_file("res://Entidades/Main.tscn")
