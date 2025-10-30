@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=6 format=3 uid="uid://c4wnahibut2rw"]
+
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_1xgbi"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_lcgm4"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="3_ikqjp"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_l6cu8"]
+[ext_resource type="Resource" uid="uid://4oftc55chlxk" path="res://Resources/Traits/Monstruos/endurecer_2.tres" id="5_hut56"]
+
+[resource]
+script = ExtResource("2_lcgm4")
+hp = 15
+attack = 7
+traits = Array[ExtResource("4_l6cu8")]([ExtResource("5_hut56")])
+nivel = 2
+escena = ExtResource("1_1xgbi")
+sprite = ExtResource("3_ikqjp")
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

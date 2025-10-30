@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=6 format=3 uid="uid://chendedgm7761"]
+
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_bqd3q"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_568j2"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="3_gk51y"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_i3mt2"]
+[ext_resource type="Resource" uid="uid://2b3vwsuba582" path="res://Resources/Traits/Monstruos/venganza.tres" id="5_m0pvt"]
+
+[resource]
+script = ExtResource("2_568j2")
+hp = 50
+attack = 5
+traits = Array[ExtResource("4_i3mt2")]([ExtResource("5_m0pvt")])
+nivel = 2
+escena = ExtResource("1_bqd3q")
+sprite = ExtResource("3_gk51y")
+name = "mons1"
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

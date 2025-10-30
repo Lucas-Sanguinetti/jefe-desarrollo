@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=6 format=3 uid="uid://bx8vi3e5gsiq2"]
+
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="1_5p8cq"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_eof0s"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="2_cba0c"]
+[ext_resource type="Resource" uid="uid://d4iev8cfekme0" path="res://Resources/Traits/Monstruos/valiente.tres" id="3_eof0s"]
+[ext_resource type="Texture2D" uid="uid://dndridwuyrhfw" path="res://Assets/cards/monster/monsterCardDark.png" id="3_mtrqb"]
+
+[resource]
+script = ExtResource("1_5p8cq")
+hp = 25
+attack = 5
+traits = Array[ExtResource("2_cba0c")]([ExtResource("3_eof0s")])
+nivel = 3
+escena = ExtResource("1_eof0s")
+sprite = ExtResource("3_mtrqb")
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

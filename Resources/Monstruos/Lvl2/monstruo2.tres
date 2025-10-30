@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=6 format=3 uid="uid://cwcsd2cagjb73"]
+
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_jnd4m"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_l18io"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="3_n1kpb"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_ckoup"]
+[ext_resource type="Resource" uid="uid://cltr6rwpeyoa0" path="res://Resources/Traits/aprovechar.tres" id="5_nneir"]
+
+[resource]
+script = ExtResource("2_l18io")
+hp = 25
+attack = 3
+traits = Array[ExtResource("4_ckoup")]([ExtResource("5_nneir")])
+nivel = 2
+escena = ExtResource("1_jnd4m")
+sprite = ExtResource("3_n1kpb")
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"
