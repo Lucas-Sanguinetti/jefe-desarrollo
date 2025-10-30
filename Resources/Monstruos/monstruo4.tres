@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_8jg78"]
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_rc61k"]
-[ext_resource type="Texture2D" uid="uid://cp0ok12pllt6f" path="res://Assets/cards/reescalado/monster/monsterCardTech.png" id="3_4352c"]
+[ext_resource type="Texture2D" uid="uid://cp0ok12pllt6f" path="res://Assets/cards/monster/monsterCardTech.png" id="3_4352c"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_8jg78"]
 [ext_resource type="Script" uid="uid://caqj4m5fkdwcq" path="res://Traits/venganza.gd" id="5_8jg78"]
 

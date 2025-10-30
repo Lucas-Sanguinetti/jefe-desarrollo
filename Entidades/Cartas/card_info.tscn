@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://drh5ob8gcaoa7"]
 
 [ext_resource type="Script" uid="uid://cbks318mypm5f" path="res://Entidades/Cartas/card_info.gd" id="1_4bl3h"]
-[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/arma1.tres" id="2_gxher"]
+[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/Lvl1/arma1.tres" id="2_gxher"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="3_wdwl0"]
 
 [node name="infoDisplay" type="Node2D"]

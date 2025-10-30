@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bvjly575gwxx0" path="res://Entidades/Armas/player_weapon_spawner.gd" id="1_1tulo"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_rud35"]
-[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/arma1.tres" id="3_o15a1"]
-[ext_resource type="Resource" uid="uid://dpgums16lds27" path="res://Resources/Armas/arma2.tres" id="4_yocur"]
+[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/Lvl1/arma1.tres" id="3_o15a1"]
+[ext_resource type="Resource" uid="uid://dpgums16lds27" path="res://Resources/Armas/Lvl4/arma2.tres" id="4_yocur"]
 [ext_resource type="Script" uid="uid://r1djijdxfuyu" path="res://Entidades/Armas/player_grid.gd" id="5_nhquq"]
 
 [node name="PlayerWeaponSpawner" type="Node2D"]

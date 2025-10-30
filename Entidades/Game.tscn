@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=14 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_ohvqk"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_2jhs2"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0w1ek"]
+[ext_resource type="PackedScene" uid="uid://bx6yw2qj5stmb" path="res://Entidades/Visuales/monederoHud.tscn" id="13_8hmk7"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_a0hfb")
@@ -72,3 +73,6 @@ position = Vector2(791, 675)
 
 [node name="InfoDisplay" parent="." instance=ExtResource("12_0w1ek")]
 position = Vector2(855, 207)
+
+[node name="MonederoHUD" parent="." instance=ExtResource("13_8hmk7")]
+position = Vector2(53, 540)

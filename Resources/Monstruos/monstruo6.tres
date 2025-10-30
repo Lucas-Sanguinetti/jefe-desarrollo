@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_612nl"]
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_atq02"]
-[ext_resource type="Texture2D" uid="uid://d352xclg80et4" path="res://Assets/cards/reescalado/monster/monsterCardNature.png" id="3_2442j"]
+[ext_resource type="Texture2D" uid="uid://d352xclg80et4" path="res://Assets/cards/monster/monsterCardNature.png" id="3_2442j"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_612nl"]
 [ext_resource type="Script" uid="uid://br8i4gwwpmh7n" path="res://Traits/endurecer.gd" id="5_612nl"]
 

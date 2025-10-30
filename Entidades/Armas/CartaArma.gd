@@ -6,12 +6,15 @@ class_name CartaArma
 # Referencias específicas
 var ataque_label: Label
 var traits_label: Label 
+var niveles_sprite: Sprite2D
 
 var ataque:int 
+var nivel:int 
 # Doble click (solo armas en WeaponGrid)
 var click_timer: float = 0.0
 var click_threshold: float = 0.3
 var click_count: int = 0
+
 
 
 
@@ -20,11 +23,14 @@ func _initialize_references() -> void:
 	super._initialize_references()
 	ataque_label = get_node_or_null("Ataque")
 	traits_label = get_node_or_null("WeaponTraits")
+	niveles_sprite = get_node_or_null("Niveles")
 	
 	if not ataque_label:
 		push_error("CartaArma: Falta nodo 'Ataque'")
 	if not traits_label:
 		push_error("CartaArma: Falta nodo 'WeaponTraits'")
+	if not niveles_sprite:
+		push_error("CartaArma: Falta nodo 'Niveles'")
 
 func _setup_specific_ui() -> void:
 	var weapon_data = data as WeaponCardData
@@ -34,12 +40,15 @@ func _setup_specific_ui() -> void:
 	ataque = weapon_data.attack
 	if traits_label:
 		traits_label.text = _get_traits_text(weapon_data)
+	nivel = weapon_data.nivel
 	_apply_data_to_ui()
 
 
 func _apply_data_to_ui() -> void:
 	if ataque_label:
 		ataque_label.text = str(ataque)
+	if niveles_sprite:
+		niveles_sprite.set_nivel(nivel)
 	
 
 
