@@ -151,7 +151,7 @@ func _update_visual_state() -> void:
 
 # Muerte común para todas las cartas
 @warning_ignore("unused_parameter")
-func die(nivel:int) -> void:
+func die() -> void:
 	print("La carta ha muerto: ", name)
 	emit_signal("card_died")
 	_play_death_animation()

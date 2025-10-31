@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SpellCardData" load_steps=5 format=3 uid="uid://c2bkuv7nntasy"]
+
+[ext_resource type="Texture2D" uid="uid://e0yx28713rag" path="res://Assets/cards/spell/spells/Image1.png" id="1_6o4l5"]
+[ext_resource type="PackedScene" uid="uid://bncxpxagsydh3" path="res://Entidades/Hechizos/Hechizo.tscn" id="2_wp12y"]
+[ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="3_fcy0u"]
+[ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="4_fcy0u"]
+
+[resource]
+script = ExtResource("3_fcy0u")
+descripcion = "Al usarlo te curas 3 puntos de vida"
+effect_type = 1
+effect_value = 3
+escena = ExtResource("2_wp12y")
+sprite = ExtResource("4_fcy0u")
+metadata/_custom_type_script = "uid://c5klust30h4bq"

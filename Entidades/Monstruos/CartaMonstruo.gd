@@ -59,17 +59,15 @@ func _setup_specific_ui() -> void:
 		niveles_sprite.set_nivel(nivel)
 	if ataque_label:
 		ataque_label.text = str(ataque)
+	if element_sprite:
+		element_sprite.texture = element
+	if backsprite_sprite:
+		backsprite_sprite.texture = backsprite
 	_apply_data_to_ui()
 
 func _apply_data_to_ui() -> void:
 	if vida_label:
 		vida_label.text = str(hp_actual)
-	if element_sprite:
-		element_sprite.texture = element
-	if backsprite_sprite:
-		backsprite_sprite.texture = backsprite
-	
-
 
 func can_be_targeted() -> bool:
 	for rasgo in rasgos:
@@ -104,8 +102,9 @@ func can_be_targeted() -> bool:
 func take_damage(damage: int, attacker: Carta = null) -> void:
 	
 	# Aplicar reducción de traits
-	for rasgo in rasgos:
-		damage = rasgo.take_damage(attacker, self, damage)
+	if attacker:
+		for rasgo in rasgos:
+			damage = rasgo.take_damage(attacker, self, damage)
 	
 	hp_actual -= damage
 	_apply_data_to_ui()  # Actualizar vida en pantalla
@@ -116,11 +115,11 @@ func take_damage(damage: int, attacker: Carta = null) -> void:
 		create_damage_effect()
 	
 	if hp_actual <= 0:
-		die(nivel)
+		die()
 		death.play()
 
-@warning_ignore("shadowed_variable")
-func die(nivel:int) -> void:
+
+func die() -> void:
 	print("CartaMonstruo: %s ha muerto" % [name])
 	MoneyManager.ganarMonedas(nivel)
 	# Activar Renacer ANTES de la animación de muerte

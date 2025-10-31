@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://da50i6nw27x40"]
+
+[ext_resource type="Script" uid="uid://cmvq1viknsoku" path="res://Entidades/player_spells.gd" id="1_wcqcd"]
+
+[node name="PlayerSpells" type="HBoxContainer"]
+script = ExtResource("1_wcqcd")
