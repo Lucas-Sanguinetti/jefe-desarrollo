@@ -5,6 +5,7 @@ var spell_description: Label
 var imagen_hechizo: TextureRect
 
 signal spell_cast_requested(target)
+@onready var death: AudioStreamPlayer = $Death
 
 # Doble click
 var click_timer: float = 0.0
@@ -67,6 +68,7 @@ func _handle_click() -> void:
 		click_timer = 0
 
 func _on_double_click() -> void:
+	
 	var spell_data = data as SpellCardData
 	if not spell_data:
 		return
@@ -77,6 +79,8 @@ func _on_double_click() -> void:
 			emit_signal("card_double_clicked", self)
 		SpellCardData.TargetType.ENEMY:
 			print("CartaHechizo: Requiere seleccionar objetivo manualmente")
+			
+	
 
 #Metodo para saber si puede ser usada
 func can_be_cast() -> bool:
@@ -93,8 +97,10 @@ func die() -> void:
 	emit_signal("card_died")
 	_play_death_animation()
 	
+	
 	if parent_grid and parent_grid.has_method("update_on_card_death"):
 		parent_grid.update_on_card_death(self)
+		
 func actLabel(label: Label) -> void:
 	var spell_data = data as SpellCardData
 	if not spell_data:

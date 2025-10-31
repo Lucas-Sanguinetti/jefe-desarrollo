@@ -147,7 +147,7 @@ theme_override_fonts/font = ExtResource("10_3db23")
 theme_override_font_sizes/font_size = 24
 text = "^
 haz click sobre el monstruo
-para atacarlo"
+para atacarlo y recibir monedas por matarlo"
 label_settings = SubResource("LabelSettings_n6u6b")
 
 [node name="sombra1_tut3" type="Panel" parent="."]
@@ -172,7 +172,6 @@ offset_right = 1356.0
 offset_bottom = 640.0
 
 [node name="Label_tut3" type="Label" parent="."]
-visible = false
 texture_filter = 1
 offset_left = 859.0
 offset_top = 325.0
@@ -183,9 +182,8 @@ theme_override_font_sizes/font_size = 24
 text = "^
 haz doble click 
 sobre el arma
-para reclarmar
-tu recompensa
-por matarlo
+para comprarla
+
 "
 label_settings = SubResource("LabelSettings_ba64b")
 

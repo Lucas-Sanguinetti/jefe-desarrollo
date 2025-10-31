@@ -8,6 +8,9 @@ signal card_played(spell: SpellCardData, target)
 @export var card_scale: float = 1.0  # Escala de las cartas
 @export var hover_lift: float = -20.0  # Cuánto sube la carta al hacer hover
 
+@onready var spell_cast: AudioStreamPlayer = $SpellCast
+@onready var deck_draw: AudioStreamPlayer = $DeckDraw
+
 var cards_in_hand: Array[CartaHechizo] = []
 var selected_card: CartaHechizo = null
 var waiting_for_target: bool = false
@@ -30,6 +33,7 @@ func add_card(spell_data: SpellCardData) -> bool:
 		return false
 	
 	add_child(card)
+	deck_draw.play()
 	cards_in_hand.append(card)
 	
 	# Conectar señales
@@ -61,6 +65,7 @@ func remove_card(card: CartaHechizo) -> SpellCardData:
 		return null
 		
 	var spell_data = card.data as SpellCardData
+	spell_cast.play()
 	cards_in_hand.erase(card)
 	
 	# Animación de salida

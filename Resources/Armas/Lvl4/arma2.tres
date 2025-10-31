@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="WeaponCardData" load_steps=7 format=3 uid="uid://dpgums16lds27"]
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=9 format=3 uid="uid://dpgums16lds27"]
 
 [ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="1_40jlt"]
+[ext_resource type="Texture2D" uid="uid://dgmb8r1w73p1r" path="res://Assets/cards/weapon/armas/Image1.png" id="1_hvldy"]
+[ext_resource type="Texture2D" uid="uid://dn8wfj5hvb5dw" path="res://Assets/element/water.png" id="2_j4kvm"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_rivtp"]
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="3_40jlt"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_j4kvm"]
@@ -12,6 +14,7 @@ script = ExtResource("2_rivtp")
 attack = 3
 traits = Array[ExtResource("4_j4kvm")]([ExtResource("5_a2den"), ExtResource("6_k4o44")])
 nivel = 4
+element = ExtResource("2_j4kvm")
 escena = ExtResource("1_40jlt")
 sprite = ExtResource("3_40jlt")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

@@ -4,6 +4,10 @@ extends PanelContainer
 @onready var tutorial: Button = $VBoxContainer/Tutorial
 @onready var timer_game: Timer = $TimerGame
 @onready var timer_tutorial: Timer = $TimerTutorial
+@onready var main_menu_theme: AudioStreamPlayer = $MainMenuTheme
+
+func _ready():
+	main_menu_theme.play()
 
 func _on_jugar_pressed() -> void:
 	jugar.pressPlay()

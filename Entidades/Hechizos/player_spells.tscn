@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://da50i6nw27x40"]
+[gd_scene load_steps=4 format=3 uid="uid://da50i6nw27x40"]
 
 [ext_resource type="Script" uid="uid://cmvq1viknsoku" path="res://Entidades/Hechizos/player_spells.gd" id="1_wcqcd"]
+[ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="2_ly3dy"]
+[ext_resource type="AudioStream" uid="uid://b0eb5etnv1wsi" path="res://Audio/SFX/deckDraw.mp3" id="3_5wtt2"]
 
 [node name="PlayerSpells" type="Node2D"]
 script = ExtResource("1_wcqcd")
+
+[node name="SpellCast" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ly3dy")
+
+[node name="DeckDraw" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5wtt2")

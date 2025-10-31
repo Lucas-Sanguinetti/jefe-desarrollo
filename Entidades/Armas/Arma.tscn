@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_54r67"]
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="2_g87m0"]
 [ext_resource type="Script" uid="uid://cedwwo3v8rwn6" path="res://Entidades/Cartas/niveles.gd" id="4_bqsv6"]
-[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/word-drawing-2.wav" id="5_1aj5t"]
+[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="5_1aj5t"]
 [ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="6_1aj5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3ok"]

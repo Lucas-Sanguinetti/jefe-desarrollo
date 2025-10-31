@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="MonsterCardData" load_steps=6 format=3 uid="uid://cg6fjol8t3xhl"]
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=8 format=3 uid="uid://cg6fjol8t3xhl"]
 
+[ext_resource type="Texture2D" uid="uid://bm7c1ddxe8pm6" path="res://Assets/cards/monster/monstruos/Image1.png" id="1_48g4y"]
 [ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_cuks5"]
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="1_r165o"]
+[ext_resource type="Texture2D" uid="uid://cetv46jeksmhl" path="res://Assets/element/fire.png" id="2_isek5"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="2_rnght"]
 [ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="3_ctsom"]
 [ext_resource type="Resource" uid="uid://baen4mks16o13" path="res://Resources/Traits/Monstruos/renacer_3.tres" id="3_cuks5"]
@@ -12,6 +14,7 @@ hp = 15
 attack = 3
 traits = Array[ExtResource("2_rnght")]([ExtResource("3_cuks5")])
 nivel = 3
+element = ExtResource("2_isek5")
 escena = ExtResource("1_cuks5")
 sprite = ExtResource("3_ctsom")
 metadata/_custom_type_script = "uid://bc4y8iqy4olrb"
