@@ -21,6 +21,7 @@ func _ready():
 		for y in range(GRID_SIZE):
 			grid[x].append(null)
 	visuals.update_valiant_overlays()
+	add_to_group("MonsterGrid")
 
 # Convierte posición lógica (x,y) en coordenada de pantalla
 func grid_to_world(x: int, y: int) -> Vector2:

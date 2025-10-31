@@ -11,6 +11,7 @@ const CellWeigth = 312
 var weapon_grid
 var player_grid
 var monster_grid
+var hand
 var cartaNueva: Carta
 var grid = [] 
 
@@ -18,7 +19,6 @@ var grid = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	# Inicializar grilla vacía
 	grid.resize(GRID_SIZE)
 	for x in range(GRID_SIZE):
@@ -42,6 +42,8 @@ func _ready():
 	if monster_spawner:
 		monster_grid = monster_spawner.get_node_or_null("MonsterGrid")
 	
+	hand = get_node_or_null("../PlayerSpells")
+	
 	# Buscar PlayerWeaponGrid
 	if not weapon_grid:
 		push_warning("WeaponManager: No se encontró WeaponGrid")
@@ -49,10 +51,14 @@ func _ready():
 		push_warning("WeaponManager: No se encontró PlayerWeaponGrid")
 	if not monster_grid:
 		push_warning("WeaponManager: No se encontró MonsterGrid")
+	if not hand:
+		push_warning("CardInfo: No se encontró Hand")
 	
 	monster_grid.mouseEntered.connect(_show_card)
 	player_grid.mouseEntered.connect(_show_card)
 	weapon_grid.mouseEntered.connect(_show_card)
+	if hand:
+		hand.mouseEntered.connect(_show_card)
 	label.hide()
 	#equip_initial_weapons()
 	
@@ -70,8 +76,17 @@ func place_piece(x: int, y: int, card: Carta) -> bool:
 
 
 func _show_card(carta: Carta):
+	_clear_preview()
 	cartaNueva = carta.duplicate()
 	cartaNueva.scale = Vector2(3, 3)
 	place_piece(0, 0, cartaNueva)
 	carta.actLabel(label)
 	label.show()
+
+func _clear_preview():
+	if cartaNueva and is_instance_valid(cartaNueva):
+		cartaNueva.queue_free()
+		cartaNueva = null
+	if grid[0][0] != null:
+		grid[0][0] = null
+	label.hide()

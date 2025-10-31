@@ -38,6 +38,10 @@ func _ready() -> void:
 	
 
 func _on_turn_button_pressed():
+	LifeManager.reset()
+	MoneyManager.reset()
+	MonsterDeck.reset()
+	WeaponDeck.reset()
 	get_tree().change_scene_to_file("res://Entidades/Main.tscn")
 
 func reset_player_weapons():

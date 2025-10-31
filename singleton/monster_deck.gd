@@ -7,7 +7,8 @@ extends Node
 #var wave3Monsters:Array = []
 @export var tutorial_monster: MonsterCardData 
 @export var monster_data_cards: Array[MonsterCardData] 
-
+var monstruo_tutoria_reset 
+var monstruos_reset 
 #@export var monster1:MonsterCardData
 #@export var monster2:MonsterCardData
  
@@ -21,6 +22,8 @@ func _ready() -> void:
 	#luego se mezclan los mazos
 	print(monster_data_cards)
 	monster_data_cards.shuffle()
+	monstruo_tutoria_reset = tutorial_monster.duplicate(true)
+	monstruos_reset = monster_data_cards.duplicate(true)
 	#wave2Monsters.shuffle()
 	#wave3Monsters.shuffle()
 
@@ -52,3 +55,8 @@ func drawTutorial():
 
 func size():
 	return monster_data_cards.size()
+
+func reset():
+	tutorial_monster = monstruo_tutoria_reset
+	monster_data_cards.clear()
+	monster_data_cards.append_array(monstruos_reset)
