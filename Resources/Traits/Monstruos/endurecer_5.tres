@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Endurecer" load_steps=2 format=3 uid="uid://ca25tenubjeag"]
+
+[ext_resource type="Script" uid="uid://br8i4gwwpmh7n" path="res://Traits/endurecer.gd" id="1_vc4bq"]
+
+[resource]
+script = ExtResource("1_vc4bq")
+resistencia = 5
+trait_name = "Endurecer"
+trait_description = "Reduce el daño recibido en 5"
+metadata/_custom_type_script = "uid://br8i4gwwpmh7n"

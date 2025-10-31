@@ -116,17 +116,18 @@ func take_damage(damage: int, attacker: Carta = null) -> void:
 	
 	if hp_actual <= 0:
 		die()
-		death.play()
+		
 
 
 func die() -> void:
 	print("CartaMonstruo: %s ha muerto" % [name])
+	death.play()
+	await get_tree().create_timer(0.5).timeout
 	MoneyManager.ganarMonedas(nivel)
-	# Activar Renacer ANTES de la animación de muerte
+	
 	for rasgo in rasgos:
 		if rasgo is Renacer:
 			rasgo.on_monster_death(self)
-	
 	emit_signal("card_died")
 	
 	if parent_grid and parent_grid.has_node("MonsterGridVisuals"):
@@ -135,9 +136,6 @@ func die() -> void:
 		tween.tween_callback(queue_free)
 	else:
 		_play_death_animation()  # Fallback del padre
-	
-	if parent_grid and parent_grid.has_method("update_on_card_death"):
-		parent_grid.update_on_card_death(self)
 
 #UTILIDADES DE HECHIZOS
 func set_targetable(enabled: bool):

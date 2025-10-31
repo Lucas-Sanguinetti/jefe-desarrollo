@@ -115,7 +115,10 @@ stream = ExtResource("13_8hmk7")
 volume_db = -20.0
 bus = &"Music"
 
-[node name="GameOver" type="Panel" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="GameOver" type="Panel" parent="CanvasLayer2"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,8 +126,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 
-[node name="Label" type="Label" parent="GameOver"]
+[node name="Label" type="Label" parent="CanvasLayer2/GameOver"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

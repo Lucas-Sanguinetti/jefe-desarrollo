@@ -63,7 +63,7 @@ func _on_vida_cambiada(nueva_vida: int):
 	if nueva_vida <= 0:
 		block_player_weapons()
 		print("Game Over - Sin vida, armas bloqueadas")
-		$GameOver.show()
+		$CanvasLayer2/GameOver.show()
 		await get_tree().create_timer(2.0).timeout
 		LifeManager.reset()
 		MoneyManager.reset()

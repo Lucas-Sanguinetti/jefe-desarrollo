@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MonsterCardData" load_steps=9 format=3 uid="uid://c4wnahibut2rw"]
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=8 format=3 uid="uid://c4wnahibut2rw"]
 
 [ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_612nl"]
 [ext_resource type="Texture2D" uid="uid://bm7c1ddxe8pm6" path="res://Assets/cards/monster/monstruos/Image1.png" id="1_cdk3u"]
@@ -6,19 +6,13 @@
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_lcgm4"]
 [ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="3_612nl"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_612nl"]
-[ext_resource type="Script" uid="uid://br8i4gwwpmh7n" path="res://Traits/endurecer.gd" id="5_612nl"]
-
-[sub_resource type="Resource" id="Resource_atq02"]
-script = ExtResource("5_612nl")
-resistencia = 2
-trait_name = "Endurecer"
-metadata/_custom_type_script = "uid://br8i4gwwpmh7n"
+[ext_resource type="Resource" uid="uid://4oftc55chlxk" path="res://Resources/Traits/Monstruos/endurecer_2.tres" id="7_cdk3u"]
 
 [resource]
 script = ExtResource("2_lcgm4")
 hp = 15
 attack = 7
-traits = Array[ExtResource("4_612nl")]([SubResource("Resource_atq02")])
+traits = Array[ExtResource("4_612nl")]([ExtResource("7_cdk3u")])
 nivel = 2
 element = ExtResource("2_cdk3u")
 escena = ExtResource("1_612nl")
