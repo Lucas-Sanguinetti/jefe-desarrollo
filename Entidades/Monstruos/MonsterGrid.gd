@@ -8,6 +8,8 @@ const CellWeigth = 104
 
 var grid = []  # array 2D de referencias a fichas
 
+@onready var visuals: MonsterGridVisuals = $MonsterGridVisuals
+
 signal mouseEntered(carta: Carta)
 signal monster_died(monster: Carta)
 
@@ -18,6 +20,7 @@ func _ready():
 		grid[x] = []
 		for y in range(GRID_SIZE):
 			grid[x].append(null)
+	visuals.update_valiant_overlays()
 
 # Convierte posición lógica (x,y) en coordenada de pantalla
 func grid_to_world(x: int, y: int) -> Vector2:
@@ -25,6 +28,7 @@ func grid_to_world(x: int, y: int) -> Vector2:
 
 # Colocar ficha en una posición lógica
 func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
+	var success = false
 	if grid[x][y] != null:
 		return false  # ya ocupado
 	
@@ -42,7 +46,10 @@ func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
 	grid[x][y] = cardPiece
 	cardPiece.card_died.connect(_on_monster_died.bind(cardPiece))
 	
-	return true
+	if success:
+		visuals.update_valiant_overlays()
+	
+	return success
 
 func _conectUp(carta: Carta):
 	emit_signal("mouseEntered", carta)
@@ -64,13 +71,11 @@ func invoke_random_piece(carta: MonsterCardData):
 	place_piece(pos.x, pos.y, carta)
 
 func _on_monster_died(monster: Carta):
-	
 	var pos = monster.grid_pos
-	#Deberia corroborarlo como buena practica?
 	grid[int(pos.x)][int(pos.y)] = null
 	
 	emit_signal("monster_died",monster)
-	pass
+	visuals.update_valiant_overlays()
 
 func get_all_monsters() -> Array:
 	var monsters = []
@@ -85,10 +90,35 @@ func reset_all_monster_traits():
 	for monster in monsters:
 		monster.reset_traits_for_new_turn()
 
-#funcion puramente para visualizar las celdas y el espaciado
-#func _draw():
-	#for x in range(GRID_SIZE):
-		#for y in range(GRID_SIZE):
-			#var rect = Rect2(Vector2(x, y) * Vector2(CellWeigth, CellHeigth), Vector2(CellWeigth, CellHeigth))
-			#draw_rect(rect, Color(1, 1, 1, 0.1), true)   # relleno semitransparente
-			#draw_rect(rect, Color(1, 1, 1), false, 2.0) # borde blanco
+func get_empty_cells() -> Array:
+	var empty = []
+	for x in range(GRID_SIZE):
+		for y in range(GRID_SIZE):
+			if grid[x][y] == null:
+				empty.append(Vector2(x, y))
+	return empty
+
+@warning_ignore("shadowed_variable_base_class")
+func _spawn_from_renacer(position: Vector2, monster_data: MonsterCardData):
+	var x = int(position.x)
+	var y = int(position.y)
+	
+	# Verificar que la celda esté vacía
+	if grid[x][y] != null:
+		push_warning("Renacer: La celda [%d,%d] no está vacía todavía" % [x, y])
+		# Reintentar en el siguiente frame
+		call_deferred("_spawn_from_renacer", position, monster_data)
+		return
+	
+	# Invocar el nuevo monstruo
+	var success = place_piece(x, y, monster_data)
+	
+	if success:
+		print("Renacer: Monstruo invocado en [%d,%d] con %d HP" % [x, y, monster_data.hp])
+		
+		# Mostrar efecto de spawn
+		if visuals:
+			var spawned_card = grid[x][y]
+			visuals.show_spawn_effect(position, spawned_card)
+	else:
+		push_error("Renacer: Falló al invocar monstruo en [%d,%d]" % [x, y])

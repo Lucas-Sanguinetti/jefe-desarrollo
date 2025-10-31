@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=19 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -17,6 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0w1ek"]
 [ext_resource type="AudioStream" uid="uid://d0686mu6qgmo7" path="res://Audio/musica/Game.mp3" id="13_8hmk7"]
 [ext_resource type="PackedScene" uid="uid://bx6yw2qj5stmb" path="res://Entidades/Visuales/monederoHud.tscn" id="13_cgrtl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gxhcr"]
+font = ExtResource("10_ohvqk")
+font_size = 100
+outline_size = 50
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node"]
 script = ExtResource("1_a0hfb")
@@ -93,3 +99,29 @@ position = Vector2(778, 668)
 stream = ExtResource("13_8hmk7")
 volume_db = -20.0
 bus = &"Music"
+
+[node name="GameOver" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -287.5
+offset_top = -101.5
+offset_right = 287.5
+offset_bottom = 101.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Haz sido
+derrotado"
+label_settings = SubResource("LabelSettings_gxhcr")

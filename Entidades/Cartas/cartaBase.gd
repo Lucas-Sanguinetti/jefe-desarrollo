@@ -5,6 +5,7 @@ class_name Carta
 @export var data: CardData
 var grid_pos: Vector2
 var parent_grid: Node2D
+var trait_states: Dictionary = {}
 
 # Referencias que DEBEN existir en todas las escenas
 # (Las subclases las obtienen con @onready)
@@ -26,6 +27,7 @@ signal mouseSobreCarta(carta: Carta)
 signal mouseFueraCarta
 signal card_died
 signal card_double_clicked(carta: Carta)
+@warning_ignore("unused_signal")
 signal card_selected_for_attack 
 signal card_targeted_for_attack
 
@@ -56,7 +58,7 @@ func setup(datos: CardData):
 	_apply_data_to_ui()  # VIRTUAL
 
 
-# MÉTODOS VIRTUALES (DEBEN ser sobrescritos)
+# Metodos Heredados
 # Para configurar UI específica del tipo de carta
 func _setup_specific_ui() -> void:
 	push_warning("%s debe implementar _setup_specific_ui()" % [get_script().resource_path])
@@ -76,6 +78,7 @@ func can_be_double_clicked() -> bool:
 	return false
 
 # Método para recibir daño (diferente en cada tipo)
+@warning_ignore("unused_parameter")
 func take_damage(damage: int, attacker: Carta = null) -> void:
 	push_warning("%s debe implementar take_damage()" % [get_script().resource_path])
 
@@ -84,6 +87,18 @@ func target_for_attack(attacker: Carta):
 		emit_signal("card_targeted_for_attack", attacker, self)
 
 # MÉTODOS CONCRETOS (compartidos por todos)
+func set_trait_state(key: String, value) -> void:
+	trait_states[key] = value
+
+func get_trait_state(key: String, default_value = null):
+	return trait_states.get(key, default_value)
+
+func clear_trait_state(key: String) -> void:
+	trait_states.erase(key)
+
+func clear_all_trait_states() -> void:
+	trait_states.clear()
+
 func _setup_visual_styles() -> void:
 	style_normal = StyleBoxFlat.new()
 	style_normal.bg_color = Color.TRANSPARENT
@@ -135,10 +150,10 @@ func _update_visual_state() -> void:
 			modulate = Color(0.7, 0.7, 0.7)
 
 # Muerte común para todas las cartas
-func die(nivel:int ) -> void:
+@warning_ignore("unused_parameter")
+func die(nivel:int) -> void:
 	print("La carta ha muerto: ", name)
 	emit_signal("card_died")
-	MoneyManager.ganarMonedas(nivel)
 	_play_death_animation()
 	
 	if parent_grid and parent_grid.has_method("update_on_card_death"):

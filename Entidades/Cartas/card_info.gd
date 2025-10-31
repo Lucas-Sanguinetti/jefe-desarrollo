@@ -70,7 +70,6 @@ func place_piece(x: int, y: int, card: Carta) -> bool:
 
 
 func _show_card(carta: Carta):
-	print("sarasa")
 	cartaNueva = carta.duplicate()
 	cartaNueva.scale = Vector2(3, 3)
 	place_piece(0, 0, cartaNueva)

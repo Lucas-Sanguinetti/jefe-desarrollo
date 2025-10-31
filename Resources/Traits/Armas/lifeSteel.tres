@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_l2nlk")
-trait_name = "RoboDeVida"
+trait_name = "Roba vida"
+trait_description = "Recupera vida según el daño que hayas hecho"
 metadata/_custom_type_script = "uid://dskf0uag62hpy"

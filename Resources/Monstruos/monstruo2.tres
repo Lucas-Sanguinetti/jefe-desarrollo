@@ -10,6 +10,7 @@
 script = ExtResource("2_3n54q")
 hp = 25
 attack = 3
+nivel = 2
 traits = Array[ExtResource("4_2b4rk")]([ExtResource("5_3n54q")])
 escena = ExtResource("1_2b4rk")
 sprite = ExtResource("3_2b4rk")

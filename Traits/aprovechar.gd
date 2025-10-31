@@ -5,7 +5,7 @@ class_name Aprovechar
 
 func do_damage(attacker: Carta, defender: Carta, damage: int) -> int:
 	var boost_Damage:int = damage
-	if defender.get_monster_hps().get(0) != defender.get_monster_hps().get(1):
+	if defender.hp_actual != defender.max_hp:
 		boost_Damage = int(damage * multiplicador)
 		print("%s (Aprovechar Trait): Daño aumentado de %d a %d" % [attacker.name, damage, boost_Damage])
 	return boost_Damage

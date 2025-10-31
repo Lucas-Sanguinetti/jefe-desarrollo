@@ -1,7 +1,7 @@
 extends Carta
 class_name CartaMonstruo
 
-# Referencias específicas de monstruos
+
 var vida_label: Label
 var ataque_label: Label
 var traits_label: Label
@@ -15,13 +15,12 @@ var hp_actual:int
 var ataque:int
 var max_hp:int
 var nivel:int 
+var rasgos:Array
 
 var golpeado:bool = false
-
 @onready var death: AudioStreamPlayer = $Death
 
 
-# IMPLEMENTACIÓN DE MÉTODOS VIRTUALES
 func _initialize_references() -> void:
 	super._initialize_references()
 	vida_label = get_node_or_null("Vida")
@@ -51,6 +50,7 @@ func _setup_specific_ui() -> void:
 	ataque = monster_data.attack
 	max_hp = monster_data.hp
 	nivel = monster_data.nivel
+	rasgos = monster_data.traits
 	element = monster_data.element
 	backsprite = monster_data.backsprite
 	if traits_label:
@@ -70,32 +70,81 @@ func _apply_data_to_ui() -> void:
 		backsprite_sprite.texture = backsprite
 	
 
-# CAPACIDADES DE COMBATE
+
 func can_be_targeted() -> bool:
+	for rasgo in rasgos:
+		if rasgo is Valiente:
+			return true
+	
+	var grid = parent_grid
+	if grid and grid is MonsterGrid:
+		var pos = grid_pos
+		var x = int(pos.x)
+		var y = int(pos.y)
+		
+		var directions = [Vector2(0, -1), Vector2(0, 1), Vector2(-1, 0), Vector2(1, 0)]
+		
+		for dir in directions:
+			var check_x = x + int(dir.x)
+			var check_y = y + int(dir.y)
+			
+			if check_x < 0 or check_x >= grid.GRID_SIZE or check_y < 0 or check_y >= grid.GRID_SIZE:
+				continue
+			
+			var adjacent_card = grid.grid[check_x][check_y]
+			if adjacent_card and adjacent_card.data is MonsterCardData:
+				# Verificar si el adyacente tiene Valiente
+				for adj_trait in adjacent_card.data.traits:
+					if adj_trait is Valiente:
+						print("DEBUG: %s está protegido por Valiente en [%d,%d]" % [name, check_x, check_y])
+						return false
 	return true 
 
-# LÓGICA ESPECÍFICA DE MONSTRUOS
+
 func take_damage(damage: int, attacker: Carta = null) -> void:
-	var monster_data = data as MonsterCardData
 	
 	# Aplicar reducción de traits
-	for traits in monster_data.traits:
-		damage = traits.take_damage(attacker, self, damage)
+	for rasgo in rasgos:
+		damage = rasgo.take_damage(attacker, self, damage)
 	
 	hp_actual -= damage
 	_apply_data_to_ui()  # Actualizar vida en pantalla
-	create_damage_effect()
+	if parent_grid and parent_grid.has_node("MonsterGridVisuals"):
+		var visuals = parent_grid.get_node("MonsterGridVisuals")
+		visuals.show_damage_effect(self)
+	else:
+		create_damage_effect()
 	
 	if hp_actual <= 0:
 		die(nivel)
 		death.play()
-		
 
-func get_monster_hps() -> Array:
-	var vidas: Array = []
-	vidas.append(hp_actual)
-	vidas.append(max_hp)
-	return vidas
+@warning_ignore("shadowed_variable")
+func die(nivel:int) -> void:
+	print("CartaMonstruo: %s ha muerto" % [name])
+	MoneyManager.ganarMonedas(nivel)
+	# Activar Renacer ANTES de la animación de muerte
+	for rasgo in rasgos:
+		if rasgo is Renacer:
+			rasgo.on_monster_death(self)
+	
+	emit_signal("card_died")
+	
+	if parent_grid and parent_grid.has_node("MonsterGridVisuals"):
+		var visuals = parent_grid.get_node("MonsterGridVisuals")
+		var tween = visuals.animate_death(self)
+		tween.tween_callback(queue_free)
+	else:
+		_play_death_animation()  # Fallback del padre
+	
+	if parent_grid and parent_grid.has_method("update_on_card_death"):
+		parent_grid.update_on_card_death(self)
+
+#func get_monster_hps() -> Array:
+	#var vidas: Array = []
+	#vidas.append(hp_actual)
+	#vidas.append(max_hp)
+	#return vidas
 
 
 # UTILIDADES PRIVADAS
@@ -104,3 +153,21 @@ func _get_traits_text(monster_data: MonsterCardData) -> String:
 	for traits in monster_data.traits:
 		texto += "* %s\n" % [traits.trait_name]
 	return texto
+
+#Utilidad de info
+func actLabel(label: Label) -> void:
+	var text = "Ataque: %d\n" % [ataque]
+	text += "Vida: %d\n" % [hp_actual]
+	# Agregar traits
+	if not rasgos.is_empty():
+		for rasgo in rasgos:
+			if rasgo is Endurecer:
+				text += "* %s " % [rasgo.trait_name]
+				text += "  %s\n" % [rasgo.resistencia]
+			else:
+				text += "* %s\n" % [rasgo.trait_name]
+			text += " %s\n" % [rasgo.trait_description]
+	else:
+		text += "Sin traits\n"
+		
+	label.text = text

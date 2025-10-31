@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="MonsterCardData" load_steps=7 format=3 uid="uid://bccsvhqd20i5a"]
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=6 format=3 uid="uid://bccsvhqd20i5a"]
 
 [ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_41xs4"]
 [ext_resource type="Texture2D" uid="uid://bs7uq1mpyh1n6" path="res://Assets/cards/monster/monstruos/Image2.png" id="1_lsjgq"]
-[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_m5o2a"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_qmf1e"]
 [ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="2_miehk"]
 [ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="3_41xs4"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_41xs4"]
 
 [resource]
-script = ExtResource("2_m5o2a")
+script = ExtResource("2_qmf1e")
 hp = 50
 attack = 5
+nivel = 3
 backsprite = ExtResource("1_lsjgq")
 escena = ExtResource("1_41xs4")
 sprite = ExtResource("3_41xs4")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Cazarrecompensas" load_steps=2 format=3 uid="uid://ckgjgr0b6220c"]
+
+[ext_resource type="Script" uid="uid://c71dpn126r76t" path="res://Traits/cazarrecompensas.gd" id="1_morrt"]
+
+[resource]
+script = ExtResource("1_morrt")
+trait_name = "Cazarrecompensas"
+trait_description = "Si da el golpe final a un monstruo: gana 1 moneda"
+metadata/_custom_type_script = "uid://c71dpn126r76t"

@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://7rgw566lpfxe"]
+[gd_scene load_steps=5 format=3 uid="uid://7rgw566lpfxe"]
 
 [ext_resource type="Script" uid="uid://bn8l8wfdq5mu3" path="res://Entidades/Monstruos/monster_spawner.gd" id="1_g6bsy"]
 [ext_resource type="Script" uid="uid://ckkp8tbn5jhgj" path="res://Entidades/Monstruos/MonsterGrid.gd" id="2_svx6r"]
 [ext_resource type="Script" uid="uid://by313uxqf4b20" path="res://Entidades/deck_drawer.gd" id="4_bk33t"]
+[ext_resource type="Script" uid="uid://b88kdw3rg0u73" path="res://Entidades/Monstruos/MonsterGridVisuales.gd" id="4_svx6r"]
 
 [node name="MonsterSpawner" type="Node2D"]
 script = ExtResource("1_g6bsy")
 
 [node name="MonsterGrid" type="Node2D" parent="."]
 script = ExtResource("2_svx6r")
+
+[node name="MonsterGridVisuals" type="Node" parent="MonsterGrid"]
+script = ExtResource("4_svx6r")
 
 [node name="DeckDrawer" type="Node" parent="."]
 script = ExtResource("4_bk33t")

@@ -55,6 +55,9 @@ func _on_vida_cambiada(nueva_vida: int):
 	if nueva_vida <= 0:
 		block_player_weapons()
 		print("Game Over - Sin vida, armas bloqueadas")
+		$GameOver.show()
+		await get_tree().create_timer(2.0).timeout
+		get_tree().change_scene_to_file("res://Entidades/Main.tscn")
 	
 func reset_monster_traits():
 	var monster_grid = monster_spawner.get_node("MonsterGrid")

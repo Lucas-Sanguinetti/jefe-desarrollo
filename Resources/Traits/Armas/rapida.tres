@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Rapida" load_steps=2 format=3 uid="uid://bteyahi75iyib"]
+
+[ext_resource type="Script" uid="uid://8rjtitj2kdu1" path="res://Traits/rapida.gd" id="1_ni02r"]
+
+[resource]
+script = ExtResource("1_ni02r")
+trait_name = "Rapida"
+trait_description = "Duplica el ataque si es la primer arma que se usa en el turno"
+metadata/_custom_type_script = "uid://8rjtitj2kdu1"

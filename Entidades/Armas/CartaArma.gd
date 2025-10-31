@@ -13,6 +13,7 @@ var backsprite_sprite: TextureRect
 var backsprite: Texture2D
 var ataque:int 
 var nivel:int 
+var rasgos:Array
 var element:Texture2D
 # Doble click (solo armas en WeaponGrid)
 var click_timer: float = 0.0
@@ -52,6 +53,7 @@ func _setup_specific_ui() -> void:
 	if traits_label:
 		traits_label.text = _get_traits_text(weapon_data)
 	nivel = weapon_data.nivel
+	rasgos = weapon_data.traits
 	_apply_data_to_ui()
 
 
@@ -91,7 +93,7 @@ func select_for_attack() -> void:
 		emit_signal("card_selected_for_attack", self)
 		draw_sword.play()
 
-func attack(target: Carta) -> bool:
+func attack(target: CartaMonstruo) -> bool:
 	if not can_be_selected_for_attack():
 		return false
 	if not target.can_be_targeted():
@@ -115,6 +117,10 @@ func attack(target: Carta) -> bool:
 	
 	# Lifesteal
 	_apply_lifesteal(weapon_attack, target)
+	
+	#Primer ataque
+	if parent_grid and parent_grid is PlayerWeaponGrid:
+		parent_grid.mark_attack_used()
 	
 	# Bloquear arma
 	can_attack = false
@@ -170,11 +176,13 @@ func _calculate_player_damage(target: Carta) -> int:
 		player_damage = traits.on_player_damage(player_damage, target)
 	return player_damage
 
-func _apply_lifesteal(weapon_attack: int, target: Carta) -> void:
+func _apply_lifesteal(weapon_attack: int, target: CartaMonstruo) -> void:
 	var lifesteal_amount = 0
 	for traits in data.traits:
 		if traits is RobaVida:
 			lifesteal_amount = traits.get_lifesteal_amount(weapon_attack, target)
+	
+	lifesteal_amount = min(lifesteal_amount, target.hp_actual)
 	
 	if lifesteal_amount > 0 and LifeManager.get_life() > 0:
 		LifeManager.gainLife(lifesteal_amount)
@@ -185,4 +193,14 @@ func _get_traits_text(weapon_data: WeaponCardData) -> String:
 		texto += "* %s\n" % [traits.trait_name]
 	return texto
 
-## Estructura de las Escenas
+func actLabel(label: Label) -> void:
+	var text = "Ataque: %d\n" % [ataque]
+	# Agregar traits
+	if not rasgos.is_empty():
+		for rasgo in rasgos:
+			text += "* %s\n" % [rasgo.trait_name]
+			text += " %s\n" % [rasgo.trait_description]
+	else:
+		text += "Sin traits\n"
+	
+	label.text = text
