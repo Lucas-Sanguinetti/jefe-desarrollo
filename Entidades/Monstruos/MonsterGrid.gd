@@ -29,7 +29,6 @@ func grid_to_world(x: int, y: int) -> Vector2:
 
 # Colocar ficha en una posición lógica
 func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
-	var success = false
 	if grid[x][y] != null:
 		return false  # ya ocupado
 	
@@ -47,10 +46,9 @@ func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
 	grid[x][y] = cardPiece
 	cardPiece.card_died.connect(_on_monster_died.bind(cardPiece))
 	
-	if success:
-		visuals.update_valiant_overlays()
+	visuals.update_valiant_overlays()
 	
-	return success
+	return true
 
 func _conectUp(carta: Carta):
 	emit_signal("mouseEntered", carta)

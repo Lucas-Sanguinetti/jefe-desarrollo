@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MonsterCardData" load_steps=11 format=3 uid="uid://1chp51lvkq0q"]
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=9 format=3 uid="uid://1chp51lvkq0q"]
 
 [ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_04um5"]
 [ext_resource type="Texture2D" uid="uid://cvtywd3s1s0v6" path="res://Assets/cards/monster/monstruos/Image4.png" id="1_ue30m"]
@@ -6,25 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="2_o34mx"]
 [ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="3_04um5"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_04um5"]
-[ext_resource type="Script" uid="uid://br8i4gwwpmh7n" path="res://Traits/endurecer.gd" id="6_04um5"]
-[ext_resource type="Script" uid="uid://caqj4m5fkdwcq" path="res://Traits/venganza.gd" id="6_jkt4c"]
-
-[sub_resource type="Resource" id="Resource_jkt4c"]
-script = ExtResource("6_04um5")
-resistencia = 2
-trait_name = "endurecer"
-metadata/_custom_type_script = "uid://br8i4gwwpmh7n"
-
-[sub_resource type="Resource" id="Resource_ue30m"]
-script = ExtResource("6_jkt4c")
-trait_name = "Venganza"
-metadata/_custom_type_script = "uid://caqj4m5fkdwcq"
+[ext_resource type="Resource" uid="uid://4oftc55chlxk" path="res://Resources/Traits/Monstruos/endurecer_2.tres" id="7_ue30m"]
+[ext_resource type="Resource" uid="uid://2b3vwsuba582" path="res://Resources/Traits/Monstruos/venganza.tres" id="8_o34mx"]
 
 [resource]
 script = ExtResource("2_jkt4c")
 hp = 50
 attack = 5
-traits = Array[ExtResource("4_04um5")]([SubResource("Resource_jkt4c"), SubResource("Resource_ue30m")])
+traits = Array[ExtResource("4_04um5")]([ExtResource("7_ue30m"), ExtResource("8_o34mx")])
 nivel = 3
 backsprite = ExtResource("1_ue30m")
 escena = ExtResource("1_04um5")
