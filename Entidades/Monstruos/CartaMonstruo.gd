@@ -6,7 +6,11 @@ var vida_label: Label
 var ataque_label: Label
 var traits_label: Label
 var niveles_sprite: Sprite2D 
+var element_sprite: TextureRect
+var backsprite_sprite: TextureRect
 
+var backsprite: Texture2D
+var element:Texture2D
 var hp_actual:int
 var ataque:int
 var max_hp:int
@@ -14,7 +18,7 @@ var nivel:int
 var rasgos:Array
 
 var golpeado:bool = false
-
+@onready var death: AudioStreamPlayer = $Death
 
 
 func _initialize_references() -> void:
@@ -23,6 +27,8 @@ func _initialize_references() -> void:
 	ataque_label = get_node_or_null("Ataque")
 	traits_label = get_node_or_null("MonsterTraits")
 	niveles_sprite = get_node_or_null("Niveles")
+	element_sprite = get_node_or_null("Element")
+	backsprite_sprite = get_node_or_null("BackSprite")
 	
 	# Validación
 	if not vida_label:
@@ -45,6 +51,8 @@ func _setup_specific_ui() -> void:
 	max_hp = monster_data.hp
 	nivel = monster_data.nivel
 	rasgos = monster_data.traits
+	element = monster_data.element
+	backsprite = monster_data.backsprite
 	if traits_label:
 		traits_label.text = _get_traits_text(monster_data)
 	if niveles_sprite:
@@ -56,6 +64,10 @@ func _setup_specific_ui() -> void:
 func _apply_data_to_ui() -> void:
 	if vida_label:
 		vida_label.text = str(hp_actual)
+	if element_sprite:
+		element_sprite.texture = element
+	if backsprite_sprite:
+		backsprite_sprite.texture = backsprite
 	
 
 
@@ -105,6 +117,7 @@ func take_damage(damage: int, attacker: Carta = null) -> void:
 	
 	if hp_actual <= 0:
 		die(nivel)
+		death.play()
 
 @warning_ignore("shadowed_variable")
 func die(nivel:int) -> void:

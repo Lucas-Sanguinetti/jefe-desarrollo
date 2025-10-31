@@ -1,18 +1,26 @@
-[gd_resource type="Resource" script_class="MonsterCardData" load_steps=6 format=3 uid="uid://chendedgm7761"]
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=9 format=3 uid="uid://chendedgm7761"]
 
-[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_bqd3q"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_8jg78"]
+[ext_resource type="Texture2D" uid="uid://nex7lfdgh7k0" path="res://Assets/cards/monster/monstruos/Image3.png" id="1_e8emx"]
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_568j2"]
-[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="3_gk51y"]
-[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_i3mt2"]
-[ext_resource type="Resource" uid="uid://2b3vwsuba582" path="res://Resources/Traits/Monstruos/venganza.tres" id="5_m0pvt"]
+[ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="2_755qu"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="3_8jg78"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_8jg78"]
+[ext_resource type="Script" uid="uid://caqj4m5fkdwcq" path="res://Traits/venganza.gd" id="5_8jg78"]
+
+[sub_resource type="Resource" id="Resource_rc61k"]
+script = ExtResource("5_8jg78")
+trait_name = "Venganza"
+metadata/_custom_type_script = "uid://caqj4m5fkdwcq"
 
 [resource]
 script = ExtResource("2_568j2")
 hp = 50
 attack = 5
-traits = Array[ExtResource("4_i3mt2")]([ExtResource("5_m0pvt")])
+traits = Array[ExtResource("4_8jg78")]([SubResource("Resource_rc61k")])
 nivel = 2
-escena = ExtResource("1_bqd3q")
-sprite = ExtResource("3_gk51y")
+backsprite = ExtResource("1_e8emx")
+escena = ExtResource("1_8jg78")
+sprite = ExtResource("3_8jg78")
 name = "mons1"
 metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

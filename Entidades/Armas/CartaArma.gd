@@ -7,14 +7,21 @@ class_name CartaArma
 var ataque_label: Label
 var traits_label: Label 
 var niveles_sprite: Sprite2D
+var element_sprite: TextureRect
+var backsprite_sprite: TextureRect
 
+var backsprite: Texture2D
 var ataque:int 
 var nivel:int 
 var rasgos:Array
+var element:Texture2D
 # Doble click (solo armas en WeaponGrid)
 var click_timer: float = 0.0
 var click_threshold: float = 0.3
 var click_count: int = 0
+
+@onready var draw_sword: AudioStreamPlayer = $DrawSword
+@onready var sword_hit: AudioStreamPlayer = $SwordHit
 
 
 
@@ -25,6 +32,8 @@ func _initialize_references() -> void:
 	ataque_label = get_node_or_null("Ataque")
 	traits_label = get_node_or_null("WeaponTraits")
 	niveles_sprite = get_node_or_null("Niveles")
+	element_sprite = get_node_or_null("Element")
+	backsprite_sprite = get_node_or_null("BackSprite")
 	
 	if not ataque_label:
 		push_error("CartaArma: Falta nodo 'Ataque'")
@@ -39,6 +48,8 @@ func _setup_specific_ui() -> void:
 		push_error("CartaArma requiere WeaponCardData")
 		return
 	ataque = weapon_data.attack
+	element = weapon_data.element
+	backsprite = weapon_data.backsprite
 	if traits_label:
 		traits_label.text = _get_traits_text(weapon_data)
 	nivel = weapon_data.nivel
@@ -51,6 +62,11 @@ func _apply_data_to_ui() -> void:
 		ataque_label.text = str(ataque)
 	if niveles_sprite:
 		niveles_sprite.set_nivel(nivel)
+	if element_sprite:
+		element_sprite.texture = element
+	if backsprite_sprite:
+		backsprite_sprite.texture = backsprite
+		backsprite_sprite.scale = Vector2(0.5, 0.5)
 	
 
 
@@ -75,6 +91,7 @@ func select_for_attack() -> void:
 	if can_be_selected_for_attack():
 		set_card_state(CardState.SELECTED_FOR_ATTACK)
 		emit_signal("card_selected_for_attack", self)
+		draw_sword.play()
 
 func attack(target: CartaMonstruo) -> bool:
 	if not can_be_selected_for_attack():
@@ -110,6 +127,7 @@ func attack(target: CartaMonstruo) -> bool:
 	set_card_state(CardState.CANNOT_ATTACK)
 	create_attack_effect(target)
 	
+	sword_hit.play()
 	return true
 
 func reset_attack_ability() -> void:
