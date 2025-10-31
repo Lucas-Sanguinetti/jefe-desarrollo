@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=23 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -17,8 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0w1ek"]
 [ext_resource type="AudioStream" uid="uid://d0686mu6qgmo7" path="res://Audio/musica/Game.mp3" id="13_8hmk7"]
 [ext_resource type="PackedScene" uid="uid://bx6yw2qj5stmb" path="res://Entidades/Visuales/monederoHud.tscn" id="13_cgrtl"]
-[ext_resource type="PackedScene" uid="uid://bcdxqcei3yuhm" path="res://Entidades/spell_deck.tscn" id="17_rwqrq"]
-[ext_resource type="PackedScene" uid="uid://da50i6nw27x40" path="res://Entidades/player_spells.tscn" id="18_hf2jd"]
+[ext_resource type="PackedScene" uid="uid://bcdxqcei3yuhm" path="res://Entidades/Hechizos/spell_deck.tscn" id="17_rwqrq"]
+[ext_resource type="PackedScene" uid="uid://da50i6nw27x40" path="res://Entidades/Hechizos/player_spells.tscn" id="18_hf2jd"]
+[ext_resource type="Script" uid="uid://bxljb7ons4bf2" path="res://Entidades/Hechizos/SpellEffects.gd" id="20_hf2jd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hf2jd"]
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_gxhcr"]
 font = ExtResource("10_ohvqk")
@@ -81,12 +85,13 @@ anchor_left = 0.011000001
 anchor_top = 0.65500003
 anchor_right = 0.123
 anchor_bottom = 0.77300006
-offset_left = 1221.62
-offset_top = 74.99994
-offset_right = 1214.652
-offset_bottom = 21.803955
+offset_left = 1223.62
+offset_top = 72.99994
+offset_right = 1216.652
+offset_bottom = 19.803955
 theme_override_fonts/font = ExtResource("10_ohvqk")
-text = "Turno: 1"
+text = "TURNO: 1"
+label_settings = SubResource("LabelSettings_hf2jd")
 
 [node name="LifeHUD" parent="." instance=ExtResource("11_2jhs2")]
 position = Vector2(1163, 774)
@@ -100,15 +105,10 @@ position = Vector2(778, 668)
 [node name="SpellDeck" parent="." instance=ExtResource("17_rwqrq")]
 
 [node name="PlayerSpells" parent="." instance=ExtResource("18_hf2jd")]
-anchors_preset = -1
-anchor_left = 0.074
-anchor_top = 0.082
-anchor_right = 0.074
-anchor_bottom = 0.082
-offset_left = 231.08
-offset_top = 777.0
-offset_right = 953.08
-offset_bottom = 845.0
+position = Vector2(682, 883)
+
+[node name="SpellEffects" type="Node" parent="."]
+script = ExtResource("20_hf2jd")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_8hmk7")

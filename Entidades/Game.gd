@@ -15,7 +15,7 @@ extends Node
 
 
 
-var current_turn = 1.
+var current_turn = 1
 
 func _ready() -> void:
 	turn_button.pressed.connect(_on_turn_button_pressed)
@@ -37,7 +37,7 @@ func _input(event):
 
 func _on_turn_button_pressed():
 	current_turn += 1
-	turn_label.text = "Turno: " + str(current_turn)
+	turn_label.text = "TURNO: " + str(current_turn)
 	pasar_turno.pressPlay()
 	
 	# Resetear habilidades de ataque de las armas EQUIPADAS
@@ -65,6 +65,10 @@ func _on_vida_cambiada(nueva_vida: int):
 		print("Game Over - Sin vida, armas bloqueadas")
 		$GameOver.show()
 		await get_tree().create_timer(2.0).timeout
+		LifeManager.reset()
+		MoneyManager.reset()
+		MonsterDeck.reset()
+		WeaponDeck.reset()
 		get_tree().change_scene_to_file("res://Entidades/Main.tscn")
 	
 func reset_monster_traits():

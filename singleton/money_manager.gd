@@ -18,6 +18,8 @@ func perderMonedas(cant: int):
 func get_money():
 	return monedas
 
+func reset():
+	monedas = 0
 #Debug
 func money():
 	print(monedas)

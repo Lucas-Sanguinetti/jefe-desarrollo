@@ -24,3 +24,6 @@ func get_life():
 #Debug
 func life():
 	print(vida)
+
+func reset():
+	vida = vidaMaxima

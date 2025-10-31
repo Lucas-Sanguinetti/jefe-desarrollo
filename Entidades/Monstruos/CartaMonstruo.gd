@@ -17,7 +17,7 @@ var max_hp:int
 var nivel:int 
 var rasgos:Array
 
-var golpeado:bool = false
+var is_targetable: bool = false
 @onready var death: AudioStreamPlayer = $Death
 
 
@@ -139,11 +139,24 @@ func die() -> void:
 	if parent_grid and parent_grid.has_method("update_on_card_death"):
 		parent_grid.update_on_card_death(self)
 
-#func get_monster_hps() -> Array:
-	#var vidas: Array = []
-	#vidas.append(hp_actual)
-	#vidas.append(max_hp)
-	#return vidas
+#UTILIDADES DE HECHIZOS
+func set_targetable(enabled: bool):
+	is_targetable = enabled
+	if resaltado:
+		if enabled:
+			resaltado.visible = true
+			resaltado.add_theme_stylebox_override("panel", style_selected)
+		else:
+			resaltado.visible = false
+
+func _on_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		# Verificar si la mano está esperando selección de objetivo
+		var hand = get_tree().get_first_node_in_group("Hand")
+		if hand and hand.has_method("is_waiting_for_target") and hand.is_waiting_for_target():
+			if can_be_targeted():
+				hand.target_selected(self)
+			return
 
 
 # UTILIDADES PRIVADAS

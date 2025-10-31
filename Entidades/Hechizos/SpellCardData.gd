@@ -3,15 +3,12 @@ class_name SpellCardData
 
 enum TargetType {
 	SELF,      # Se aplica al jugador
-	ENEMY,     # Requiere seleccionar enemigo
-	ALL_ENEMIES,
-	RANDOM_ENEMY
+	ENEMY     # Requiere seleccionar enemigo
 }
 
 enum EffectType {
 	DAMAGE,
-	HEAL,
-	BUFF
+	HEAL
 }
 
 @export var descripcion:String = ""

@@ -12,4 +12,5 @@ effect_type = 1
 effect_value = 3
 escena = ExtResource("2_wp12y")
 sprite = ExtResource("4_fcy0u")
+name = "Healing Potion"
 metadata/_custom_type_script = "uid://c5klust30h4bq"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bncxpxagsydh3"]
+[gd_scene load_steps=8 format=3 uid="uid://bncxpxagsydh3"]
 
-[ext_resource type="Script" uid="uid://dbec7owv5q16" path="res://Entidades/Monstruos/CartaMonstruo.gd" id="1_3cq56"]
+[ext_resource type="Script" uid="uid://do0okuxqnluks" path="res://Entidades/Hechizos/CartaHechizo.gd" id="1_4c8c3"]
 [ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="2_owiti"]
+[ext_resource type="Texture2D" uid="uid://e0yx28713rag" path="res://Assets/cards/spell/spells/Image1.png" id="3_4c8c3"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="4_53kgd"]
 [ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="5_lxjm0"]
 
@@ -14,14 +15,7 @@ font_size = 8
 font_color = Color(0.16470589, 0.16470589, 0.16470589, 1)
 
 [node name="Hechizo" type="Node2D"]
-script = ExtResource("1_3cq56")
-
-[node name="BackSprite" type="TextureRect" parent="."]
-texture_filter = 1
-offset_left = -38.0
-offset_top = -58.0
-offset_right = 37.0
-offset_bottom = 1.0
+script = ExtResource("1_4c8c3")
 
 [node name="Sprite" type="TextureRect" parent="."]
 texture_filter = 1
@@ -30,6 +24,14 @@ offset_top = -62.0
 offset_right = 41.0
 offset_bottom = 62.0
 texture = ExtResource("2_owiti")
+
+[node name="BackSprite" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -38.0
+offset_top = -58.0
+offset_right = 37.0
+offset_bottom = 1.0
+texture = ExtResource("3_4c8c3")
 
 [node name="Area" type="Area2D" parent="."]
 
@@ -46,6 +48,7 @@ offset_right = 33.0
 offset_bottom = 54.0
 theme_override_fonts/font = ExtResource("4_53kgd")
 theme_override_font_sizes/font_size = 14
+text = "adasdasdasdadasdasdasdasdasdasdasdasdasdasdadasdasdasdda"
 label_settings = SubResource("LabelSettings_v1hku")
 horizontal_alignment = 1
 autowrap_mode = 1
