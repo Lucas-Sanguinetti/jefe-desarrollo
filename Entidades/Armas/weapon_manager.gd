@@ -131,15 +131,6 @@ func venderArma(carta:CartaArma):
 		return false
 
 func verificar_transferencia(from_x: int, from_y: int) -> bool:
-	#Verificar monstruo derrotado
-	#if !monstruoMurio:
-		#push_warning("WeaponManager: No se mato ningun monstruo") #Debug
-		#return false
-	#Verificar cantidad de armas transferidas
-	if armasTransferidas >= limiteArmasTurno:
-		print("WeaponManager: No se pueden agarrar mas de: "+str(limiteArmasTurno)+" armas por turno") #Debug
-		return false
-	
 	# Verificar si hay espacio
 	if player_grid.is_full():
 		print("WeaponManager: PlayerWeaponGrid está lleno") #Debug

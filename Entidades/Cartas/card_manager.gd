@@ -18,7 +18,24 @@ signal armaUsada
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
+			# Verificar si el click fue consumido por la UI
+			if _is_mouse_over_ui():
+				return
+			
 			handle_card_click()
+
+func _is_mouse_over_ui() -> bool:
+	var mouse_pos = get_viewport().get_mouse_position()
+	
+	# Buscar todos los botones y controles visibles
+	var all_buttons = get_tree().get_nodes_in_group("UI")
+	for node in all_buttons:
+		if node is Control and node.visible:
+			var global_rect = node.get_global_rect()
+			if global_rect.has_point(mouse_pos):
+				return true
+	
+	return false
 			
 func handle_card_click():
 	var clicked_card = raycast_check_for_card()
@@ -70,6 +87,7 @@ func attack_target(weapon: Carta, target: Carta):
 		selected_weapon = null
 		combat_state = CombatState.NORMAL
 		emit_signal("armaUsada")
+		emit_signal("armaDeseleccionada")
 	else:
 		print("No se pudo realizar el ataque")
 

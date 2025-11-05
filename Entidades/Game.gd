@@ -1,19 +1,21 @@
 extends Node
 
+#Botones y labels
 @onready var turn_button = $CanvasLayer/PasarTurno
 @onready var turn_label = $CanvasLayer/ContadorTurno
+@onready var sell_button: Button = $CanvasLayer/Vender
+#Managers y spawners
 @onready var card_manager = $CardManager
+@onready var weapon_manager: WeaponManager = $WeaponManager
 @onready var player_weapon_spawner = $PlayerWeaponSpawner
 @onready var monster_spawner = $MonsterSpawner
-@onready var weapon_manager: WeaponManager = $WeaponManager
-@onready var card_info: Node2D = $InfoDisplay
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-@onready var pasar_turno: Button = $CanvasLayer/PasarTurno
+#Hechizos
 @onready var spell_deck: SpellDeck = $SpellDeck
 @onready var hand: Hand = $PlayerSpells
 @onready var spell_effects: SpellEffects = $SpellEffects
-@onready var sell_button: Button = $CanvasLayer/Vender
-
+#Otros
+@onready var card_info: Node2D = $InfoDisplay
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var cartaSeleccionada
 var current_turn = 1
@@ -21,6 +23,9 @@ var current_turn = 1
 func _ready() -> void:
 	turn_button.pressed.connect(_on_turn_button_pressed)
 	sell_button.pressed.connect(_on_sell_button_pressed)
+	turn_button.add_to_group("UI")
+	sell_button.add_to_group("UI")
+	
 	card_manager.armaSeleccionadaVenta.connect(_on_arma_seleccionada)
 	card_manager.armaDeseleccionada.connect(_on_arma_deseleccionada)
 	
@@ -43,7 +48,7 @@ func _input(event):
 func _on_turn_button_pressed():
 	current_turn += 1
 	turn_label.text = "TURNO: " + str(current_turn)
-	pasar_turno.pressPlay()
+	turn_button.pressPlay()
 	
 	# Resetear habilidades de ataque de las armas EQUIPADAS
 	reset_player_weapons()
@@ -88,26 +93,19 @@ func reset_monster_traits():
 			
 
 func _on_spell_cast(hechizo: SpellCardData, target):
-	#Para cuando agregue animaciones
-	#await spell_effects.play_effect(spell, target)
 	spell_effects.apply_spell_effect(hechizo,target)
-	# Descartar el hechizo al mazo
 	spell_deck.discard_card(hechizo)
 
 func _on_arma_seleccionada(carta:CartaArma):
 	sell_button.set_disabled(false)
-	print("Arma seleccionada")
-	print(carta)
 	cartaSeleccionada = carta
 	
 func _on_arma_deseleccionada():
 	sell_button.set_disabled(true)
-	print("carta volviendose nula")
-	print(cartaSeleccionada)
 	cartaSeleccionada = null
 
 func _on_sell_button_pressed():
-	print("carta por venderse")
-	print(cartaSeleccionada)
-	sell_button.pressSell(cartaSeleccionada)
-	card_manager.venderArma(cartaSeleccionada)
+	if player_weapon_spawner.cantidad_armas() > 1:
+		sell_button.pressSell(cartaSeleccionada)
+		weapon_manager.venderArma(cartaSeleccionada)
+	sell_button.set_disabled(true)
