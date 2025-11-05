@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=25 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -17,12 +17,16 @@
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0w1ek"]
 [ext_resource type="AudioStream" uid="uid://d0686mu6qgmo7" path="res://Audio/musica/Game.mp3" id="13_8hmk7"]
 [ext_resource type="PackedScene" uid="uid://bx6yw2qj5stmb" path="res://Entidades/Visuales/monederoHud.tscn" id="13_cgrtl"]
+[ext_resource type="Script" uid="uid://btt6r2o0q7am0" path="res://Entidades/sellButtom.gd" id="14_ohvqk"]
 [ext_resource type="PackedScene" uid="uid://bcdxqcei3yuhm" path="res://Entidades/Hechizos/spell_deck.tscn" id="17_rwqrq"]
 [ext_resource type="PackedScene" uid="uid://da50i6nw27x40" path="res://Entidades/Hechizos/player_spells.tscn" id="18_hf2jd"]
 [ext_resource type="Script" uid="uid://bxljb7ons4bf2" path="res://Entidades/Hechizos/SpellEffects.gd" id="20_hf2jd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hf2jd"]
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jhs2"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_gxhcr"]
 font = ExtResource("10_ohvqk")
@@ -62,6 +66,7 @@ volume_db = -20.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PasarTurno" type="Button" parent="CanvasLayer"]
+texture_filter = 1
 anchors_preset = -1
 anchor_left = -0.081
 anchor_top = 0.44900003
@@ -71,6 +76,8 @@ offset_left = 1364.98
 offset_top = 313.99997
 offset_right = 1102.0599
 offset_bottom = 227.99994
+theme_override_fonts/font = ExtResource("10_ohvqk")
+theme_override_font_sizes/font_size = 16
 text = "Terminar
 Turno"
 script = ExtResource("10_eq8nk")
@@ -92,6 +99,27 @@ offset_bottom = 19.803955
 theme_override_fonts/font = ExtResource("10_ohvqk")
 text = "TURNO: 1"
 label_settings = SubResource("LabelSettings_hf2jd")
+
+[node name="Vender" type="Button" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = -0.081
+anchor_top = 0.44900003
+anchor_right = 0.143
+anchor_bottom = 0.59800005
+offset_left = 1243.98
+offset_top = 198.99997
+offset_right = 981.06
+offset_bottom = 112.99994
+theme_override_fonts/font = ExtResource("10_ohvqk")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_2jhs2")
+disabled = true
+text = "Vender"
+script = ExtResource("14_ohvqk")
+
+[node name="press" type="AudioStreamPlayer" parent="CanvasLayer/Vender"]
+stream = ExtResource("10_xugfq")
 
 [node name="LifeHUD" parent="." instance=ExtResource("11_2jhs2")]
 position = Vector2(1163, 774)

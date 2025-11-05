@@ -119,18 +119,16 @@ func return_weapon_to_storage(from_x: int, from_y: int) -> bool:
 	return true
 
 # Debug para agregar arma
-func transfer_random_weapon_to_player() -> bool:
-	if not weapon_grid:
+func venderArma(carta:CartaArma):
+	if not weapon_grid or not player_grid:
 		return false
 	
-	var available_weapons = weapon_grid.get_all_weapons()
-	if available_weapons.is_empty():
+	var postion = carta.grid_pos
+	
+	# Desequipar del jugador
+	var weapon = player_grid.unequip_weapon(postion.x, postion.y)
+	if not weapon:
 		return false
-	
-	var random_weapon = available_weapons[randi() % available_weapons.size()]
-	var pos = random_weapon.grid_pos
-	
-	return transfer_weapon_to_player(int(pos.x), int(pos.y))
 
 func verificar_transferencia(from_x: int, from_y: int) -> bool:
 	#Verificar monstruo derrotado

@@ -12,13 +12,18 @@ extends Node
 @onready var spell_deck: SpellDeck = $SpellDeck
 @onready var hand: Hand = $PlayerSpells
 @onready var spell_effects: SpellEffects = $SpellEffects
+@onready var sell_button: Button = $CanvasLayer/Vender
 
 
-
+var cartaSeleccionada
 var current_turn = 1
 
 func _ready() -> void:
 	turn_button.pressed.connect(_on_turn_button_pressed)
+	sell_button.pressed.connect(_on_sell_button_pressed)
+	card_manager.armaSeleccionadaVenta.connect(_on_arma_seleccionada)
+	card_manager.armaDeseleccionada.connect(_on_arma_deseleccionada)
+	
 	LifeManager.vida_cambiada.connect(_on_vida_cambiada)
 	hand.card_played.connect(_on_spell_cast)
 	audio_stream_player.play()
@@ -88,3 +93,21 @@ func _on_spell_cast(hechizo: SpellCardData, target):
 	spell_effects.apply_spell_effect(hechizo,target)
 	# Descartar el hechizo al mazo
 	spell_deck.discard_card(hechizo)
+
+func _on_arma_seleccionada(carta:CartaArma):
+	sell_button.set_disabled(false)
+	print("Arma seleccionada")
+	print(carta)
+	cartaSeleccionada = carta
+	
+func _on_arma_deseleccionada():
+	sell_button.set_disabled(true)
+	print("carta volviendose nula")
+	print(cartaSeleccionada)
+	cartaSeleccionada = null
+
+func _on_sell_button_pressed():
+	print("carta por venderse")
+	print(cartaSeleccionada)
+	sell_button.pressSell(cartaSeleccionada)
+	card_manager.venderArma(cartaSeleccionada)

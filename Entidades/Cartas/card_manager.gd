@@ -11,6 +11,8 @@ var combat_state: CombatState = CombatState.NORMAL
 var selected_weapon: Carta = null
 
 signal armaSeleccionada
+signal armaSeleccionadaVenta(carta:CartaArma)
+signal armaDeseleccionada
 signal armaUsada
 
 func _input(event):
@@ -44,11 +46,12 @@ func handle_card_click():
 				cancel_weapon_selection()
 				select_weapon(clicked_card)
 
-func select_weapon(weapon: Carta):
+func select_weapon(weapon: CartaArma):
 	selected_weapon = weapon
 	weapon.select_for_attack()
 	combat_state = CombatState.WEAPON_SELECTED
 	emit_signal("armaSeleccionada")
+	emit_signal("armaSeleccionadaVenta",weapon)
 	print("Arma seleccionada para atacar")
 
 func cancel_weapon_selection():
@@ -57,6 +60,7 @@ func cancel_weapon_selection():
 		selected_weapon = null
 	
 	combat_state = CombatState.NORMAL
+	emit_signal("armaDeseleccionada")
 	print("Selección de arma cancelada")
 
 func attack_target(weapon: Carta, target: Carta):
@@ -140,8 +144,6 @@ func find_cards_recursive(node: Node, cards_array: Array):
 	for child in node.get_children():
 		find_cards_recursive(child, cards_array)
 
-func _ready() -> void:
-	pass
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
