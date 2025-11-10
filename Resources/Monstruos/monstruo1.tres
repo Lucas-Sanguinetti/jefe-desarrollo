@@ -1,11 +1,22 @@
-[gd_resource type="Resource" script_class="MonsterCardData" load_steps=3 format=3 uid="uid://1chp51lvkq0q"]
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=9 format=3 uid="uid://1chp51lvkq0q"]
 
-[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Cartas/monsterData.gd" id="1_hk80w"]
-[ext_resource type="Texture2D" uid="uid://cn4blxbn0mb8x" path="res://Assets/cards/monsterCard.png" id="2_5nl17"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_04um5"]
+[ext_resource type="Texture2D" uid="uid://cvtywd3s1s0v6" path="res://Assets/cards/monster/monstruos/Image4.png" id="1_ue30m"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_jkt4c"]
+[ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="2_o34mx"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="3_04um5"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_04um5"]
+[ext_resource type="Resource" uid="uid://4oftc55chlxk" path="res://Resources/Traits/Monstruos/endurecer_2.tres" id="7_ue30m"]
+[ext_resource type="Resource" uid="uid://2b3vwsuba582" path="res://Resources/Traits/Monstruos/venganza.tres" id="8_o34mx"]
 
 [resource]
-script = ExtResource("1_hk80w")
+script = ExtResource("2_jkt4c")
 hp = 50
 attack = 5
-sprite = ExtResource("2_5nl17")
+traits = Array[ExtResource("4_04um5")]([ExtResource("7_ue30m"), ExtResource("8_o34mx")])
+nivel = 3
+backsprite = ExtResource("1_ue30m")
+escena = ExtResource("1_04um5")
+sprite = ExtResource("3_04um5")
+name = "Mons2"
 metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

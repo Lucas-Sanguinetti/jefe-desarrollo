@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://dihc5ihgsnvy3"]
+
+[ext_resource type="Script" uid="uid://dbec7owv5q16" path="res://Entidades/Monstruos/CartaMonstruo.gd" id="1_57kje"]
+[ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_4opp7"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="2_gqsfx"]
+[ext_resource type="Script" uid="uid://cedwwo3v8rwn6" path="res://Entidades/Cartas/niveles.gd" id="3_014nb"]
+[ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="5_014nb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3ok"]
+size = Vector2(42, 62)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v1hku"]
+font = ExtResource("2_4opp7")
+font_size = 8
+font_color = Color(0.16470589, 0.16470589, 0.16470589, 1)
+
+[node name="Monstruo" type="Node2D"]
+script = ExtResource("1_57kje")
+
+[node name="BackSprite" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -38.0
+offset_top = -58.0
+offset_right = 37.0
+offset_bottom = 1.0
+
+[node name="Sprite" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -42.0
+offset_top = -62.0
+offset_right = 41.0
+offset_bottom = 62.0
+texture = ExtResource("2_gqsfx")
+
+[node name="Element" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 19.0
+offset_top = -62.0
+offset_right = 41.0
+offset_bottom = -44.0
+
+[node name="Niveles" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, 56)
+script = ExtResource("3_014nb")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+texture_filter = 1
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_xu3ok")
+
+[node name="Ataque" type="Label" parent="."]
+texture_filter = 1
+offset_left = 24.0
+offset_top = 47.0
+offset_right = 40.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("2_4opp7")
+theme_override_font_sizes/font_size = 12
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Vida" type="Label" parent="."]
+texture_filter = 1
+offset_left = -38.0
+offset_top = 47.0
+offset_right = -22.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("2_4opp7")
+theme_override_font_sizes/font_size = 14
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MonsterTraits" type="Label" parent="."]
+texture_filter = 1
+offset_left = -23.0
+offset_top = 17.0
+offset_right = 23.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("2_4opp7")
+theme_override_font_sizes/font_size = 14
+label_settings = SubResource("LabelSettings_v1hku")
+horizontal_alignment = 1
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_014nb")
+
+[connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
+[connection signal="input_event" from="Area" to="." method="_on_area_input_event"]
+[connection signal="mouse_entered" from="Area" to="." method="_on_area_mouse_entered"]
+[connection signal="mouse_exited" from="Area" to="." method="_on_area_mouse_exited"]

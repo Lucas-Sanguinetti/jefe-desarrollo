@@ -11,16 +11,24 @@ config_version=5
 [application]
 
 config/name="Boss"
-run/main_scene="uid://7tjf1gfpknq1"
+run/main_scene="uid://c328vnnnt73tq"
 config/features=PackedStringArray("4.5", "Forward Plus")
+
+[autoload]
+
+LifeManager="*res://singleton/life_manager.gd"
+WeaponDeck="*res://singleton/weapon_deck.tscn"
+MonsterDeck="*res://singleton/monster_deck.tscn"
+MoneyManager="*res://singleton/money_manager.gd"
 
 [display]
 
-window/size/viewport_width=357
-window/size/viewport_height=361
-window/size/window_width_override=893
-window/size/window_height_override=903
+window/size/viewport_width=1580
+window/size/viewport_height=1000
+window/size/window_width_override=1188
+window/size/window_height_override=890
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://4hxum1er3qjc"
 
 [rendering]
 

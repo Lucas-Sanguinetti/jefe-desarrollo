@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=7 format=3 uid="uid://b38mrmntoefr5"]
+
+[ext_resource type="Texture2D" uid="uid://nex7lfdgh7k0" path="res://Assets/cards/monster/monstruos/Image3.png" id="1_3uhff"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="1_vulat"]
+[ext_resource type="Texture2D" uid="uid://c0p0id8clkbub" path="res://Assets/element/poison.png" id="2_3uhff"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_263ti"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="3_vulat"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_vulat"]
+
+[resource]
+script = ExtResource("2_263ti")
+hp = 15
+attack = 1
+nivel = 3
+element = ExtResource("2_3uhff")
+backsprite = ExtResource("1_3uhff")
+escena = ExtResource("1_vulat")
+sprite = ExtResource("3_vulat")
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

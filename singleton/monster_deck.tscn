@@ -1,0 +1,32 @@
+[gd_scene load_steps=19 format=3 uid="uid://r3uw2a7pd3o6"]
+
+[ext_resource type="Script" uid="uid://cli218hw4m8vd" path="res://singleton/monster_deck.gd" id="1_svbph"]
+[ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/Lvl3/monstruo1.tres" id="2_3hl6n"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_46c8m"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="2_v7a3c"]
+[ext_resource type="Resource" uid="uid://cwcsd2cagjb73" path="res://Resources/Monstruos/Lvl2/monstruo2.tres" id="3_ukxup"]
+[ext_resource type="Texture2D" uid="uid://d0uky38qmk1t8" path="res://Assets/cards/monster/monsterCardIce.png" id="4_8jsbe"]
+[ext_resource type="Resource" uid="uid://b38mrmntoefr5" path="res://Resources/Monstruos/Lvl1/monstruo3.tres" id="5_iaqll"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="5_l382o"]
+[ext_resource type="Resource" uid="uid://chendedgm7761" path="res://Resources/Monstruos/Lvl2/monstruo4.tres" id="6_mk08i"]
+[ext_resource type="Resource" uid="uid://b2xpawi6cr1dm" path="res://Resources/Monstruos/Lvl4/monstruo5.tres" id="7_h2b5e"]
+[ext_resource type="Resource" uid="uid://c4wnahibut2rw" path="res://Resources/Monstruos/Lvl2/monstruo6.tres" id="8_v7a3c"]
+[ext_resource type="Resource" uid="uid://bccsvhqd20i5a" path="res://Resources/Monstruos/Lvl3/monstruo7.tres" id="9_iaqll"]
+[ext_resource type="Resource" uid="uid://bo022cyiinb25" path="res://Resources/Monstruos/Lvl2/monsterRenacer2.tres" id="13_vb4c2"]
+[ext_resource type="Resource" uid="uid://cg6fjol8t3xhl" path="res://Resources/Monstruos/Lvl2/monsterRenacer3.tres" id="14_5kv46"]
+[ext_resource type="Resource" uid="uid://bllttghbleotb" path="res://Resources/Monstruos/Lvl2/monsterRenacer.tres" id="15_f8opl"]
+[ext_resource type="Resource" uid="uid://bx8vi3e5gsiq2" path="res://Resources/Monstruos/Lvl3/monsterValiente2.tres" id="16_o4a1j"]
+[ext_resource type="Resource" uid="uid://bdgq4bv4lchoy" path="res://Resources/Monstruos/Lvl3/monsterValiente.tres" id="17_l0c54"]
+
+[sub_resource type="Resource" id="Resource_jej3k"]
+script = ExtResource("2_46c8m")
+hp = 5
+attack = 5
+escena = ExtResource("2_v7a3c")
+sprite = ExtResource("4_8jsbe")
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"
+
+[node name="MonsterDeck" type="Node"]
+script = ExtResource("1_svbph")
+tutorial_monster = SubResource("Resource_jej3k")
+monster_data_cards = Array[ExtResource("2_46c8m")]([ExtResource("2_3hl6n"), ExtResource("3_ukxup"), ExtResource("5_iaqll"), ExtResource("6_mk08i"), ExtResource("7_h2b5e"), ExtResource("8_v7a3c"), ExtResource("9_iaqll"), ExtResource("13_vb4c2"), ExtResource("14_5kv46"), ExtResource("15_f8opl"), ExtResource("16_o4a1j"), ExtResource("17_l0c54")])

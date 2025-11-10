@@ -1,34 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=2 format=3 uid="uid://c328vnnnt73tq"]
 
-[ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="1_1a6n1"]
-[ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/board.tscn" id="1_two4o"]
-[ext_resource type="PackedScene" uid="uid://dlykyhjrmcfhg" path="res://Entidades/Cartas/carta.tscn" id="2_1fbpr"]
-[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/arma1.tres" id="4_n8fjv"]
-[ext_resource type="PackedScene" uid="uid://7rgw566lpfxe" path="res://Entidades/monster_spawner.tscn" id="4_yojer"]
-[ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/monstruo1.tres" id="5_3akp0"]
-[ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://Entidades/monster_deck.tscn" id="5_j43no"]
-[ext_resource type="PackedScene" uid="uid://ftsm1b1thgfn" path="res://Entidades/card_slot.tscn" id="6_yojer"]
+[ext_resource type="PackedScene" uid="uid://ddaywssni5aim" path="res://Entidades/title_screen.tscn" id="1_tpj8x"]
 
 [node name="Main" type="Node"]
 
-[node name="Board" parent="." instance=ExtResource("1_two4o")]
-layer = -1
-
-[node name="CardManager" parent="." instance=ExtResource("1_1a6n1")]
-
-[node name="Carta" parent="CardManager" instance=ExtResource("2_1fbpr")]
-position = Vector2(282, 264)
-data = ExtResource("4_n8fjv")
-
-[node name="Carta2" parent="CardManager" instance=ExtResource("2_1fbpr")]
-position = Vector2(93, 265)
-data = ExtResource("5_3akp0")
-
-[node name="monsterSpawner" parent="." instance=ExtResource("4_yojer")]
-
-[node name="MonsterDeck" parent="." instance=ExtResource("5_j43no")]
-position = Vector2(22.874998, 37.125)
-scale = Vector2(1.0182925, 1.0105634)
-
-[node name="CardSlot" parent="." instance=ExtResource("6_yojer")]
-visible = false
+[node name="TitleScreen" parent="." instance=ExtResource("1_tpj8x")]

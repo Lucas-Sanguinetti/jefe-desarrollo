@@ -1,0 +1,216 @@
+[gd_scene load_steps=20 format=3 uid="uid://c3fqcbncv77to"]
+
+[ext_resource type="Script" uid="uid://cphl4pmuuqorw" path="res://Entidades/tutorial/tutorial.gd" id="1_pmcij"]
+[ext_resource type="PackedScene" uid="uid://7tjf1gfpknq1" path="res://Entidades/Game.tscn" id="2_8cx54"]
+[ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_lyuau"]
+[ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="3_8cx54"]
+[ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="4_n6u6b"]
+[ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://singleton/monster_deck.tscn" id="5_ba64b"]
+[ext_resource type="PackedScene" uid="uid://bmlfbb0u38130" path="res://Entidades/tutorial/monster_spawner_tutorial.tscn" id="6_rbkq8"]
+[ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/monstruo1.tres" id="7_ba64b"]
+[ext_resource type="PackedScene" uid="uid://dfmm3iy8hd5vr" path="res://Entidades/Armas/player_weapon_spawner.tscn" id="8_eh68h"]
+[ext_resource type="PackedScene" uid="uid://b1v3dtr6skm1n" path="res://Entidades/tutorial/weapon_spawner_tutorial.tscn" id="9_lyuau"]
+[ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="9_vv73i"]
+[ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_3db23"]
+[ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_lglcu"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="11_n6u6b"]
+[ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0rbba"]
+[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/Lvl1/arma1.tres" id="12_ba64b"]
+[ext_resource type="AudioStream" uid="uid://df1guwtyjobyt" path="res://Audio/SFX/blacksmith-hammer.mp3" id="14_rbkq8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n6u6b"]
+font = ExtResource("10_3db23")
+font_size = 24
+shadow_size = 12
+shadow_color = Color(0.2901961, 0.16862746, 0.08235294, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ba64b"]
+font = ExtResource("10_3db23")
+font_size = 24
+shadow_size = 12
+shadow_color = Color(0.12156863, 0.101960786, 0.2, 1)
+
+[node name="Tutorial" type="Node"]
+script = ExtResource("1_pmcij")
+titleScreen = ExtResource("2_8cx54")
+
+[node name="Board" parent="." instance=ExtResource("2_lyuau")]
+layer = -1
+
+[node name="CardManager" parent="." instance=ExtResource("3_8cx54")]
+
+[node name="WeaponDeck" parent="." instance=ExtResource("4_n6u6b")]
+
+[node name="MonsterDeck" parent="." instance=ExtResource("5_ba64b")]
+tutorial_monster = ExtResource("7_ba64b")
+
+[node name="MonsterSpawner" parent="." instance=ExtResource("6_rbkq8")]
+position = Vector2(435, 108)
+
+[node name="PlayerWeaponSpawner" parent="." instance=ExtResource("8_eh68h")]
+position = Vector2(415, 760)
+initial_weapons = Array[ExtResource("11_n6u6b")]([ExtResource("12_ba64b")])
+
+[node name="WeaponSpawner" parent="." instance=ExtResource("9_lyuau")]
+position = Vector2(885, 252)
+
+[node name="WeaponManager" type="Node2D" parent="."]
+position = Vector2(44, 136)
+script = ExtResource("9_vv73i")
+initial_equipped_weapons = Array[ExtResource("11_n6u6b")]([ExtResource("12_ba64b")])
+
+[node name="Blacksmith" type="AudioStreamPlayer" parent="WeaponManager"]
+stream = ExtResource("14_rbkq8")
+volume_db = -20.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PasarTurno" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = -0.081
+anchor_top = 0.44900003
+anchor_right = 0.143
+anchor_bottom = 0.59800005
+offset_left = 1363.98
+offset_top = 312.99997
+offset_right = 1101.0599
+offset_bottom = 229.99994
+text = "Terminar
+Turno"
+
+[node name="ContadorTurno" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.65500003
+anchor_right = 0.123
+anchor_bottom = 0.77300006
+offset_left = 1221.62
+offset_top = 73.99994
+offset_right = 1214.652
+offset_bottom = 20.803955
+theme_override_fonts/font = ExtResource("10_3db23")
+text = "Turno: 1"
+
+[node name="LifeHUD" parent="." instance=ExtResource("11_lglcu")]
+position = Vector2(1163, 781)
+
+[node name="InfoDisplay" parent="." instance=ExtResource("12_0rbba")]
+position = Vector2(1205, 242)
+
+[node name="sombra1_tut1" type="Panel" parent="."]
+visible = false
+offset_left = 319.0
+offset_right = 1081.0
+offset_bottom = 681.0
+
+[node name="sombra2_tut1" type="Panel" parent="."]
+visible = false
+offset_left = 1080.0
+offset_top = -1.0
+offset_right = 1362.0
+offset_bottom = 866.0
+
+[node name="Label_tut1" type="Label" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 501.0
+offset_top = 742.0
+offset_right = 1070.0
+offset_bottom = 766.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 24
+text = "< haz click sobre una de tus armas para usarla"
+
+[node name="sombra1_tut2" type="Panel" parent="."]
+visible = false
+offset_left = 321.0
+offset_top = 605.0
+offset_right = 1351.0
+offset_bottom = 848.0
+
+[node name="sombra2_tut2" type="Panel" parent="."]
+visible = false
+offset_left = 834.0
+offset_top = 6.0
+offset_right = 1355.0
+offset_bottom = 606.0
+
+[node name="Label_tut2" type="Label" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 422.0
+offset_top = 180.0
+offset_right = 743.0
+offset_bottom = 258.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 24
+text = "^
+haz click sobre el monstruo
+para atacarlo y recibir monedas por matarlo"
+label_settings = SubResource("LabelSettings_n6u6b")
+
+[node name="sombra1_tut3" type="Panel" parent="."]
+visible = false
+offset_left = 326.0
+offset_top = 640.0
+offset_right = 1354.0
+offset_bottom = 848.0
+
+[node name="sombra2_tut3" type="Panel" parent="."]
+visible = false
+offset_left = 324.0
+offset_top = 2.0
+offset_right = 828.0
+offset_bottom = 640.0
+
+[node name="sombra3_tut3" type="Panel" parent="."]
+visible = false
+offset_left = 1052.0
+offset_top = 11.0
+offset_right = 1356.0
+offset_bottom = 640.0
+
+[node name="Label_tut3" type="Label" parent="."]
+texture_filter = 1
+offset_left = 859.0
+offset_top = 325.0
+offset_right = 1071.0
+offset_bottom = 511.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 24
+text = "^
+haz doble click 
+sobre el arma
+para comprarla
+
+"
+label_settings = SubResource("LabelSettings_ba64b")
+
+[node name="sombra1_tut4" type="Panel" parent="."]
+visible = false
+offset_left = 326.0
+offset_top = 639.0
+offset_right = 1104.0
+offset_bottom = 848.0
+
+[node name="sombra2_tut4" type="Panel" parent="."]
+visible = false
+offset_left = 327.0
+offset_right = 1339.0
+offset_bottom = 632.0
+
+[node name="Label_tut4" type="Label" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 1145.0
+offset_top = 615.0
+offset_right = 1336.0
+offset_bottom = 732.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 24
+text = "Haz click sobre 
+Terminar Turno
+para acabar el
+mini-tutorial"
+label_settings = SubResource("LabelSettings_ba64b")

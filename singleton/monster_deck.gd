@@ -1,0 +1,62 @@
+extends Node
+
+##se van usar tres arrays distintos para poder diferenciar de que parte del mazo se va a sacar un monstro
+##el monster spawner va a tener un state que vaya con los turnos, y ese state saca del mazo correspondiente
+#var wave1Monsters:Array = []
+#var wave2Monsters:Array = []
+#var wave3Monsters:Array = []
+@export var tutorial_monster: MonsterCardData 
+@export var monster_data_cards: Array[MonsterCardData] 
+var monstruo_tutoria_reset 
+var monstruos_reset 
+#@export var monster1:MonsterCardData
+#@export var monster2:MonsterCardData
+ 
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	#deben llenarse los mazos con las cartas guardadas en los resourses
+	#wave1Monsters.push_back(monster1)
+	#wave1Monsters.push_back(monster2)
+	
+	#luego se mezclan los mazos
+	print(monster_data_cards)
+	monster_data_cards.shuffle()
+	monstruo_tutoria_reset = tutorial_monster.duplicate(true)
+	monstruos_reset = monster_data_cards.duplicate(true)
+	#wave2Monsters.shuffle()
+	#wave3Monsters.shuffle()
+
+##funcion para el state
+func draw1():
+	print("robe una carta")
+	var monster:MonsterCardData = monster_data_cards[0]
+	monster_data_cards.remove_at(0)
+	return monster
+
+##funcion para el state	
+func draw2():
+	pass
+	#var monster:Carta = wave1Monsters[0]
+	#wave1Monsters.remove_at(0)
+	#return monster
+
+##funcion para el state
+func draw3():
+	pass
+	#var monster:Carta = wave1Monsters[0]
+	#wave1Monsters.remove_at(0)
+	#return monster
+	
+##funcion para el state	
+func drawTutorial():
+	return tutorial_monster
+
+
+func size():
+	return monster_data_cards.size()
+
+func reset():
+	tutorial_monster = monstruo_tutoria_reset
+	monster_data_cards.clear()
+	monster_data_cards.append_array(monstruos_reset)
