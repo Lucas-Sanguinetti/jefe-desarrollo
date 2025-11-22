@@ -32,10 +32,10 @@ func apply_spell_effect(Hechizo: SpellCardData, target):
 		Hechizo.EffectType.DAMAGE:
 			_apply_damage(target, Hechizo.effect_value)
 		Hechizo.EffectType.HEAL:
-			_apply_heal(Hechizo.effect_value)
-		#Hechizo.EffectType.BUFF:
-			#_apply_buff(target, Hechizo.effect_id, Hechizo.effect_value, Hechizo.duration)
-			
+			if LifeManager.get_life() < LifeManager.get_maxLife():
+				print(LifeManager.get_life())
+				_apply_heal(Hechizo.effect_value)
+		
 	_apply_special_effect(Hechizo, target)
 
 func _apply_special_effect(Hechizo: SpellCardData, target):
@@ -45,6 +45,7 @@ func _apply_special_effect(Hechizo: SpellCardData, target):
 			#target.take_damage(spell.effect_value)
 			#target.apply_debuff("burning", 2, 3)
 			#_spawn_fire_particles(target)
+			#return true
 			
 func _apply_heal(value: int):
 	LifeManager.gainLife(value)

@@ -168,11 +168,10 @@ func _start_target_selection(card: CartaHechizo):
 
 func _cast_spell(card: CartaHechizo, target):
 	var spell_data = card.data as SpellCardData
-	
-	print("Hand: Lanzando hechizo: ", spell_data.name)
-	emit_signal("card_played", spell_data, target)
-	remove_card(card)
-	
+	if verificar_condiciones(card.data):
+		print("Hand: Lanzando hechizo: ", spell_data.name)
+		emit_signal("card_played", spell_data, target)
+		remove_card(card)
 	cancel_selection()
 
 # Método público para cuando el jugador selecciona un monstruo como objetivo
@@ -206,10 +205,12 @@ func is_hand_full() -> bool:
 func is_waiting_for_target() -> bool:
 	return waiting_for_target
 
-# Debug: Visualizar el área de la mano
-func _draw():
-	if Engine.is_editor_hint():
-		var width = max_hand_size * card_spacing
-		var rect = Rect2(-width/2, -50, width, 100)
-		draw_rect(rect, Color(0, 1, 1, 0.1), true)
-		draw_rect(rect, Color(0, 1, 1), false, 2.0)
+func verificar_condiciones(hechizoData: SpellCardData) -> bool:
+	match hechizoData.effect_type:
+		hechizoData.EffectType.DAMAGE:
+			return true
+		hechizoData.EffectType.HEAL:
+			if LifeManager.get_life() < LifeManager.get_maxLife():
+				return true
+			return false
+	return true
