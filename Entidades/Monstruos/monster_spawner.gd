@@ -8,19 +8,21 @@ class_name MonsterSpawner
 var cards_per_turn: int = 1  # Cantidad de cartas por turno
 
 
-func _ready():
-	turn_loader()
-	turn_button.pressed.connect(_on_turn_button_pressed)
+func draw():
+	var r = sin_monstruos()
+	place_monster(r)
 
-func _on_turn_button_pressed():
-	if MonsterDeck.size() > 0:
-		turn_loader()
-	pass
+func sin_monstruos() -> int:
+	var cant_monsters = grid_monstruos.get_all_monsters().size()
+	if cant_monsters < 1:
+		return 2
+	return 1
 
-func turn_loader():
-	for i in cards_per_turn:
-		place_monster()
+func place_monster(repeticiones:int):
+	var monster:MonsterCardData
+	for i in repeticiones:
+		monster = deck_drawer.draw()
+		if monster:
+			grid_monstruos.invoke_random_piece(monster)
 
-func place_monster():
-	var monster:MonsterCardData = deck_drawer.draw()
-	grid_monstruos.invoke_random_piece(monster)
+	
