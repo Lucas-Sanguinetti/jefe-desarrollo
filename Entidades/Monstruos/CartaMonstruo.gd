@@ -17,6 +17,8 @@ var max_hp:int
 var nivel:int 
 var rasgos:Array
 
+var death_sound: AudioStream
+
 var is_targetable: bool = false
 @onready var death: AudioStreamPlayer = $Death
 
@@ -53,6 +55,7 @@ func _setup_specific_ui() -> void:
 	rasgos = monster_data.traits
 	element = monster_data.element
 	backsprite = monster_data.backsprite
+	death_sound = monster_data.death
 	if traits_label:
 		traits_label.text = _get_traits_text(monster_data)
 	if niveles_sprite:
@@ -121,7 +124,7 @@ func take_damage(damage: int, attacker: Carta = null) -> void:
 
 func die() -> void:
 	print("CartaMonstruo: %s ha muerto" % [name])
-	death.play()
+	death.playSound(death_sound)
 	await get_tree().create_timer(0.5).timeout
 	MoneyManager.ganarMonedas(nivel)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dihc5ihgsnvy3"]
+[gd_scene load_steps=9 format=3 uid="uid://dihc5ihgsnvy3"]
 
 [ext_resource type="Script" uid="uid://dbec7owv5q16" path="res://Entidades/Monstruos/CartaMonstruo.gd" id="1_57kje"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_4opp7"]
@@ -13,6 +13,14 @@ size = Vector2(42, 62)
 font = ExtResource("2_4opp7")
 font_size = 8
 font_color = Color(0.16470589, 0.16470589, 0.16470589, 1)
+
+[sub_resource type="GDScript" id="GDScript_014nb"]
+script/source = "extends AudioStreamPlayer
+
+func playSound(sound: AudioStream):
+	stream = sound
+	play()
+"
 
 [node name="Monstruo" type="Node2D"]
 script = ExtResource("1_57kje")
@@ -90,6 +98,8 @@ horizontal_alignment = 1
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_014nb")
+bus = &"Effects"
+script = SubResource("GDScript_014nb")
 
 [connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
 [connection signal="input_event" from="Area" to="." method="_on_area_input_event"]

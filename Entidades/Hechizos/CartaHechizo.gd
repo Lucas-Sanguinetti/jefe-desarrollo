@@ -11,7 +11,10 @@ var is_used: bool = false  # Para hechizos de uso único
 var cost_paid: bool = false  # Si ya se pagó el coste
 
 signal spell_cast_requested(target)
+
 @onready var death: AudioStreamPlayer = $Death
+
+var death_sound:AudioStream 
 
 # Doble click
 var click_timer: float = 0.0
@@ -38,6 +41,7 @@ func _setup_specific_ui() -> void:
 		spell_description.text = spell_data.descripcion
 	if imagen_hechizo:
 		imagen_hechizo.texture = spell_data.backsprite
+	death_sound = spell_data.death
 	_apply_data_to_ui()
 	update_visual_by_target_type()
 
@@ -179,3 +183,6 @@ func actLabel(label: Label) -> void:
 		text += "\n[Efecto: %s]" % [spell_data.effect_id]
 	
 	label.text = text
+
+func death_sound_play():
+	death.playSound(death_sound)

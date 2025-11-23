@@ -6,3 +6,5 @@ class_name WeaponCardData
 @export var nivel:int = 1
 @export var element:Texture2D = preload("uid://cfghlodo6mm6e")
 @export var backsprite:Texture2D =preload("uid://dgmb8r1w73p1r")
+@export var drawSword:AudioStream = preload("uid://saalgqj02ulo")
+@export var swordHit:AudioStream = preload("uid://box1cwy2ha3ex")

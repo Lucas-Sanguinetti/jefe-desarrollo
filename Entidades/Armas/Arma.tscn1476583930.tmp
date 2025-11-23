@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://denw6r4uahlvf"]
+[gd_scene load_steps=7 format=3 uid="uid://denw6r4uahlvf"]
 
 [ext_resource type="Script" uid="uid://cs0wcebtdgsma" path="res://Entidades/Armas/CartaArma.gd" id="1_wjq3x"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_54r67"]
@@ -11,22 +11,6 @@ size = Vector2(42, 62)
 [sub_resource type="LabelSettings" id="LabelSettings_pacq5"]
 font = ExtResource("2_54r67")
 font_size = 8
-
-[sub_resource type="GDScript" id="GDScript_khqy0"]
-script/source = "extends AudioStreamPlayer
-
-func playSound(sound: AudioStream):
-	stream = sound
-	play()
-"
-
-[sub_resource type="GDScript" id="GDScript_g87m0"]
-script/source = "extends AudioStreamPlayer
-
-func playSound(sound: AudioStream):
-	stream = sound
-	play()
-"
 
 [node name="Arma" type="Node2D"]
 script = ExtResource("1_wjq3x")
@@ -92,12 +76,10 @@ autowrap_mode = 1
 [node name="DrawSword" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0
 bus = &"Effects"
-script = SubResource("GDScript_khqy0")
 
 [node name="SwordHit" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0
 bus = &"Effects"
-script = SubResource("GDScript_g87m0")
 
 [connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
 [connection signal="input_event" from="Area" to="." method="_on_area_input_event"]
