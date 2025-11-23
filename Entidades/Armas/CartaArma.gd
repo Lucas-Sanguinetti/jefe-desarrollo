@@ -24,6 +24,10 @@ var click_count: int = 0
 @onready var sword_hit: AudioStreamPlayer = $SwordHit
 
 
+var draw_sword_sound: AudioStream
+var sword_hit_sound: AudioStream
+
+	
 
 
 # IMPLEMENTACIÓN DE MÉTODOS VIRTUALES
@@ -34,6 +38,7 @@ func _initialize_references() -> void:
 	niveles_sprite = get_node_or_null("Niveles")
 	element_sprite = get_node_or_null("Element")
 	backsprite_sprite = get_node_or_null("BackSprite")
+	
 	
 	if not ataque_label:
 		push_error("CartaArma: Falta nodo 'Ataque'")
@@ -54,6 +59,8 @@ func _setup_specific_ui() -> void:
 		traits_label.text = _get_traits_text(weapon_data)
 	nivel = weapon_data.nivel
 	rasgos = weapon_data.traits
+	sword_hit_sound = weapon_data.swordHit
+	draw_sword_sound = weapon_data.drawSword
 	_apply_data_to_ui()
 
 
@@ -91,7 +98,7 @@ func select_for_attack() -> void:
 	if can_be_selected_for_attack():
 		set_card_state(CardState.SELECTED_FOR_ATTACK)
 		emit_signal("card_selected_for_attack", self)
-		draw_sword.play()
+		draw_sword.playSound(draw_sword_sound)
 
 func attack(target: CartaMonstruo) -> bool:
 	if not can_be_selected_for_attack():
@@ -127,7 +134,7 @@ func attack(target: CartaMonstruo) -> bool:
 	set_card_state(CardState.CANNOT_ATTACK)
 	create_attack_effect(target)
 	
-	sword_hit.play()
+	sword_hit.playSound(sword_hit_sound)
 	return true
 
 func reset_attack_ability() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bncxpxagsydh3"]
+[gd_scene load_steps=9 format=3 uid="uid://bncxpxagsydh3"]
 
 [ext_resource type="Script" uid="uid://do0okuxqnluks" path="res://Entidades/Hechizos/CartaHechizo.gd" id="1_4c8c3"]
 [ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="2_owiti"]
@@ -13,6 +13,14 @@ size = Vector2(42, 62)
 font = ExtResource("4_53kgd")
 font_size = 8
 font_color = Color(0.16470589, 0.16470589, 0.16470589, 1)
+
+[sub_resource type="GDScript" id="GDScript_4c8c3"]
+script/source = "extends AudioStreamPlayer
+
+func playSound(sound: AudioStream):
+	stream = sound
+	play()
+"
 
 [node name="Hechizo" type="Node2D"]
 script = ExtResource("1_4c8c3")
@@ -55,6 +63,7 @@ autowrap_mode = 1
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_4c8c3")
+script = SubResource("GDScript_4c8c3")
 
 [node name="OneTimeIndicator" type="Panel" parent="."]
 visible = false

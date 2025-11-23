@@ -8,6 +8,7 @@ extends Node
 @onready var weapon_manager = $WeaponManager
 @onready var card_info: Node2D = $InfoDisplay
 
+
 @export var titleScreen: PackedScene
 
 var armaSelected = false
