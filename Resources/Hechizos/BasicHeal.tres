@@ -8,9 +8,9 @@
 [resource]
 script = ExtResource("3_fcy0u")
 descripcion = "Al usarlo te curas 3 puntos de vida"
-effect_type = 1
+effect_category = 1
 effect_value = 3
 escena = ExtResource("2_wp12y")
 sprite = ExtResource("4_fcy0u")
-name = "Healing Potion"
+name = "Pocion de Salud"
 metadata/_custom_type_script = "uid://c5klust30h4bq"

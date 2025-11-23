@@ -24,6 +24,7 @@ func _ready():
 		grid[x] = []
 		for y in range(GRID_ROWS):
 			grid[x].append(null)
+	add_to_group("PlayerWeaponGrid")
 
 
 # Convierte posición lógica (x,y) en coordenada de pantalla

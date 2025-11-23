@@ -7,5 +7,15 @@ func _ready() -> void:
 
 
 func draw():
-	return MonsterDeck.draw1()
+	var turno = TurnManager.get_current_turn()
+	match turno:
+		_ when turno < 10:
+			return MonsterDeck.draw1()
+		_ when turno < 19:
+			return MonsterDeck.draw2()
+		_ when turno == 20:
+			return MonsterDeck.draw3()
+		_ when turno > 20:
+			return
+	
 	

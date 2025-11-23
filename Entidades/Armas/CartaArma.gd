@@ -100,7 +100,7 @@ func attack(target: CartaMonstruo) -> bool:
 		return false
 	
 	var weapon_data = data as WeaponCardData
-	var weapon_attack = weapon_data.attack
+	var weapon_attack = ataque
 	
 	# Aplicar traits del arma
 	for traits in weapon_data.traits:
@@ -131,6 +131,8 @@ func attack(target: CartaMonstruo) -> bool:
 	return true
 
 func reset_attack_ability() -> void:
+	var weapon_data = data as WeaponCardData
+	ataque = weapon_data.attack
 	can_attack = true
 	set_card_state(CardState.NORMAL)
 
@@ -192,6 +194,11 @@ func _get_traits_text(weapon_data: WeaponCardData) -> String:
 	for traits in weapon_data.traits:
 		texto += "* %s\n" % [traits.trait_name]
 	return texto
+
+#UTILIDADES PUBLICAS
+func actualizar_Ataque(bonus: int):
+	ataque = ataque + bonus
+	_apply_data_to_ui()
 
 func actLabel(label: Label) -> void:
 	var text = "Ataque: %d\n" % [ataque]

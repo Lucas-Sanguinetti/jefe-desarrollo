@@ -16,10 +16,7 @@ var monstruoMurio: bool = false
 signal armaTransferida
 
 func _ready():
-	# Buscar los grids en la escena
-
 	call_deferred("initialize_grids")
-	
 
 func initialize_grids():
 	# Buscar WeaponGrid
@@ -46,7 +43,6 @@ func initialize_grids():
 	weapon_grid.carta_Clickeada.connect(_on_carta_clikeada)
 	monster_grid.monster_died.connect(_on_monster_die)
 	
-	#equip_initial_weapons()
 
 @warning_ignore("unused_parameter") #para proximas mejoras en el sistema
 func _on_monster_die(monster: Carta):
@@ -65,7 +61,6 @@ func equip_initial_weapons():
 
 # Mover un arma del WeaponGrid al PlayerWeaponGrid
 func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
-	
 	if !verificar_transferencia(from_x, from_y):
 		return false
 	
@@ -118,7 +113,7 @@ func return_weapon_to_storage(from_x: int, from_y: int) -> bool:
 	print("WeaponManager: Arma devuelta al almacén")  #Debug
 	return true
 
-# Debug para agregar arma
+
 func venderArma(carta:CartaArma):
 	if not weapon_grid or not player_grid:
 		return false
@@ -131,7 +126,6 @@ func venderArma(carta:CartaArma):
 		return false
 
 func verificar_transferencia(from_x: int, from_y: int) -> bool:
-	# Verificar si hay espacio
 	if player_grid.is_full():
 		print("WeaponManager: PlayerWeaponGrid está lleno") #Debug
 		return false
@@ -146,13 +140,7 @@ func verificar_transferencia(from_x: int, from_y: int) -> bool:
 
 	return validacion_final
 
-func reset_turn():
-	armasTransferidas = 0
-	monstruoMurio = false
-	pass
-
 func _on_carta_clikeada(carta:Carta):
-
 	var postion = carta.grid_pos
 	var success = transfer_weapon_to_player(postion.x, postion.y)
 	

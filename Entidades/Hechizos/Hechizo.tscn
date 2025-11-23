@@ -56,6 +56,15 @@ autowrap_mode = 1
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_4c8c3")
 
+[node name="OneTimeIndicator" type="Panel" parent="."]
+visible = false
+texture_filter = 1
+offset_left = -42.0
+offset_top = -61.0
+offset_right = 42.0
+offset_bottom = 62.0
+mouse_filter = 2
+
 [connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
 [connection signal="input_event" from="Area" to="." method="_on_area_input_event"]
 [connection signal="mouse_entered" from="Area" to="." method="_on_area_mouse_entered"]
