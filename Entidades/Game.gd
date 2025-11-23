@@ -68,7 +68,7 @@ func _spawn_cards():
 				weapon_grid.invoke_random_piece(weapon)
 	
 	# Robar hechizo
-	if not hand.is_hand_full():
+	if not hand.is_full():
 		var new_card = spell_deck.draw_turn_card()
 		if new_card:
 			hand.add_card(new_card)
