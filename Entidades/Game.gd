@@ -58,7 +58,7 @@ func _on_turn_button_pressed():
 	reset_monster_traits()
 	
 	# Agregar hechizo tras finalizar turno
-	if not hand.is_hand_full():
+	if not hand.is_full():
 		var new_card = spell_deck.draw_turn_card()
 		if new_card:
 			hand.add_card(new_card)

@@ -3,7 +3,6 @@ class_name WeaponGrid
 
 @export var GRID_COLLUMNS = 2 
 @export var GRID_ROWS = 3
-const CELL_SIZE = 64       # ancho/alto de cada celda (en píxeles)
 const CellHeigth = 144     
 const CellWeigth = 104
 

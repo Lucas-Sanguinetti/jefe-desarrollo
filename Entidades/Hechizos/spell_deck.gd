@@ -1,10 +1,13 @@
 class_name SpellDeck extends Node
 
-@export var starting_spells: Array[SpellCardData] = []
+@export var spell_Deck: Array[SpellCardData] = []
+@export var starting_spells:Array[SpellCardData] = []
 @export var cards_to_draw_first_turn: int = 1
 
 var deck: Array[SpellCardData] = []
+var start_spells: Array[SpellCardData] = []
 var discard_pile: Array[SpellCardData] = []
+var removed_pile: Array[SpellCardData] = []
 var is_first_turn: bool = true
 
 func _ready():
@@ -13,9 +16,10 @@ func _ready():
 func initialize_deck():
 	deck.clear()
 	discard_pile.clear()
+	removed_pile.clear()
 	
 	# Copiar hechizos iniciales al mazo
-	for Hechizo in starting_spells:
+	for Hechizo in spell_Deck:
 		deck.append(Hechizo)
 	
 	shuffle_deck()
@@ -23,7 +27,9 @@ func initialize_deck():
 
 func shuffle_deck():
 	deck.shuffle()
-
+# ============================================
+# ROBAR CARTAS
+# ============================================
 func draw_card() -> SpellCardData:
 	if deck.is_empty():
 		# Si el mazo está vacío, mezclar la pila de descarte
@@ -38,19 +44,9 @@ func draw_card() -> SpellCardData:
 	
 	return deck.pop_back()
 
-func discard_card(Hechizo: SpellCardData):
-	discard_pile.append(Hechizo)
-
 func draw_initial_hand() -> Array[SpellCardData]:
-	var cards: Array[SpellCardData] = []
-	
-	for i in range(cards_to_draw_first_turn):
-		var card = draw_card()
-		if card:
-			cards.append(card)
-	
 	is_first_turn = false
-	return cards
+	return starting_spells
 
 func draw_turn_card() -> SpellCardData:
 	if is_first_turn:
@@ -58,9 +54,36 @@ func draw_turn_card() -> SpellCardData:
 		return null
 	
 	return draw_card()
+# ============================================
+# Descartar CARTAS
+# ============================================
 
+func discard_card(hechizo: SpellCardData):
+	if not hechizo:
+		return
+	# Si es de uso único, va a removed_pile (no vuelve al mazo)
+	if hechizo.one_time_use:
+		removed_pile.append(hechizo)
+		print("SpellDeck: '%s' removida permanentemente (uso único)" % hechizo.name)
+	else:
+		# Va a discard_pile normal
+		discard_pile.append(hechizo)
+		print("SpellDeck: '%s' descartada" % hechizo.name)
+
+# ============================================
+# QUERIES
+# ============================================
 func get_deck_size() -> int:
 	return deck.size()
 
 func get_discard_size() -> int:
 	return discard_pile.size()
+
+func get_removed_size() -> int:
+	return removed_pile.size()
+	
+func get_total_cards() -> int:
+	return deck.size() + discard_pile.size()
+
+func reset():
+	initialize_deck()

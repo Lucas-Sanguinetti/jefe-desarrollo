@@ -133,7 +133,7 @@ position = Vector2(778, 668)
 [node name="SpellDeck" parent="." instance=ExtResource("17_rwqrq")]
 
 [node name="PlayerSpells" parent="." instance=ExtResource("18_hf2jd")]
-position = Vector2(682, 883)
+position = Vector2(43, 191)
 
 [node name="SpellEffects" type="Node" parent="."]
 script = ExtResource("20_hf2jd")
