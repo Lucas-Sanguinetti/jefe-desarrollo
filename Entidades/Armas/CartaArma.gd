@@ -81,9 +81,6 @@ func _apply_data_to_ui() -> void:
 	
 # SISTEMA DE CARGAS
 func _update_charge_indicator():
-	
-	# Mostrar indicador solo si está cargada
-	
 	if can_attack:
 		set_card_state(CardState.NORMAL)
 		rotation_degrees = 0  # ✅ Posición normal
@@ -94,7 +91,7 @@ func _update_charge_indicator():
 		rotation_degrees = 90  # ✅ Voltear arma
 		modulate = Color(0.7, 0.7, 0.7)  # ✅ Color apagado
 		print("%s: Cambiando de CardState a CANNOT_ATTACK" % name)
-
+	_update_visual_state()
 
 
 func is_charged():

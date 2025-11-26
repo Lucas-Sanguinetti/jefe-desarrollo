@@ -91,11 +91,11 @@ func _execute_ability(weapon: CartaArma, ability: WeaponAbilityData, target):
 		callback.call(weapon, ability, target)
 	else:
 		push_warning("AbilitySystem: Habilidad '%s' sin implementar" % ability.ability_id)
-	
+	cancel_selection()
 	weapon.discharge()
 	
 	emit_signal("ability_executed", weapon, ability, target)
-	cancel_selection()
+	
 
 
 # HABILIDADES IMPLEMENTADAS
