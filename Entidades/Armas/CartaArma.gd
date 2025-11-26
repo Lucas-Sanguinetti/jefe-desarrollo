@@ -3,32 +3,36 @@ class_name CartaArma
 
 # Estado específico de armas
 @export var can_attack: bool = true
-# Referencias específicas
+
+# Referencias UI
 var ataque_label: Label
 var traits_label: Label 
 var niveles_sprite: Sprite2D
 var element_sprite: TextureRect
 var backsprite_sprite: TextureRect
 
+#Variables de la Escena
 var backsprite: Texture2D
 var ataque:int 
 var nivel:int 
 var rasgos:Array
 var element:Texture2D
+
 # Doble click (solo armas en WeaponGrid)
 var click_timer: float = 0.0
 var click_threshold: float = 0.3
 var click_count: int = 0
 
+#Audio
 @onready var draw_sword: AudioStreamPlayer = $DrawSword
 @onready var sword_hit: AudioStreamPlayer = $SwordHit
-
-
 var draw_sword_sound: AudioStream
 var sword_hit_sound: AudioStream
 
-	
-
+#Señales
+signal ability_activated(weapon: CartaArma)
+signal weapon_recharged(weapon: CartaArma)
+signal weapon_discharged(weapon: CartaArma)
 
 # IMPLEMENTACIÓN DE MÉTODOS VIRTUALES
 func _initialize_references() -> void:
@@ -75,7 +79,79 @@ func _apply_data_to_ui() -> void:
 		backsprite_sprite.texture = backsprite
 		backsprite_sprite.scale = Vector2(0.5, 0.5)
 	
+# SISTEMA DE CARGAS
+func _update_charge_indicator():
+	
+	# Mostrar indicador solo si está cargada
+	
+	if can_attack:
+		set_card_state(CardState.NORMAL)
+		rotation_degrees = 0  # ✅ Posición normal
+		modulate = Color.WHITE  # ✅ Color normal
+		print("%s: Cambiando de CardState a Normal" % name)
+	else:
+		set_card_state(CardState.CANNOT_ATTACK)
+		rotation_degrees = 90  # ✅ Voltear arma
+		modulate = Color(0.7, 0.7, 0.7)  # ✅ Color apagado
+		print("%s: Cambiando de CardState a CANNOT_ATTACK" % name)
 
+
+
+func is_charged():
+	return can_attack
+
+func recharge():
+	if can_attack:
+		print("%s: Ya esta cargada",name)
+		return
+	can_attack = true
+	_update_charge_indicator()
+	emit_signal("weapon_recharged", self)
+	print("%s: RECARGADA" % name)
+
+func discharge():
+	if not can_attack:
+		print("%s: Ya está descargada" % name)
+		return
+	can_attack = false
+	_update_charge_indicator()
+	emit_signal("weapon_discharged", self)
+	print("%s: DESCARGADA" % name)
+
+#HABILIDADES
+func can_use_ability() -> bool:
+	# Verificar que esté en el grid del jugador
+	if not parent_grid or not parent_grid is PlayerWeaponGrid:
+		return false
+	
+	# Verificar que esté cargada
+	if not can_attack:
+		print("%s: Descargada, no puede usar habilidad" % name)
+		return false
+	
+	# Verificar que tenga habilidad
+	var weapon_data = data as WeaponCardData
+	if not weapon_data or not weapon_data.has_ability():
+		print("%s: Sin habilidad" % name)
+		return false
+	
+	return true
+
+func use_ability() -> void:
+	if not can_use_ability():
+		return
+	
+	print("%s: Activando habilidad..." % name)
+	
+	# Emitir señal
+	emit_signal("ability_activated", self)
+	
+	# Ejecutar habilidad a través del AbilitySystem
+	var ability_system = get_tree().get_first_node_in_group("AbilitySystem")
+	if ability_system:
+		ability_system.activate_weapon_ability(self)
+	else:
+		push_error("CartaArma: No se encontró AbilitySystem")
 
 # CAPACIDADES DE COMBATE
 func can_be_selected_for_attack() -> bool:
@@ -130,8 +206,8 @@ func attack(target: CartaMonstruo) -> bool:
 		parent_grid.mark_attack_used()
 	
 	# Bloquear arma
-	can_attack = false
-	set_card_state(CardState.CANNOT_ATTACK)
+	discharge()
+	#set_card_state(CardState.CANNOT_ATTACK)
 	create_attack_effect(target)
 	
 	sword_hit.playSound(sword_hit_sound)
@@ -140,32 +216,49 @@ func attack(target: CartaMonstruo) -> bool:
 func reset_attack_ability() -> void:
 	var weapon_data = data as WeaponCardData
 	ataque = weapon_data.attack
-	can_attack = true
-	set_card_state(CardState.NORMAL)
+	recharge()
+
 
 func block_attack_ability() -> void:
-	can_attack = false
-	set_card_state(CardState.CANNOT_ATTACK)
+	discharge()
 
 
-# SISTEMA DE DOBLE CLICK
 
-
+# MANEJOS DE INPUT
 func _on_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		_handle_click()
+	if event is InputEventMouseButton and event.pressed: 
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			_handle_left_click()
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			_handle_right_click()
 
-func _handle_click() -> void:
-	if not can_be_double_clicked():
-		return
-	
-	click_count += 1
-	click_timer = click_threshold
-	
-	if click_count >= 2:
-		_on_double_click()
-		click_count = 0
-		click_timer = 0
+func _handle_left_click() -> void:
+	if parent_grid and parent_grid.get_script():
+		var is_weapon_grid = parent_grid.get_script().get_global_name() == "WeaponGrid"
+		
+		if is_weapon_grid:
+			click_count += 1
+			click_timer = click_threshold
+			
+			if click_count >= 2:
+				_on_double_click()
+				click_count = 0
+				click_timer = 0
+
+func _handle_right_click() -> void:
+	if parent_grid and parent_grid is PlayerWeaponGrid:
+		if can_use_ability():
+			use_ability()
+		else:
+			# Dar feedback de por qué no puede usar
+			if not can_attack:
+				print("%s: Descargada, no puede usar habilidad" % name)
+			else:
+				var weapon_data = data as WeaponCardData
+				if not weapon_data or not weapon_data.has_ability():
+					print("%s: Esta arma no tiene habilidad" % name)
+				else:
+					print("%s: No puede usar habilidad" % name)
 
 func _on_double_click() -> void:
 	emit_signal("card_double_clicked", self)

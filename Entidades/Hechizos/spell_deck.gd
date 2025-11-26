@@ -12,6 +12,7 @@ var is_first_turn: bool = true
 
 func _ready():
 	initialize_deck()
+	add_to_group("SpellDeck")
 
 func initialize_deck():
 	deck.clear()

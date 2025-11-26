@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponAbilityData" load_steps=2 format=3 uid="uid://d4nb3j30vabrx"]
+
+[ext_resource type="Script" uid="uid://cqy0018jajlma" path="res://Entidades/Armas/Habilidades/WeaponAbilityData.gd" id="1_fblog"]
+
+[resource]
+script = ExtResource("1_fblog")
+ability_name = "Recargar"
+ability_description = "Recarga un arma seleccionada"
+target_type = 1
+ability_id = "Bateria"
+metadata/_custom_type_script = "uid://cqy0018jajlma"
