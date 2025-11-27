@@ -29,6 +29,7 @@ func _ready() -> void:
 	# Conectar TurnManager
 	TurnManager.turn_started.connect(_on_turn_started)
 	TurnManager.turn_ended.connect(_on_turn_ended)
+	TurnManager.game_end_for_turns.connect(game_over)
 	
 	card_manager.armaSeleccionadaVenta.connect(_on_arma_seleccionada)
 	card_manager.armaDeseleccionada.connect(_on_arma_deseleccionada)
@@ -98,10 +99,15 @@ func reset_monster_traits():
 #Vida
 func _on_vida_cambiada(nueva_vida: int):
 	if nueva_vida <= 0:
-		block_player_weapons()
-		$CanvasLayer2/GameOver.show()
-		await get_tree().create_timer(2.0).timeout
-		_reset_game()
+		game_over()
+		
+		
+#Game Over
+func game_over():
+	block_player_weapons()
+	$CanvasLayer2/GameOver.show()
+	await get_tree().create_timer(2.0).timeout
+	_reset_game()
 #Resear Juego
 func _reset_game():
 	LifeManager.reset()
@@ -110,10 +116,14 @@ func _reset_game():
 	WeaponDeck.reset()
 	TurnManager.reset()
 	get_tree().change_scene_to_file("res://Entidades/Main.tscn")
+	
 #Hechizos
 func _on_spell_cast(hechizo: SpellCardData, target):
-	spell_effects.apply_spell_effect(hechizo,target)
-	spell_deck.discard_card(hechizo)
+	var success = spell_effects.apply_spell_effect(hechizo,target)
+	if success:
+		spell_deck.discard_card(hechizo)
+	else:
+		print("Game: Hechizo '%s' falló - NO se descarta" % hechizo.name)
 
 # ============================================
 # Venta de armas

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Fragil" load_steps=2 format=3 uid="uid://ckefibx0nekb4"]
+
+[ext_resource type="Script" uid="uid://dvepjcgwrwgfp" path="res://Traits/fragil.gd" id="1_e6lb6"]
+
+[resource]
+script = ExtResource("1_e6lb6")
+fragilidad = 3
+trait_name = "Fragil"
+trait_description = "A cada impacto realizado se le agregan 3 "
+metadata/_custom_type_script = "uid://cy584ew032i43"

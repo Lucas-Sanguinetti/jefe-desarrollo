@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=26 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bcdxqcei3yuhm" path="res://Entidades/Hechizos/spell_deck.tscn" id="17_rwqrq"]
 [ext_resource type="PackedScene" uid="uid://da50i6nw27x40" path="res://Entidades/Hechizos/player_spells.tscn" id="18_hf2jd"]
 [ext_resource type="Script" uid="uid://bxljb7ons4bf2" path="res://Entidades/Hechizos/SpellEffects.gd" id="20_hf2jd"]
+[ext_resource type="Script" uid="uid://bhqx1i7kvx2oe" path="res://Entidades/Armas/Habilidades/AbilitySystem.gd" id="21_2jhs2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hf2jd"]
 font_color = Color(0, 0, 0, 1)
@@ -56,7 +57,7 @@ position = Vector2(885, 252)
 position = Vector2(415, 760)
 
 [node name="WeaponManager" type="Node2D" parent="."]
-position = Vector2(44, 136)
+position = Vector2(26, 29)
 script = ExtResource("9_hf2jd")
 
 [node name="Blacksmith" type="AudioStreamPlayer" parent="WeaponManager"]
@@ -133,10 +134,13 @@ position = Vector2(778, 668)
 [node name="SpellDeck" parent="." instance=ExtResource("17_rwqrq")]
 
 [node name="PlayerSpells" parent="." instance=ExtResource("18_hf2jd")]
-position = Vector2(43, 191)
+position = Vector2(37, 94)
 
 [node name="SpellEffects" type="Node" parent="."]
 script = ExtResource("20_hf2jd")
+
+[node name="AbilitySystem" type="Node" parent="."]
+script = ExtResource("21_2jhs2")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_8hmk7")

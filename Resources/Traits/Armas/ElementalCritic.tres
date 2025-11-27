@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CriticoElemental" load_steps=2 format=3 uid="uid://dldvr75rf710i"]
+
+[ext_resource type="Script" uid="uid://bmokarwe2hi5t" path="res://Traits/elementalCritic.gd" id="1_qhryx"]
+
+[resource]
+script = ExtResource("1_qhryx")
+trait_name = "Critico Elemental"
+trait_description = "Duplica el impacto contra un monstruo del mismo elemento"
+metadata/_custom_type_script = "uid://cy584ew032i43"

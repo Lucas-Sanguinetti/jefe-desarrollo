@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="WeaponCardData" load_steps=8 format=3 uid="uid://cpnq7xdnrtyf2"]
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=11 format=3 uid="uid://cpnq7xdnrtyf2"]
 
 [ext_resource type="Texture2D" uid="uid://v44o1nxmcfl4" path="res://Assets/cards/weapon/armas/Image2.png" id="1_16dcy"]
+[ext_resource type="Resource" uid="uid://b4qluqmhar7nt" path="res://Resources/Habilidades/Berserk.tres" id="1_73xnr"]
 [ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="1_lar6g"]
 [ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="2_2gdtw"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_vvjee"]
+[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="3_awnsg"]
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="3_h8f8m"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="4_lar6g"]
 [ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="5_lar6g"]
+[ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_8scbp"]
 
 [resource]
 script = ExtResource("2_vvjee")
@@ -14,6 +17,7 @@ attack = 7
 traits = Array[ExtResource("4_lar6g")]([ExtResource("5_lar6g")])
 nivel = 3
 backsprite = ExtResource("1_16dcy")
+ability = ExtResource("1_73xnr")
 escena = ExtResource("1_lar6g")
 sprite = ExtResource("3_h8f8m")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

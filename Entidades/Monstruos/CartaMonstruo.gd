@@ -9,8 +9,7 @@ var niveles_sprite: Sprite2D
 var element_sprite: TextureRect
 var backsprite_sprite: TextureRect
 
-var backsprite: Texture2D
-var element:Texture2D
+var element: MonsterCardData.ElementType
 var hp_actual:int
 var ataque:int
 var max_hp:int
@@ -51,10 +50,9 @@ func _setup_specific_ui() -> void:
 	hp_actual = monster_data.hp
 	ataque = monster_data.attack
 	max_hp = monster_data.hp
+	element = monster_data.element_type
 	nivel = monster_data.nivel
 	rasgos = monster_data.traits
-	element = monster_data.element
-	backsprite = monster_data.backsprite
 	death_sound = monster_data.death
 	if traits_label:
 		traits_label.text = _get_traits_text(monster_data)
@@ -63,9 +61,9 @@ func _setup_specific_ui() -> void:
 	if ataque_label:
 		ataque_label.text = str(ataque)
 	if element_sprite:
-		element_sprite.texture = element
+		element_sprite.texture = monster_data.element
 	if backsprite_sprite:
-		backsprite_sprite.texture = backsprite
+		backsprite_sprite.texture = monster_data.backsprite
 	_apply_data_to_ui()
 
 func _apply_data_to_ui() -> void:

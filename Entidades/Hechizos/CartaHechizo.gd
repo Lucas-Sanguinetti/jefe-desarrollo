@@ -10,7 +10,6 @@ var one_time_indicator: Panel #Agregar el nuevo panel para este efecto
 var is_used: bool = false  # Para hechizos de uso único
 var cost_paid: bool = false  # Si ya se pagó el coste
 
-signal spell_cast_requested(target)
 
 @onready var death: AudioStreamPlayer = $Death
 

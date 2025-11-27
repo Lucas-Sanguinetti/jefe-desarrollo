@@ -2,8 +2,8 @@ extends Node2D
 class_name Hand
 
 # CONFIGURACIÓN DE GRID
-@export var GRID_COLUMNS: int = 2
-@export var GRID_ROWS: int = 3
+@export var GRID_COLUMNS: int = 1
+@export var GRID_ROWS: int = 6
 const CELL_WIDTH = 104
 const CELL_HEIGHT = 144
 const CELL_MARGIN_X = 10
@@ -133,11 +133,6 @@ func _on_card_double_clicked(card: CartaHechizo):
 	# Validar si puede lanzarse
 	if not card.can_be_cast():
 		return
-	push_warning("Acordate de aplicar TurnManager y descomentar lo de abajo")
-	# Validar restricciones globales
-	#if not TurnManager.can_use_spells():
-		#push_warning("Hand: Hechizos bloqueados por trait")
-		#return
 	
 	print("Hand: Doble click en '%s' (tipo: %s)" % [spell_data.name, spell_data.get_target_type_string()])
 	
