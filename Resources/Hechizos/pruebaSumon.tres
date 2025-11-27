@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="SpellCardData" load_steps=5 format=3 uid="uid://dytj5ng5k6sq2"]
+[gd_resource type="Resource" script_class="SpellCardData" load_steps=6 format=3 uid="uid://dytj5ng5k6sq2"]
 
-[ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="1_hvg2y"]
+[ext_resource type="Texture2D" uid="uid://dygmud0h8f1ih" path="res://Assets/cards/spell/spells/carta.png" id="1_t8hgd"]
 [ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="2_efrev"]
+[ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="2_newih"]
 [ext_resource type="PackedScene" uid="uid://bncxpxagsydh3" path="res://Entidades/Hechizos/Hechizo.tscn" id="2_t8hgd"]
 [ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="4_newih"]
 
 [resource]
 script = ExtResource("2_efrev")
 descripcion = "Invoca un monstruo"
-backsprite = ExtResource("1_hvg2y")
+backsprite = ExtResource("1_t8hgd")
 effect_category = 4
 effect_value = 1
 escena = ExtResource("2_t8hgd")

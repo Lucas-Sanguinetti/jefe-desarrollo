@@ -70,7 +70,6 @@ func _setup_specific_ui() -> void:
 		element_sprite.texture = weapon_data.element
 	if backsprite_sprite:
 		backsprite_sprite.texture = weapon_data.backsprite
-		backsprite_sprite.scale = Vector2(0.5, 0.5)
 	_apply_data_to_ui()
 
 

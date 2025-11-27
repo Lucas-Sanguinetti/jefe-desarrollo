@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=11 format=3 uid="uid://rxgvbpsuxpor"]
+
+[ext_resource type="Resource" uid="uid://d4nb3j30vabrx" path="res://Resources/Habilidades/Batery.tres" id="1_jheoi"]
+[ext_resource type="Texture2D" uid="uid://cluobsyfj1pt7" path="res://Assets/cards/weapon/armas/veneno/arma2.png" id="2_aq63q"]
+[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="3_nldxk"]
+[ext_resource type="Texture2D" uid="uid://c0p0id8clkbub" path="res://Assets/element/poison.png" id="4_5i0q4"]
+[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="5_pqonp"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="6_omnfu"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="7_13fgw"]
+[ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_wjajx"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_iwnv5"]
+[ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="10_o4mm6"]
+
+[resource]
+script = ExtResource("6_omnfu")
+attack = 5
+traits = Array[ExtResource("9_iwnv5")]([ExtResource("10_o4mm6")])
+nivel = 2
+element_type = 6
+element = ExtResource("4_5i0q4")
+backsprite = ExtResource("2_aq63q")
+ability = ExtResource("1_jheoi")
+escena = ExtResource("5_pqonp")
+sprite = ExtResource("7_13fgw")
+metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

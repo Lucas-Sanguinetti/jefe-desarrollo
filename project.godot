@@ -25,9 +25,9 @@ TurnManager="*res://singleton/turn_manager.gd"
 [display]
 
 window/size/viewport_width=1580
-window/size/viewport_height=1000
-window/size/window_width_override=1188
-window/size/window_height_override=890
+window/size/viewport_height=866
+window/size/window_width_override=1580
+window/size/window_height_override=866
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://4hxum1er3qjc"
 

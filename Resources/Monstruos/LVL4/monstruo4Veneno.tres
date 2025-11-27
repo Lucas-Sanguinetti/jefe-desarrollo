@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=9 format=3 uid="uid://ws7k5dsbqnye"]
+
+[ext_resource type="Texture2D" uid="uid://yof7nadapg3s" path="res://Assets/cards/monster/monstruos/veneno/mons3.png" id="1_kb6ew"]
+[ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="2_bq5o0"]
+[ext_resource type="Texture2D" uid="uid://c0p0id8clkbub" path="res://Assets/element/poison.png" id="3_bq5o0"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="4_pj151"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="5_i3e3n"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_nhct1"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="7_51cjl"]
+[ext_resource type="Resource" uid="uid://ckefibx0nekb4" path="res://Resources/Traits/Monstruos/fragil_3.tres" id="8_kb6ew"]
+
+[resource]
+script = ExtResource("5_i3e3n")
+hp = 35
+attack = 5
+traits = Array[ExtResource("7_51cjl")]([ExtResource("8_kb6ew")])
+nivel = 4
+element_type = 6
+element = ExtResource("3_bq5o0")
+backsprite = ExtResource("1_kb6ew")
+escena = ExtResource("4_pj151")
+sprite = ExtResource("6_nhct1")
+name = "Mons2"
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

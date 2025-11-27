@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=12 format=3 uid="uid://bn651haytqwdl"]
+
+[ext_resource type="Resource" uid="uid://c5acklindsd5h" path="res://Resources/Habilidades/Endurecer5.tres" id="1_wyqcx"]
+[ext_resource type="Texture2D" uid="uid://d175c226u18px" path="res://Assets/cards/weapon/armas/viento/arma3.png" id="2_wyqcx"]
+[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="3_0s6x8"]
+[ext_resource type="Texture2D" uid="uid://x7aoomc5y2fq" path="res://Assets/element/wind.png" id="4_c03jo"]
+[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="5_4uhdi"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="6_iw87q"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="7_q761e"]
+[ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_nkpcm"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_4vxek"]
+[ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="10_72jgp"]
+[ext_resource type="Resource" uid="uid://dkyfyntyj8v24" path="res://Resources/Traits/Armas/lifeSteel.tres" id="11_gqr8q"]
+
+[resource]
+script = ExtResource("6_iw87q")
+attack = 3
+traits = Array[ExtResource("9_4vxek")]([ExtResource("10_72jgp"), ExtResource("11_gqr8q")])
+nivel = 5
+element_type = 9
+element = ExtResource("4_c03jo")
+backsprite = ExtResource("2_wyqcx")
+ability = ExtResource("1_wyqcx")
+escena = ExtResource("5_4uhdi")
+sprite = ExtResource("7_q761e")
+metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

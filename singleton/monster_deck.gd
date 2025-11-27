@@ -60,6 +60,6 @@ func reset():
 
 func filtrarMonstruos(minLvl:int, maxLvl:int, lista:Array):
 	var monstruos = lista.filter(func(m):
-		return m.level >= minLvl and m.level <= maxLvl
+		return m.nivel >= minLvl and m.nivel <= maxLvl
 	)
 	return monstruos
