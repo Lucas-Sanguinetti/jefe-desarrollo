@@ -57,7 +57,7 @@ position = Vector2(885, 252)
 position = Vector2(415, 760)
 
 [node name="WeaponManager" type="Node2D" parent="."]
-position = Vector2(44, 136)
+position = Vector2(26, 29)
 script = ExtResource("9_hf2jd")
 
 [node name="Blacksmith" type="AudioStreamPlayer" parent="WeaponManager"]
@@ -134,7 +134,7 @@ position = Vector2(778, 668)
 [node name="SpellDeck" parent="." instance=ExtResource("17_rwqrq")]
 
 [node name="PlayerSpells" parent="." instance=ExtResource("18_hf2jd")]
-position = Vector2(43, 191)
+position = Vector2(37, 94)
 
 [node name="SpellEffects" type="Node" parent="."]
 script = ExtResource("20_hf2jd")

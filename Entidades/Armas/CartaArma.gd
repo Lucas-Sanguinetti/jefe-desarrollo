@@ -146,7 +146,9 @@ func use_ability() -> void:
 	# Ejecutar habilidad a través del AbilitySystem
 	var ability_system = get_tree().get_first_node_in_group("AbilitySystem")
 	if ability_system:
-		ability_system.activate_weapon_ability(self)
+		var success = ability_system.activate_weapon_ability(self)
+		if not success:
+			print("%s: Habilidad falló - arma NO descargada" % name)
 	else:
 		push_error("CartaArma: No se encontró AbilitySystem")
 
@@ -193,6 +195,9 @@ func attack(target: CartaMonstruo) -> bool:
 	if player_damage != 0:
 		LifeManager.looseLife(player_damage)
 	
+	# Aplicar habilidades de estado
+	weapon_attack = _apply_state_attack_abilities(weapon_attack)
+	
 	target.take_damage(weapon_attack, self)
 	
 	# Lifesteal
@@ -204,7 +209,7 @@ func attack(target: CartaMonstruo) -> bool:
 	
 	# Bloquear arma
 	discharge()
-	#set_card_state(CardState.CANNOT_ATTACK)
+	
 	create_attack_effect(target)
 	
 	sword_hit.playSound(sword_hit_sound)
@@ -273,7 +278,30 @@ func _calculate_player_damage(target: Carta) -> int:
 	# Aplicar traits del monstruo
 	for traits in monster_data.traits:
 		player_damage = traits.on_player_damage(player_damage, target)
+	
+	# Aplicar habilidades de estado
+	player_damage = _apply_state_damage_abilities(player_damage)
+	
 	return player_damage
+
+func _apply_state_damage_abilities(player_damage: int):
+	var playerWeapons = get_tree().get_first_node_in_group("PlayerWeapons")
+	
+	if playerWeapons.berserkState:
+		player_damage = player_damage * 2
+	
+	if playerWeapons.enduranceState:
+		player_damage = max(player_damage - playerWeapons.resistencia, 0)
+	
+	return player_damage
+
+func _apply_state_attack_abilities(weapon_damage: int):
+	var playerWeapons = get_tree().get_first_node_in_group("PlayerWeapons")
+	
+	if playerWeapons.berserkState:
+		weapon_damage = weapon_damage * 2
+	
+	return weapon_damage
 
 func _apply_lifesteal(weapon_attack: int, target: CartaMonstruo) -> void:
 	var lifesteal_amount = 0

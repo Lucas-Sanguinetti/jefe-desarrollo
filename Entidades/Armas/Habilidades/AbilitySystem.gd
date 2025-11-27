@@ -21,20 +21,24 @@ func _ready():
 func _register_all_abilities():
 	register_ability("Bateria", _ability_recharge_weapon)
 	register_ability("Magica", _ability_draw_spell)
+	register_ability("Mercenario", _ability_mercenario)
+	register_ability("Berserk", _ability_berserk)
+	register_ability("Endurecer", _ability_endurecer)
+	
 
 # API PÚBLICA
 func register_ability(ability_id: String, callback: Callable):
 	custom_abilities[ability_id] = callback
 	print("AbilitySystem: Registrada '%s'" % ability_id)
 
-func activate_weapon_ability(weapon: CartaArma):	
+func activate_weapon_ability(weapon: CartaArma) -> bool:
 	if not weapon or not weapon.data:
-		return
+		return false
 	
 	var weapon_data = weapon.data as WeaponCardData
 	if not weapon_data or not weapon_data.has_ability():
 		print("AbilitySystem: Arma sin habilidad")
-		return
+		return false
 	
 	var ability = weapon_data.ability
 	
@@ -49,6 +53,8 @@ func activate_weapon_ability(weapon: CartaArma):
 		WeaponAbilityData.TargetType.WEAPON:
 			# Iniciar selección de objetivo
 			_start_target_selection(weapon, ability)
+			return true
+	return false
 
 func target_selected(target):
 	if not waiting_for_target or not active_weapon or not active_ability:
@@ -101,18 +107,19 @@ func _execute_ability(weapon: CartaArma, ability: WeaponAbilityData, target):
 # HABILIDADES IMPLEMENTADAS
 
 # Recargar otra arma
-func _ability_recharge_weapon(weapon: CartaArma, _ability , target: CartaArma):
+@warning_ignore("unused_parameter")
+func _ability_recharge_weapon(weapon: CartaArma, _ability , target: CartaArma)-> bool:
 	if not target or not target is CartaArma:
-		return
+		return false
 	if target.is_charged():
-		return
+		return false
 	
 	target.recharge()
+	return true
+
 	
-	print("AbilitySystem: %s recargó a %s" % [weapon.name, target.name])
-	
-# Sacar un hechizo
-func _ability_draw_spell(weapon: CartaArma, ability: WeaponAbilityData, _target):
+@warning_ignore("unused_parameter")
+func _ability_draw_spell(weapon: CartaArma, ability: WeaponAbilityData, _target)-> bool:
 	var cards_to_draw = ability.value_1
 	var spell_deck = get_tree().get_first_node_in_group("SpellDeck")
 	var hand = get_tree().get_first_node_in_group("Hand")
@@ -130,8 +137,36 @@ func _ability_draw_spell(weapon: CartaArma, ability: WeaponAbilityData, _target)
 		#Agrega a la mano e incrementa contador
 		if hand.add_card(card):
 			drawn_count += 1
+	if drawn_count > 0:
+		return true
+	else:
+		return false
+
+
+@warning_ignore("unused_parameter")
+func _ability_mercenario(weapon: CartaArma, ability: WeaponAbilityData , target: CartaArma)-> bool:
+	if not target or not target is CartaArma:
+		return false
+	if not target.is_charged():
+		return false
+	if MoneyManager.get_money() < 1:
+		return false
+	MoneyManager.perderMonedas(1)
+	target.actualizar_Ataque(ability.value_1)
+	return true
 	
-	print("AbilitySystem: %s robo %d Hechizos" % [weapon.name, drawn_count])
+@warning_ignore("unused_parameter")
+func _ability_berserk(weapon: CartaArma, ability: WeaponAbilityData, _target) -> bool:
+	var players_weapons = _get_player_weapon()
+	players_weapons.active_berserk()
+	return true
+
+@warning_ignore("unused_parameter")
+func _ability_endurecer(weapon: CartaArma, ability: WeaponAbilityData, _target) -> bool:
+	
+	var players_weapons = _get_player_weapon()
+	players_weapons.active_endurance(ability.value_1)
+	return true
 
 # MANEJO DE INPUT (para seleccionar objetivos)
 func _input(event):
@@ -175,8 +210,5 @@ func _raycast_check_for_target():
 	return null
 
 # HELPERS
-func _get_monster_grid() -> MonsterGrid:
-	return get_tree().get_first_node_in_group("MonsterGrid")
-
-func _get_player_weapon_grid() -> PlayerWeaponGrid:
-	return get_tree().get_first_node_in_group("PlayerWeaponGrid")
+func _get_player_weapon():
+	return get_tree().get_first_node_in_group("PlayerWeapons")

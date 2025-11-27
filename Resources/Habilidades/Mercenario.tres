@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponAbilityData" load_steps=2 format=3 uid="uid://8pblc2cblkcu"]
+
+[ext_resource type="Script" uid="uid://cqy0018jajlma" path="res://Entidades/Armas/Habilidades/WeaponAbilityData.gd" id="1_qvali"]
+
+[resource]
+script = ExtResource("1_qvali")
+ability_name = "Mercenario"
+ability_description = "Gasta 1 moneda para darle afilado 5 a un arma"
+target_type = 1
+ability_id = "Mercenario"
+value_1 = 5
+metadata/_custom_type_script = "uid://cqy0018jajlma"

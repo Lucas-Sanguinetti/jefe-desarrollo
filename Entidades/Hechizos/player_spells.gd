@@ -2,8 +2,8 @@ extends Node2D
 class_name Hand
 
 # CONFIGURACIÓN DE GRID
-@export var GRID_COLUMNS: int = 2
-@export var GRID_ROWS: int = 3
+@export var GRID_COLUMNS: int = 1
+@export var GRID_ROWS: int = 6
 const CELL_WIDTH = 104
 const CELL_HEIGHT = 144
 const CELL_MARGIN_X = 10

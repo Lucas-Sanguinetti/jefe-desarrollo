@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="1_adkmc"]
 [ext_resource type="Texture2D" uid="uid://j7xi5ix0bci5" path="res://Assets/cards/weapon/armas/Image4.png" id="1_fjuth"]
-[ext_resource type="Resource" uid="uid://brnnw20b76rqq" path="res://Resources/Habilidades/pruebaRobaCarta.tres" id="1_gjdey"]
+[ext_resource type="Resource" uid="uid://brnnw20b76rqq" path="res://Resources/Habilidades/DrawSpell.tres" id="1_gjdey"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_1fhv2"]
 [ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="2_8373b"]
 [ext_resource type="Texture2D" uid="uid://cetv46jeksmhl" path="res://Assets/element/fire.png" id="2_clpgk"]
