@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddaywssni5aim"]
 
 [ext_resource type="Script" uid="uid://b24fvhjuw8eh" path="res://Entidades/title_screen.gd" id="1_3ygur"]
-[ext_resource type="Texture2D" uid="uid://b0hfbrxvkjivs" path="res://Assets/background/titleScreenR.png" id="2_gyhmm"]
+[ext_resource type="Texture2D" uid="uid://h4vjbuke760x" path="res://Assets/background/titleScreen.png" id="2_g8iy6"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="3_iwsvx"]
 [ext_resource type="Script" uid="uid://2bc043lq2daj" path="res://Entidades/press.gd" id="4_iwsvx"]
 [ext_resource type="AudioStream" uid="uid://byhk8raqtbh4h" path="res://Audio/SFX/button-pressed.mp3" id="5_g8iy6"]
@@ -13,8 +13,9 @@ offset_bottom = 744.0
 script = ExtResource("1_3ygur")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 2
-texture = ExtResource("2_gyhmm")
+texture = ExtResource("2_g8iy6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

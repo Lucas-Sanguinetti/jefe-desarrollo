@@ -1,27 +1,38 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0ah8qij8o442"]
+[gd_scene load_steps=32 format=3 uid="uid://c0ah8qij8o442"]
 
 [ext_resource type="Script" uid="uid://h57xu7varvij" path="res://singleton/weapon_deck.gd" id="1_yl64i"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="2_fcv3a"]
-[ext_resource type="Resource" uid="uid://c0itiolm4uay8" path="res://Resources/Armas/Lvl3/arma3.tres" id="3_g2gk4"]
-[ext_resource type="Resource" uid="uid://c2d322or4k66j" path="res://Resources/Armas/Lvl2/arma4.tres" id="4_rtuda"]
-[ext_resource type="Resource" uid="uid://b8ap0ir3le4k7" path="res://Resources/Armas/Lvl2/arma5.tres" id="5_nud52"]
-[ext_resource type="Resource" uid="uid://cpnq7xdnrtyf2" path="res://Resources/Armas/Lvl3/arma6.tres" id="6_dbjkk"]
-[ext_resource type="Resource" uid="uid://b0sgqig3gvs3o" path="res://Resources/Armas/Lvl1/arma7.tres" id="7_e76mx"]
-[ext_resource type="Resource" uid="uid://dlljf57rqu077" path="res://Resources/Armas/Lvl2/arma8.tres" id="8_0f01i"]
-[ext_resource type="Texture2D" uid="uid://dgmb8r1w73p1r" path="res://Assets/cards/weapon/armas/Image1.png" id="9_qh4af"]
-[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="9_r64fq"]
-[ext_resource type="Texture2D" uid="uid://cmxqp7tofkvpr" path="res://Assets/cards/weapon/weaponrCardIce.png" id="10_ly0sw"]
-[ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="10_s20yt"]
-[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="11_qh4af"]
-
-[sub_resource type="Resource" id="Resource_s20yt"]
-script = ExtResource("2_fcv3a")
-attack = 10
-escena = ExtResource("9_r64fq")
-sprite = ExtResource("10_ly0sw")
-metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"
+[ext_resource type="Resource" uid="uid://dx8c8xqupgh1y" path="res://Resources/Armas/LVL1/arma1Agua.tres" id="3_3a6q4"]
+[ext_resource type="Resource" uid="uid://c0itiolm4uay8" path="res://Resources/Armas/LVL3/arma3Tierra.tres" id="3_g2gk4"]
+[ext_resource type="Resource" uid="uid://ndafkdi2q2tm" path="res://Resources/Armas/LVL1/arma1Fuego.tres" id="4_euuyd"]
+[ext_resource type="Resource" uid="uid://c2d322or4k66j" path="res://Resources/Armas/LVL2/arma2Naturaleza.tres" id="4_rtuda"]
+[ext_resource type="Resource" uid="uid://c5f2t1fbpnxcj" path="res://Resources/Armas/LVL1/arma1Hielo.tres" id="5_omfqt"]
+[ext_resource type="Resource" uid="uid://bmi6dpu6wax8w" path="res://Resources/Armas/LVL1/arma1Tierra.tres" id="6_y0cc2"]
+[ext_resource type="Resource" uid="uid://dqgr486vr1qsg" path="res://Resources/Armas/LVL1/arma1Tecnologia.tres" id="7_pslww"]
+[ext_resource type="Resource" uid="uid://i5torde1bqt4" path="res://Resources/Armas/LVL2/arma2Fuego.tres" id="8_c8kr3"]
+[ext_resource type="Resource" uid="uid://rxgvbpsuxpor" path="res://Resources/Armas/LVL2/arma2Veneno.tres" id="9_315di"]
+[ext_resource type="Resource" uid="uid://07ii5a4hgt6j" path="res://Resources/Armas/LVL2/arma2Viento.tres" id="10_qosuk"]
+[ext_resource type="Resource" uid="uid://idc8dch6s708" path="res://Resources/Armas/LVL2/arma2Oscuridad.tres" id="11_xaox2"]
+[ext_resource type="Resource" uid="uid://bddaitdkg75el" path="res://Resources/Armas/LVL2/arma2Tecnologia.tres" id="13_7qmyx"]
+[ext_resource type="Resource" uid="uid://bxoa2akyvc680" path="res://Resources/Armas/LVL3/arma3Agua.tres" id="14_gm2ej"]
+[ext_resource type="Resource" uid="uid://4mr64lqfnp0m" path="res://Resources/Armas/LVL3/arma3Hielo.tres" id="15_s7uep"]
+[ext_resource type="Resource" uid="uid://p5ltjeu3ugt2" path="res://Resources/Armas/LVL3/arma3Viento.tres" id="17_662ey"]
+[ext_resource type="Resource" uid="uid://bmj2piudohbtc" path="res://Resources/Armas/LVL3/arma3Naturtaleza.tres" id="18_msxjg"]
+[ext_resource type="Resource" uid="uid://bidt66yyok8cw" path="res://Resources/Armas/LVL3/arma3Electricidad.tres" id="19_picx3"]
+[ext_resource type="Resource" uid="uid://no20i1ggtmt5" path="res://Resources/Armas/Lvl4/arma4Agua.tres" id="20_att6o"]
+[ext_resource type="Resource" uid="uid://dpgums16lds27" path="res://Resources/Armas/Lvl4/arma4Tierra.tres" id="21_7ep3s"]
+[ext_resource type="Resource" uid="uid://chilh5qtllrxl" path="res://Resources/Armas/Lvl4/arma4Oscuridad.tres" id="22_5d7wu"]
+[ext_resource type="Resource" uid="uid://c2f2c4huwwk0v" path="res://Resources/Armas/Lvl4/arma4Naturaleza.tres" id="23_go8m1"]
+[ext_resource type="Resource" uid="uid://d076lye0kfv1s" path="res://Resources/Armas/Lvl4/arma4Tecnologia.tres" id="24_no4ba"]
+[ext_resource type="Resource" uid="uid://2wpav078wltb" path="res://Resources/Armas/Lvl4/arma4Electricidad.tres" id="25_mtl7r"]
+[ext_resource type="Resource" uid="uid://20g0hxxqt2rn" path="res://Resources/Armas/LVL5/arma5Fuego.tres" id="26_qa0pk"]
+[ext_resource type="Resource" uid="uid://7c8i2632wiru" path="res://Resources/Armas/LVL5/arma5Hielo.tres" id="27_ckh4l"]
+[ext_resource type="Resource" uid="uid://cvqq3kqklxsmq" path="res://Resources/Armas/LVL5/arma5Veneno.tres" id="28_syqdk"]
+[ext_resource type="Resource" uid="uid://bn651haytqwdl" path="res://Resources/Armas/LVL5/arma5Viento.tres" id="29_nkgrc"]
+[ext_resource type="Resource" uid="uid://cvj802vm4n42v" path="res://Resources/Armas/LVL5/arma5Oscuridad.tres" id="30_furra"]
+[ext_resource type="Resource" uid="uid://crv1g22vluclb" path="res://Resources/Armas/LVL5/arma5Electricidad.tres" id="31_tnk20"]
 
 [node name="WeaponDeck" type="Node"]
 script = ExtResource("1_yl64i")
-weapons_data_cards = Array[ExtResource("2_fcv3a")]([ExtResource("3_g2gk4"), ExtResource("4_rtuda"), ExtResource("5_nud52"), ExtResource("6_dbjkk"), ExtResource("7_e76mx"), ExtResource("8_0f01i")])
-tutorialWeapon = SubResource("Resource_s20yt")
+weapons_data_cards = Array[ExtResource("2_fcv3a")]([ExtResource("3_3a6q4"), ExtResource("4_euuyd"), ExtResource("5_omfqt"), ExtResource("6_y0cc2"), ExtResource("7_pslww"), ExtResource("8_c8kr3"), ExtResource("9_315di"), ExtResource("10_qosuk"), ExtResource("11_xaox2"), ExtResource("4_rtuda"), ExtResource("13_7qmyx"), ExtResource("14_gm2ej"), ExtResource("15_s7uep"), ExtResource("3_g2gk4"), ExtResource("17_662ey"), ExtResource("18_msxjg"), ExtResource("19_picx3"), ExtResource("20_att6o"), ExtResource("21_7ep3s"), ExtResource("22_5d7wu"), ExtResource("23_go8m1"), ExtResource("24_no4ba"), ExtResource("25_mtl7r"), ExtResource("26_qa0pk"), ExtResource("27_ckh4l"), ExtResource("28_syqdk"), ExtResource("29_nkgrc"), ExtResource("30_furra"), ExtResource("31_tnk20")])
+tutorialWeapon = ExtResource("3_3a6q4")

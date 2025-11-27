@@ -18,8 +18,8 @@ enum ElementType {
 @export var traits: Array[TraitBase] = []
 @export var nivel:int = 1
 @export var element_type: ElementType = ElementType.DARK
-@export var element:Texture2D = preload("uid://cfghlodo6mm6e")
-@export var backsprite:Texture2D =preload("uid://dgmb8r1w73p1r")
+@export var element:Texture2D = preload("uid://b2mfwj1vb7nuk")
+@export var backsprite:Texture2D =preload("uid://c5dbe2itbl2gn")
 @export var drawSword:AudioStream = preload("uid://saalgqj02ulo")
 @export var swordHit:AudioStream = preload("uid://box1cwy2ha3ex")
 

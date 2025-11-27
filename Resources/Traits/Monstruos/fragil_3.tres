@@ -6,5 +6,5 @@
 script = ExtResource("1_e6lb6")
 fragilidad = 3
 trait_name = "Fragil"
-trait_description = "A cada impacto realizado se le agregan 3 "
+trait_description = "A cada impacto realizado se le agregan 3"
 metadata/_custom_type_script = "uid://cy584ew032i43"

@@ -6,8 +6,8 @@ class_name Hand
 @export var GRID_ROWS: int = 6
 const CELL_WIDTH = 104
 const CELL_HEIGHT = 144
-const CELL_MARGIN_X = 10
-const CELL_MARGIN_Y = 0 
+const CELL_MARGIN_X = 0
+const CELL_MARGIN_Y = -7 
 
 # ESTADO
 var grid: Array = []

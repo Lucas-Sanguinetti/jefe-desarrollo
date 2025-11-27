@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="SpellCardData" load_steps=5 format=3 uid="uid://dwr0vwdapddxr"]
+[gd_resource type="Resource" script_class="SpellCardData" load_steps=6 format=3 uid="uid://dwr0vwdapddxr"]
 
-[ext_resource type="Texture2D" uid="uid://e0yx28713rag" path="res://Assets/cards/spell/spells/Image1.png" id="1_n8mpt"]
+[ext_resource type="Texture2D" uid="uid://cnnvkko1g8omt" path="res://Assets/cards/spell/spells/pocion.png" id="1_vs0di"]
+[ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="2_06rhk"]
 [ext_resource type="PackedScene" uid="uid://bncxpxagsydh3" path="res://Entidades/Hechizos/Hechizo.tscn" id="2_a1oqf"]
 [ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="2_suppr"]
 [ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="4_vs0di"]
@@ -8,6 +9,7 @@
 [resource]
 script = ExtResource("2_suppr")
 descripcion = "Cura 10 puntos de vida"
+backsprite = ExtResource("1_vs0di")
 effect_category = 1
 effect_value = 10
 one_time_use = true

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="4_n6u6b"]
 [ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://singleton/monster_deck.tscn" id="5_ba64b"]
 [ext_resource type="PackedScene" uid="uid://bmlfbb0u38130" path="res://Entidades/tutorial/monster_spawner_tutorial.tscn" id="6_rbkq8"]
-[ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/monstruo1.tres" id="7_ba64b"]
+[ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/LVL1/monstruo1Naturaleza.tres" id="7_ba64b"]
 [ext_resource type="PackedScene" uid="uid://dfmm3iy8hd5vr" path="res://Entidades/Armas/player_weapon_spawner.tscn" id="8_eh68h"]
 [ext_resource type="PackedScene" uid="uid://b1v3dtr6skm1n" path="res://Entidades/tutorial/weapon_spawner_tutorial.tscn" id="9_lyuau"]
 [ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="9_vv73i"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_lglcu"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="11_n6u6b"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0rbba"]
-[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/Lvl1/arma1.tres" id="12_ba64b"]
+[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/LVL1/arma1.tres" id="12_ba64b"]
 [ext_resource type="AudioStream" uid="uid://df1guwtyjobyt" path="res://Audio/SFX/blacksmith-hammer.mp3" id="14_rbkq8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n6u6b"]

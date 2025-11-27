@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=8 format=3 uid="uid://1chp51lvkq0q"]
+
+[ext_resource type="Texture2D" uid="uid://k0xf070dbfdt" path="res://Assets/cards/monster/monstruos/naturaleza/mons1.png" id="1_nmk81"]
+[ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="2_gicdj"]
+[ext_resource type="Texture2D" uid="uid://dkqt5i1yo2qop" path="res://Assets/element/nature.png" id="3_22ugw"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="4_08bnj"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="5_n5ex0"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_cbore"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="7_ofb2n"]
+
+[resource]
+script = ExtResource("5_n5ex0")
+hp = 2
+element_type = 5
+element = ExtResource("3_22ugw")
+backsprite = ExtResource("1_nmk81")
+escena = ExtResource("4_08bnj")
+sprite = ExtResource("6_cbore")
+name = "Mons2"
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

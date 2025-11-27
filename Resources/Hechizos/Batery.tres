@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpellCardData" load_steps=6 format=3 uid="uid://df11r4yorlkrf"]
 
-[ext_resource type="Texture2D" uid="uid://ciai3k3cb4vh1" path="res://Assets/element/electric.png" id="1_b83lv"]
+[ext_resource type="Texture2D" uid="uid://brcem4n0txhpx" path="res://Assets/cards/spell/spells/bateria.png" id="1_b83lv"]
 [ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="2_ej0lv"]
 [ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="3_b83lv"]
 [ext_resource type="PackedScene" uid="uid://bncxpxagsydh3" path="res://Entidades/Hechizos/Hechizo.tscn" id="3_lskid"]

@@ -19,7 +19,7 @@ enum EffectCategory {
 }
 
 @export var descripcion: String = ""
-@export var backsprite: Texture2D = preload("uid://e0yx28713rag")
+@export var backsprite: Texture2D = preload("uid://54m7t5misdgh")
 @export var death:AudioStream = preload("uid://d17faolx3o0y1")
 
 @export_group("Targeting")

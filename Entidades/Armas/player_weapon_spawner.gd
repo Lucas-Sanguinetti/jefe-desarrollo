@@ -60,5 +60,5 @@ func active_endurance(value: int):
 		#return player_grid.equip_weapon(weapon)
 	#return false
 #
-#func cantidad_armas():
-	#return player_grid.get_all_weapons().size()
+func cantidad_armas():
+	return player_grid.get_all_weapons().size()

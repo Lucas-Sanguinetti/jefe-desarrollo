@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=11 format=3 uid="uid://dqgr486vr1qsg"]
+
+[ext_resource type="Resource" uid="uid://brnnw20b76rqq" path="res://Resources/Habilidades/DrawSpell.tres" id="1_oci6w"]
+[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="2_o21yf"]
+[ext_resource type="Texture2D" uid="uid://bu6bbtta3t33t" path="res://Assets/cards/weapon/armas/tecnologia/arma1.png" id="2_p1x2k"]
+[ext_resource type="Texture2D" uid="uid://bd7brlkgtryv8" path="res://Assets/element/tech.png" id="4_5ymd6"]
+[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="4_p7jew"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="5_re515"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="6_l4knb"]
+[ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="7_86ufa"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="8_ipc63"]
+[ext_resource type="Resource" uid="uid://bteyahi75iyib" path="res://Resources/Traits/Armas/rapida.tres" id="9_dj2yy"]
+
+[resource]
+script = ExtResource("5_re515")
+attack = 12
+traits = Array[ExtResource("8_ipc63")]([ExtResource("9_dj2yy")])
+element_type = 7
+element = ExtResource("4_5ymd6")
+backsprite = ExtResource("2_p1x2k")
+ability = ExtResource("1_oci6w")
+escena = ExtResource("4_p7jew")
+sprite = ExtResource("6_l4knb")
+metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"
