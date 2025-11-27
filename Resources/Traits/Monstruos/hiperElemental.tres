@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HiperElemental" load_steps=2 format=3 uid="uid://b7p3p73p0p5bc"]
+
+[ext_resource type="Script" uid="uid://dur3k18crbex6" path="res://Traits/hiperElemental.gd" id="1_onjto"]
+
+[resource]
+script = ExtResource("1_onjto")
+trait_name = "Hiper Elemental"
+trait_description = "Reduce a 0 el impacto de un arma del mismo elemento"
+metadata/_custom_type_script = "uid://cy584ew032i43"

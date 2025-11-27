@@ -1,9 +1,23 @@
 extends CardData
 class_name WeaponCardData
 
+enum ElementType {
+	DARK,
+	EARTH,
+	ELECTRIC,
+	FIRE,
+	ICE,
+	NATURE,
+	POISON,
+	TECH,
+	WATER,
+	WIND
+}
+
 @export var attack: int
 @export var traits: Array[TraitBase] = []
 @export var nivel:int = 1
+@export var element_type: ElementType = ElementType.DARK
 @export var element:Texture2D = preload("uid://cfghlodo6mm6e")
 @export var backsprite:Texture2D =preload("uid://dgmb8r1w73p1r")
 @export var drawSword:AudioStream = preload("uid://saalgqj02ulo")

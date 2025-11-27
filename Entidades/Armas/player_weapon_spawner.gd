@@ -53,7 +53,7 @@ func active_berserk():
 
 func active_endurance(value: int):
 	enduranceState = true
-	resistencia = value
+	resistencia = max(value,resistencia)
 
 #func equip_weapon(weapon: Carta) -> bool:
 	#if player_grid:

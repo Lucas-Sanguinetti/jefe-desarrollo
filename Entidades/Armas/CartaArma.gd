@@ -12,11 +12,10 @@ var element_sprite: TextureRect
 var backsprite_sprite: TextureRect
 
 #Variables de la Escena
-var backsprite: Texture2D
 var ataque:int 
 var nivel:int 
 var rasgos:Array
-var element:Texture2D
+var element: WeaponCardData.ElementType
 
 # Doble click (solo armas en WeaponGrid)
 var click_timer: float = 0.0
@@ -57,28 +56,28 @@ func _setup_specific_ui() -> void:
 		push_error("CartaArma requiere WeaponCardData")
 		return
 	ataque = weapon_data.attack
-	element = weapon_data.element
-	backsprite = weapon_data.backsprite
+	element = weapon_data.element_type
 	if traits_label:
 		traits_label.text = _get_traits_text(weapon_data)
 	nivel = weapon_data.nivel
 	rasgos = weapon_data.traits
 	sword_hit_sound = weapon_data.swordHit
 	draw_sword_sound = weapon_data.drawSword
+	
+	if niveles_sprite:
+		niveles_sprite.set_nivel(nivel)
+	if element_sprite:
+		element_sprite.texture = weapon_data.element
+	if backsprite_sprite:
+		backsprite_sprite.texture = weapon_data.backsprite
+		backsprite_sprite.scale = Vector2(0.5, 0.5)
 	_apply_data_to_ui()
 
 
 func _apply_data_to_ui() -> void:
 	if ataque_label:
 		ataque_label.text = str(ataque)
-	if niveles_sprite:
-		niveles_sprite.set_nivel(nivel)
-	if element_sprite:
-		element_sprite.texture = element
-	if backsprite_sprite:
-		backsprite_sprite.texture = backsprite
-		backsprite_sprite.scale = Vector2(0.5, 0.5)
-	
+
 # SISTEMA DE CARGAS
 func _update_charge_indicator():
 	if can_attack:
