@@ -133,11 +133,6 @@ func _on_card_double_clicked(card: CartaHechizo):
 	# Validar si puede lanzarse
 	if not card.can_be_cast():
 		return
-	push_warning("Acordate de aplicar TurnManager y descomentar lo de abajo")
-	# Validar restricciones globales
-	#if not TurnManager.can_use_spells():
-		#push_warning("Hand: Hechizos bloqueados por trait")
-		#return
 	
 	print("Hand: Doble click en '%s' (tipo: %s)" % [spell_data.name, spell_data.get_target_type_string()])
 	

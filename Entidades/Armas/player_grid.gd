@@ -133,6 +133,7 @@ func reset_all_weapons():
 	
 	for weapon in weapons:
 		if weapon.has_method("reset_attack_ability"):
+			weapon.reset_attack_stats()
 			weapon.reset_attack_ability()
 	print("PlayerWeaponGrid: Reset completado")#Debug
 

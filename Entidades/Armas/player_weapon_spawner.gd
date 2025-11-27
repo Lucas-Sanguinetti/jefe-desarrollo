@@ -10,7 +10,7 @@ func _ready():
 	player_grid.weapon_removed.connect(_on_weapon_removed)
 	player_grid.grid_full.connect(_on_grid_full)
 	player_grid.grid_has_space.connect(_on_grid_has_space)
-	
+	add_to_group("PlayerWeapons")
 	initial_load()
 
 func initial_load():

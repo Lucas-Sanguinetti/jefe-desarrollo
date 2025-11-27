@@ -1,15 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcdxqcei3yuhm"]
+[gd_scene load_steps=7 format=3 uid="uid://bcdxqcei3yuhm"]
 
 [ext_resource type="Script" uid="uid://b1s8ny2xnw232" path="res://Entidades/Hechizos/spell_deck.gd" id="1_0upkq"]
 [ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="2_5r840"]
-[ext_resource type="Resource" uid="uid://c2bkuv7nntasy" path="res://Resources/Hechizos/BasicHeal.tres" id="3_liyh4"]
-[ext_resource type="Resource" uid="uid://b8j5837ya1ta2" path="res://Resources/Hechizos/pruebaConsumir.tres" id="4_hvktm"]
-[ext_resource type="Resource" uid="uid://dwr0vwdapddxr" path="res://Resources/Hechizos/GreatHeal.tres" id="4_jux5c"]
-[ext_resource type="Resource" uid="uid://dd8e5nkt0uy0" path="res://Resources/Hechizos/pruebaDamage.tres" id="5_0a4fi"]
-[ext_resource type="Resource" uid="uid://dytj5ng5k6sq2" path="res://Resources/Hechizos/pruebaSumon.tres" id="6_kuanq"]
-[ext_resource type="Resource" uid="uid://0b0gwbvdp7wv" path="res://Resources/Hechizos/pruebaBuff.tres" id="8_4bx6b"]
+[ext_resource type="Resource" uid="uid://bel45xqiao1k8" path="res://Resources/Hechizos/Afilar3.tres" id="3_8hwgk"]
+[ext_resource type="Resource" uid="uid://df11r4yorlkrf" path="res://Resources/Hechizos/Batery.tres" id="4_c0du7"]
+[ext_resource type="Resource" uid="uid://c31wuxj801fkc" path="res://Resources/Hechizos/Cambiazo.tres" id="5_hvktm"]
+[ext_resource type="Resource" uid="uid://feya8fnypm4v" path="res://Resources/Hechizos/LuckyRing.tres" id="6_0a4fi"]
 
 [node name="SpellDeck" type="Node"]
 script = ExtResource("1_0upkq")
-spell_Deck = Array[ExtResource("2_5r840")]([ExtResource("3_liyh4"), ExtResource("4_hvktm"), ExtResource("5_0a4fi"), ExtResource("6_kuanq")])
-starting_spells = Array[ExtResource("2_5r840")]([ExtResource("4_jux5c"), ExtResource("8_4bx6b")])
+spell_Deck = Array[ExtResource("2_5r840")]([ExtResource("3_8hwgk"), ExtResource("4_c0du7"), ExtResource("5_hvktm")])
+starting_spells = Array[ExtResource("2_5r840")]([ExtResource("6_0a4fi")])

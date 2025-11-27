@@ -3,6 +3,7 @@ class_name Cazarrecompensas
 
 @export var multiplicador:int = 2
 
+@warning_ignore("unused_parameter")
 func do_damage(attacker: Carta, defender: Carta, damage: int) -> int:
 	var actual_damage = damage
 	for rasgo in defender.data.traits:

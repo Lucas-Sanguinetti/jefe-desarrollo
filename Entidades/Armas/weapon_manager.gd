@@ -17,6 +17,7 @@ signal armaTransferida
 
 func _ready():
 	call_deferred("initialize_grids")
+	add_to_group("WeaponManager")
 
 func initialize_grids():
 	# Buscar WeaponGrid

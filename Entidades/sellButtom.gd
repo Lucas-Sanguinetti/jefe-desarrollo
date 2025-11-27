@@ -1,8 +1,5 @@
 extends Button
 
-
-
-
 func pressSell(carta:CartaArma):
 	if(carta.nivel <= 3):
 		MoneyManager.ganarMonedas(1)

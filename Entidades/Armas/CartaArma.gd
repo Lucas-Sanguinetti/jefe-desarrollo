@@ -211,15 +211,15 @@ func attack(target: CartaMonstruo) -> bool:
 	return true
 
 func reset_attack_ability() -> void:
-	var weapon_data = data as WeaponCardData
-	ataque = weapon_data.attack
 	recharge()
 
+func reset_attack_stats() -> void:
+	var weapon_data = data as WeaponCardData
+	ataque = weapon_data.attack
+	_apply_data_to_ui()
 
 func block_attack_ability() -> void:
 	discharge()
-
-
 
 # MANEJOS DE INPUT
 func _on_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

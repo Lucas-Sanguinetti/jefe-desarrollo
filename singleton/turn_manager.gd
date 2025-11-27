@@ -3,6 +3,7 @@ extends Node
 # SEÑALES
 signal turn_started(turn_number: int)
 signal turn_ended(turn_number: int)
+signal game_end_for_turns()
 
 # Restricciones activadas/desactivadas
 signal restriction_changed(restriction_name: String, active: bool)
@@ -15,19 +16,14 @@ var can_buy_weapons: bool = true    # Fundidor: bloquea compras
 var can_heal: bool = true           # Antivida: bloquea curación
 var forced_target: CartaMonstruo = null  # Protector: solo él puede ser atacado
 
-# ============================================
-# INICIALIZACIÓN
-# ============================================
-func _ready():
-	print("TurnManager: Sistema inicializado")
-
-# ============================================
 # GESTIÓN DE TURNOS
-# ============================================
 func start_new_turn():
 	current_turn += 1
 	emit_signal("turn_started", current_turn)
 	print("TurnManager: ===== TURNO %d INICIADO =====" % current_turn)
+	if current_turn == 21:
+		emit_signal("game_end_for_turns")
+		
 
 func end_turn():
 	emit_signal("turn_ended", current_turn)
@@ -36,9 +32,8 @@ func end_turn():
 func get_current_turn() -> int:
 	return current_turn
 
-# ============================================
 # RESTRICCIONES
-# ============================================
+# ========================================
 # 1. FUNDIDOR: ¿Se pueden comprar armas?
 func can_buy_weapon() -> bool:
 	if not can_buy_weapons:
@@ -59,10 +54,11 @@ func can_attack_monster(target: CartaMonstruo) -> bool:
 		return false
 	return true
 
-# ============================================
+
 # ACTIVAR/DESACTIVAR RESTRICCIONES
-# Los traits llaman estas funciones
-# ============================================
+# Los traits deberian llamar a estas funciones
+# =================================================
+
 # FUNDIDOR activa esto cuando entra a la mesa
 func block_weapon_purchases(blocked: bool):
 	can_buy_weapons = not blocked
