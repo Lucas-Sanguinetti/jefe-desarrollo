@@ -46,7 +46,7 @@ func _ready() -> void:
 
 func _on_turn_started(turn_number: int):
 	print("Game: ===== TURNO %d =====" % turn_number)
-	turn_label.text = "TURNO: " + str(turn_number)
+	turn_label.text = "TURNO: " + str(turn_number) + "/20"
 	_spawn_cards()
 	reset_player_weapons()
 	reset_monster_traits()

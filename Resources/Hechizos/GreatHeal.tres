@@ -8,10 +8,10 @@
 
 [resource]
 script = ExtResource("2_suppr")
-descripcion = "Cura 10 puntos de vida"
+descripcion = "Curate 20 puntos de vida"
 backsprite = ExtResource("1_vs0di")
 effect_category = 1
-effect_value = 10
+effect_value = 20
 one_time_use = true
 escena = ExtResource("2_a1oqf")
 sprite = ExtResource("4_vs0di")

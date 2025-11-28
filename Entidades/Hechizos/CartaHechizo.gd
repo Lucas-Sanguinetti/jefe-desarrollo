@@ -160,28 +160,26 @@ func actLabel(label: Label) -> void:
 	if not spell_data:
 		return
 		
-	var text = "Hechizo: %s\n" % [spell_data.name]
-	text += "Categoría: %s\n" % [spell_data.get_category_string()] #Preguntar a lucas
-	text += "Objetivo: %s\n" % [spell_data.get_target_type_string()]
-	text += "\n"
+	var text = ""
+	if spell_data.get_target_type_string() != "Auto":
+		text += "Objetivo: %s\n" % [spell_data.get_target_type_string()]
+		text += "\n"
 	text += "%s\n" % [spell_data.descripcion]
-	# Info de valores
-	if spell_data.effect_value != 0:
-		text += "Valor: %d\n" % [spell_data.effect_value]
+
+
 	if spell_data.secondary_value != 0:
 		text += "Valor 2: %d\n" % [spell_data.secondary_value]
 	if spell_data.tertiary_value != 0:
 		text += "Valor 3: %d\n" % [spell_data.tertiary_value]
-	# Info de restricciones
-	if spell_data.one_time_use:
-		text += "\n[USO ÚNICO - No vuelve al mazo]"
-	if spell_data.cost_money > 0:
-		text += "\nCoste: %d monedas" % [spell_data.cost_money]
-	# Info de efecto personalizado
-	if spell_data.effect_id != "":
-		text += "\n[Efecto: %s]" % [spell_data.effect_id]
 	
 	label.text = text
 
 func death_sound_play():
 	death.playSound(death_sound)
+	
+func normalize_text(text: String) -> String:
+	var regex := RegEx.new()
+	regex.compile("\\s+")
+	var collapsed = regex.sub(text, " ", true)
+	return collapsed.strip_edges()
+	

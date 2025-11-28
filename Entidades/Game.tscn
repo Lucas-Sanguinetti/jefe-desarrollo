@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=32 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -20,10 +20,17 @@
 [ext_resource type="Script" uid="uid://btt6r2o0q7am0" path="res://Entidades/sellButtom.gd" id="14_ohvqk"]
 [ext_resource type="PackedScene" uid="uid://bcdxqcei3yuhm" path="res://Entidades/Hechizos/spell_deck.tscn" id="17_rwqrq"]
 [ext_resource type="PackedScene" uid="uid://da50i6nw27x40" path="res://Entidades/Hechizos/player_spells.tscn" id="18_hf2jd"]
+[ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="19_u4kpe"]
 [ext_resource type="Script" uid="uid://bxljb7ons4bf2" path="res://Entidades/Hechizos/SpellEffects.gd" id="20_hf2jd"]
+[ext_resource type="Resource" uid="uid://df11r4yorlkrf" path="res://Resources/Hechizos/Batery.tres" id="20_xr7dm"]
 [ext_resource type="Script" uid="uid://bhqx1i7kvx2oe" path="res://Entidades/Armas/Habilidades/AbilitySystem.gd" id="21_2jhs2"]
+[ext_resource type="Resource" uid="uid://c31wuxj801fkc" path="res://Resources/Hechizos/Cambiazo.tres" id="21_423gc"]
+[ext_resource type="Resource" uid="uid://bel45xqiao1k8" path="res://Resources/Hechizos/Afilar3.tres" id="22_ye2mg"]
+[ext_resource type="Resource" uid="uid://c2bkuv7nntasy" path="res://Resources/Hechizos/BasicHeal.tres" id="23_1dqht"]
+[ext_resource type="Resource" uid="uid://dwr0vwdapddxr" path="res://Resources/Hechizos/GreatHeal.tres" id="24_tr8el"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_hf2jd"]
+[sub_resource type="LabelSettings" id="LabelSettings_2jhs2"]
+font_size = 12
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jhs2"]
@@ -93,13 +100,14 @@ anchor_left = 0.011000001
 anchor_top = 0.65500003
 anchor_right = 0.123
 anchor_bottom = 0.77300006
-offset_left = 1197.62
-offset_top = 154.76996
-offset_right = 1190.652
-offset_bottom = 101.573975
+offset_left = 1200.62
+offset_top = 156.76996
+offset_right = 1193.652
+offset_bottom = 103.573975
 theme_override_fonts/font = ExtResource("10_ohvqk")
-text = "TURNO: 1"
-label_settings = SubResource("LabelSettings_hf2jd")
+theme_override_font_sizes/font_size = 12
+text = "TURNO: 1/20"
+label_settings = SubResource("LabelSettings_2jhs2")
 
 [node name="Vender" type="Button" parent="CanvasLayer"]
 texture_filter = 1
@@ -132,6 +140,7 @@ position = Vector2(1192, 228)
 position = Vector2(1357, 802)
 
 [node name="SpellDeck" parent="." instance=ExtResource("17_rwqrq")]
+spell_Deck = Array[ExtResource("19_u4kpe")]([ExtResource("20_xr7dm"), ExtResource("20_xr7dm"), ExtResource("20_xr7dm"), ExtResource("21_423gc"), ExtResource("21_423gc"), ExtResource("21_423gc"), ExtResource("22_ye2mg"), ExtResource("22_ye2mg"), ExtResource("22_ye2mg"), ExtResource("23_1dqht"), ExtResource("23_1dqht"), ExtResource("23_1dqht"), ExtResource("24_tr8el")])
 
 [node name="PlayerSpells" parent="." instance=ExtResource("18_hf2jd")]
 position = Vector2(205, 86)

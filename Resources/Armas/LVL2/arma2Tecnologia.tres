@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponCardData" load_steps=11 format=3 uid="uid://bddaitdkg75el"]
 
-[ext_resource type="Resource" uid="uid://d4nb3j30vabrx" path="res://Resources/Habilidades/Batery.tres" id="1_fqtvq"]
+[ext_resource type="Resource" uid="uid://c5acklindsd5h" path="res://Resources/Habilidades/Endurecer5.tres" id="1_fqtvq"]
 [ext_resource type="Texture2D" uid="uid://cmcjhxpnkmrlm" path="res://Assets/cards/weapon/armas/tecnologia/arma2.png" id="2_2rwl3"]
 [ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="3_aeegv"]
 [ext_resource type="Texture2D" uid="uid://bd7brlkgtryv8" path="res://Assets/element/tech.png" id="4_ux5rx"]
@@ -13,7 +13,7 @@
 
 [resource]
 script = ExtResource("6_bpctl")
-attack = 5
+attack = 8
 traits = Array[ExtResource("9_gje6w")]([ExtResource("10_av6dh")])
 nivel = 2
 element_type = 7

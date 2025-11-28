@@ -8,6 +8,7 @@
 
 [resource]
 script = ExtResource("3_qdmk6")
+descripcion = "Vende un arma cargada por       todo su valor"
 backsprite = ExtResource("1_qdmk6")
 target_type = 1
 effect_category = 5

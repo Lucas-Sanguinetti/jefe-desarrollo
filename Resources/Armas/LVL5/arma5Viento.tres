@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponCardData" load_steps=12 format=3 uid="uid://bn651haytqwdl"]
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=11 format=3 uid="uid://bn651haytqwdl"]
 
 [ext_resource type="Resource" uid="uid://c5acklindsd5h" path="res://Resources/Habilidades/Endurecer5.tres" id="1_wyqcx"]
 [ext_resource type="Texture2D" uid="uid://d175c226u18px" path="res://Assets/cards/weapon/armas/viento/arma3.png" id="2_wyqcx"]
@@ -10,12 +10,11 @@
 [ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_nkpcm"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_4vxek"]
 [ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="10_72jgp"]
-[ext_resource type="Resource" uid="uid://dkyfyntyj8v24" path="res://Resources/Traits/Armas/lifeSteel.tres" id="11_gqr8q"]
 
 [resource]
 script = ExtResource("6_iw87q")
-attack = 3
-traits = Array[ExtResource("9_4vxek")]([ExtResource("10_72jgp"), ExtResource("11_gqr8q")])
+attack = 40
+traits = Array[ExtResource("9_4vxek")]([ExtResource("10_72jgp")])
 nivel = 5
 element_type = 9
 element = ExtResource("4_c03jo")

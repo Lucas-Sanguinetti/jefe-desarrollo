@@ -8,11 +8,11 @@
 
 [resource]
 script = ExtResource("3_o0lp6")
-descripcion = "Afila un arma seleccionada por 3 monedas"
+descripcion = "elige y afila un   arma en 10 por 3 monedas"
 backsprite = ExtResource("1_o0lp6")
 target_type = 1
 effect_category = 2
-effect_value = 3
+effect_value = 10
 cost_money = 3
 escena = ExtResource("3_aaa4r")
 sprite = ExtResource("5_bdw4a")

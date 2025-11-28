@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_morrt")
 trait_name = "Cazarrecompensas"
-trait_description = "Si da el golpe final a un monstruo: gana 1 moneda"
+trait_description = "Si da el golpe final: gana 1      moneda extra"
 metadata/_custom_type_script = "uid://c71dpn126r76t"

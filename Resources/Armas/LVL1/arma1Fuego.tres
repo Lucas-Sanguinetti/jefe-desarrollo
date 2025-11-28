@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponCardData" load_steps=11 format=3 uid="uid://ndafkdi2q2tm"]
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=10 format=3 uid="uid://ndafkdi2q2tm"]
 
 [ext_resource type="Resource" uid="uid://brnnw20b76rqq" path="res://Resources/Habilidades/DrawSpell.tres" id="1_awb5j"]
 [ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="2_fvods"]
@@ -9,12 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="6_25yrw"]
 [ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="7_637ay"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="8_ul2jy"]
-[ext_resource type="Resource" uid="uid://bteyahi75iyib" path="res://Resources/Traits/Armas/rapida.tres" id="9_2gahq"]
 
 [resource]
 script = ExtResource("5_0v7xe")
-attack = 12
-traits = Array[ExtResource("8_ul2jy")]([ExtResource("9_2gahq")])
+attack = 5
 element_type = 3
 element = ExtResource("3_4i3eb")
 backsprite = ExtResource("2_sh0x8")

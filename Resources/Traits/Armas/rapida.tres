@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_ni02r")
 trait_name = "Rapida"
-trait_description = "Duplica el ataque si es la primer arma que se usa en el turno"
+trait_description = "Duplica el ataque si es la 1er   arma que se usa en el turno"
 metadata/_custom_type_script = "uid://8rjtitj2kdu1"

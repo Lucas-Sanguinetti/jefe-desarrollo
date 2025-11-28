@@ -8,12 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="6_1luqd"]
 [ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="7_mi317"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="8_41e7b"]
-[ext_resource type="Resource" uid="uid://dkyfyntyj8v24" path="res://Resources/Traits/Armas/lifeSteel.tres" id="9_q3kyq"]
+[ext_resource type="Resource" uid="uid://dldvr75rf710i" path="res://Resources/Traits/Armas/ElementalCritic.tres" id="9_y7ffi"]
 
 [resource]
 script = ExtResource("5_vvqxd")
-attack = 10
-traits = Array[ExtResource("8_41e7b")]([ExtResource("9_q3kyq")])
+attack = 15
+traits = Array[ExtResource("8_41e7b")]([ExtResource("9_y7ffi")])
 nivel = 3
 element_type = 5
 element = ExtResource("3_pnk7d")

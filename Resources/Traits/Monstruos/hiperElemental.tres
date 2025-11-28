@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_onjto")
-trait_name = "Hiper Elemental"
-trait_description = "Reduce a 0 el impacto de un arma del mismo elemento"
+trait_name = "Hiper Elem."
+trait_description = "Reduce a 0 el impacto de un   arma del mismo elemento"
 metadata/_custom_type_script = "uid://cy584ew032i43"

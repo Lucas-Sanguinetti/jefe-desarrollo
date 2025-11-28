@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_gu3qk")
 trait_name = "Aprovechar"
-trait_description = "Duplica el ataque si golpea a un objetivo dañado "
+trait_description = "Duplica el ataque si golpea a   un objetivo herido "
 metadata/_custom_type_script = "uid://bsjrhifcm3k1q"

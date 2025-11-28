@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_vy3ag")
 trait_name = "Disparo"
-trait_description = "No recibes daño del monstruo atacado"
+trait_description = "Los monstruos no te atacan"
 metadata/_custom_type_script = "uid://dxdevo41f4jt6"

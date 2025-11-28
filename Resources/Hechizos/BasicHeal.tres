@@ -8,10 +8,10 @@
 
 [resource]
 script = ExtResource("3_fcy0u")
-descripcion = "Al usarlo te curas 3 puntos de vida"
+descripcion = "Curate 10 puntos de vida"
 backsprite = ExtResource("1_fcy0u")
 effect_category = 1
-effect_value = 3
+effect_value = 10
 escena = ExtResource("2_wp12y")
 sprite = ExtResource("4_fcy0u")
 name = "Pocion de Salud"
