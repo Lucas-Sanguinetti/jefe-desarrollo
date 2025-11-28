@@ -1,9 +1,9 @@
 extends Node
 
 #Botones y labels
-@onready var turn_button = $CanvasLayer/PasarTurno
-@onready var turn_label = $CanvasLayer/ContadorTurno
-@onready var sell_button: Button = $CanvasLayer/Vender
+@onready var turn_button: Button = $Botones/PasarTurno
+@onready var turn_label: Label = $Botones/ContadorTurno
+@onready var sell_button: Button = $Botones/Vender
 #Managers y spawners
 @onready var card_manager = $CardManager
 @onready var weapon_manager: WeaponManager = $WeaponManager
@@ -16,6 +16,8 @@ extends Node
 #Otros
 @onready var card_info: Node2D = $InfoDisplay
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var pause_menu: PauseMenu = $PauseMenu
+
 
 var cartaSeleccionada
 var current_turn = 1
@@ -39,6 +41,12 @@ func _ready() -> void:
 	LifeManager.vida_cambiada.connect(_on_vida_cambiada)
 	hand.card_played.connect(_on_spell_cast)
 	audio_stream_player.play()
+	
+	# Conectar señales PauseMenu
+	if pause_menu:
+		pause_menu.resume_pressed.connect(_on_pause_resume)
+		pause_menu.restart_pressed.connect(_on_pause_restart)
+		pause_menu.main_menu_pressed.connect(_on_pause_main_menu)
 	
 	# Robar mano inicial
 	var initial_cards = spell_deck.draw_initial_hand()
@@ -103,13 +111,21 @@ func _on_vida_cambiada(nueva_vida: int):
 	if nueva_vida <= 0:
 		game_over()
 		
-		
 #Game Over
 func game_over():
 	block_player_weapons()
 	$CanvasLayer2/GameOver.show()
 	await get_tree().create_timer(2.0).timeout
 	_reset_game()
+	get_tree().change_scene_to_file("res://Entidades/main.tscn")
+	
+#Victoria
+func victory():
+	block_player_weapons()
+	$CanvasLayer2/Victory.show()
+	await get_tree().create_timer(2.0).timeout
+	_reset_game()
+	get_tree().change_scene_to_file("res://Entidades/main.tscn")
 	
 #Resear Juego
 func _reset_game():
@@ -118,7 +134,8 @@ func _reset_game():
 	MonsterDeck.reset()
 	WeaponDeck.reset()
 	TurnManager.reset()
-	get_tree().change_scene_to_file("res://Entidades/main.tscn")
+	
+	
 	
 #Hechizos
 func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):
@@ -148,8 +165,14 @@ func _on_sell_button_pressed():
 		weapon_manager.venderArma(cartaSeleccionada)
 	sell_button.set_disabled(true)
 
-func victory():
-	block_player_weapons()
-	$CanvasLayer2/Victory.show()
-	await get_tree().create_timer(2.0).timeout
+# Funciones del Menu
+# ============================================
+func _on_pause_resume():
+	pass
+	
+func _on_pause_restart():
 	_reset_game()
+	get_tree().reload_current_scene()
+	
+func _on_pause_main_menu():
+	get_tree().change_scene_to_file("res://Entidades/main.tscn")

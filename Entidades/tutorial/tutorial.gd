@@ -20,22 +20,7 @@ func _ready() -> void:
 	card_manager.armaSeleccionada.connect(_on_arma_seleccionada)
 	card_manager.armaUsada.connect(_on_arma_usada)
 	weapon_manager.armaTransferida.connect(_on_arma_transferida)
-	#texto
-	$Label_tut1.visible = true
-	$Label_tut2.visible = false
-	$Label_tut3.visible = false
-	$Label_tut4.visible = false
-	
-	#sombras
-	$sombra1_tut1.visible = true
-	$sombra2_tut1.visible = true 
-	$sombra1_tut2.visible = false 
-	$sombra2_tut2.visible = false 
-	$sombra1_tut3.visible = false 
-	$sombra2_tut3.visible = false 
-	$sombra3_tut3.visible = false 
-	$sombra1_tut4.visible = false 
-	$sombra2_tut4.visible = false
+
 	
 
 func _on_turn_button_pressed():
@@ -67,27 +52,10 @@ func reset_monster_traits():
 			monster.reset_traits_for_new_turn()
 
 func _on_arma_seleccionada():
-	$Label_tut1.visible = false
-	$Label_tut2.visible = true
-	$sombra1_tut1.visible = false
-	$sombra2_tut1.visible = false 
-	$sombra1_tut2.visible = true 
-	$sombra2_tut2.visible = true
-	
+	pass
+
 func _on_arma_usada():
-	$Label_tut2.visible = false
-	$Label_tut3.visible = true
-	$sombra1_tut2.visible = false 
-	$sombra2_tut2.visible = false
-	$sombra1_tut3.visible = true 
-	$sombra2_tut3.visible = true 
-	$sombra3_tut3.visible = true
+	pass
 
 func _on_arma_transferida():
-	$Label_tut3.visible = false
-	$Label_tut4.visible = true
-	$sombra1_tut3.visible = false 
-	$sombra2_tut3.visible = false 
-	$sombra3_tut3.visible = false
-	$sombra1_tut4.visible = true 
-	$sombra2_tut4.visible = true
+	pass

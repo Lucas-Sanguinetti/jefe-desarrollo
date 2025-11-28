@@ -3,7 +3,7 @@ class_name MonsterSpawner
 
 @onready var grid_monstruos: Node2D = $MonsterGrid
 @onready var deck_drawer: Node = $DeckDrawer
-@onready var turn_button = $"../CanvasLayer/PasarTurno"
+@onready var turn_button = $"../Botones/PasarTurno"
 
 var cards_per_turn: int = 1  # Cantidad de cartas por turno
 
