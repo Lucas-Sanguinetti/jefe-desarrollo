@@ -4,10 +4,10 @@ class_name Hand
 # CONFIGURACIÓN DE GRID
 @export var GRID_COLUMNS: int = 1
 @export var GRID_ROWS: int = 6
-const CELL_WIDTH = 104
-const CELL_HEIGHT = 144
+const CELL_WIDTH = 86
+const CELL_HEIGHT = 128
 const CELL_MARGIN_X = 0
-const CELL_MARGIN_Y = -7 
+const CELL_MARGIN_Y = 8
 
 # ESTADO
 var grid: Array = []

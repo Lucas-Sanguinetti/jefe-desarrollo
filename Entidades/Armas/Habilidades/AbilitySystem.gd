@@ -31,18 +31,22 @@ func register_ability(ability_id: String, callback: Callable):
 	custom_abilities[ability_id] = callback
 	print("AbilitySystem: Registrada '%s'" % ability_id)
 
-func activate_weapon_ability(weapon: CartaArma) -> bool:
+func activate_weapon_ability(weapon: CartaArma):
 	if not weapon or not weapon.data:
-		return false
+		return 
 	
 	var weapon_data = weapon.data as WeaponCardData
 	if not weapon_data or not weapon_data.has_ability():
 		print("AbilitySystem: Arma sin habilidad")
-		return false
+		return 
 	
 	var ability = weapon_data.ability
 	
 	print("AbilitySystem: Activando '%s' de %s" % [ability.ability_name, weapon.name])
+	
+	if not _can_use_ability_now(weapon, ability):
+		print("AbilitySystem: ✗ No se puede usar la habilidad ahora")
+		return
 	
 	# Determinar si necesita objetivo
 	match ability.target_type:
@@ -53,8 +57,32 @@ func activate_weapon_ability(weapon: CartaArma) -> bool:
 		WeaponAbilityData.TargetType.WEAPON:
 			# Iniciar selección de objetivo
 			_start_target_selection(weapon, ability)
-			return true
-	return false
+
+
+@warning_ignore("unused_parameter")
+func _can_use_ability_now(weapon: CartaArma, ability: WeaponAbilityData)-> bool:
+	match ability.ability_id:
+		"Bateria":
+			var other_weapons = get_all_other_weapons()
+			if other_weapons.is_empty():
+				return false  # No hay otras armas
+			var has_discharged = other_weapons.any(func(w): return not w.is_charged())
+			if not has_discharged:
+				return false  # Todas están cargadas
+		"Magica":
+			var player_spells = _get_player_spells()
+			if player_spells.is_full():
+				return false # Mano de jugador llena
+			# Opcional segun decision lucas
+			var spell_deck = _get_spell_deck()
+			if spell_deck.get_total_cards() < 1:
+				return false #No hay cartas en el mazo
+		"Mercenario":
+			if MoneyManager.get_money() < 1:
+				print("AbilitySystem: ✗ Mercenario requiere 1 moneda (tienes %d)" % MoneyManager.get_money())
+				return false
+
+	return true
 
 func target_selected(target):
 	if not waiting_for_target or not active_weapon or not active_ability:
@@ -102,8 +130,6 @@ func _execute_ability(weapon: CartaArma, ability: WeaponAbilityData, target):
 	
 	emit_signal("ability_executed", weapon, ability, target)
 	
-
-
 # HABILIDADES IMPLEMENTADAS
 
 # Recargar otra arma
@@ -111,18 +137,18 @@ func _execute_ability(weapon: CartaArma, ability: WeaponAbilityData, target):
 func _ability_recharge_weapon(weapon: CartaArma, _ability , target: CartaArma)-> bool:
 	if not target or not target is CartaArma:
 		return false
+	
 	if target.is_charged():
 		return false
 	
 	target.recharge()
 	return true
-
 	
 @warning_ignore("unused_parameter")
 func _ability_draw_spell(weapon: CartaArma, ability: WeaponAbilityData, _target)-> bool:
 	var cards_to_draw = ability.value_1
-	var spell_deck = get_tree().get_first_node_in_group("SpellDeck")
-	var hand = get_tree().get_first_node_in_group("Hand")
+	var spell_deck = _get_spell_deck()
+	var hand = _get_player_spells()
 	var drawn_count = 0
 	
 	for i in range(cards_to_draw):
@@ -212,3 +238,13 @@ func _raycast_check_for_target():
 # HELPERS
 func _get_player_weapon():
 	return get_tree().get_first_node_in_group("PlayerWeapons")
+	
+func _get_player_spells():
+	return get_tree().get_first_node_in_group("Hand")
+	
+func _get_spell_deck():
+	return get_tree().get_first_node_in_group("SpellDeck")
+
+func get_all_other_weapons():
+	var player_grid = get_tree().get_first_node_in_group("PlayerWeaponGrid")
+	return player_grid.get_all_weapons()

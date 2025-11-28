@@ -4,10 +4,9 @@ class_name WeaponManager
 var weapon_grid: WeaponGrid = null  # "Almacén"
 var player_grid: PlayerWeaponGrid = null  # "Equipadas"
 var monster_grid: MonsterGrid = null
+var weapon_spawner: WeaponSpawner = null
 
 @onready var blacksmith: AudioStreamPlayer = $Blacksmith
-
-@export var initial_equipped_weapons: Array[WeaponCardData] = []
 
 var limiteArmasTurno: int = 99
 var armasTransferidas:int = 0
@@ -21,7 +20,7 @@ func _ready():
 
 func initialize_grids():
 	# Buscar WeaponGrid
-	var weapon_spawner = get_node("../WeaponSpawner")#get_node_or_null("/WeaponSpawner")
+	weapon_spawner = get_node("../WeaponSpawner")
 	if weapon_spawner:
 		weapon_grid = weapon_spawner.get_node_or_null("WeaponGrid")
 	
@@ -49,16 +48,6 @@ func initialize_grids():
 func _on_monster_die(monster: Carta):
 	monstruoMurio = true
 	pass
-
-# Metodo alternativo de armas iniciales
-func equip_initial_weapons():
-	if not player_grid:
-		return
-	
-	for weapon_data in initial_equipped_weapons:
-		if weapon_data and weapon_data is WeaponCardData:
-			player_grid.create_and_equip_weapon(weapon_data)
-			print("Arma inicial equipada: ", weapon_data.escena)
 
 # Mover un arma del WeaponGrid al PlayerWeaponGrid
 func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
@@ -144,7 +133,7 @@ func verificar_transferencia(from_x: int, from_y: int) -> bool:
 func _on_carta_clikeada(carta:Carta):
 	var postion = carta.grid_pos
 	var success = transfer_weapon_to_player(postion.x, postion.y)
-	
+	weapon_spawner.place_weapon()
 	if success:
 		print("WeaponManager: Arma equipada exitosamente mediante doble click")
 	else:

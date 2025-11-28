@@ -1,4 +1,5 @@
 extends Node2D
+class_name WeaponSpawner
 
 @onready var grid: Node2D = $WeaponGrid
 @onready var turn_button = $"../CanvasLayer/PasarTurno"
@@ -19,5 +20,6 @@ func turn_loader():
 		place_weapon()
 
 func place_weapon():
-	var weapon:WeaponCardData = WeaponDeck.draw()
-	grid.invoke_random_piece(weapon)
+	if WeaponDeck.size() > 1: 
+		var weapon:WeaponCardData = WeaponDeck.draw()
+		grid.invoke_random_piece(weapon)
