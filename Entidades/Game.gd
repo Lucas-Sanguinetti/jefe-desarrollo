@@ -1,5 +1,5 @@
 extends Node
-
+class_name Game
 #Botones y labels
 @onready var turn_button: Button = $Botones/PasarTurno
 @onready var turn_label: Label = $Botones/ContadorTurno

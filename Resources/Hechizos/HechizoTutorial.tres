@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SpellCardData" load_steps=6 format=3 uid="uid://bgm27o18germq"]
+
+[ext_resource type="Texture2D" uid="uid://cnnvkko1g8omt" path="res://Assets/cards/spell/spells/pocion.png" id="1_cjxah"]
+[ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="2_h35rt"]
+[ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="3_cjxah"]
+[ext_resource type="PackedScene" uid="uid://bncxpxagsydh3" path="res://Entidades/Hechizos/Hechizo.tscn" id="3_pfoo5"]
+[ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="5_a1fty"]
+
+[resource]
+script = ExtResource("3_cjxah")
+descripcion = "Cura 5 de vida"
+backsprite = ExtResource("1_cjxah")
+effect_category = 1
+effect_value = 5
+escena = ExtResource("3_pfoo5")
+sprite = ExtResource("5_a1fty")
+name = "Pocion de Vida"
+metadata/_custom_type_script = "uid://c5klust30h4bq"

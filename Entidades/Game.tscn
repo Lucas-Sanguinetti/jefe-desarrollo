@@ -97,6 +97,7 @@ script = ExtResource("10_eq8nk")
 stream = ExtResource("10_xugfq")
 
 [node name="ContadorTurno" type="Label" parent="Botones"]
+visible = false
 texture_filter = 1
 anchors_preset = -1
 anchor_left = 0.011000001

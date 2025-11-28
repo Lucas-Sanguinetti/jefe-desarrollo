@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://c3fqcbncv77to"]
+[gd_scene load_steps=32 format=3 uid="uid://c3fqcbncv77to"]
 
 [ext_resource type="Script" uid="uid://cphl4pmuuqorw" path="res://Entidades/tutorial/tutorial.gd" id="1_pmcij"]
-[ext_resource type="PackedScene" uid="uid://mviq3k54n5sp" path="res://Entidades/game.tscn" id="2_8cx54"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_lyuau"]
 [ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="3_8cx54"]
 [ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="4_n6u6b"]
@@ -13,23 +12,30 @@
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_3db23"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_lglcu"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0rbba"]
+[ext_resource type="Script" uid="uid://2bc043lq2daj" path="res://Entidades/press.gd" id="13_ba64b"]
+[ext_resource type="AudioStream" uid="uid://byhk8raqtbh4h" path="res://Audio/SFX/button-pressed.mp3" id="14_23ku3"]
 [ext_resource type="AudioStream" uid="uid://df1guwtyjobyt" path="res://Audio/SFX/blacksmith-hammer.mp3" id="14_rbkq8"]
+[ext_resource type="PackedScene" uid="uid://bcdxqcei3yuhm" path="res://Entidades/Hechizos/spell_deck.tscn" id="17_8avlq"]
+[ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="18_mbvpg"]
+[ext_resource type="Resource" uid="uid://df11r4yorlkrf" path="res://Resources/Hechizos/Batery.tres" id="19_71nlq"]
+[ext_resource type="Resource" uid="uid://c31wuxj801fkc" path="res://Resources/Hechizos/Cambiazo.tres" id="20_rwgvw"]
+[ext_resource type="Resource" uid="uid://bel45xqiao1k8" path="res://Resources/Hechizos/Afilar3.tres" id="21_02tf7"]
+[ext_resource type="Resource" uid="uid://c2bkuv7nntasy" path="res://Resources/Hechizos/BasicHeal.tres" id="22_5ebip"]
+[ext_resource type="Resource" uid="uid://dwr0vwdapddxr" path="res://Resources/Hechizos/GreatHeal.tres" id="23_1o2ct"]
+[ext_resource type="Resource" uid="uid://daaaus262s43j" path="res://Resources/Hechizos/moneda1.tres" id="24_mhjqv"]
+[ext_resource type="Resource" uid="uid://cccawjs6d11c7" path="res://Resources/Hechizos/Summon1.tres" id="25_5g5f7"]
+[ext_resource type="Resource" uid="uid://bgm27o18germq" path="res://Resources/Hechizos/HechizoTutorial.tres" id="25_71nlq"]
+[ext_resource type="PackedScene" uid="uid://da50i6nw27x40" path="res://Entidades/Hechizos/player_spells.tscn" id="26_80brj"]
+[ext_resource type="Script" uid="uid://bxljb7ons4bf2" path="res://Entidades/Hechizos/SpellEffects.gd" id="27_hn7sl"]
+[ext_resource type="PackedScene" uid="uid://b7bbxxh388bpu" path="res://pause_menu.tscn" id="28_71nlq"]
+[ext_resource type="Script" uid="uid://bhqx1i7kvx2oe" path="res://Entidades/Armas/Habilidades/AbilitySystem.gd" id="28_mbvpg"]
+[ext_resource type="Script" uid="uid://bla8utaoi01kd" path="res://Entidades/tutorial/panel_invisible.gd" id="29_rwgvw"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_n6u6b"]
-font = ExtResource("10_3db23")
-font_size = 24
-shadow_size = 12
-shadow_color = Color(0.2901961, 0.16862746, 0.08235294, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_ba64b"]
-font = ExtResource("10_3db23")
-font_size = 24
-shadow_size = 12
-shadow_color = Color(0.12156863, 0.101960786, 0.2, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02tf7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="Tutorial" type="Node"]
 script = ExtResource("1_pmcij")
-titleScreen = ExtResource("2_8cx54")
 
 [node name="Board" parent="." instance=ExtResource("2_lyuau")]
 layer = -1
@@ -41,13 +47,13 @@ layer = -1
 [node name="MonsterDeck" parent="." instance=ExtResource("5_ba64b")]
 
 [node name="MonsterSpawner" parent="." instance=ExtResource("6_rbkq8")]
-position = Vector2(435, 108)
+position = Vector2(381, 101)
 
 [node name="PlayerWeaponSpawner" parent="." instance=ExtResource("8_eh68h")]
-position = Vector2(415, 760)
+position = Vector2(391, 753)
 
 [node name="WeaponSpawner" parent="." instance=ExtResource("9_lyuau")]
-position = Vector2(885, 252)
+position = Vector2(859, 253)
 
 [node name="WeaponManager" type="Node2D" parent="."]
 position = Vector2(44, 136)
@@ -57,153 +63,314 @@ script = ExtResource("9_vv73i")
 stream = ExtResource("14_rbkq8")
 volume_db = -20.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
+[node name="Botones" type="CanvasLayer" parent="."]
 
-[node name="PasarTurno" type="Button" parent="CanvasLayer"]
+[node name="PasarTurno" type="Button" parent="Botones"]
+texture_filter = 1
 anchors_preset = -1
 anchor_left = -0.081
 anchor_top = 0.44900003
 anchor_right = 0.143
 anchor_bottom = 0.59800005
-offset_left = 1363.98
-offset_top = 312.99997
-offset_right = 1101.0599
-offset_bottom = 229.99994
+offset_left = 1439.98
+offset_top = 328.166
+offset_right = 1168.0599
+offset_bottom = 254.16595
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 16
 text = "Terminar
 Turno"
+script = ExtResource("13_ba64b")
 
-[node name="ContadorTurno" type="Label" parent="CanvasLayer"]
+[node name="press" type="AudioStreamPlayer" parent="Botones/PasarTurno"]
+stream = ExtResource("14_23ku3")
+
+[node name="ContadorTurno" type="Label" parent="Botones"]
 texture_filter = 1
 anchors_preset = -1
 anchor_left = 0.011000001
 anchor_top = 0.65500003
 anchor_right = 0.123
 anchor_bottom = 0.77300006
-offset_left = 1221.62
-offset_top = 73.99994
-offset_right = 1214.652
-offset_bottom = 20.803955
+offset_left = 1199.62
+offset_top = 151.76996
+offset_right = 1192.652
+offset_bottom = 98.573975
+theme_override_colors/font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
 theme_override_fonts/font = ExtResource("10_3db23")
 text = "Turno: 1"
 
 [node name="LifeHUD" parent="." instance=ExtResource("11_lglcu")]
-position = Vector2(1163, 781)
+position = Vector2(1138, 769)
 
 [node name="InfoDisplay" parent="." instance=ExtResource("12_0rbba")]
-position = Vector2(1205, 242)
+position = Vector2(1192, 228)
+
+[node name="SpellDeck" parent="." instance=ExtResource("17_8avlq")]
+spell_Deck = Array[ExtResource("18_mbvpg")]([ExtResource("19_71nlq"), ExtResource("19_71nlq"), ExtResource("19_71nlq"), ExtResource("20_rwgvw"), ExtResource("20_rwgvw"), ExtResource("20_rwgvw"), ExtResource("21_02tf7"), ExtResource("21_02tf7"), ExtResource("21_02tf7"), ExtResource("22_5ebip"), ExtResource("22_5ebip"), ExtResource("22_5ebip"), ExtResource("23_1o2ct"), ExtResource("24_mhjqv"), ExtResource("25_5g5f7")])
+tutorial_spell = ExtResource("25_71nlq")
+
+[node name="PlayerSpells" parent="." instance=ExtResource("26_80brj")]
+position = Vector2(205, 86)
+
+[node name="SpellEffects" type="Node" parent="."]
+script = ExtResource("27_hn7sl")
+
+[node name="AbilitySystem" type="Node" parent="."]
+script = ExtResource("28_mbvpg")
 
 [node name="SelecArma" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Label_tut1" type="Label" parent="SelecArma"]
+[node name="ColorRect" type="ColorRect" parent="SelecArma"]
+offset_left = 91.0
+offset_top = 1.0
+offset_right = 1477.0
+offset_bottom = 629.0
+color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="SelecArma"]
+offset_top = -1.0
+offset_right = 290.0
+offset_bottom = 867.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="SelecArma"]
+offset_left = 1056.0
+offset_right = 1584.0
+offset_bottom = 871.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="SelecArma" type="Label" parent="SelecArma"]
 texture_filter = 1
-offset_left = 501.0
-offset_top = 742.0
-offset_right = 1070.0
-offset_bottom = 766.0
+offset_left = 349.0
+offset_top = 520.0
+offset_right = 974.0
+offset_bottom = 603.0
 theme_override_fonts/font = ExtResource("10_3db23")
-theme_override_font_sizes/font_size = 24
-text = "< haz click sobre una de tus armas para usarla"
+theme_override_font_sizes/font_size = 40
+text = "Haz click izquierdo sobre 
+una de tus armas para usarla"
 
 [node name="Ataque" type="CanvasLayer" parent="."]
-visible = false
 
-[node name="Label_tut2" type="Label" parent="Ataque"]
+[node name="ColorRect" type="ColorRect" parent="Ataque"]
+offset_left = 66.0
+offset_top = 635.0
+offset_right = 1452.0
+offset_bottom = 871.0
+color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Ataque"]
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 305.0
+offset_bottom = 867.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Ataque"]
+offset_left = 768.0
+offset_right = 1579.0
+offset_bottom = 868.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="AtacarMonstruo" type="Label" parent="Ataque"]
 texture_filter = 1
-offset_left = 422.0
-offset_top = 180.0
-offset_right = 952.0
-offset_bottom = 258.0
+offset_left = 784.0
+offset_top = 73.0
+offset_right = 1409.0
+offset_bottom = 199.0
 theme_override_fonts/font = ExtResource("10_3db23")
-theme_override_font_sizes/font_size = 24
-text = "^
-haz click sobre el monstruo
-para atacarlo y recibir monedas por matarlo"
-label_settings = SubResource("LabelSettings_n6u6b")
+theme_override_font_sizes/font_size = 40
+text = "Haz click izquierdo sobre 
+el monstruo para atacarlo 
+y recibir monedas por matarlo"
 
 [node name="Vida" type="CanvasLayer" parent="."]
 visible = false
 
+[node name="ColorRect" type="ColorRect" parent="Vida"]
+offset_left = 1000.0
+offset_top = 2.0
+offset_right = 1272.0
+offset_bottom = 700.0
+color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Vida"]
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 1068.0
+offset_bottom = 867.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Vida"]
+offset_left = 1205.0
+offset_right = 1579.0
+offset_bottom = 868.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
 [node name="Vida" type="Label" parent="Vida"]
 texture_filter = 1
-offset_left = 859.0
-offset_top = 325.0
-offset_right = 1071.0
-offset_bottom = 511.0
+offset_left = 942.0
+offset_top = 544.0
+offset_right = 1395.0
+offset_bottom = 670.0
 theme_override_fonts/font = ExtResource("10_3db23")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 40
 text = "Oh, parece que haz 
 perdido vida al golpear 
-al monstruo
+al monstruo"
 
-"
-label_settings = SubResource("LabelSettings_ba64b")
+[node name="Aviso" type="Label" parent="Vida"]
+texture_filter = 1
+offset_left = 666.0
+offset_top = 802.0
+offset_right = 1171.0
+offset_bottom = 852.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 30
+text = "Haz click para continuar..."
+
+[node name="PanelInvisible" type="Panel" parent="Vida"]
+offset_right = 1580.0
+offset_bottom = 867.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_02tf7")
+script = ExtResource("29_rwgvw")
 
 [node name="Compra" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Label_tut3" type="Label" parent="Compra"]
-texture_filter = 1
-offset_left = 859.0
-offset_top = 325.0
-offset_right = 1071.0
-offset_bottom = 511.0
-theme_override_fonts/font = ExtResource("10_3db23")
-theme_override_font_sizes/font_size = 24
-text = "^
-haz doble click 
-sobre el arma
-para comprarla
+[node name="ColorRect" type="ColorRect" parent="Compra"]
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 800.0
+offset_bottom = 866.0
+color = Color(0.20187145, 0.19711676, 0.19711676, 1)
 
-"
-label_settings = SubResource("LabelSettings_ba64b")
+[node name="ColorRect2" type="ColorRect" parent="Compra"]
+offset_left = 186.0
+offset_top = 609.0
+offset_right = 1187.0
+offset_bottom = 868.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Compra"]
+offset_left = 1019.0
+offset_right = 1582.0
+offset_bottom = 868.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="ComprarArma" type="Label" parent="Compra"]
+texture_filter = 1
+offset_left = 1041.0
+offset_top = 202.0
+offset_right = 1494.0
+offset_bottom = 371.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 40
+text = "Haz doble click 
+sobre el arma
+para comprarla"
 
 [node name="Habilidad" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Usar Habilidad" type="Label" parent="Habilidad"]
-texture_filter = 1
-offset_left = 859.0
-offset_top = 325.0
-offset_right = 1071.0
-offset_bottom = 511.0
-theme_override_fonts/font = ExtResource("10_3db23")
-theme_override_font_sizes/font_size = 24
-text = "Este arma parece tener una habilidad, usa el click derecho para activarla
+[node name="ColorRect" type="ColorRect" parent="Habilidad"]
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 309.0
+offset_bottom = 867.0
+color = Color(0.20187145, 0.19711676, 0.19711676, 1)
 
-"
-label_settings = SubResource("LabelSettings_ba64b")
+[node name="ColorRect2" type="ColorRect" parent="Habilidad"]
+offset_left = 172.0
+offset_top = 1.0
+offset_right = 1173.0
+offset_bottom = 642.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Habilidad"]
+offset_left = 1039.0
+offset_right = 1581.0
+offset_bottom = 868.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="UsarHabilidad" type="Label" parent="Habilidad"]
+texture_filter = 1
+offset_left = 527.0
+offset_top = 444.0
+offset_right = 1015.0
+offset_bottom = 613.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 40
+text = "Este arma parece tener 
+una habilidad.
+usa el click derecho 
+para activarla."
 
 [node name="Hechizos" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Usar Habilidad" type="Label" parent="Hechizos"]
+[node name="ColorRect" type="ColorRect" parent="Hechizos"]
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 127.0
+offset_bottom = 868.0
+color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Hechizos"]
+offset_left = 277.0
+offset_top = 1.0
+offset_right = 1580.0
+offset_bottom = 869.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="UsarHechizo" type="Label" parent="Hechizos"]
 texture_filter = 1
-offset_left = 859.0
-offset_top = 325.0
-offset_right = 1071.0
-offset_bottom = 511.0
+offset_left = 306.0
+offset_top = 40.0
+offset_right = 866.0
+offset_bottom = 209.0
 theme_override_fonts/font = ExtResource("10_3db23")
-theme_override_font_sizes/font_size = 24
-text = "Este arma parece tener una habilidad, usa el click derecho para activarla
+theme_override_font_sizes/font_size = 40
+text = "Parece que haz recibido 
+un hechizo.
+hazle doble click para usarlo."
 
-"
-label_settings = SubResource("LabelSettings_ba64b")
-
-[node name="Terminar Tutorial" type="CanvasLayer" parent="."]
+[node name="TerminarTutorial" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Label_tut4" type="Label" parent="Terminar Tutorial"]
+[node name="ColorRect" type="ColorRect" parent="TerminarTutorial"]
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 1198.0
+offset_bottom = 867.0
+color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="TerminarTutorial"]
+offset_left = 62.0
+offset_right = 1436.0
+offset_bottom = 641.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="TerminarTutorial"]
+offset_left = 1424.0
+offset_right = 1581.0
+offset_bottom = 868.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="Finalizar" type="Label" parent="TerminarTutorial"]
 texture_filter = 1
-offset_left = 1145.0
-offset_top = 615.0
-offset_right = 1336.0
-offset_bottom = 732.0
+offset_left = 862.0
+offset_top = 441.0
+offset_right = 1564.0
+offset_bottom = 610.0
 theme_override_fonts/font = ExtResource("10_3db23")
-theme_override_font_sizes/font_size = 24
-text = "Haz click sobre 
-Terminar Turno
-para acabar el
-mini-tutorial"
-label_settings = SubResource("LabelSettings_ba64b")
+theme_override_font_sizes/font_size = 40
+text = "Perfecto, parece que te ha sanado.
+Haz click izquierdo en el boton 
+de Terminar el turno para 
+acabar con este mini tutorial."
+
+[node name="PauseMenu" parent="." instance=ExtResource("28_71nlq")]
+visible = false

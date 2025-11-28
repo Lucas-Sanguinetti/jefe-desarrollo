@@ -40,6 +40,7 @@ func draw3():
 	
 ##funcion para el state
 func drawTutorial():
+	print("LLegue hasta el MonsterDeck")
 	return tutorial_monster
 
 func size():

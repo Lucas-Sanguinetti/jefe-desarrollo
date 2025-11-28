@@ -3,6 +3,7 @@ class_name SpellDeck extends Node
 @export var spell_Deck: Array[SpellCardData] = []
 @export var starting_spells:Array[SpellCardData] = []
 @export var cards_to_draw_first_turn: int = 1
+@export var tutorial_spell:SpellCardData
 
 var deck: Array[SpellCardData] = []
 var start_spells: Array[SpellCardData] = []
@@ -11,8 +12,17 @@ var removed_pile: Array[SpellCardData] = []
 var is_first_turn: bool = true
 
 func _ready():
-	initialize_deck()
-	add_to_group("SpellDeck")
+	var parent = get_parent()
+	if parent is Tutorial:
+		initialize_tutorial_deck()
+		add_to_group("SpellDeck")
+	else:
+		initialize_deck()
+		add_to_group("SpellDeck")
+
+func initialize_tutorial_deck():
+	deck.clear()
+	deck.append(tutorial_spell)
 
 func initialize_deck():
 	deck.clear()

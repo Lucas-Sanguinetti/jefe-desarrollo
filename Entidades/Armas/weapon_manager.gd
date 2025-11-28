@@ -4,7 +4,8 @@ class_name WeaponManager
 var weapon_grid: WeaponGrid = null  # "Almacén"
 var player_grid: PlayerWeaponGrid = null  # "Equipadas"
 var monster_grid: MonsterGrid = null
-var weapon_spawner: WeaponSpawner = null
+var weapon_spawner = null
+
 
 @onready var blacksmith: AudioStreamPlayer = $Blacksmith
 
@@ -19,7 +20,13 @@ func _ready():
 	add_to_group("WeaponManager")
 
 func initialize_grids():
-	# Buscar WeaponGrid
+	#var parent = get_parent()
+	#if parent is Tutorial:
+		#weapon_spawner = get_node("../WeaponSpawner")
+		#if weapon_spawner:
+			#weapon_grid = weapon_spawner.get_node_or_null("WeaponGrid")
+	#else:
+		## Buscar WeaponGrid
 	weapon_spawner = get_node("../WeaponSpawner")
 	if weapon_spawner:
 		weapon_grid = weapon_spawner.get_node_or_null("WeaponGrid")
