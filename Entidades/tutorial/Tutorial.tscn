@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://c3fqcbncv77to"]
 
 [ext_resource type="Script" uid="uid://cphl4pmuuqorw" path="res://Entidades/tutorial/tutorial.gd" id="1_pmcij"]
-[ext_resource type="PackedScene" uid="uid://7tjf1gfpknq1" path="res://Entidades/Game.tscn" id="2_8cx54"]
+[ext_resource type="PackedScene" uid="uid://7tjf1gfpknq1" path="res://Entidades/game.tscn" id="2_8cx54"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_lyuau"]
 [ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="3_8cx54"]
 [ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="4_n6u6b"]

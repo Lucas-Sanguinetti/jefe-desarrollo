@@ -43,7 +43,7 @@ func _on_turn_button_pressed():
 	MoneyManager.reset()
 	MonsterDeck.reset()
 	WeaponDeck.reset()
-	get_tree().change_scene_to_file("res://Entidades/Main.tscn")
+	get_tree().change_scene_to_file("res://Entidades/main.tscn")
 
 func reset_player_weapons():
 	player_weapon_spawner.reset_weapons_for_new_turn()

@@ -181,6 +181,7 @@ func attack(target: CartaMonstruo) -> bool:
 	
 	var weapon_data = data as WeaponCardData
 	var weapon_attack = ataque
+	var monster_hp = target.hp_actual
 	
 	# Aplicar traits del arma
 	for traits in weapon_data.traits:
@@ -199,7 +200,7 @@ func attack(target: CartaMonstruo) -> bool:
 	target.take_damage(weapon_attack, self)
 	
 	# Lifesteal
-	_apply_lifesteal(weapon_attack, target)
+	_apply_lifesteal(weapon_attack, target, monster_hp)
 	
 	#Primer ataque
 	if parent_grid and parent_grid is PlayerWeaponGrid:
@@ -301,13 +302,13 @@ func _apply_state_attack_abilities(weapon_damage: int):
 	
 	return weapon_damage
 
-func _apply_lifesteal(weapon_attack: int, target: CartaMonstruo) -> void:
+func _apply_lifesteal(weapon_attack: int, target: CartaMonstruo, monster_hp: int) -> void:
 	var lifesteal_amount = 0
 	for traits in data.traits:
 		if traits is RobaVida:
 			lifesteal_amount = traits.get_lifesteal_amount(self,weapon_attack, target)
 	
-	lifesteal_amount = min(lifesteal_amount, target.hp_actual)
+	lifesteal_amount = min(lifesteal_amount, monster_hp)
 	
 	if lifesteal_amount > 0 and LifeManager.get_life() > 0:
 		LifeManager.gainLife(lifesteal_amount)

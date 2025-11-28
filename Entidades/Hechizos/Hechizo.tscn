@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bncxpxagsydh3"]
 
 [ext_resource type="Script" uid="uid://do0okuxqnluks" path="res://Entidades/Hechizos/CartaHechizo.gd" id="1_4c8c3"]
+[ext_resource type="Texture2D" uid="uid://54m7t5misdgh" path="res://Assets/cards/spell/spells/anillo.png" id="2_4c8c3"]
 [ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="2_owiti"]
-[ext_resource type="Texture2D" uid="uid://e0yx28713rag" path="res://Assets/cards/spell/spells/Image1.png" id="3_4c8c3"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="4_53kgd"]
 [ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="5_4c8c3"]
 
@@ -31,7 +31,7 @@ offset_left = -38.0
 offset_top = -58.0
 offset_right = 37.0
 offset_bottom = 1.0
-texture = ExtResource("3_4c8c3")
+texture = ExtResource("2_4c8c3")
 
 [node name="Sprite" type="TextureRect" parent="."]
 texture_filter = 1

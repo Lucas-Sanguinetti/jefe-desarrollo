@@ -7,7 +7,7 @@ var wave2Monsters:Array = [MonsterCardData]
 @export var monster_data_cards: Array[MonsterCardData] 
 @export var monster_bosses_data: Array[MonsterCardData] 
 var monstruo_tutoria_reset 
-var monstruos_reset 
+var monstruos_reset
 var bosses_reset 
  
 func _ready() -> void:
@@ -21,6 +21,7 @@ func _ready() -> void:
 	
 	monstruo_tutoria_reset = tutorial_monster.duplicate(true)
 	monstruos_reset = monster_data_cards.duplicate(true)
+	push_warning("$s cantidad de monstruos en el mazo reset ", monstruos_reset.size())
 	bosses_reset = monster_bosses_data.duplicate(true)
 	#wave2Monsters.shuffle()
 	#wave3Monsters.shuffle()
@@ -53,8 +54,11 @@ func size():
 
 func reset():
 	tutorial_monster = monstruo_tutoria_reset
+	push_warning("$s cantidad de monstruos en el mazo", monster_data_cards.size())
 	monster_data_cards.clear()
+	push_warning("$s cantidad de monstruos en el mazo post clear", monster_data_cards.size())
 	monster_data_cards.append_array(monstruos_reset)
+	push_warning("$s cantidad de monstruos en el mazo post append reset", monster_data_cards.size())
 	monster_bosses_data.clear()
 	monster_bosses_data.append_array(bosses_reset)
 

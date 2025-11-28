@@ -115,7 +115,7 @@ func _reset_game():
 	MonsterDeck.reset()
 	WeaponDeck.reset()
 	TurnManager.reset()
-	get_tree().change_scene_to_file("res://Entidades/Main.tscn")
+	get_tree().change_scene_to_file("res://Entidades/main.tscn")
 	
 #Hechizos
 func _on_spell_cast(hechizo: SpellCardData, target):

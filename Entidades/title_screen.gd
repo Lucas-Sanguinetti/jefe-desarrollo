@@ -18,8 +18,8 @@ func _on_tutorial_pressed() -> void:
 	timer_tutorial.start()
 	
 func _on_timer_game_timeout() -> void:
-	get_tree().change_scene_to_file("res://Entidades/Game.tscn")
+	get_tree().change_scene_to_file("res://Entidades/game.tscn")
 
 
 func _on_timer_tutorial_timeout() -> void:
-	get_tree().change_scene_to_file("res://Entidades/tutorial/Tutorial.tscn")
+	get_tree().change_scene_to_file("res://Entidades/tutorial/tutorial.tscn")
