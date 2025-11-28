@@ -305,7 +305,7 @@ func _apply_lifesteal(weapon_attack: int, target: CartaMonstruo) -> void:
 	var lifesteal_amount = 0
 	for traits in data.traits:
 		if traits is RobaVida:
-			lifesteal_amount = traits.get_lifesteal_amount(weapon_attack, target)
+			lifesteal_amount = traits.get_lifesteal_amount(self,weapon_attack, target)
 	
 	lifesteal_amount = min(lifesteal_amount, target.hp_actual)
 	

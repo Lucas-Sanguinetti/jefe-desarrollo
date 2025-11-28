@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3fqcbncv77to"]
+[gd_scene load_steps=17 format=3 uid="uid://c3fqcbncv77to"]
 
 [ext_resource type="Script" uid="uid://cphl4pmuuqorw" path="res://Entidades/tutorial/tutorial.gd" id="1_pmcij"]
 [ext_resource type="PackedScene" uid="uid://7tjf1gfpknq1" path="res://Entidades/Game.tscn" id="2_8cx54"]
@@ -7,15 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="4_n6u6b"]
 [ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://singleton/monster_deck.tscn" id="5_ba64b"]
 [ext_resource type="PackedScene" uid="uid://bmlfbb0u38130" path="res://Entidades/tutorial/monster_spawner_tutorial.tscn" id="6_rbkq8"]
-[ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/LVL1/monstruo1Naturaleza.tres" id="7_ba64b"]
 [ext_resource type="PackedScene" uid="uid://dfmm3iy8hd5vr" path="res://Entidades/Armas/player_weapon_spawner.tscn" id="8_eh68h"]
 [ext_resource type="PackedScene" uid="uid://b1v3dtr6skm1n" path="res://Entidades/tutorial/weapon_spawner_tutorial.tscn" id="9_lyuau"]
 [ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="9_vv73i"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_3db23"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_lglcu"]
-[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="11_n6u6b"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0rbba"]
-[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/LVL1/arma1.tres" id="12_ba64b"]
 [ext_resource type="AudioStream" uid="uid://df1guwtyjobyt" path="res://Audio/SFX/blacksmith-hammer.mp3" id="14_rbkq8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n6u6b"]
@@ -42,14 +39,12 @@ layer = -1
 [node name="WeaponDeck" parent="." instance=ExtResource("4_n6u6b")]
 
 [node name="MonsterDeck" parent="." instance=ExtResource("5_ba64b")]
-tutorial_monster = ExtResource("7_ba64b")
 
 [node name="MonsterSpawner" parent="." instance=ExtResource("6_rbkq8")]
 position = Vector2(435, 108)
 
 [node name="PlayerWeaponSpawner" parent="." instance=ExtResource("8_eh68h")]
 position = Vector2(415, 760)
-initial_weapons = Array[ExtResource("11_n6u6b")]([ExtResource("12_ba64b")])
 
 [node name="WeaponSpawner" parent="." instance=ExtResource("9_lyuau")]
 position = Vector2(885, 252)
@@ -57,7 +52,6 @@ position = Vector2(885, 252)
 [node name="WeaponManager" type="Node2D" parent="."]
 position = Vector2(44, 136)
 script = ExtResource("9_vv73i")
-initial_equipped_weapons = Array[ExtResource("11_n6u6b")]([ExtResource("12_ba64b")])
 
 [node name="Blacksmith" type="AudioStreamPlayer" parent="WeaponManager"]
 stream = ExtResource("14_rbkq8")

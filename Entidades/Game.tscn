@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=26 format=3 uid="uid://7tjf1gfpknq1"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -7,23 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="5_eq8nk"]
 [ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://singleton/monster_deck.tscn" id="6_gxhcr"]
 [ext_resource type="PackedScene" uid="uid://bmeoueu10fxj2" path="res://Entidades/Armas/weapon_spawner.tscn" id="7_00onx"]
-[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="7_6bd0o"]
 [ext_resource type="PackedScene" uid="uid://dfmm3iy8hd5vr" path="res://Entidades/Armas/player_weapon_spawner.tscn" id="8_rwqrq"]
-[ext_resource type="Resource" uid="uid://ctvld27skmeui" path="res://Resources/Monstruos/LVL1/monstruo1Fuego.tres" id="8_xr7dm"]
-[ext_resource type="Resource" uid="uid://bxjlpdjgllbs7" path="res://Resources/Monstruos/LVL1/monstruo1Veneno.tres" id="9_423gc"]
 [ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="9_hf2jd"]
 [ext_resource type="Script" uid="uid://2bc043lq2daj" path="res://Entidades/press.gd" id="10_eq8nk"]
 [ext_resource type="AudioStream" uid="uid://df1guwtyjobyt" path="res://Audio/SFX/blacksmith-hammer.mp3" id="10_gxhcr"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_ohvqk"]
 [ext_resource type="AudioStream" uid="uid://byhk8raqtbh4h" path="res://Audio/SFX/button-pressed.mp3" id="10_xugfq"]
-[ext_resource type="Resource" uid="uid://bkkxhomjvob0s" path="res://Resources/Monstruos/LVL1/monstruo1Agua.tres" id="10_ye2mg"]
-[ext_resource type="Resource" uid="uid://cphpjpiknqgi1" path="res://Resources/Monstruos/LVL1/monstruo1Viento.tres" id="11_1dqht"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_2jhs2"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0w1ek"]
-[ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/LVL1/monstruo1Naturaleza.tres" id="12_tr8el"]
 [ext_resource type="AudioStream" uid="uid://d0686mu6qgmo7" path="res://Audio/musica/Game.mp3" id="13_8hmk7"]
 [ext_resource type="PackedScene" uid="uid://bx6yw2qj5stmb" path="res://Entidades/Visuales/monederoHud.tscn" id="13_cgrtl"]
-[ext_resource type="Resource" uid="uid://dqkienoutvmak" path="res://Resources/Monstruos/LVL1/monstruo1Tecnologia.tres" id="13_e75bk"]
 [ext_resource type="Script" uid="uid://btt6r2o0q7am0" path="res://Entidades/sellButtom.gd" id="14_ohvqk"]
 [ext_resource type="PackedScene" uid="uid://bcdxqcei3yuhm" path="res://Entidades/Hechizos/spell_deck.tscn" id="17_rwqrq"]
 [ext_resource type="PackedScene" uid="uid://da50i6nw27x40" path="res://Entidades/Hechizos/player_spells.tscn" id="18_hf2jd"]
@@ -56,7 +49,6 @@ position = Vector2(381, 101)
 [node name="WeaponDeck" parent="." instance=ExtResource("5_eq8nk")]
 
 [node name="MonsterDeck" parent="." instance=ExtResource("6_gxhcr")]
-monster_data_cards = Array[ExtResource("7_6bd0o")]([ExtResource("8_xr7dm"), ExtResource("9_423gc"), ExtResource("10_ye2mg"), ExtResource("11_1dqht"), ExtResource("12_tr8el"), ExtResource("13_e75bk")])
 
 [node name="WeaponSpawner" parent="." instance=ExtResource("7_00onx")]
 position = Vector2(859, 253)

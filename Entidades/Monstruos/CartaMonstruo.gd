@@ -97,6 +97,10 @@ func can_be_targeted() -> bool:
 					if adj_trait is Valiente:
 						print("DEBUG: %s está protegido por Valiente en [%d,%d]" % [name, check_x, check_y])
 						return false
+	for rasgo in rasgos:
+		if rasgo is Escurridizo:
+			return rasgo.can_be_targeted_override(self)
+			
 	return true 
 
 

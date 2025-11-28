@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://drh5ob8gcaoa7"]
+[gd_scene load_steps=4 format=3 uid="uid://drh5ob8gcaoa7"]
 
 [ext_resource type="Script" uid="uid://cbks318mypm5f" path="res://Entidades/Cartas/card_info.gd" id="1_4bl3h"]
-[ext_resource type="Resource" uid="uid://2630l8e8maqo" path="res://Resources/Armas/LVL1/arma1.tres" id="2_gxher"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="3_wdwl0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wdwl0"]
@@ -10,7 +9,6 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="infoDisplay" type="Node2D"]
 script = ExtResource("1_4bl3h")
-WeaponBasicInfo = ExtResource("2_gxher")
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
