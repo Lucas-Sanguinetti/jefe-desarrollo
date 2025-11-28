@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c3fqcbncv77to"]
+[gd_scene load_steps=34 format=3 uid="uid://c3fqcbncv77to"]
 
 [ext_resource type="Script" uid="uid://cphl4pmuuqorw" path="res://Entidades/tutorial/tutorial.gd" id="1_pmcij"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_lyuau"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="4_n6u6b"]
 [ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://singleton/monster_deck.tscn" id="5_ba64b"]
 [ext_resource type="PackedScene" uid="uid://bmlfbb0u38130" path="res://Entidades/tutorial/monster_spawner_tutorial.tscn" id="6_rbkq8"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="8_5ebip"]
 [ext_resource type="PackedScene" uid="uid://dfmm3iy8hd5vr" path="res://Entidades/Armas/player_weapon_spawner.tscn" id="8_eh68h"]
+[ext_resource type="Resource" uid="uid://7c8i2632wiru" path="res://Resources/Armas/LVL5/arma5Hielo.tres" id="9_1o2ct"]
 [ext_resource type="PackedScene" uid="uid://b1v3dtr6skm1n" path="res://Entidades/tutorial/weapon_spawner_tutorial.tscn" id="9_lyuau"]
 [ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="9_vv73i"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_3db23"]
@@ -51,6 +53,7 @@ position = Vector2(381, 101)
 
 [node name="PlayerWeaponSpawner" parent="." instance=ExtResource("8_eh68h")]
 position = Vector2(391, 753)
+initial_weapons = Array[ExtResource("8_5ebip")]([ExtResource("9_1o2ct")])
 
 [node name="WeaponSpawner" parent="." instance=ExtResource("9_lyuau")]
 position = Vector2(859, 253)
@@ -122,20 +125,20 @@ script = ExtResource("28_mbvpg")
 [node name="SelecArma" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="SelecArma"]
-offset_left = 91.0
+[node name="ColorArma" type="ColorRect" parent="SelecArma"]
+offset_left = 286.0
 offset_top = 1.0
-offset_right = 1477.0
+offset_right = 617.0
 offset_bottom = 629.0
-color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="SelecArma"]
+[node name="ColorArma2" type="ColorRect" parent="SelecArma"]
 offset_top = -1.0
 offset_right = 290.0
 offset_bottom = 867.0
 color = Color(0.2, 0.19607843, 0.19607843, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="SelecArma"]
+[node name="ColorArma3" type="ColorRect" parent="SelecArma"]
 offset_left = 612.0
 offset_right = 1584.0
 offset_bottom = 871.0
@@ -155,21 +158,21 @@ una de tus armas para usarla"
 [node name="Ataque" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="Ataque"]
+[node name="ColorAtaque" type="ColorRect" parent="Ataque"]
 offset_left = 66.0
 offset_top = 172.0
 offset_right = 1452.0
 offset_bottom = 871.0
 color = Color(0.20187145, 0.19711676, 0.19711676, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="Ataque"]
+[node name="ColorAtaque2" type="ColorRect" parent="Ataque"]
 offset_left = -2.0
 offset_top = 2.0
 offset_right = 305.0
 offset_bottom = 867.0
 color = Color(0.2, 0.19607843, 0.19607843, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="Ataque"]
+[node name="ColorAtaque3" type="ColorRect" parent="Ataque"]
 offset_left = 538.0
 offset_right = 1579.0
 offset_bottom = 868.0
@@ -190,21 +193,21 @@ y recibir monedas por matarlo"
 [node name="Vida" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="Vida"]
+[node name="ColorVida" type="ColorRect" parent="Vida"]
 offset_left = 1000.0
 offset_top = 2.0
 offset_right = 1272.0
 offset_bottom = 700.0
 color = Color(0.20187145, 0.19711676, 0.19711676, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="Vida"]
+[node name="ColorVida2" type="ColorRect" parent="Vida"]
 offset_left = -1.0
 offset_top = 2.0
 offset_right = 1068.0
 offset_bottom = 867.0
 color = Color(0.2, 0.19607843, 0.19607843, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="Vida"]
+[node name="ColorVida3" type="ColorRect" parent="Vida"]
 offset_left = 1205.0
 offset_right = 1579.0
 offset_bottom = 868.0
@@ -310,6 +313,7 @@ usa el click derecho
 para activarla."
 
 [node name="Hechizos" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Hechizos"]
 offset_left = -1.0

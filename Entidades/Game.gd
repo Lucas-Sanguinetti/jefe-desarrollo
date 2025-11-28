@@ -70,13 +70,6 @@ func _spawn_cards():
 	# Invocar monstruo
 	monster_spawner.draw()
 	
-	# Invocar arma en WeaponGrid
-	if WeaponDeck.size() > 0:
-		var weapon = WeaponDeck.draw()
-		if weapon:
-			var weapon_grid = weapon_manager.weapon_grid
-			if weapon_grid and not weapon_grid.get_empty_slots().is_empty():
-				weapon_grid.invoke_random_piece(weapon)
 	
 	# Robar hechizo
 	if not hand.is_full():
@@ -114,7 +107,7 @@ func _on_vida_cambiada(nueva_vida: int):
 #Game Over
 func game_over():
 	block_player_weapons()
-	$CanvasLayer2/GameOver.show()
+	$Ventanas/GameOver.visible = true
 	await get_tree().create_timer(2.0).timeout
 	_reset_game()
 	get_tree().change_scene_to_file("res://Entidades/main.tscn")
@@ -122,7 +115,7 @@ func game_over():
 #Victoria
 func victory():
 	block_player_weapons()
-	$CanvasLayer2/Victory.show()
+	$Ventanas/Victory.visible = true
 	await get_tree().create_timer(2.0).timeout
 	_reset_game()
 	get_tree().change_scene_to_file("res://Entidades/main.tscn")

@@ -29,6 +29,7 @@ func _ready() -> void:
 	turn_button.pressed.connect(_on_turn_button_pressed)
 	LifeManager.vida_cambiada.connect(_on_vida_cambiada)
 	card_manager.armaSeleccionada.connect(_on_arma_seleccionada)
+	card_manager.armaDeseleccionada.connect(_on_arma_esdseleccionada)
 	card_manager.armaUsada.connect(_on_arma_usada)
 	weapon_manager.armaTransferida.connect(_on_arma_transferida)
 	ability_system.ability_executed.connect(_on_ability_used)
@@ -100,7 +101,12 @@ func _on_arma_seleccionada():
 	$Ataque.visible = true
 	monster_spawner.place_monster_tutorial()
 
+func _on_arma_esdseleccionada():
+	$SelecArma.visible = false
+	$Ataque.visible = true
+
 func _on_arma_usada():
+	$SelecArma.visible = false
 	$Ataque.visible = false
 	panel_invisible.visible = false
 	$Vida.visible = true
@@ -108,6 +114,8 @@ func _on_arma_usada():
 	panel_invisible.visible = true
 
 func _on_vida_tutorial():
+	$Ataque.visible = false
+	$SelecArma.visible = false
 	$Vida.visible = false
 	$Compra.visible = true
 

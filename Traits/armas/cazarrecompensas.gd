@@ -7,7 +7,7 @@ class_name Cazarrecompensas
 func do_damage(attacker: Carta, defender: Carta, damage: int) -> int:
 	var actual_damage = damage
 	for rasgo in defender.data.traits:
-		actual_damage = rasgo.take_damage(null, defender, actual_damage)
+		actual_damage = rasgo.take_damage(attacker, defender, actual_damage)
 		
 	if defender.hp_actual < actual_damage:
 		MoneyManager.ganarMonedas(1)

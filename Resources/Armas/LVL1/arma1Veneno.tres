@@ -11,7 +11,7 @@
 
 [resource]
 script = ExtResource("5_lss1o")
-attack = 4
+attack = 5
 element_type = 6
 element = ExtResource("4_oopaq")
 backsprite = ExtResource("2_alw3k")
