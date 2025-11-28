@@ -102,10 +102,11 @@ func _on_arma_seleccionada():
 	monster_spawner.place_monster_tutorial()
 
 func _on_arma_esdseleccionada():
-	$SelecArma.visible = false
-	$Ataque.visible = true
+	$SelecArma.visible = true
+	$Ataque.visible = false
 
 func _on_arma_usada():
+	ocultar_canva_arma()
 	$SelecArma.visible = false
 	$Ataque.visible = false
 	panel_invisible.visible = false
@@ -114,23 +115,31 @@ func _on_arma_usada():
 	panel_invisible.visible = true
 
 func _on_vida_tutorial():
+	ocultar_canva_arma()
 	$Ataque.visible = false
 	$SelecArma.visible = false
 	$Vida.visible = false
 	$Compra.visible = true
 
 func _on_arma_transferida():
+	ocultar_canva_arma()
 	$Compra.visible = false
 	$Habilidad.visible = true
 	
 func _on_ability_used(_weapon, _ability, _target):
+	ocultar_canva_arma()
 	$Habilidad.visible = false
 	$Hechizos.visible = true
 	
 func _on_spell_used(_effect_id, _target):
+	ocultar_canva_arma()
 	$Hechizos.visible = false
 	$TerminarTutorial.visible = true
-	
+
+func ocultar_canva_arma():
+	$SelecArma/ColorArma.visible = false
+	$SelecArma/ColorArma2.visible = false
+	$SelecArma/ColorArma3.visible = false
 # Funciones del Menu
 # ============================================
 func _on_pause_resume():
