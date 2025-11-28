@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_bg3i3")
-ability_name = "Robar"
+ability_name = "Magica"
 ability_description = "Roba 1 hechizo del mazo"
 ability_id = "Magica"
 value_1 = 1

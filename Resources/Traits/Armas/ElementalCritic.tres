@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_qhryx")
-trait_name = "Critico Elemental"
+trait_name = "Critico Elem."
 trait_description = "Duplica el impacto contra un monstruo del mismo elemento"
 metadata/_custom_type_script = "uid://cy584ew032i43"

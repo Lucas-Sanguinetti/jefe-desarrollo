@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MonsterCardData" load_steps=10 format=3 uid="uid://bnpbgevlsqev5"]
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=9 format=3 uid="uid://bnpbgevlsqev5"]
 
 [ext_resource type="Texture2D" uid="uid://cj4mawvyys6iw" path="res://Assets/cards/monster/monstruos/electricidad/mons2.png" id="1_xsfps"]
 [ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="2_io1xu"]
@@ -7,17 +7,13 @@
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="5_x3607"]
 [ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_0cacx"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="7_v30ab"]
-[ext_resource type="Script" uid="uid://dur3k18crbex6" path="res://Traits/hiperElemental.gd" id="8_xsfps"]
-
-[sub_resource type="Resource" id="Resource_io1xu"]
-script = ExtResource("8_xsfps")
-metadata/_custom_type_script = "uid://dur3k18crbex6"
+[ext_resource type="Resource" uid="uid://b7p3p73p0p5bc" path="res://Resources/Traits/Monstruos/hiperElemental.tres" id="8_xsfps"]
 
 [resource]
 script = ExtResource("5_x3607")
 hp = 30
 attack = 12
-traits = Array[ExtResource("7_v30ab")]([SubResource("Resource_io1xu")])
+traits = Array[ExtResource("7_v30ab")]([ExtResource("8_xsfps")])
 nivel = 4
 element_type = 2
 element = ExtResource("3_io1xu")

@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="WeaponCardData" load_steps=11 format=3 uid="uid://c2d322or4k66j"]
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=9 format=3 uid="uid://c2d322or4k66j"]
 
-[ext_resource type="Resource" uid="uid://d4nb3j30vabrx" path="res://Resources/Habilidades/Batery.tres" id="1_os1vc"]
 [ext_resource type="Texture2D" uid="uid://dht4e8fmqqxan" path="res://Assets/cards/weapon/armas/naturaleza/arma2.png" id="2_6tpvm"]
 [ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="3_kdbx5"]
 [ext_resource type="Texture2D" uid="uid://dkqt5i1yo2qop" path="res://Assets/element/nature.png" id="4_47fd1"]
@@ -9,17 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="7_m7rgj"]
 [ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_prdm5"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_lgy62"]
-[ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="10_5rse7"]
 
 [resource]
 script = ExtResource("6_u4jbq")
-attack = 5
-traits = Array[ExtResource("9_lgy62")]([ExtResource("10_5rse7")])
+attack = 17
 nivel = 2
 element_type = 5
 element = ExtResource("4_47fd1")
 backsprite = ExtResource("2_6tpvm")
-ability = ExtResource("1_os1vc")
 escena = ExtResource("5_gbcwt")
 sprite = ExtResource("7_m7rgj")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

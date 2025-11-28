@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="WeaponCardData" load_steps=11 format=3 uid="uid://07ii5a4hgt6j"]
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=10 format=3 uid="uid://07ii5a4hgt6j"]
 
-[ext_resource type="Resource" uid="uid://d4nb3j30vabrx" path="res://Resources/Habilidades/Batery.tres" id="1_1yecy"]
 [ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="2_qd1al"]
 [ext_resource type="Texture2D" uid="uid://b3lkosu6wh0wt" path="res://Assets/cards/weapon/armas/viento/arma2.png" id="2_x12vh"]
 [ext_resource type="Texture2D" uid="uid://x7aoomc5y2fq" path="res://Assets/element/wind.png" id="4_nhhxp"]
@@ -13,13 +12,12 @@
 
 [resource]
 script = ExtResource("5_hmx1g")
-attack = 5
+attack = 8
 traits = Array[ExtResource("8_1gw6o")]([ExtResource("9_h61qb")])
 nivel = 2
 element_type = 9
 element = ExtResource("4_nhhxp")
 backsprite = ExtResource("2_x12vh")
-ability = ExtResource("1_1yecy")
 escena = ExtResource("4_vrt21")
 sprite = ExtResource("6_qvriw")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

@@ -11,6 +11,7 @@ var waiting_for_target: bool = false
 
 # REGISTRO DE EFECTOS PERSONALIZADOS
 var custom_abilities: Dictionary = {}
+var abilities_description: Dictionary = {}
 
 # INICIALIZACIÓN
 func _ready():
@@ -30,6 +31,9 @@ func _register_all_abilities():
 func register_ability(ability_id: String, callback: Callable):
 	custom_abilities[ability_id] = callback
 	print("AbilitySystem: Registrada '%s'" % ability_id)
+	
+func get_description(ability_id: String):
+	return abilities_description[ability_id]
 
 func activate_weapon_ability(weapon: CartaArma):
 	if not weapon or not weapon.data:

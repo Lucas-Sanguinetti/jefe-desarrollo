@@ -166,7 +166,7 @@ func _on_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -
 func _get_traits_text(monster_data: MonsterCardData) -> String:
 	var texto: String = ""
 	for traits in monster_data.traits:
-		texto += "* %s\n" % [traits.trait_name]
+		texto += " %s\n" % [traits.trait_name]
 	return texto
 
 #Utilidad de info
@@ -177,10 +177,10 @@ func actLabel(label: Label) -> void:
 	if not rasgos.is_empty():
 		for rasgo in rasgos:
 			if rasgo is Endurecer:
-				text += "* %s " % [rasgo.trait_name]
+				text += "%s : " % [rasgo.trait_name]
 				text += "  %s\n" % [rasgo.resistencia]
 			else:
-				text += "* %s\n" % [rasgo.trait_name]
+				text += "%s :\n" % [rasgo.trait_name]
 			text += " %s\n" % [rasgo.trait_description]
 	else:
 		text += "Sin traits\n"

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponCardData" load_steps=12 format=3 uid="uid://chilh5qtllrxl"]
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=13 format=3 uid="uid://chilh5qtllrxl"]
 
 [ext_resource type="Resource" uid="uid://c5acklindsd5h" path="res://Resources/Habilidades/Endurecer5.tres" id="1_gub8j"]
 [ext_resource type="Texture2D" uid="uid://p60uxfktqr4x" path="res://Assets/cards/weapon/armas/oscuridad/arma2.png" id="2_gub8j"]
@@ -10,12 +10,16 @@
 [ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_hqdvm"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_s3pm6"]
 [ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="10_4hlk6"]
-[ext_resource type="Resource" uid="uid://dkyfyntyj8v24" path="res://Resources/Traits/Armas/lifeSteel.tres" id="11_n4umn"]
+[ext_resource type="Script" uid="uid://8rjtitj2kdu1" path="res://Traits/rapida.gd" id="11_gub8j"]
+
+[sub_resource type="Resource" id="Resource_h2h6w"]
+script = ExtResource("11_gub8j")
+metadata/_custom_type_script = "uid://8rjtitj2kdu1"
 
 [resource]
 script = ExtResource("6_p5qmj")
-attack = 3
-traits = Array[ExtResource("9_s3pm6")]([ExtResource("10_4hlk6"), ExtResource("11_n4umn")])
+attack = 14
+traits = Array[ExtResource("9_s3pm6")]([ExtResource("10_4hlk6"), SubResource("Resource_h2h6w")])
 nivel = 4
 element = ExtResource("4_h2h6w")
 backsprite = ExtResource("2_gub8j")

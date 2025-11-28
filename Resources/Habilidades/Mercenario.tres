@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_qvali")
 ability_name = "Mercenario"
-ability_description = "Gasta 1 moneda para darle afilado 5 a un arma"
+ability_description = "Gasta 1 moneda para afilar 5 a una arma hasta el final del   turno"
 target_type = 1
 ability_id = "Mercenario"
 value_1 = 5

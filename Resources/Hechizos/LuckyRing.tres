@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("3_jlsxq")
-descripcion = "Afilar 15 a un arma"
+descripcion = "Afilar 15 a un     arma"
 target_type = 1
 effect_category = 2
 effect_value = 15

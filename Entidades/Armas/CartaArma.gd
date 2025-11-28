@@ -16,6 +16,7 @@ var ataque:int
 var nivel:int 
 var rasgos:Array
 var element: WeaponCardData.ElementType
+var habilidad: WeaponAbilityData
 
 # Doble click (solo armas en WeaponGrid)
 var click_timer: float = 0.0
@@ -63,6 +64,7 @@ func _setup_specific_ui() -> void:
 	rasgos = weapon_data.traits
 	sword_hit_sound = weapon_data.swordHit
 	draw_sword_sound = weapon_data.drawSword
+	habilidad = weapon_data.ability
 	
 	if niveles_sprite:
 		niveles_sprite.set_nivel(nivel)
@@ -316,7 +318,9 @@ func _apply_lifesteal(weapon_attack: int, target: CartaMonstruo, monster_hp: int
 func _get_traits_text(weapon_data: WeaponCardData) -> String:
 	var texto: String = ""
 	for traits in weapon_data.traits:
-		texto += "* %s\n" % [traits.trait_name]
+		texto += " %s \n" % [traits.trait_name]
+	if habilidad != null:
+		texto += " %s\n " % [habilidad.ability_name]
 	return texto
 
 #UTILIDADES PUBLICAS
@@ -329,9 +333,13 @@ func actLabel(label: Label) -> void:
 	# Agregar traits
 	if not rasgos.is_empty():
 		for rasgo in rasgos:
-			text += "* %s\n" % [rasgo.trait_name]
+			text += "%s :\n" % [rasgo.trait_name]
 			text += " %s\n" % [rasgo.trait_description]
 	else:
 		text += "Sin traits\n"
+	if habilidad != null:
+			text += "%s (click derecho) :\n " % [habilidad.ability_name]
+			text += " %s\n" % [habilidad.ability_description]
+	
 	
 	label.text = text
