@@ -7,13 +7,13 @@
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="6_y5y6v"]
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="7_ln61o"]
 [ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_0l1tk"]
-[ext_resource type="Resource" uid="uid://cltr6rwpeyoa0" path="res://Resources/Traits/aprovechar.tres" id="9_qmiqp"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_r62kc"]
+[ext_resource type="Resource" uid="uid://dkyfyntyj8v24" path="res://Resources/Traits/Armas/lifeSteel.tres" id="10_qp13v"]
 
 [resource]
 script = ExtResource("6_y5y6v")
 attack = 7
-traits = Array[ExtResource("9_r62kc")]([ExtResource("9_qmiqp")])
+traits = Array[ExtResource("9_r62kc")]([ExtResource("10_qp13v")])
 nivel = 2
 element = ExtResource("4_12ioi")
 backsprite = ExtResource("2_nmypu")

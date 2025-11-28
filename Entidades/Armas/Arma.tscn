@@ -90,12 +90,10 @@ label_settings = SubResource("LabelSettings_pacq5")
 autowrap_mode = 1
 
 [node name="DrawSword" type="AudioStreamPlayer" parent="."]
-volume_db = -20.0
 bus = &"Effects"
 script = SubResource("GDScript_khqy0")
 
 [node name="SwordHit" type="AudioStreamPlayer" parent="."]
-volume_db = -20.0
 bus = &"Effects"
 script = SubResource("GDScript_g87m0")
 

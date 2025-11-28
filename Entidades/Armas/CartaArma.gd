@@ -352,7 +352,7 @@ func actLabel(label: Label) -> void:
 			text += "%s :\n" % [rasgo.trait_name]
 			text += " %s\n" % [rasgo.trait_description]
 	else:
-		text += "Sin traits\n"
+		text += "Sin pasivas\n"
 	if habilidad != null:
 			text += "%s (click derecho) :\n " % [habilidad.ability_name]
 			text += " %s\n" % [habilidad.ability_description]

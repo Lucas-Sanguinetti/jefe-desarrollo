@@ -72,7 +72,7 @@ script = ExtResource("9_hf2jd")
 
 [node name="Blacksmith" type="AudioStreamPlayer" parent="WeaponManager"]
 stream = ExtResource("10_gxhcr")
-volume_db = -20.0
+bus = &"Effects"
 
 [node name="Botones" type="CanvasLayer" parent="."]
 
@@ -95,6 +95,7 @@ script = ExtResource("10_eq8nk")
 
 [node name="press" type="AudioStreamPlayer" parent="Botones/PasarTurno"]
 stream = ExtResource("10_xugfq")
+bus = &"Effects"
 
 [node name="ContadorTurno" type="Label" parent="Botones"]
 visible = false
@@ -133,6 +134,7 @@ script = ExtResource("14_ohvqk")
 
 [node name="press" type="AudioStreamPlayer" parent="Botones/Vender"]
 stream = ExtResource("10_xugfq")
+bus = &"Effects"
 
 [node name="LifeHUD" parent="." instance=ExtResource("11_2jhs2")]
 position = Vector2(1139, 775)

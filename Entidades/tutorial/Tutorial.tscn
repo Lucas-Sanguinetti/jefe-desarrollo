@@ -136,7 +136,7 @@ offset_bottom = 867.0
 color = Color(0.2, 0.19607843, 0.19607843, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="SelecArma"]
-offset_left = 1056.0
+offset_left = 612.0
 offset_right = 1584.0
 offset_bottom = 871.0
 color = Color(0.2, 0.19607843, 0.19607843, 1)
@@ -153,10 +153,11 @@ text = "Haz click izquierdo sobre
 una de tus armas para usarla"
 
 [node name="Ataque" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Ataque"]
 offset_left = 66.0
-offset_top = 635.0
+offset_top = 172.0
 offset_right = 1452.0
 offset_bottom = 871.0
 color = Color(0.20187145, 0.19711676, 0.19711676, 1)
@@ -169,17 +170,17 @@ offset_bottom = 867.0
 color = Color(0.2, 0.19607843, 0.19607843, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="Ataque"]
-offset_left = 768.0
+offset_left = 538.0
 offset_right = 1579.0
 offset_bottom = 868.0
 color = Color(0.2, 0.19607843, 0.19607843, 1)
 
 [node name="AtacarMonstruo" type="Label" parent="Ataque"]
 texture_filter = 1
-offset_left = 784.0
-offset_top = 73.0
-offset_right = 1409.0
-offset_bottom = 199.0
+offset_left = 307.0
+offset_top = 194.0
+offset_right = 932.0
+offset_bottom = 320.0
 theme_override_fonts/font = ExtResource("10_3db23")
 theme_override_font_sizes/font_size = 40
 text = "Haz click izquierdo sobre 
@@ -249,7 +250,7 @@ color = Color(0.20187145, 0.19711676, 0.19711676, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="Compra"]
 offset_left = 186.0
-offset_top = 609.0
+offset_top = 327.0
 offset_right = 1187.0
 offset_bottom = 868.0
 color = Color(0.2, 0.19607843, 0.19607843, 1)
@@ -290,7 +291,7 @@ offset_bottom = 642.0
 color = Color(0.2, 0.19607843, 0.19607843, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="Habilidad"]
-offset_left = 1039.0
+offset_left = 752.0
 offset_right = 1581.0
 offset_bottom = 868.0
 color = Color(0.2, 0.19607843, 0.19607843, 1)
@@ -309,7 +310,6 @@ usa el click derecho
 para activarla."
 
 [node name="Hechizos" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Hechizos"]
 offset_left = -1.0
@@ -321,6 +321,13 @@ color = Color(0.20187145, 0.19711676, 0.19711676, 1)
 [node name="ColorRect2" type="ColorRect" parent="Hechizos"]
 offset_left = 277.0
 offset_top = 1.0
+offset_right = 1580.0
+offset_bottom = 869.0
+color = Color(0.2, 0.19607843, 0.19607843, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Hechizos"]
+offset_left = 2.0
+offset_top = 293.0
 offset_right = 1580.0
 offset_bottom = 869.0
 color = Color(0.2, 0.19607843, 0.19607843, 1)
