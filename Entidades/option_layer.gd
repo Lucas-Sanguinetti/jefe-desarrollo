@@ -1,8 +1,10 @@
 extends CanvasLayer
-class_name PauseMenu
 
 # Referencias a nodos
 @onready var panel_container: PanelContainer = $PanelContainer
+
+@onready var master_slider: HSlider = $VBoxContainer/MasterVolume/HBoxContainer/MasterSlider
+@onready var master_label: Label = $VBoxContainer/MasterVolume/HBoxContainer/MasterValue
 
 @onready var music_slider: HSlider = $VBoxContainer/MusicVolume/HBoxContainer/MusicSlider
 @onready var music_label: Label = $VBoxContainer/MusicVolume/HBoxContainer/MusicValue
@@ -10,18 +12,13 @@ class_name PauseMenu
 @onready var effects_slider: HSlider = $VBoxContainer/EffectsVolume/HBoxContainer/EffectsSlider
 @onready var effects_label: Label = $VBoxContainer/EffectsVolume/HBoxContainer/EffectsValue
 
-@onready var master_slider: HSlider = $VBoxContainer/MasterVolume/HBoxContainer/MasterSlider
-@onready var master_label: Label = $VBoxContainer/MasterVolume/HBoxContainer/MasterValue
 
-@onready var resume_button: Button = $VBoxContainer/ResumeButton
-@onready var restart_button: Button = $VBoxContainer/RestartButton
-@onready var main_menu_button: Button = $VBoxContainer/MainMenuButton
+@onready var resume_button: Button = $PanelContainer/VBoxContainer/ResumeButton
 
 
 # Señales
 signal resume_pressed
-signal restart_pressed
-signal main_menu_pressed
+
 
 # Estado
 var is_paused: bool = false
@@ -40,14 +37,8 @@ func _input(event):
 
 func toggle_pause():
 	is_paused = !is_paused
-	
-	if is_paused:
-		show()
-		get_tree().paused = true
-		resume_button.grab_focus()
-	else:
-		hide()
-		get_tree().paused = false
+	hide()
+	get_tree().paused = false
 
 func _on_master_slider_value_changed(value: float) -> void:
 	var db = linear_to_db(value / 100.0)
@@ -75,21 +66,6 @@ func linear_to_db(linear: float) -> float:
 func _on_resume_button_pressed() -> void:
 	emit_signal("resume_pressed")
 	toggle_pause()
-
-func _on_restart_button_pressed() -> void:
-	
-	get_tree().paused = false
-	hide()
-	emit_signal("restart_pressed")
-	# Enganchar logica de reinicio
-
-func _on_main_menu_button_pressed() -> void:
-	
-	get_tree().paused = false
-	hide()
-	emit_signal("main_menu_pressed")
-
-	# Aquí es donde enganchas tu lógica para volver al menú
 
 func _save_audio_settings():
 	var config = ConfigFile.new()

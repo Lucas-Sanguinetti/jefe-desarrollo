@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="WeaponCardData" load_steps=10 format=3 uid="uid://7c8i2632wiru"]
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=9 format=3 uid="uid://7c8i2632wiru"]
 
-[ext_resource type="Resource" uid="uid://b4qluqmhar7nt" path="res://Resources/Habilidades/Berserk.tres" id="1_mv1s6"]
 [ext_resource type="Texture2D" uid="uid://ccpiv3lh46lok" path="res://Assets/cards/weapon/armas/hielo/arma3.png" id="2_mv1s6"]
 [ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="3_33nf1"]
 [ext_resource type="Texture2D" uid="uid://bq1x2xdytdtxl" path="res://Assets/element/ice.png" id="4_aod20"]
@@ -12,12 +11,11 @@
 
 [resource]
 script = ExtResource("6_0ll3x")
-attack = 30
+attack = 35
 nivel = 5
 element_type = 4
 element = ExtResource("4_aod20")
 backsprite = ExtResource("2_mv1s6")
-ability = ExtResource("1_mv1s6")
 escena = ExtResource("5_n41rl")
 sprite = ExtResource("7_x6ayw")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

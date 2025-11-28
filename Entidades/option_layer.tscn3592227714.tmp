@@ -1,0 +1,117 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt7hrfjpqjjng"]
+
+[ext_resource type="Script" uid="uid://dxdqvauep43sv" path="res://Entidades/option_layer.gd" id="1_jwilt"]
+[ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_au2hv"]
+
+[node name="optionLayer" type="CanvasLayer"]
+script = ExtResource("1_jwilt")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="HSeparator3" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_au2hv")
+theme_override_font_sizes/font_size = 32
+text = "MENU"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MasterVolume" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MasterVolume"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_au2hv")
+theme_override_font_sizes/font_size = 18
+text = "Volumen General"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MasterVolume"]
+layout_mode = 2
+
+[node name="MasterSlider" type="HSlider" parent="PanelContainer/VBoxContainer/MasterVolume/HBoxContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+value = 100.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="MasterValue" type="Label" parent="PanelContainer/VBoxContainer/MasterVolume/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_au2hv")
+text = "100%"
+
+[node name="MusicVolume" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MusicVolume"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_au2hv")
+theme_override_font_sizes/font_size = 18
+text = "Musica"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MusicVolume"]
+layout_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="PanelContainer/VBoxContainer/MusicVolume/HBoxContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+value = 100.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="MusicValue" type="Label" parent="PanelContainer/VBoxContainer/MusicVolume/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_au2hv")
+text = "100%"
+
+[node name="EffectsVolume" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/EffectsVolume"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_au2hv")
+theme_override_font_sizes/font_size = 18
+text = "Efectos"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/EffectsVolume"]
+layout_mode = 2
+
+[node name="EffectsSlider" type="HSlider" parent="PanelContainer/VBoxContainer/EffectsVolume/HBoxContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+value = 100.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="EffectsValue" type="Label" parent="PanelContainer/VBoxContainer/EffectsVolume/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_au2hv")
+text = "100%"
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_au2hv")
+theme_override_font_sizes/font_size = 20
+text = "Continuar"

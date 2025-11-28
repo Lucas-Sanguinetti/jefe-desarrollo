@@ -12,7 +12,7 @@
 
 [resource]
 script = ExtResource("5_re515")
-attack = 5
+attack = 3
 element_type = 7
 element = ExtResource("4_5ymd6")
 backsprite = ExtResource("2_p1x2k")

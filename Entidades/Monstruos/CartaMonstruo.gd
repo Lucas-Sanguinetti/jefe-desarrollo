@@ -187,7 +187,7 @@ func actLabel(label: Label) -> void:
 				text += "%s :\n" % [rasgo.trait_name]
 			text += " %s\n" % [rasgo.trait_description]
 	else:
-		text += "Sin traits\n"
+		text += "Sin pasivas\n"
 		
 	label.text = text
 

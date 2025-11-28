@@ -8,13 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="7_c8gey"]
 [ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_dtamb"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_6cib7"]
+[ext_resource type="Resource" uid="uid://bteyahi75iyib" path="res://Resources/Traits/Armas/rapida.tres" id="10_nyguf"]
 [ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="10_rtm8d"]
-[ext_resource type="Resource" uid="uid://cltr6rwpeyoa0" path="res://Resources/Traits/aprovechar.tres" id="12_j407v"]
 
 [resource]
 script = ExtResource("6_dvj6h")
-attack = 14
-traits = Array[ExtResource("9_6cib7")]([ExtResource("10_rtm8d"), ExtResource("12_j407v")])
+attack = 8
+traits = Array[ExtResource("9_6cib7")]([ExtResource("10_rtm8d"), ExtResource("10_nyguf")])
 nivel = 4
 element_type = 1
 element = ExtResource("4_72hee")
