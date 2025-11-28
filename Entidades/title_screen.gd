@@ -27,6 +27,7 @@ func _on_timer_tutorial_timeout() -> void:
 	get_tree().change_scene_to_file("res://Entidades/tutorial/tutorial.tscn")
 
 
+
 func _on_opciones_pressed() -> void:
 	option_layer.visible = true
 

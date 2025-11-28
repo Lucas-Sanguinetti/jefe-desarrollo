@@ -13,7 +13,7 @@
 [resource]
 script = ExtResource("6_y5y6v")
 attack = 7
-traits = Array[ExtResource("9_r62kc")]([ExtResource("10_qp13v")])
+traits = Array[ExtResource("9_r62kc")]([ExtResource("10_qp13v"), null, null, null, null, null])
 nivel = 2
 element = ExtResource("4_12ioi")
 backsprite = ExtResource("2_nmypu")

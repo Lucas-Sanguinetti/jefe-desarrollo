@@ -12,7 +12,7 @@
 
 [resource]
 script = ExtResource("5_hmx1g")
-attack = 8
+attack = 6
 traits = Array[ExtResource("8_1gw6o")]([ExtResource("9_h61qb")])
 nivel = 2
 element_type = 9

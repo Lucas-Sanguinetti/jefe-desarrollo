@@ -12,7 +12,7 @@
 
 [resource]
 script = ExtResource("6_vee22")
-attack = 30
+attack = 20
 nivel = 5
 element_type = 6
 element = ExtResource("4_cnc1y")
