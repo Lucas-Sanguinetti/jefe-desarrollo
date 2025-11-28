@@ -187,8 +187,10 @@ func _ability_mercenario(weapon: CartaArma, ability: WeaponAbilityData , target:
 	
 @warning_ignore("unused_parameter")
 func _ability_berserk(weapon: CartaArma, ability: WeaponAbilityData, _target) -> bool:
-	var players_weapons = _get_player_weapon()
-	players_weapons.active_berserk()
+	weapon.set_trait_state("berserk_active", true)
+	
+	# Duplicar el ataque
+	weapon.actualizar_Ataque(weapon.ataque)
 	return true
 
 @warning_ignore("unused_parameter")

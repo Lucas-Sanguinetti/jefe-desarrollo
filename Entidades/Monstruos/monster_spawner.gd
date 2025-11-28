@@ -7,6 +7,10 @@ class_name MonsterSpawner
 
 var cards_per_turn: int = 1  # Cantidad de cartas por turno
 
+signal victory()
+
+func _ready() -> void:
+	grid_monstruos.boss_died.connect(_on_boss_died)
 
 func draw():
 	var r = sin_monstruos()
@@ -25,4 +29,5 @@ func place_monster(repeticiones:int):
 		if monster:
 			grid_monstruos.invoke_random_piece(monster)
 
-	
+func _on_boss_died():
+	emit_signal("victory")

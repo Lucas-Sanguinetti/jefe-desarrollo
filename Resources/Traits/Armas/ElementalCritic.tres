@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CriticoElemental" load_steps=2 format=3 uid="uid://dldvr75rf710i"]
 
-[ext_resource type="Script" uid="uid://bmokarwe2hi5t" path="res://Traits/elementalCritic.gd" id="1_qhryx"]
+[ext_resource type="Script" uid="uid://bmokarwe2hi5t" path="res://Traits/armas/elementalCritic.gd" id="1_qhryx"]
 
 [resource]
 script = ExtResource("1_qhryx")

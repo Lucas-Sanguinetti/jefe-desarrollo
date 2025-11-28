@@ -57,7 +57,6 @@ func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 	# Tomar arma del almacén
 	var weapon = weapon_grid.take_weapon(from_x, from_y)
 	if not weapon:
-		print("WeaponManager: No hay arma en la posición indicada") #Debug
 		return false
 	
 	# Equipar en el grid del jugador
@@ -66,14 +65,15 @@ func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 	
 	if not success:
 		# Si falló, devolver al almacén
-		push_warning("WeaponManager: No se pudo equipar el arma") #Debug
-		# Agregar al weapon grid / devolver al lugar de donde la saque
 		weapon.queue_free()
 		return false
 	
 	# Reducir monedas
 	var arma = weapon_grid.obtener_arma_en(Vector2i(from_x,from_y))
 	MoneyManager.perderMonedas(arma.nivel)
+	
+	# Marcar como comprada en este turno
+	weapon.mark_as_purchased()
 	
 	print("WeaponManager: Arma transferida exitosamente")
 	armasTransferidas += 1
@@ -100,7 +100,7 @@ func return_weapon_to_storage(from_x: int, from_y: int) -> bool:
 	weapon.queue_free()  # Destruir la instancia vieja
 	weapon_grid.invoke_random_piece(weapon_data)  # Crear nueva en el almacén
 	
-	print("WeaponManager: Arma devuelta al almacén")  #Debug
+
 	return true
 
 
@@ -117,13 +117,11 @@ func venderArma(carta:CartaArma):
 
 func verificar_transferencia(from_x: int, from_y: int) -> bool:
 	if player_grid.is_full():
-		print("WeaponManager: PlayerWeaponGrid está lleno") #Debug
 		return false
 	
 	#Verificar armas disponibles
 	var available_weapons = weapon_grid.get_all_weapons()
 	if available_weapons.is_empty():
-		print("WeaponManager: No hay armas disponibles en el almacén")  #Debug
 		return false
 	
 	var validacion_final:bool = weapon_grid.verificar_saldo_suficiente(from_x,from_y)

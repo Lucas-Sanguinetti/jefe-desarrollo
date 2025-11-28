@@ -26,6 +26,8 @@ func _ready() -> void:
 	turn_button.add_to_group("UI")
 	sell_button.add_to_group("UI")
 	
+	monster_spawner.victory.connect(victory)
+	
 	# Conectar TurnManager
 	TurnManager.turn_started.connect(_on_turn_started)
 	TurnManager.turn_ended.connect(_on_turn_ended)
@@ -108,6 +110,7 @@ func game_over():
 	$CanvasLayer2/GameOver.show()
 	await get_tree().create_timer(2.0).timeout
 	_reset_game()
+	
 #Resear Juego
 func _reset_game():
 	LifeManager.reset()
@@ -118,14 +121,17 @@ func _reset_game():
 	get_tree().change_scene_to_file("res://Entidades/main.tscn")
 	
 #Hechizos
-func _on_spell_cast(hechizo: SpellCardData, target):
+func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):
 	var success = spell_effects.apply_spell_effect(hechizo,target)
+	print("%s", success)
 	if success:
+		card.pay_cost()
+		card.mark_as_used()
+		hand.remove_card(card)
 		spell_deck.discard_card(hechizo)
 	else:
 		print("Game: Hechizo '%s' falló - NO se descarta" % hechizo.name)
 
-# ============================================
 # Venta de armas
 # ============================================
 func _on_arma_seleccionada(carta:CartaArma):
@@ -141,3 +147,9 @@ func _on_sell_button_pressed():
 		sell_button.pressSell(cartaSeleccionada)
 		weapon_manager.venderArma(cartaSeleccionada)
 	sell_button.set_disabled(true)
+
+func victory():
+	block_player_weapons()
+	$CanvasLayer2/Victory.show()
+	await get_tree().create_timer(2.0).timeout
+	_reset_game()

@@ -74,7 +74,9 @@ func place_piece(x: int, y: int, card: Carta) -> bool:
 
 func _show_card(carta: Carta):
 	_clear_preview()
-	cartaNueva = carta.duplicate()
+	var display_resource = carta.get_display_resource()
+	cartaNueva = display_resource.escena.instantiate()
+	cartaNueva.setup(display_resource)
 	cartaNueva.scale = Vector2(3, 3)
 	place_piece(0, 0, cartaNueva)
 	carta.actLabel(label)

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RobaVida" load_steps=2 format=3 uid="uid://dkyfyntyj8v24"]
 
-[ext_resource type="Script" uid="uid://dskf0uag62hpy" path="res://Traits/roboVida.gd" id="1_l2nlk"]
+[ext_resource type="Script" uid="uid://dskf0uag62hpy" path="res://Traits/armas/roboVida.gd" id="1_l2nlk"]
 
 [resource]
 script = ExtResource("1_l2nlk")

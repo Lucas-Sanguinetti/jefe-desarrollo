@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Solitario" load_steps=2 format=3 uid="uid://ckb7be5gp2ge7"]
+
+[ext_resource type="Script" uid="uid://b3ktiqwsrh2c5" path="res://Traits/monstruos/solitario.gd" id="1_4t2cv"]
+
+[resource]
+script = ExtResource("1_4t2cv")
+trait_name = "Solitario"
+trait_description = "Mientras no tenga monstruos adyacentes hara el doble del impacto"
+metadata/_custom_type_script = "uid://cy584ew032i43"

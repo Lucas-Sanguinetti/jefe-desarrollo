@@ -19,7 +19,7 @@ var waiting_for_target: bool = false
 var current_target_type: SpellCardData.TargetType
 
 # SEÑALES
-signal card_played(spell: SpellCardData, target)
+signal card_played(card: CartaHechizo,spell: SpellCardData, target)
 signal hand_full
 signal hand_has_space
 signal mouseEntered(carta: Carta)
@@ -200,16 +200,16 @@ func _cast_spell(card: CartaHechizo, target):
 	print("Hand: Lanzando '%s'" % spell_data.name)
 	
 	# Pagar coste
-	card.pay_cost()
+	#card.pay_cost()
 	
 	# Marcar como usada (estado mutable en la carta)
-	card.mark_as_used()
+	#card.mark_as_used()
 	
 	# Emitir señal (Game.gd lo captura)
-	emit_signal("card_played", spell_data, target)
+	emit_signal("card_played",card, spell_data, target)
 	
 	# Remover carta
-	remove_card(card)
+	#remove_card(card)
 	cancel_selection()
 
 # ============================================

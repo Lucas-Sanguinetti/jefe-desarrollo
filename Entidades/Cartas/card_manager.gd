@@ -68,8 +68,10 @@ func select_weapon(weapon: CartaArma):
 	weapon.select_for_attack()
 	combat_state = CombatState.WEAPON_SELECTED
 	emit_signal("armaSeleccionada")
-	emit_signal("armaSeleccionadaVenta",weapon)
-	print("Arma seleccionada para atacar")
+	if weapon.can_sell():
+		emit_signal("armaSeleccionadaVenta", weapon)
+	else:
+		print("CardManager: Arma no puede ser vendida en este turno")
 
 func cancel_weapon_selection():
 	if selected_weapon:

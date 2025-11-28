@@ -3,6 +3,8 @@ class_name CartaArma
 
 # Estado específico de armas
 @export var can_attack: bool = true
+var turn_purchased: int = -1  # En qué turno fue comprada (-1 = no comprada este turno)
+var can_be_sold: bool = true 
 
 # Referencias UI
 var ataque_label: Label
@@ -31,7 +33,7 @@ var sword_hit_sound: AudioStream
 
 #Señales
 signal ability_activated(weapon: CartaArma)
-signal weapon_recharged(weapon: CartaArma)
+signal weapon_recharged(weapon: CartaArma)	
 signal weapon_discharged(weapon: CartaArma)
 
 # IMPLEMENTACIÓN DE MÉTODOS VIRTUALES
@@ -43,18 +45,10 @@ func _initialize_references() -> void:
 	element_sprite = get_node_or_null("Element")
 	backsprite_sprite = get_node_or_null("BackSprite")
 	
-	
-	if not ataque_label:
-		push_error("CartaArma: Falta nodo 'Ataque'")
-	if not traits_label:
-		push_error("CartaArma: Falta nodo 'WeaponTraits'")
-	if not niveles_sprite:
-		push_error("CartaArma: Falta nodo 'Niveles'")
 
 func _setup_specific_ui() -> void:
 	var weapon_data = data as WeaponCardData
 	if not weapon_data:
-		push_error("CartaArma requiere WeaponCardData")
 		return
 	ataque = weapon_data.attack
 	element = weapon_data.element_type
@@ -93,27 +87,22 @@ func _update_charge_indicator():
 		print("%s: Cambiando de CardState a CANNOT_ATTACK" % name)
 	_update_visual_state()
 
-
 func is_charged():
 	return can_attack
 
 func recharge():
 	if can_attack:
-		print("%s: Ya esta cargada",name)
 		return
 	can_attack = true
 	_update_charge_indicator()
 	emit_signal("weapon_recharged", self)
-	print("%s: RECARGADA" % name)
 
 func discharge():
 	if not can_attack:
-		print("%s: Ya está descargada" % name)
 		return
 	can_attack = false
 	_update_charge_indicator()
 	emit_signal("weapon_discharged", self)
-	print("%s: DESCARGADA" % name)
 
 #HABILIDADES
 func can_use_ability() -> bool:
@@ -123,13 +112,11 @@ func can_use_ability() -> bool:
 	
 	# Verificar que esté cargada
 	if not can_attack:
-		print("%s: Descargada, no puede usar habilidad" % name)
 		return false
 	
 	# Verificar que tenga habilidad
 	var weapon_data = data as WeaponCardData
 	if not weapon_data or not weapon_data.has_ability():
-		print("%s: Sin habilidad" % name)
 		return false
 	
 	return true
@@ -137,9 +124,7 @@ func can_use_ability() -> bool:
 func use_ability() -> void:
 	if not can_use_ability():
 		return
-	
-	print("%s: Activando habilidad..." % name)
-	
+
 	# Emitir señal
 	emit_signal("ability_activated", self)
 	
@@ -197,7 +182,7 @@ func attack(target: CartaMonstruo) -> bool:
 		LifeManager.looseLife(player_damage)
 	
 	# Aplicar habilidades de estado
-	weapon_attack = _apply_state_attack_abilities(weapon_attack)
+	weapon_attack = _apply_attack_abilities(weapon_attack)
 	
 	target.take_damage(weapon_attack, self)
 	
@@ -216,6 +201,16 @@ func attack(target: CartaMonstruo) -> bool:
 	sword_hit.playSound(sword_hit_sound)
 	return true
 
+# REINICIOS
+
+func reset_for_new_turn():
+	if turn_purchased != -1 and turn_purchased < TurnManager.get_current_turn():
+		can_be_sold = true
+		print("%s: Ahora se puede vender" % name)
+	reset_attack_ability()
+	reset_attack_stats()
+	reset_abilities_states()
+
 func reset_attack_ability() -> void:
 	recharge()
 
@@ -223,6 +218,10 @@ func reset_attack_stats() -> void:
 	var weapon_data = data as WeaponCardData
 	ataque = weapon_data.attack
 	_apply_data_to_ui()
+
+func reset_abilities_states():
+	if get_trait_state("berserk_active", false):
+		clear_trait_state("berserk_active")
 
 func block_attack_ability() -> void:
 	discharge()
@@ -253,19 +252,37 @@ func _handle_right_click() -> void:
 		if can_use_ability():
 			use_ability()
 		else:
-			# Dar feedback de por qué no puede usar
 			if not can_attack:
-				print("%s: Descargada, no puede usar habilidad" % name)
+				#print("%s: Descargada, no puede usar habilidad" % name)
+				pass
 			else:
 				var weapon_data = data as WeaponCardData
 				if not weapon_data or not weapon_data.has_ability():
-					print("%s: Esta arma no tiene habilidad" % name)
+					#print("%s: Esta arma no tiene habilidad" % name)
+					pass
 				else:
-					print("%s: No puede usar habilidad" % name)
+					#print("%s: No puede usar habilidad" % name)
+					pass
 
 func _on_double_click() -> void:
 	emit_signal("card_double_clicked", self)
 
+# VENTA DEL ARMA
+func mark_as_purchased():
+	turn_purchased = TurnManager.get_current_turn()
+	can_be_sold = false
+	print("%s: Comprada en turno %d - No se puede vender hasta el próximo turno" % [name, turn_purchased])
+
+# Método para verificar si se puede vender
+func can_sell() -> bool:
+	var current_turn = TurnManager.get_current_turn()
+	
+	# Si fue comprada en este turno, no se puede vender
+	if turn_purchased == current_turn:
+		print("%s: No se puede vender (comprada en este turno)" % name)
+		return false
+	
+	return can_be_sold
 
 # UTILIDADES PRIVADAS
 func _calculate_player_damage(target: Carta) -> int:
@@ -288,7 +305,7 @@ func _calculate_player_damage(target: Carta) -> int:
 func _apply_state_damage_abilities(player_damage: int):
 	var playerWeapons = get_tree().get_first_node_in_group("PlayerWeapons")
 	
-	if playerWeapons.berserkState:
+	if get_trait_state("berserk_active", false):
 		player_damage = player_damage * 2
 	
 	if playerWeapons.enduranceState:
@@ -296,10 +313,9 @@ func _apply_state_damage_abilities(player_damage: int):
 	
 	return player_damage
 
-func _apply_state_attack_abilities(weapon_damage: int):
-	var playerWeapons = get_tree().get_first_node_in_group("PlayerWeapons")
+func _apply_attack_abilities(weapon_damage: int):
 	
-	if playerWeapons.berserkState:
+	if get_trait_state("berserk_active", false):
 		weapon_damage = weapon_damage * 2
 	
 	return weapon_damage
@@ -319,8 +335,8 @@ func _get_traits_text(weapon_data: WeaponCardData) -> String:
 	var texto: String = ""
 	for traits in weapon_data.traits:
 		texto += " %s \n" % [traits.trait_name]
-	if habilidad != null:
-		texto += " %s\n " % [habilidad.ability_name]
+	if weapon_data.ability:
+		texto += " %s \n" % [weapon_data.ability.ability_name]
 	return texto
 
 #UTILIDADES PUBLICAS
@@ -341,5 +357,11 @@ func actLabel(label: Label) -> void:
 			text += "%s (click derecho) :\n " % [habilidad.ability_name]
 			text += " %s\n" % [habilidad.ability_description]
 	
-	
 	label.text = text
+
+func get_display_resource() -> Resource:
+	var copy = data.duplicate()
+	
+	copy.attack = ataque
+
+	return copy

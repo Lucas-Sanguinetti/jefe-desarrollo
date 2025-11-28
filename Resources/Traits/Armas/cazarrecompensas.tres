@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Cazarrecompensas" load_steps=2 format=3 uid="uid://ckgjgr0b6220c"]
 
-[ext_resource type="Script" uid="uid://c71dpn126r76t" path="res://Traits/cazarrecompensas.gd" id="1_morrt"]
+[ext_resource type="Script" uid="uid://c71dpn126r76t" path="res://Traits/armas/cazarrecompensas.gd" id="1_morrt"]
 
 [resource]
 script = ExtResource("1_morrt")

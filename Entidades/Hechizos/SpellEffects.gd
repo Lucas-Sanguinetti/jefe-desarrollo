@@ -49,26 +49,27 @@ func apply_spell_effect(spell: SpellCardData, target = null):
 	
 # Hechizos Generales
 # ============================================
-func _apply_generic_effect(spell: SpellCardData, target):
+func _apply_generic_effect(spell: SpellCardData, target)->bool:
 	match spell.effect_category:
 		SpellCardData.EffectCategory.DAMAGE:
-			_generic_damage(target, spell.effect_value)
+			return _generic_damage(target, spell.effect_value)
 		
 		SpellCardData.EffectCategory.HEALING:
-			_generic_heal(spell.effect_value)
+			return _generic_heal(spell.effect_value)
 		
 		SpellCardData.EffectCategory.BUFF:
-			_generic_weapon_buff(target, spell.effect_value)
+			return _generic_weapon_buff(target, spell.effect_value)
 		
 		SpellCardData.EffectCategory.UTILITY:
-			_generic_utility()
+			return _generic_utility()
 		
 		SpellCardData.EffectCategory.SUMMON:
-			_generic_summon_monster()
+			return _generic_summon_monster()
 		
 		SpellCardData.EffectCategory.ECONOMY:
-			_generic_gain_money(spell.effect_value)
-			
+			return _generic_gain_money(spell.effect_value)
+	return true
+	
 func _generic_damage(target: CartaMonstruo, value: int) -> bool:
 	if _validate_monster_target(target):
 		push_error("SpellEffects: Objetivo inválido para daño genérico")

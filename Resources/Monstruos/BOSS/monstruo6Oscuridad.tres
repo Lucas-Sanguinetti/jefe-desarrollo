@@ -16,6 +16,7 @@ attack = 10
 traits = Array[ExtResource("7_30eux")]([ExtResource("8_qlvro")])
 nivel = 5
 backsprite = ExtResource("1_64ast")
+boss = true
 escena = ExtResource("4_bws8p")
 sprite = ExtResource("6_0lyi2")
 name = "Mons2"

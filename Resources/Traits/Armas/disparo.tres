@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Disparo" load_steps=2 format=3 uid="uid://b1o6qcjvrniro"]
 
-[ext_resource type="Script" uid="uid://dxdevo41f4jt6" path="res://Traits/disparo.gd" id="1_vy3ag"]
+[ext_resource type="Script" uid="uid://dxdevo41f4jt6" path="res://Traits/armas/disparo.gd" id="1_vy3ag"]
 
 [resource]
 script = ExtResource("1_vy3ag")

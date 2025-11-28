@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Fragil" load_steps=2 format=3 uid="uid://ckefibx0nekb4"]
 
-[ext_resource type="Script" uid="uid://dvepjcgwrwgfp" path="res://Traits/fragil.gd" id="1_e6lb6"]
+[ext_resource type="Script" uid="uid://dvepjcgwrwgfp" path="res://Traits/monstruos/fragil.gd" id="1_e6lb6"]
 
 [resource]
 script = ExtResource("1_e6lb6")
