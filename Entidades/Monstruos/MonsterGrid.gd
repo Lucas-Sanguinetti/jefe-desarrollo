@@ -12,6 +12,8 @@ var grid = []  # array 2D de referencias a fichas
 
 signal mouseEntered(carta: Carta)
 signal monster_died(monster: Carta)
+signal boss_died()
+
 
 func _ready():
 	# Inicializar grilla vacía
@@ -20,7 +22,8 @@ func _ready():
 		grid[x] = []
 		for y in range(GRID_SIZE):
 			grid[x].append(null)
-	visuals.update_valiant_overlays()
+	visuals.update_valiente_overlays()
+	visuals.update_escurridizo_overlays()
 	add_to_group("MonsterGrid")
 
 # Convierte posición lógica (x,y) en coordenada de pantalla
@@ -46,7 +49,10 @@ func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
 	grid[x][y] = cardPiece
 	cardPiece.card_died.connect(_on_monster_died.bind(cardPiece))
 	
-	visuals.update_valiant_overlays()
+	cardPiece.boss_died.connect(_on_boss_died)
+	
+	visuals.update_escurridizo_overlays()
+	visuals.update_valiente_overlays()
 	
 	return true
 
@@ -74,7 +80,11 @@ func _on_monster_died(monster: Carta):
 	grid[int(pos.x)][int(pos.y)] = null
 	
 	emit_signal("monster_died",monster)
-	visuals.update_valiant_overlays()
+	visuals.update_escurridizo_overlays()
+	visuals.update_valiente_overlays()
+
+func _on_boss_died():
+	emit_signal("boss_died")
 
 func get_all_monsters() -> Array:
 	var monsters = []

@@ -1,15 +1,26 @@
 extends Node
+class_name Tutorial
 
-@onready var turn_button = $CanvasLayer/PasarTurno
-@onready var turn_label = $CanvasLayer/ContadorTurno
+@onready var turn_button = $Botones/PasarTurno
+@onready var turn_label = $Botones/ContadorTurno
+#Managers y spawners
 @onready var card_manager = $CardManager
+@onready var weapon_manager: WeaponManager = $WeaponManager
 @onready var player_weapon_spawner = $PlayerWeaponSpawner
 @onready var monster_spawner = $MonsterSpawner
-@onready var weapon_manager = $WeaponManager
-@onready var card_info: Node2D = $InfoDisplay
 
+#Hechizos
+@onready var spell_deck: SpellDeck = $SpellDeck
+@onready var hand: Hand = $PlayerSpells
+@onready var spell_effects: SpellEffects = $SpellEffects
 
-@export var titleScreen: PackedScene
+@onready var ability_system: AbilitySystem = $AbilitySystem
+
+@onready var pause_menu: PauseMenu = $PauseMenu
+
+#Paneles
+@onready var panel_invisible: Panel = $Vida/PanelInvisible
+
 
 var armaSelected = false
 var current_turn = 1.
@@ -20,29 +31,37 @@ func _ready() -> void:
 	card_manager.armaSeleccionada.connect(_on_arma_seleccionada)
 	card_manager.armaUsada.connect(_on_arma_usada)
 	weapon_manager.armaTransferida.connect(_on_arma_transferida)
-	#texto
-	$Label_tut1.visible = true
-	$Label_tut2.visible = false
-	$Label_tut3.visible = false
-	$Label_tut4.visible = false
+	ability_system.ability_executed.connect(_on_ability_used)
+	spell_effects.effect_finished.connect(_on_spell_used)
+	hand.card_played.connect(_on_spell_cast)
 	
-	#sombras
-	$sombra1_tut1.visible = true
-	$sombra2_tut1.visible = true 
-	$sombra1_tut2.visible = false 
-	$sombra2_tut2.visible = false 
-	$sombra1_tut3.visible = false 
-	$sombra2_tut3.visible = false 
-	$sombra3_tut3.visible = false 
-	$sombra1_tut4.visible = false 
-	$sombra2_tut4.visible = false
+	print("Le pedi algo al monsterSpawner desde el tutorial")
+	if pause_menu:
+		pause_menu.resume_pressed.connect(_on_pause_resume)
+		pause_menu.restart_pressed.connect(_on_pause_restart)
+		pause_menu.main_menu_pressed.connect(_on_pause_main_menu)
 	
+	#paneles y carteles
+	panel_invisible.tutorial_click.connect(_on_vida_tutorial)
+	$SelecArma.visible = true
+	$Ataque.visible = false
+	$Vida.visible = false
+	$Compra.visible = false
+	$Habilidad.visible = false
+	$Hechizos.visible = false
+	$TerminarTutorial.visible = false
 
-func _on_turn_button_pressed():
+# Funcionalidad necesaria para el progreso y finalizado
+
+func _reset_game():
 	LifeManager.reset()
 	MoneyManager.reset()
 	MonsterDeck.reset()
 	WeaponDeck.reset()
+	TurnManager.reset()
+
+func _on_turn_button_pressed():
+	_reset_game()
 	get_tree().change_scene_to_file("res://Entidades/main.tscn")
 
 func reset_player_weapons():
@@ -66,28 +85,52 @@ func reset_monster_traits():
 		if monster.has_method("reset_traits_for_new_turn"):
 			monster.reset_traits_for_new_turn()
 
+func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):
+	var success = spell_effects.apply_spell_effect(hechizo,target)
+	print("%s", success)
+	if success:
+		card.pay_cost()
+		card.mark_as_used()
+		hand.remove_card(card)
+		spell_deck.discard_card(hechizo)
+
+# Funciones de seguimiento del tutorial
 func _on_arma_seleccionada():
-	$Label_tut1.visible = false
-	$Label_tut2.visible = true
-	$sombra1_tut1.visible = false
-	$sombra2_tut1.visible = false 
-	$sombra1_tut2.visible = true 
-	$sombra2_tut2.visible = true
-	
+	$SelecArma.visible = false
+	$Ataque.visible = true
+	monster_spawner.place_monster_tutorial()
+
 func _on_arma_usada():
-	$Label_tut2.visible = false
-	$Label_tut3.visible = true
-	$sombra1_tut2.visible = false 
-	$sombra2_tut2.visible = false
-	$sombra1_tut3.visible = true 
-	$sombra2_tut3.visible = true 
-	$sombra3_tut3.visible = true
+	$Ataque.visible = false
+	panel_invisible.visible = false
+	$Vida.visible = true
+	await get_tree().create_timer(2.0).timeout
+	panel_invisible.visible = true
+
+func _on_vida_tutorial():
+	$Vida.visible = false
+	$Compra.visible = true
 
 func _on_arma_transferida():
-	$Label_tut3.visible = false
-	$Label_tut4.visible = true
-	$sombra1_tut3.visible = false 
-	$sombra2_tut3.visible = false 
-	$sombra3_tut3.visible = false
-	$sombra1_tut4.visible = true 
-	$sombra2_tut4.visible = true
+	$Compra.visible = false
+	$Habilidad.visible = true
+	
+func _on_ability_used(_weapon, _ability, _target):
+	$Habilidad.visible = false
+	$Hechizos.visible = true
+	
+func _on_spell_used(_effect_id, _target):
+	$Hechizos.visible = false
+	$TerminarTutorial.visible = true
+	
+# Funciones del Menu
+# ============================================
+func _on_pause_resume():
+	pass
+	
+func _on_pause_restart():
+	_reset_game()
+	get_tree().reload_current_scene()
+	
+func _on_pause_main_menu():
+	get_tree().change_scene_to_file("res://Entidades/main.tscn")

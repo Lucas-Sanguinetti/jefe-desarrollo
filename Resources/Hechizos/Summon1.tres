@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellCardData" load_steps=6 format=3 uid="uid://cccawjs6d11c7"]
+
+[ext_resource type="Texture2D" uid="uid://dygmud0h8f1ih" path="res://Assets/cards/spell/spells/carta.png" id="1_pg4cj"]
+[ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="2_r412p"]
+[ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="3_8iiw7"]
+[ext_resource type="PackedScene" uid="uid://bncxpxagsydh3" path="res://Entidades/Hechizos/Hechizo.tscn" id="3_ekrkf"]
+[ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="5_jyuc8"]
+
+[resource]
+script = ExtResource("3_8iiw7")
+descripcion = "Invoca un monstruo a la mesa"
+backsprite = ExtResource("1_pg4cj")
+target_type = 4
+effect_category = 4
+effect_value = 1
+escena = ExtResource("3_ekrkf")
+sprite = ExtResource("5_jyuc8")
+name = "Carta"
+metadata/_custom_type_script = "uid://c5klust30h4bq"

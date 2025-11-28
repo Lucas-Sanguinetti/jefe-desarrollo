@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://7tjf1gfpknq1"]
+[gd_scene load_steps=35 format=3 uid="uid://mviq3k54n5sp"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -28,6 +28,9 @@
 [ext_resource type="Resource" uid="uid://bel45xqiao1k8" path="res://Resources/Hechizos/Afilar3.tres" id="22_ye2mg"]
 [ext_resource type="Resource" uid="uid://c2bkuv7nntasy" path="res://Resources/Hechizos/BasicHeal.tres" id="23_1dqht"]
 [ext_resource type="Resource" uid="uid://dwr0vwdapddxr" path="res://Resources/Hechizos/GreatHeal.tres" id="24_tr8el"]
+[ext_resource type="Resource" uid="uid://daaaus262s43j" path="res://Resources/Hechizos/moneda1.tres" id="25_jqfhg"]
+[ext_resource type="Resource" uid="uid://cccawjs6d11c7" path="res://Resources/Hechizos/Summon1.tres" id="26_2wdbc"]
+[ext_resource type="PackedScene" uid="uid://b7bbxxh388bpu" path="res://pause_menu.tscn" id="31_2wdbc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2jhs2"]
 font_size = 12
@@ -71,9 +74,9 @@ script = ExtResource("9_hf2jd")
 stream = ExtResource("10_gxhcr")
 volume_db = -20.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Botones" type="CanvasLayer" parent="."]
 
-[node name="PasarTurno" type="Button" parent="CanvasLayer"]
+[node name="PasarTurno" type="Button" parent="Botones"]
 texture_filter = 1
 anchors_preset = -1
 anchor_left = -0.081
@@ -90,10 +93,11 @@ text = "Terminar
 Turno"
 script = ExtResource("10_eq8nk")
 
-[node name="press" type="AudioStreamPlayer" parent="CanvasLayer/PasarTurno"]
+[node name="press" type="AudioStreamPlayer" parent="Botones/PasarTurno"]
 stream = ExtResource("10_xugfq")
 
-[node name="ContadorTurno" type="Label" parent="CanvasLayer"]
+[node name="ContadorTurno" type="Label" parent="Botones"]
+visible = false
 texture_filter = 1
 anchors_preset = -1
 anchor_left = 0.011000001
@@ -109,7 +113,7 @@ theme_override_font_sizes/font_size = 12
 text = "TURNO: 1/20"
 label_settings = SubResource("LabelSettings_2jhs2")
 
-[node name="Vender" type="Button" parent="CanvasLayer"]
+[node name="Vender" type="Button" parent="Botones"]
 texture_filter = 1
 anchors_preset = -1
 anchor_left = -0.081
@@ -127,7 +131,7 @@ disabled = true
 text = "Vender"
 script = ExtResource("14_ohvqk")
 
-[node name="press" type="AudioStreamPlayer" parent="CanvasLayer/Vender"]
+[node name="press" type="AudioStreamPlayer" parent="Botones/Vender"]
 stream = ExtResource("10_xugfq")
 
 [node name="LifeHUD" parent="." instance=ExtResource("11_2jhs2")]
@@ -140,7 +144,7 @@ position = Vector2(1192, 228)
 position = Vector2(1357, 802)
 
 [node name="SpellDeck" parent="." instance=ExtResource("17_rwqrq")]
-spell_Deck = Array[ExtResource("19_u4kpe")]([ExtResource("20_xr7dm"), ExtResource("20_xr7dm"), ExtResource("20_xr7dm"), ExtResource("21_423gc"), ExtResource("21_423gc"), ExtResource("21_423gc"), ExtResource("22_ye2mg"), ExtResource("22_ye2mg"), ExtResource("22_ye2mg"), ExtResource("23_1dqht"), ExtResource("23_1dqht"), ExtResource("23_1dqht"), ExtResource("24_tr8el")])
+spell_Deck = Array[ExtResource("19_u4kpe")]([ExtResource("20_xr7dm"), ExtResource("20_xr7dm"), ExtResource("20_xr7dm"), ExtResource("21_423gc"), ExtResource("21_423gc"), ExtResource("21_423gc"), ExtResource("22_ye2mg"), ExtResource("22_ye2mg"), ExtResource("22_ye2mg"), ExtResource("23_1dqht"), ExtResource("23_1dqht"), ExtResource("23_1dqht"), ExtResource("24_tr8el"), ExtResource("25_jqfhg"), ExtResource("26_2wdbc")])
 
 [node name="PlayerSpells" parent="." instance=ExtResource("18_hf2jd")]
 position = Vector2(205, 86)
@@ -156,10 +160,12 @@ stream = ExtResource("13_8hmk7")
 volume_db = -20.0
 bus = &"Music"
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="PauseMenu" parent="." instance=ExtResource("31_2wdbc")]
+
+[node name="Ventanas" type="CanvasLayer" parent="."]
 layer = 100
 
-[node name="GameOver" type="Panel" parent="CanvasLayer2"]
+[node name="GameOver" type="Panel" parent="Ventanas"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,7 +175,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="CanvasLayer2/GameOver"]
+[node name="Label" type="Label" parent="Ventanas/GameOver"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -184,4 +190,32 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Haz sido
 derrotado"
+label_settings = SubResource("LabelSettings_gxhcr")
+
+[node name="Victory" type="Panel" parent="Ventanas"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Ventanas/Victory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -287.5
+offset_top = -101.5
+offset_right = 287.5
+offset_bottom = 101.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Felicitaciones
+Haz derrotado al Boss
+Ganaste "
 label_settings = SubResource("LabelSettings_gxhcr")

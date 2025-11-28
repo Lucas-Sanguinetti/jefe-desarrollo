@@ -1,14 +1,9 @@
-[gd_scene load_steps=46 format=3 uid="uid://r3uw2a7pd3o6"]
+[gd_scene load_steps=40 format=3 uid="uid://r3uw2a7pd3o6"]
 
 [ext_resource type="Script" uid="uid://cli218hw4m8vd" path="res://singleton/monster_deck.gd" id="1_svbph"]
 [ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/LVL1/monstruo1Naturaleza.tres" id="2_3hl6n"]
+[ext_resource type="Resource" uid="uid://cob03m6rf4rty" path="res://Resources/Monstruos/LVL1/tutorialMonstruo.tres" id="2_3wp63"]
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_46c8m"]
-[ext_resource type="Texture2D" uid="uid://c5dbe2itbl2gn" path="res://Assets/cards/monster/monstruos/agua/mons1.png" id="2_l382o"]
-[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="2_v7a3c"]
-[ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="3_l0c54"]
-[ext_resource type="Texture2D" uid="uid://d0uky38qmk1t8" path="res://Assets/cards/monster/monsterCardIce.png" id="4_8jsbe"]
-[ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="4_otfto"]
-[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="5_l382o"]
 [ext_resource type="Resource" uid="uid://bkkxhomjvob0s" path="res://Resources/Monstruos/LVL1/monstruo1Agua.tres" id="9_jej3k"]
 [ext_resource type="Resource" uid="uid://ctvld27skmeui" path="res://Resources/Monstruos/LVL1/monstruo1Fuego.tres" id="10_q3knx"]
 [ext_resource type="Resource" uid="uid://cphpjpiknqgi1" path="res://Resources/Monstruos/LVL1/monstruo1Viento.tres" id="11_vb4c2"]
@@ -45,16 +40,8 @@
 [ext_resource type="Resource" uid="uid://iihapx0vxpgy" path="res://Resources/Monstruos/BOSS/monstruo6Oscuridad.tres" id="43_8xnh6"]
 [ext_resource type="Resource" uid="uid://bbu4wat2haept" path="res://Resources/Monstruos/BOSS/monstruo6Electricidad.tres" id="44_yndt1"]
 
-[sub_resource type="Resource" id="Resource_jej3k"]
-script = ExtResource("2_46c8m")
-hp = 5
-attack = 5
-escena = ExtResource("2_v7a3c")
-sprite = ExtResource("4_8jsbe")
-metadata/_custom_type_script = "uid://bc4y8iqy4olrb"
-
 [node name="MonsterDeck" type="Node"]
 script = ExtResource("1_svbph")
-tutorial_monster = SubResource("Resource_jej3k")
+tutorial_monster = ExtResource("2_3wp63")
 monster_data_cards = Array[ExtResource("2_46c8m")]([ExtResource("9_jej3k"), ExtResource("10_q3knx"), ExtResource("11_vb4c2"), ExtResource("12_5kv46"), ExtResource("2_3hl6n"), ExtResource("14_f8opl"), ExtResource("15_bsx0u"), ExtResource("16_7m32e"), ExtResource("17_5vlmi"), ExtResource("18_pt7av"), ExtResource("19_1m7e0"), ExtResource("20_7hluh"), ExtResource("21_771ry"), ExtResource("22_0gstw"), ExtResource("23_65vk5"), ExtResource("24_3c4rb"), ExtResource("25_poi6w"), ExtResource("26_en05l"), ExtResource("27_jsw1l"), ExtResource("28_3evc0"), ExtResource("29_0jvme"), ExtResource("30_u0x7c"), ExtResource("31_e3eed"), ExtResource("32_vsbw2"), ExtResource("33_bolex"), ExtResource("34_ce1pp"), ExtResource("35_kvy50"), ExtResource("36_ltjpy"), ExtResource("37_yvlu6"), ExtResource("38_c7767")])
 monster_bosses_data = Array[ExtResource("2_46c8m")]([ExtResource("39_pdn7r"), ExtResource("40_tchk0"), ExtResource("41_gk841"), ExtResource("42_2be5a"), ExtResource("43_8xnh6"), ExtResource("44_yndt1")])

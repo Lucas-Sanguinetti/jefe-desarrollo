@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Rapida" load_steps=2 format=3 uid="uid://bteyahi75iyib"]
 
-[ext_resource type="Script" uid="uid://8rjtitj2kdu1" path="res://Traits/rapida.gd" id="1_ni02r"]
+[ext_resource type="Script" uid="uid://8rjtitj2kdu1" path="res://Traits/armas/rapida.gd" id="1_ni02r"]
 
 [resource]
 script = ExtResource("1_ni02r")

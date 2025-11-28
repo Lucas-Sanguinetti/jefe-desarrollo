@@ -22,3 +22,4 @@ enum ElementType {
 @export var element:Texture2D = preload("uid://cfghlodo6mm6e")
 @export var backsprite:Texture2D = preload("uid://c5dbe2itbl2gn")
 @export var death:AudioStream = preload("uid://dns6okc5us4st")
+@export var boss:bool = false

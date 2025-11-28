@@ -21,6 +21,7 @@ var death_sound: AudioStream
 var is_targetable: bool = false
 @onready var death: AudioStreamPlayer = $Death
 
+signal boss_died()
 
 func _initialize_references() -> void:
 	super._initialize_references()
@@ -135,6 +136,9 @@ func die() -> void:
 			rasgo.on_monster_death(self)
 	emit_signal("card_died")
 	
+	if data.boss:
+		emit_signal("boss_died")
+	
 	if parent_grid and parent_grid.has_node("MonsterGridVisuals"):
 		var visuals = parent_grid.get_node("MonsterGridVisuals")
 		var tween = visuals.animate_death(self)
@@ -186,3 +190,11 @@ func actLabel(label: Label) -> void:
 		text += "Sin traits\n"
 		
 	label.text = text
+
+func get_display_resource() -> Resource:
+	var copy = data.duplicate()
+	
+	copy.attack = ataque
+	copy.hp = hp_actual
+
+	return copy

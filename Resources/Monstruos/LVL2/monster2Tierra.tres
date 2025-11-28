@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MonsterCardData" load_steps=8 format=3 uid="uid://bo022cyiinb25"]
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=9 format=3 uid="uid://bo022cyiinb25"]
 
 [ext_resource type="Texture2D" uid="uid://f2nm80ysfi50" path="res://Assets/cards/monster/monstruos/tierra/mons1.png" id="1_xyi2b"]
 [ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="2_72mki"]
@@ -7,11 +7,13 @@
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="5_iyqa6"]
 [ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_asnk0"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="7_wexis"]
+[ext_resource type="Resource" uid="uid://ckb7be5gp2ge7" path="res://Resources/Traits/Monstruos/solitario.tres" id="8_72mki"]
 
 [resource]
 script = ExtResource("5_iyqa6")
 hp = 25
 attack = 10
+traits = Array[ExtResource("7_wexis")]([ExtResource("8_72mki")])
 nivel = 2
 element_type = 1
 element = ExtResource("3_swpk0")

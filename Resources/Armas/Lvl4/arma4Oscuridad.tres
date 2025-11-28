@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_hqdvm"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_s3pm6"]
 [ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="10_4hlk6"]
-[ext_resource type="Script" uid="uid://8rjtitj2kdu1" path="res://Traits/rapida.gd" id="11_gub8j"]
+[ext_resource type="Script" uid="uid://8rjtitj2kdu1" path="res://Traits/armas/rapida.gd" id="11_gub8j"]
 
 [sub_resource type="Resource" id="Resource_h2h6w"]
 script = ExtResource("11_gub8j")

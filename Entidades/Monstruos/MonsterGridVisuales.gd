@@ -3,6 +3,7 @@ class_name MonsterGridVisuals
 
 var grid: MonsterGrid
 var protection_overlays: Array = []
+var escurridizo_overlays: Array = []
 
 func _ready():
 	grid = get_parent() as MonsterGrid
@@ -10,20 +11,19 @@ func _ready():
 		push_error("MonsterGridVisuals debe ser hijo de MonsterGrid")
 
 # ANIMACIONES DE PROTECCIÓN (VALIENTE)
-func update_valiant_overlays():
+func update_valiente_overlays():
 	clear_protection_overlays()
 	
-	# Encontrar todos los monstruos con Valiente
 	for x in range(grid.GRID_SIZE):
 		for y in range(grid.GRID_SIZE):
 			var card = grid.grid[x][y]
 			if card and card.data is MonsterCardData:
 				for rasgo in card.data.traits:
 					if rasgo is Valiente:
-						create_protection_overlays_for_valiant(card, rasgo)
+						create_protection_overlays_for_valiente(card, rasgo)
 						break
 
-func create_protection_overlays_for_valiant(valiant_card: Carta, valiant_trait: Valiente):
+func create_protection_overlays_for_valiente(valiant_card: Carta, valiant_trait: Valiente):
 	var protected_positions = valiant_trait.get_protected_positions(valiant_card)
 	
 	for pos in protected_positions:
@@ -42,16 +42,13 @@ func create_protection_overlays_for_valiant(valiant_card: Carta, valiant_trait: 
 		overlay.position = world_pos - Vector2(42, 62)
 		overlay.size = Vector2(84, 124)
 		
+		#Agregar al grid
 		grid.add_child(overlay)
+		#Guardar referencia
 		protection_overlays.append(overlay)
 		
 		# Animación de aparición
 		animate_overlay_appear(overlay)
-
-func animate_overlay_appear(overlay: Panel):
-	overlay.modulate.a = 0.0
-	var tween = create_tween()
-	tween.tween_property(overlay, "modulate:a", 1.0, 0.3)
 
 func clear_protection_overlays():
 	for overlay in protection_overlays:
@@ -59,6 +56,56 @@ func clear_protection_overlays():
 			overlay.queue_free()
 	protection_overlays.clear()
 
+# ANIMACIONES DE ESCONDERSE (ESCURRIDIZO)
+func update_escurridizo_overlays():
+	clear_escurridizo_overlays()
+	
+	for x in range(grid.GRID_SIZE):
+		for y in range(grid.GRID_SIZE):
+			var card = grid.grid[x][y]
+			if card and card.data is MonsterCardData:
+				for rasgo in card.data.traits:
+					if rasgo is Escurridizo:
+						create_shadow_overlays_for_escurridizos(card, rasgo)
+						break
+
+func create_shadow_overlays_for_escurridizos(escurridizo_card: Carta, escurridizo_trait: Escurridizo):
+	if not escurridizo_trait.can_be_targeted_override(escurridizo_card):
+		var overlay = Panel.new()
+		overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		
+		# Estilo: borde dorado brillante
+		var style = StyleBoxFlat.new()
+		style.bg_color = Color(0, 0, 0.3, 0.4)  # Azul oscuro semitransparente
+		style.border_color = Color(0.0, 0.5, 1.0, 1.0)  # Azul brillante
+		style.set_border_width_all(3)
+		overlay.add_theme_stylebox_override("panel", style)
+		
+		# Posicionar en la celda
+		var grid_pos = escurridizo_card.grid_pos
+		var world_pos = grid.grid_to_world(int(grid_pos.x), int(grid_pos.y))
+		overlay.position = world_pos - Vector2(42, 62)
+		overlay.size = Vector2(84, 124)
+		
+		#Agregar al grid
+		grid.add_child(overlay)
+		#Guardar referencia
+		escurridizo_overlays.append(overlay)
+		
+		# Animación de aparición
+		animate_overlay_appear(overlay)
+		print("MonsterGridVisuals: %s está protegido por Escurridizo" % escurridizo_card.name)
+
+func clear_escurridizo_overlays():
+	for overlay in escurridizo_overlays:
+		if is_instance_valid(overlay):
+			overlay.queue_free()
+	escurridizo_overlays.clear()
+	
+func animate_overlay_appear(overlay: Panel):
+	overlay.modulate.a = 0.0
+	var tween = create_tween()
+	tween.tween_property(overlay, "modulate:a", 1.0, 0.3)
 
 # ANIMACIONES DE SPAWN (RENACER)
 func show_spawn_effect(position: Vector2, spawned_card: Carta):

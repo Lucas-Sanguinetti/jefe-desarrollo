@@ -18,6 +18,7 @@ nivel = 5
 element_type = 8
 element = ExtResource("3_hrkup")
 backsprite = ExtResource("1_mo1vh")
+boss = true
 escena = ExtResource("4_pnsuy")
 sprite = ExtResource("6_ghk8u")
 name = "Mons2"

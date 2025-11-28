@@ -202,6 +202,16 @@ func _on_area_mouse_exited() -> void:
 func _on_double_click():
 	print("Carta: Doble click detectado en ", name)
 	emit_signal("card_double_clicked", self)
+
+# Manejos para el InfoDisplay
+func get_display_resource() -> Resource:
+	return data
+
+func has_variable(variable_name: String) -> bool:
+	for prop in get_property_list():
+		if prop.name == variable_name:
+			return true
+	return false
 	
 # Sistema de traits (común)
 func reset_traits_for_new_turn() -> void:

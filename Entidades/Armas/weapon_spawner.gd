@@ -2,7 +2,7 @@ extends Node2D
 class_name WeaponSpawner
 
 @onready var grid: Node2D = $WeaponGrid
-@onready var turn_button = $"../CanvasLayer/PasarTurno"
+@onready var turn_button = $"../Botones/PasarTurno"
 
 
 

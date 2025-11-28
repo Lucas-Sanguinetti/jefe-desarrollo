@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=8 format=3 uid="uid://cob03m6rf4rty"]
+
+[ext_resource type="Texture2D" uid="uid://c5dbe2itbl2gn" path="res://Assets/cards/monster/monstruos/agua/mons1.png" id="1_xg3ee"]
+[ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="2_b8i55"]
+[ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="3_rbn6m"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="4_cpnq0"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="4_rbn6m"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="5_4043i"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_cpnq0"]
+
+[resource]
+script = ExtResource("4_cpnq0")
+hp = 5
+attack = 5
+escena = ExtResource("4_rbn6m")
+sprite = ExtResource("6_cpnq0")
+name = "Tutoris"
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

@@ -53,12 +53,8 @@ func active_berserk():
 
 func active_endurance(value: int):
 	enduranceState = true
-	resistencia = max(value,resistencia)
+	resistencia = resistencia + value
+	#resistencia = max(value,resistencia)
 
-#func equip_weapon(weapon: Carta) -> bool:
-	#if player_grid:
-		#return player_grid.equip_weapon(weapon)
-	#return false
-#
 func cantidad_armas():
 	return player_grid.get_all_weapons().size()
