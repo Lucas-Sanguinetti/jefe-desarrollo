@@ -11,12 +11,31 @@ var combat_state: CombatState = CombatState.NORMAL
 var selected_weapon: Carta = null
 
 signal armaSeleccionada
+signal armaSeleccionadaVenta(carta:CartaArma)
+signal armaDeseleccionada
 signal armaUsada
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
+			# Verificar si el click fue consumido por la UI
+			if _is_mouse_over_ui():
+				return
+			
 			handle_card_click()
+
+func _is_mouse_over_ui() -> bool:
+	var mouse_pos = get_viewport().get_mouse_position()
+	
+	# Buscar todos los botones y controles visibles
+	var all_buttons = get_tree().get_nodes_in_group("UI")
+	for node in all_buttons:
+		if node is Control and node.visible:
+			var global_rect = node.get_global_rect()
+			if global_rect.has_point(mouse_pos):
+				return true
+	
+	return false
 			
 func handle_card_click():
 	var clicked_card = raycast_check_for_card()
@@ -44,12 +63,15 @@ func handle_card_click():
 				cancel_weapon_selection()
 				select_weapon(clicked_card)
 
-func select_weapon(weapon: Carta):
+func select_weapon(weapon: CartaArma):
 	selected_weapon = weapon
 	weapon.select_for_attack()
 	combat_state = CombatState.WEAPON_SELECTED
 	emit_signal("armaSeleccionada")
-	print("Arma seleccionada para atacar")
+	if weapon.can_sell():
+		emit_signal("armaSeleccionadaVenta", weapon)
+	else:
+		print("CardManager: Arma no puede ser vendida en este turno")
 
 func cancel_weapon_selection():
 	if selected_weapon:
@@ -57,6 +79,7 @@ func cancel_weapon_selection():
 		selected_weapon = null
 	
 	combat_state = CombatState.NORMAL
+	emit_signal("armaDeseleccionada")
 	print("Selección de arma cancelada")
 
 func attack_target(weapon: Carta, target: Carta):
@@ -66,6 +89,7 @@ func attack_target(weapon: Carta, target: Carta):
 		selected_weapon = null
 		combat_state = CombatState.NORMAL
 		emit_signal("armaUsada")
+		emit_signal("armaDeseleccionada")
 	else:
 		print("No se pudo realizar el ataque")
 
@@ -140,8 +164,6 @@ func find_cards_recursive(node: Node, cards_array: Array):
 	for child in node.get_children():
 		find_cards_recursive(child, cards_array)
 
-func _ready() -> void:
-	pass
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:

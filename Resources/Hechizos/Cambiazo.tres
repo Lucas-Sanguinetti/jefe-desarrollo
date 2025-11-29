@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellCardData" load_steps=6 format=3 uid="uid://c31wuxj801fkc"]
+
+[ext_resource type="Texture2D" uid="uid://byc56wiopjxm6" path="res://Assets/cards/spell/spells/dado.png" id="1_qdmk6"]
+[ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="2_uswnf"]
+[ext_resource type="PackedScene" uid="uid://bncxpxagsydh3" path="res://Entidades/Hechizos/Hechizo.tscn" id="3_7a78v"]
+[ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="3_qdmk6"]
+[ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="5_00pk5"]
+
+[resource]
+script = ExtResource("3_qdmk6")
+descripcion = "Vende un arma cargada por       todo su valor"
+backsprite = ExtResource("1_qdmk6")
+target_type = 1
+effect_category = 5
+effect_id = "cambiazo"
+escena = ExtResource("3_7a78v")
+sprite = ExtResource("5_00pk5")
+name = "Cambiazo"
+metadata/_custom_type_script = "uid://c5klust30h4bq"

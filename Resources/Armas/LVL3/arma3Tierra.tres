@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=10 format=3 uid="uid://c0itiolm4uay8"]
+
+[ext_resource type="Texture2D" uid="uid://coeppy44qrpxf" path="res://Assets/cards/weapon/armas/tierra/arma2.png" id="1_cs0pw"]
+[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="2_2qvci"]
+[ext_resource type="Texture2D" uid="uid://26wlpvyla5b0" path="res://Assets/element/earth.png" id="3_b1cbf"]
+[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="4_ns5y3"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="5_i6e1g"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="6_my6ok"]
+[ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="7_w5kce"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="8_eaarb"]
+[ext_resource type="Resource" uid="uid://dldvr75rf710i" path="res://Resources/Traits/Armas/ElementalCritic.tres" id="9_cs0pw"]
+
+[resource]
+script = ExtResource("5_i6e1g")
+attack = 9
+traits = Array[ExtResource("8_eaarb")]([ExtResource("9_cs0pw")])
+nivel = 3
+element_type = 1
+element = ExtResource("3_b1cbf")
+backsprite = ExtResource("1_cs0pw")
+escena = ExtResource("4_ns5y3")
+sprite = ExtResource("6_my6ok")
+metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

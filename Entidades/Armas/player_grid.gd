@@ -24,6 +24,7 @@ func _ready():
 		grid[x] = []
 		for y in range(GRID_ROWS):
 			grid[x].append(null)
+	add_to_group("PlayerWeaponGrid")
 
 
 # Convierte posición lógica (x,y) en coordenada de pantalla
@@ -126,23 +127,20 @@ func get_all_weapons() -> Array:
 # Resetear todas las armas (al inicio del turno)
 func reset_all_weapons():
 	var weapons = get_all_weapons()
-	print("PlayerWeaponGrid: Reseteando ", weapons.size(), " armas")#Debug
-	
 	first_attack_of_turn = true
 	
 	for weapon in weapons:
-		if weapon.has_method("reset_attack_ability"):
-			weapon.reset_attack_ability()
-	print("PlayerWeaponGrid: Reset completado")#Debug
+		if weapon.has_method("reset_for_new_turn"):
+			weapon.reset_for_new_turn()
 
 # Bloquear todas las armas
 func block_all_weapons():
 	var weapons = get_all_weapons()
-	print("PlayerWeaponGrid: Bloqueando ", weapons.size(), " armas")#Debug
+
 	for weapon in weapons:
 		if weapon.has_method("block_attack_ability"):
 			weapon.block_attack_ability()
-	print("PlayerWeaponGrid: Bloqueo completado")#Debug
+
 
 func is_valid_position(x: int, y: int) -> bool:
 	return x >= 0 and x < GRID_COLUMNS and y >= 0 and y < GRID_ROWS

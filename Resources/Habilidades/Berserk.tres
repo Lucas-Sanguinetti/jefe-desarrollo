@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponAbilityData" load_steps=2 format=3 uid="uid://b4qluqmhar7nt"]
+
+[ext_resource type="Script" uid="uid://cqy0018jajlma" path="res://Entidades/Armas/Habilidades/WeaponAbilityData.gd" id="1_pnej3"]
+
+[resource]
+script = ExtResource("1_pnej3")
+ability_name = "Berserk"
+ability_description = "Duplica el impacto hecho y recibido con esta arma"
+ability_id = "Berserk"
+metadata/_custom_type_script = "uid://cqy0018jajlma"

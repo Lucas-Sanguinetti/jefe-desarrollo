@@ -1,76 +1,95 @@
 extends Node
-
-@onready var turn_button = $CanvasLayer/PasarTurno
-@onready var turn_label = $CanvasLayer/ContadorTurno
+class_name Game
+#Botones y labels
+@onready var turn_button: Button = $Botones/PasarTurno
+@onready var turn_label: Label = $Botones/ContadorTurno
+@onready var sell_button: Button = $Botones/Vender
+#Managers y spawners
 @onready var card_manager = $CardManager
+@onready var weapon_manager: WeaponManager = $WeaponManager
 @onready var player_weapon_spawner = $PlayerWeaponSpawner
 @onready var monster_spawner = $MonsterSpawner
-@onready var weapon_manager: WeaponManager = $WeaponManager
-@onready var card_info: Node2D = $InfoDisplay
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-@onready var pasar_turno: Button = $CanvasLayer/PasarTurno
+#Hechizos
 @onready var spell_deck: SpellDeck = $SpellDeck
 @onready var hand: Hand = $PlayerSpells
 @onready var spell_effects: SpellEffects = $SpellEffects
+#Otros
+@onready var card_info: Node2D = $InfoDisplay
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var pause_menu: PauseMenu = $PauseMenu
 
 
-
+var cartaSeleccionada
 var current_turn = 1
 
 func _ready() -> void:
 	turn_button.pressed.connect(_on_turn_button_pressed)
+	sell_button.pressed.connect(_on_sell_button_pressed)
+	turn_button.add_to_group("UI")
+	sell_button.add_to_group("UI")
+	
+	monster_spawner.victory.connect(victory)
+	
+	# Conectar TurnManager
+	TurnManager.turn_started.connect(_on_turn_started)
+	TurnManager.turn_ended.connect(_on_turn_ended)
+	TurnManager.game_end_for_turns.connect(game_over)
+	
+	card_manager.armaSeleccionadaVenta.connect(_on_arma_seleccionada)
+	card_manager.armaDeseleccionada.connect(_on_arma_deseleccionada)
+	
 	LifeManager.vida_cambiada.connect(_on_vida_cambiada)
 	hand.card_played.connect(_on_spell_cast)
 	audio_stream_player.play()
+	
+	# Conectar señales PauseMenu
+	if pause_menu:
+		pause_menu.resume_pressed.connect(_on_pause_resume)
+		pause_menu.restart_pressed.connect(_on_pause_restart)
+		pause_menu.main_menu_pressed.connect(_on_pause_main_menu)
 	
 	# Robar mano inicial
 	var initial_cards = spell_deck.draw_initial_hand()
 	for card in initial_cards:
 		hand.add_card(card)
+	TurnManager.start_new_turn()
 
-func _input(event):
-	# DEBUG: Presionar T para transferir arma del almacén al jugador
-	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
-		if weapon_manager and weapon_manager.has_method("transfer_random_weapon_to_player"):
-			weapon_manager.transfer_random_weapon_to_player()
-	
-
-func _on_turn_button_pressed():
-	current_turn += 1
-	turn_label.text = "TURNO: " + str(current_turn)
-	pasar_turno.pressPlay()
-	
-	# Resetear habilidades de ataque de las armas EQUIPADAS
+func _on_turn_started(turn_number: int):
+	print("Game: ===== TURNO %d =====" % turn_number)
+	turn_label.text = "TURNO: " + str(turn_number) + "/20"
+	_spawn_cards()
 	reset_player_weapons()
-	
-	# Manejo de reseteo de armas y Monster Traits
-	weapon_manager.reset_turn()
 	reset_monster_traits()
+
+func _on_turn_ended(turn_number: int):
+	print("Game: Turno %d finalizado" % turn_number)
+	await get_tree().create_timer(0.5).timeout
+	TurnManager.start_new_turn()
+
+func _spawn_cards():
+	# Invocar monstruo
+	monster_spawner.draw()
 	
-	# Agregar hechizo tras finalizar turno
-	if not hand.is_hand_full():
+	
+	# Robar hechizo
+	if not hand.is_full():
 		var new_card = spell_deck.draw_turn_card()
 		if new_card:
 			hand.add_card(new_card)
 
+func _on_turn_button_pressed():
+	TurnManager.end_turn()
+	turn_button.pressPlay()
+
+# ============================================
+# RESETEOS
+# ============================================
 func reset_player_weapons():
 	player_weapon_spawner.reset_weapons_for_new_turn()
 
 func block_player_weapons():
 	player_weapon_spawner.block_weapons()
 
-func _on_vida_cambiada(nueva_vida: int):
-	if nueva_vida <= 0:
-		block_player_weapons()
-		print("Game Over - Sin vida, armas bloqueadas")
-		$CanvasLayer2/GameOver.show()
-		await get_tree().create_timer(2.0).timeout
-		LifeManager.reset()
-		MoneyManager.reset()
-		MonsterDeck.reset()
-		WeaponDeck.reset()
-		get_tree().change_scene_to_file("res://Entidades/Main.tscn")
-	
 func reset_monster_traits():
 	var monster_grid = monster_spawner.get_node("MonsterGrid")
 	if not monster_grid:
@@ -80,11 +99,73 @@ func reset_monster_traits():
 	for monster in all_monsters:
 		if monster.has_method("reset_traits_for_new_turn"):
 			monster.reset_traits_for_new_turn()
-			
+#Vida
+func _on_vida_cambiada(nueva_vida: int):
+	if nueva_vida <= 0:
+		game_over()
+		
+#Game Over
+func game_over():
+	block_player_weapons()
+	$Ventanas/GameOver.visible = true
+	await get_tree().create_timer(2.0).timeout
+	_reset_game()
+	get_tree().change_scene_to_file("res://Entidades/main.tscn")
+	
+#Victoria
+func victory():
+	block_player_weapons()
+	$Ventanas/Victory.visible = true
+	await get_tree().create_timer(2.0).timeout
+	_reset_game()
+	get_tree().change_scene_to_file("res://Entidades/main.tscn")
+	
+#Resear Juego
+func _reset_game():
+	LifeManager.reset()
+	MoneyManager.reset()
+	MonsterDeck.reset()
+	WeaponDeck.reset()
+	TurnManager.reset()
+	
+	
+	
+#Hechizos
+func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):
+	var success = spell_effects.apply_spell_effect(hechizo,target)
+	print("%s", success)
+	if success:
+		card.pay_cost()
+		card.mark_as_used()
+		hand.remove_card(card)
+		spell_deck.discard_card(hechizo)
+	else:
+		print("Game: Hechizo '%s' falló - NO se descarta" % hechizo.name)
 
-func _on_spell_cast(hechizo: SpellCardData, target):
-	#Para cuando agregue animaciones
-	#await spell_effects.play_effect(spell, target)
-	spell_effects.apply_spell_effect(hechizo,target)
-	# Descartar el hechizo al mazo
-	spell_deck.discard_card(hechizo)
+# Venta de armas
+# ============================================
+func _on_arma_seleccionada(carta:CartaArma):
+	sell_button.set_disabled(false)
+	cartaSeleccionada = carta
+	
+func _on_arma_deseleccionada():
+	sell_button.set_disabled(true)
+	cartaSeleccionada = null
+
+func _on_sell_button_pressed():
+	if player_weapon_spawner.cantidad_armas() > 1:
+		sell_button.pressSell(cartaSeleccionada)
+		weapon_manager.venderArma(cartaSeleccionada)
+	sell_button.set_disabled(true)
+
+# Funciones del Menu
+# ============================================
+func _on_pause_resume():
+	pass
+	
+func _on_pause_restart():
+	_reset_game()
+	get_tree().reload_current_scene()
+	
+func _on_pause_main_menu():
+	get_tree().change_scene_to_file("res://Entidades/main.tscn")

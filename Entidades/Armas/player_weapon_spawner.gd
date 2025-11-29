@@ -1,16 +1,17 @@
 extends Node2D
 
 @onready var player_grid: PlayerWeaponGrid = $PlayerGrid
-@onready var turn_button = get_node_or_null("../CanvasLayer/PasarTurno")
-
 @export var initial_weapons: Array[WeaponCardData] = []
+var berserkState = false
+var enduranceState = false
+var resistencia = 0
 
 func _ready():
 	player_grid.weapon_equipped.connect(_on_weapon_equipped)
 	player_grid.weapon_removed.connect(_on_weapon_removed)
 	player_grid.grid_full.connect(_on_grid_full)
 	player_grid.grid_has_space.connect(_on_grid_has_space)
-	
+	add_to_group("PlayerWeapons")
 	initial_load()
 
 func initial_load():
@@ -40,13 +41,20 @@ func _on_grid_has_space():
 
 func reset_weapons_for_new_turn():
 	player_grid.reset_all_weapons()
-
+	berserkState = false
+	enduranceState = false
+	resistencia = 0
 
 func block_weapons():
 	player_grid.block_all_weapons()
 
-# Para futura eleccion de arma
-func equip_weapon(weapon: Carta) -> bool:
-	if player_grid:
-		return player_grid.equip_weapon(weapon)
-	return false
+func active_berserk():
+	berserkState = true
+
+func active_endurance(value: int):
+	enduranceState = true
+	resistencia = resistencia + value
+	#resistencia = max(value,resistencia)
+
+func cantidad_armas():
+	return player_grid.get_all_weapons().size()

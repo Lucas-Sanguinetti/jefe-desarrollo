@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Escurridizo" load_steps=2 format=3 uid="uid://cnvijlwjwap45"]
+
+[ext_resource type="Script" uid="uid://cj8nc13g75lg8" path="res://Traits/monstruos/escurridizo.gd" id="1_y3qdt"]
+
+[resource]
+script = ExtResource("1_y3qdt")
+trait_name = "Escurridizo"
+trait_description = "Mientras tenga monstruos adyacentes no podra ser atacado"
+metadata/_custom_type_script = "uid://cy584ew032i43"

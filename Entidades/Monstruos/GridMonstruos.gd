@@ -15,6 +15,7 @@ func _ready():
 		grid[x] = []
 		for y in range(GRID_SIZE):
 			grid[x].append(null)
+	add_to_group("MonsterGrid")
 
 # Convierte posición lógica (x,y) en coordenada de pantalla
 func grid_to_world(x: int, y: int) -> Vector2:

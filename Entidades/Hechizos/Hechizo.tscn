@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bncxpxagsydh3"]
+[gd_scene load_steps=9 format=3 uid="uid://bncxpxagsydh3"]
 
 [ext_resource type="Script" uid="uid://do0okuxqnluks" path="res://Entidades/Hechizos/CartaHechizo.gd" id="1_4c8c3"]
+[ext_resource type="Texture2D" uid="uid://54m7t5misdgh" path="res://Assets/cards/spell/spells/anillo.png" id="2_4c8c3"]
 [ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="2_owiti"]
-[ext_resource type="Texture2D" uid="uid://e0yx28713rag" path="res://Assets/cards/spell/spells/Image1.png" id="3_4c8c3"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="4_53kgd"]
 [ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="5_4c8c3"]
 
@@ -14,6 +14,14 @@ font = ExtResource("4_53kgd")
 font_size = 8
 font_color = Color(0.16470589, 0.16470589, 0.16470589, 1)
 
+[sub_resource type="GDScript" id="GDScript_4c8c3"]
+script/source = "extends AudioStreamPlayer
+
+func playSound(sound: AudioStream):
+	stream = sound
+	play()
+"
+
 [node name="Hechizo" type="Node2D"]
 script = ExtResource("1_4c8c3")
 
@@ -23,7 +31,7 @@ offset_left = -38.0
 offset_top = -58.0
 offset_right = 37.0
 offset_bottom = 1.0
-texture = ExtResource("3_4c8c3")
+texture = ExtResource("2_4c8c3")
 
 [node name="Sprite" type="TextureRect" parent="."]
 texture_filter = 1
@@ -43,9 +51,9 @@ shape = SubResource("RectangleShape2D_xu3ok")
 [node name="SpellDescript" type="Label" parent="."]
 texture_filter = 1
 offset_left = -34.0
-offset_top = 11.0
+offset_top = 19.0
 offset_right = 33.0
-offset_bottom = 54.0
+offset_bottom = 62.0
 theme_override_fonts/font = ExtResource("4_53kgd")
 theme_override_font_sizes/font_size = 14
 text = "adasdasdasdadasdasdasdasdasdasdasdasdasdasdadasdasdasdda"
@@ -55,6 +63,17 @@ autowrap_mode = 1
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_4c8c3")
+bus = &"Effects"
+script = SubResource("GDScript_4c8c3")
+
+[node name="OneTimeIndicator" type="Panel" parent="."]
+visible = false
+texture_filter = 1
+offset_left = -42.0
+offset_top = -61.0
+offset_right = 42.0
+offset_bottom = 62.0
+mouse_filter = 2
 
 [connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
 [connection signal="input_event" from="Area" to="." method="_on_area_input_event"]

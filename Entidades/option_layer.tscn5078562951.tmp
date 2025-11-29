@@ -1,0 +1,127 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt7hrfjpqjjng"]
+
+[ext_resource type="Script" uid="uid://dxdqvauep43sv" path="res://Entidades/option_layer.gd" id="1_jwilt"]
+[ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_au2hv"]
+[ext_resource type="Texture2D" uid="uid://cjs3uxmx71rq0" path="res://Assets/elements_In_Board/pause.png" id="2_kwjdx"]
+
+[node name="optionLayer" type="CanvasLayer"]
+script = ExtResource("1_jwilt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -14.0
+offset_top = -2.0
+offset_right = 346.0
+offset_bottom = 358.0
+texture = ExtResource("2_kwjdx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 334.0
+offset_bottom = 340.0
+theme_override_constants/separation = 22
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_au2hv")
+theme_override_font_sizes/font_size = 32
+text = "MENU"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MasterVolume" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/MasterVolume"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_au2hv")
+theme_override_font_sizes/font_size = 18
+text = "Volumen General"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MasterVolume"]
+layout_mode = 2
+
+[node name="MasterSlider" type="HSlider" parent="VBoxContainer/MasterVolume/HBoxContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+value = 100.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="MasterValue" type="Label" parent="VBoxContainer/MasterVolume/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_au2hv")
+text = "100%"
+
+[node name="MusicVolume" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MusicVolume"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_au2hv")
+theme_override_font_sizes/font_size = 18
+text = "Musica"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MusicVolume"]
+layout_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer/MusicVolume/HBoxContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+value = 100.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="MusicValue" type="Label" parent="VBoxContainer/MusicVolume/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_au2hv")
+text = "100%"
+
+[node name="EffectsVolume" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/EffectsVolume"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_au2hv")
+theme_override_font_sizes/font_size = 18
+text = "Efectos"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/EffectsVolume"]
+layout_mode = 2
+
+[node name="EffectsSlider" type="HSlider" parent="VBoxContainer/EffectsVolume/HBoxContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+value = 100.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="EffectsValue" type="Label" parent="VBoxContainer/EffectsVolume/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_au2hv")
+text = "100%"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_au2hv")
+theme_override_font_sizes/font_size = 20
+text = "Continuar"
+
+[connection signal="value_changed" from="VBoxContainer/MasterVolume/HBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MusicVolume/HBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/EffectsVolume/HBoxContainer/EffectsSlider" to="." method="_on_effects_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=10 format=3 uid="uid://bp03ugtgttat2"]
+
+[ext_resource type="Texture2D" uid="uid://c8l41aqaooy4a" path="res://Assets/cards/monster/monstruos/hielo/mons3.png" id="1_sdemq"]
+[ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="2_mwp0s"]
+[ext_resource type="Texture2D" uid="uid://bq1x2xdytdtxl" path="res://Assets/element/ice.png" id="3_mwp0s"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="4_oggh7"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="5_kj676"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_w0ulu"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="7_ui36l"]
+[ext_resource type="Resource" uid="uid://d4iev8cfekme0" path="res://Resources/Traits/Monstruos/valiente.tres" id="8_mwp0s"]
+[ext_resource type="Resource" uid="uid://cltr6rwpeyoa0" path="res://Resources/Traits/aprovechar.tres" id="9_ljda1"]
+
+[resource]
+script = ExtResource("5_kj676")
+hp = 40
+attack = 7
+traits = Array[ExtResource("7_ui36l")]([ExtResource("8_mwp0s"), ExtResource("9_ljda1")])
+nivel = 4
+element_type = 4
+element = ExtResource("3_mwp0s")
+backsprite = ExtResource("1_sdemq")
+escena = ExtResource("4_oggh7")
+sprite = ExtResource("6_w0ulu")
+name = "Mons2"
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

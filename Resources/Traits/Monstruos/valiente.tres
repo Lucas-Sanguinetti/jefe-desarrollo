@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Valiente" load_steps=2 format=3 uid="uid://d4iev8cfekme0"]
 
-[ext_resource type="Script" uid="uid://dyutwq2y5wlk4" path="res://Traits/valiente.gd" id="1_ujrt3"]
+[ext_resource type="Script" uid="uid://dyutwq2y5wlk4" path="res://Traits/monstruos/valiente.gd" id="1_24tg0"]
 
 [resource]
-script = ExtResource("1_ujrt3")
+script = ExtResource("1_24tg0")
 trait_name = "Valiente"
 trait_description = "Protege a los monstruos adyacentes de ser atacados "
 metadata/_custom_type_script = "uid://dyutwq2y5wlk4"

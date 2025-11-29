@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=10 format=3 uid="uid://bks48oxvevt1r"]
+
+[ext_resource type="Texture2D" uid="uid://7jvuv574lfmd" path="res://Assets/cards/monster/monstruos/fuego/mons3.png" id="1_fxuhh"]
+[ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="2_2hyqn"]
+[ext_resource type="Texture2D" uid="uid://cetv46jeksmhl" path="res://Assets/element/fire.png" id="3_2hyqn"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="4_ycqhl"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="5_xspwx"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_dn3jp"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="7_lguun"]
+[ext_resource type="Resource" uid="uid://2b3vwsuba582" path="res://Resources/Traits/Monstruos/venganza.tres" id="8_2hyqn"]
+[ext_resource type="Resource" uid="uid://cltr6rwpeyoa0" path="res://Resources/Traits/aprovechar.tres" id="9_4ud7x"]
+
+[resource]
+script = ExtResource("5_xspwx")
+hp = 40
+attack = 5
+traits = Array[ExtResource("7_lguun")]([ExtResource("8_2hyqn"), ExtResource("9_4ud7x")])
+nivel = 5
+element_type = 3
+element = ExtResource("3_2hyqn")
+backsprite = ExtResource("1_fxuhh")
+escena = ExtResource("4_ycqhl")
+sprite = ExtResource("6_dn3jp")
+name = "Mons2"
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

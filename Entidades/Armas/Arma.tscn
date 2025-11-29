@@ -4,8 +4,6 @@
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_54r67"]
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="2_g87m0"]
 [ext_resource type="Script" uid="uid://cedwwo3v8rwn6" path="res://Entidades/Cartas/niveles.gd" id="4_bqsv6"]
-[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="5_1aj5t"]
-[ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="6_1aj5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3ok"]
 size = Vector2(42, 62)
@@ -13,6 +11,22 @@ size = Vector2(42, 62)
 [sub_resource type="LabelSettings" id="LabelSettings_pacq5"]
 font = ExtResource("2_54r67")
 font_size = 8
+
+[sub_resource type="GDScript" id="GDScript_khqy0"]
+script/source = "extends AudioStreamPlayer
+
+func playSound(sound: AudioStream):
+	stream = sound
+	play()
+"
+
+[sub_resource type="GDScript" id="GDScript_g87m0"]
+script/source = "extends AudioStreamPlayer
+
+func playSound(sound: AudioStream):
+	stream = sound
+	play()
+"
 
 [node name="Arma" type="Node2D"]
 script = ExtResource("1_wjq3x")
@@ -76,13 +90,12 @@ label_settings = SubResource("LabelSettings_pacq5")
 autowrap_mode = 1
 
 [node name="DrawSword" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_1aj5t")
-volume_db = -20.0
 bus = &"Effects"
+script = SubResource("GDScript_khqy0")
 
 [node name="SwordHit" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_1aj5t")
-volume_db = -20.0
+bus = &"Effects"
+script = SubResource("GDScript_g87m0")
 
 [connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
 [connection signal="input_event" from="Area" to="." method="_on_area_input_event"]

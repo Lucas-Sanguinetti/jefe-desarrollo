@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Renacer" load_steps=2 format=3 uid="uid://baen4mks16o13"]
 
-[ext_resource type="Script" uid="uid://d0m0qwo76c4kn" path="res://Traits/renacer.gd" id="1_hy8o2"]
+[ext_resource type="Script" uid="uid://d0m0qwo76c4kn" path="res://Traits/monstruos/renacer.gd" id="1_hy8o2"]
 
 [resource]
 script = ExtResource("1_hy8o2")
 vida_extra = 3
 trait_name = "Renacer"
-trait_description = "Cuando muere invoca otro monstruo con +3 de vida"
+trait_description = "Cuando muere invoca otro      monstruo con +3 de vida"
 metadata/_custom_type_script = "uid://d0m0qwo76c4kn"

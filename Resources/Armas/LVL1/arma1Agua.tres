@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=10 format=3 uid="uid://dx8c8xqupgh1y"]
+
+[ext_resource type="Resource" uid="uid://brnnw20b76rqq" path="res://Resources/Habilidades/DrawSpell.tres" id="1_i0olf"]
+[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="2_gvnwo"]
+[ext_resource type="Texture2D" uid="uid://b2mfwj1vb7nuk" path="res://Assets/cards/weapon/armas/agua/arma1.png" id="2_ubxj8"]
+[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="4_7dxoj"]
+[ext_resource type="Texture2D" uid="uid://dn8wfj5hvb5dw" path="res://Assets/element/water.png" id="4_d0r80"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="5_wjwsv"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="6_ba4mw"]
+[ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="7_sugk1"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="8_ucc2i"]
+
+[resource]
+script = ExtResource("5_wjwsv")
+attack = 3
+element_type = 8
+element = ExtResource("4_d0r80")
+backsprite = ExtResource("2_ubxj8")
+ability = ExtResource("1_i0olf")
+escena = ExtResource("4_7dxoj")
+sprite = ExtResource("6_ba4mw")
+metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

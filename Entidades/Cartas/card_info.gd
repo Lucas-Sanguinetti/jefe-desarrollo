@@ -2,7 +2,6 @@ extends Node2D
 
 #esto no es una carta, es un nodo para mostrar la carta
 @onready var label: Label = $Label
-@export var WeaponBasicInfo: WeaponCardData
 
 const GRID_SIZE = 1
 const CellHeigth = 432    
@@ -15,8 +14,6 @@ var hand
 var cartaNueva: Carta
 var grid = [] 
 
-	
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Inicializar grilla vacía
@@ -28,7 +25,7 @@ func _ready():
 	
 			
 	# Buscar WeaponGrid
-	var weapon_spawner = get_node("../WeaponSpawner")#get_node_or_null("/WeaponSpawner")
+	var weapon_spawner = get_node("../WeaponSpawner")
 	if weapon_spawner:
 		weapon_grid = weapon_spawner.get_node_or_null("WeaponGrid")
 	
@@ -77,7 +74,9 @@ func place_piece(x: int, y: int, card: Carta) -> bool:
 
 func _show_card(carta: Carta):
 	_clear_preview()
-	cartaNueva = carta.duplicate()
+	var display_resource = carta.get_display_resource()
+	cartaNueva = display_resource.escena.instantiate()
+	cartaNueva.setup(display_resource)
 	cartaNueva.scale = Vector2(3, 3)
 	place_piece(0, 0, cartaNueva)
 	carta.actLabel(label)

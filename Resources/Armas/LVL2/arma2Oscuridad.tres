@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=10 format=3 uid="uid://idc8dch6s708"]
+
+[ext_resource type="Texture2D" uid="uid://drnft7snvct5u" path="res://Assets/cards/weapon/armas/oscuridad/arma1.png" id="2_nmypu"]
+[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="3_jg4lt"]
+[ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="4_12ioi"]
+[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="5_da0t4"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="6_y5y6v"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="7_ln61o"]
+[ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_0l1tk"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_r62kc"]
+[ext_resource type="Resource" uid="uid://dkyfyntyj8v24" path="res://Resources/Traits/Armas/lifeSteel.tres" id="10_qp13v"]
+
+[resource]
+script = ExtResource("6_y5y6v")
+attack = 7
+traits = Array[ExtResource("9_r62kc")]([ExtResource("10_qp13v")])
+nivel = 2
+element = ExtResource("4_12ioi")
+backsprite = ExtResource("2_nmypu")
+escena = ExtResource("5_da0t4")
+sprite = ExtResource("7_ln61o")
+metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

@@ -11,10 +11,9 @@ func _ready() -> void:
 	weapons_data_cards.shuffle()
 	arma_tutorial_reset = tutorialWeapon.duplicate(true)
 	armas_reset = weapons_data_cards.duplicate(true)
-	print("sarasa")
 
 func draw():
-	print("robe una carta")
+	push_warning("robe una carta")
 	var weapon:WeaponCardData = weapons_data_cards[0]
 	weapons_data_cards.remove_at(0)
 	return weapon

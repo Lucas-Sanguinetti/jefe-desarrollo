@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=9 format=3 uid="uid://b75q2cmab68kh"]
+
+[ext_resource type="Texture2D" uid="uid://bxgjcu1ia7661" path="res://Assets/cards/monster/monstruos/jefes/mons1.png" id="1_mo1vh"]
+[ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="2_ksk5j"]
+[ext_resource type="Texture2D" uid="uid://dn8wfj5hvb5dw" path="res://Assets/element/water.png" id="3_hrkup"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="4_pnsuy"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="5_6sgml"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_ghk8u"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="7_0d2di"]
+[ext_resource type="Resource" uid="uid://4oftc55chlxk" path="res://Resources/Traits/Monstruos/endurecer_2.tres" id="8_gnsgw"]
+
+[resource]
+script = ExtResource("5_6sgml")
+hp = 100
+attack = 10
+traits = Array[ExtResource("7_0d2di")]([ExtResource("8_gnsgw")])
+nivel = 5
+element_type = 8
+element = ExtResource("3_hrkup")
+backsprite = ExtResource("1_mo1vh")
+boss = true
+escena = ExtResource("4_pnsuy")
+sprite = ExtResource("6_ghk8u")
+name = "Mons2"
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

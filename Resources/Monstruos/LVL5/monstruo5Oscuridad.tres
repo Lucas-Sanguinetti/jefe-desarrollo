@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=10 format=3 uid="uid://dpbjfluo1x5a1"]
+
+[ext_resource type="Texture2D" uid="uid://g6rafdoyi2uu" path="res://Assets/cards/monster/monstruos/oscuridad/mons2.png" id="1_dqaiw"]
+[ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="2_36yrb"]
+[ext_resource type="Texture2D" uid="uid://cfghlodo6mm6e" path="res://Assets/element/dark.png" id="3_gbs8k"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="4_cpvpw"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="5_x45mw"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_f17wi"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="7_iek1e"]
+[ext_resource type="Script" uid="uid://d0m0qwo76c4kn" path="res://Traits/monstruos/renacer.gd" id="8_dqaiw"]
+
+[sub_resource type="Resource" id="Resource_36yrb"]
+script = ExtResource("8_dqaiw")
+metadata/_custom_type_script = "uid://d0m0qwo76c4kn"
+
+[resource]
+script = ExtResource("5_x45mw")
+hp = 30
+attack = 15
+traits = Array[ExtResource("7_iek1e")]([SubResource("Resource_36yrb")])
+nivel = 5
+backsprite = ExtResource("1_dqaiw")
+escena = ExtResource("4_cpvpw")
+sprite = ExtResource("6_f17wi")
+name = "Mons2"
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

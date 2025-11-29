@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=9 format=3 uid="uid://cphpjpiknqgi1"]
+
+[ext_resource type="Texture2D" uid="uid://d3cjybpspo07e" path="res://Assets/cards/monster/monstruos/viento/mons1.png" id="1_st13y"]
+[ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="2_gt0s0"]
+[ext_resource type="Texture2D" uid="uid://x7aoomc5y2fq" path="res://Assets/element/wind.png" id="3_3bbem"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="4_jxrrm"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="5_48phm"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_8sey7"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="7_om0uw"]
+[ext_resource type="Resource" uid="uid://b7p3p73p0p5bc" path="res://Resources/Traits/Monstruos/hiperElemental.tres" id="8_iqvg5"]
+
+[resource]
+script = ExtResource("5_48phm")
+hp = 10
+attack = 5
+traits = Array[ExtResource("7_om0uw")]([ExtResource("8_iqvg5")])
+element_type = 9
+element = ExtResource("3_3bbem")
+backsprite = ExtResource("1_st13y")
+escena = ExtResource("4_jxrrm")
+sprite = ExtResource("6_8sey7")
+name = "Mons2"
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

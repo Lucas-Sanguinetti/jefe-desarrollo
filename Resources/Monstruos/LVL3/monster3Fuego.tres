@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MonsterCardData" load_steps=9 format=3 uid="uid://temvhs26xsn6"]
+
+[ext_resource type="Texture2D" uid="uid://dl2oyxwfmx5aq" path="res://Assets/cards/monster/monstruos/fuego/mons2.png" id="1_131r1"]
+[ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="2_62rir"]
+[ext_resource type="Texture2D" uid="uid://cetv46jeksmhl" path="res://Assets/element/fire.png" id="3_nuiur"]
+[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="4_go7fh"]
+[ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="5_svvov"]
+[ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_h7l57"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="7_qdr6d"]
+[ext_resource type="Resource" uid="uid://d4iev8cfekme0" path="res://Resources/Traits/Monstruos/valiente.tres" id="8_esgqh"]
+
+[resource]
+script = ExtResource("5_svvov")
+hp = 30
+attack = 10
+traits = Array[ExtResource("7_qdr6d")]([ExtResource("8_esgqh")])
+nivel = 3
+element_type = 3
+element = ExtResource("3_nuiur")
+backsprite = ExtResource("1_131r1")
+escena = ExtResource("4_go7fh")
+sprite = ExtResource("6_h7l57")
+metadata/_custom_type_script = "uid://bc4y8iqy4olrb"

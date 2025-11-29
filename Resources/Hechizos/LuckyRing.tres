@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellCardData" load_steps=6 format=3 uid="uid://feya8fnypm4v"]
+
+[ext_resource type="Texture2D" uid="uid://54m7t5misdgh" path="res://Assets/cards/spell/spells/anillo.png" id="1_jlsxq"]
+[ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="2_vr5x5"]
+[ext_resource type="PackedScene" uid="uid://bncxpxagsydh3" path="res://Entidades/Hechizos/Hechizo.tscn" id="3_2sbmo"]
+[ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="3_jlsxq"]
+[ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="5_qa0o5"]
+
+[resource]
+script = ExtResource("3_jlsxq")
+descripcion = "Afilar 15 a un     arma"
+target_type = 1
+effect_category = 2
+effect_value = 15
+one_time_use = true
+escena = ExtResource("3_2sbmo")
+sprite = ExtResource("5_qa0o5")
+name = "Anillo de la Suerte"
+metadata/_custom_type_script = "uid://c5klust30h4bq"

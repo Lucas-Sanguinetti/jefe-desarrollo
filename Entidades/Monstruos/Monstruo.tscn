@@ -9,10 +9,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3ok"]
 size = Vector2(42, 62)
 
-[sub_resource type="LabelSettings" id="LabelSettings_v1hku"]
-font = ExtResource("2_4opp7")
-font_size = 8
-font_color = Color(0.16470589, 0.16470589, 0.16470589, 1)
+[sub_resource type="GDScript" id="GDScript_014nb"]
+script/source = "extends AudioStreamPlayer
+
+func playSound(sound: AudioStream):
+	stream = sound
+	play()
+"
 
 [node name="Monstruo" type="Node2D"]
 script = ExtResource("1_57kje")
@@ -79,17 +82,21 @@ autowrap_mode = 2
 
 [node name="MonsterTraits" type="Label" parent="."]
 texture_filter = 1
-offset_left = -23.0
-offset_top = 17.0
-offset_right = 23.0
-offset_bottom = 44.0
+offset_left = -31.0
+offset_top = 16.0
+offset_right = 30.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 0.03529412, 0.05490196, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2_4opp7")
-theme_override_font_sizes/font_size = 14
-label_settings = SubResource("LabelSettings_v1hku")
+theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_014nb")
+bus = &"Effects"
+script = SubResource("GDScript_014nb")
 
 [connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
 [connection signal="input_event" from="Area" to="." method="_on_area_input_event"]

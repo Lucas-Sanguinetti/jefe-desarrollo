@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=11 format=3 uid="uid://no20i1ggtmt5"]
+
+[ext_resource type="Texture2D" uid="uid://gft5nlgkm7bs" path="res://Assets/cards/weapon/armas/agua/arma3.png" id="2_cyd4k"]
+[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="3_2ud46"]
+[ext_resource type="Texture2D" uid="uid://dn8wfj5hvb5dw" path="res://Assets/element/water.png" id="4_reiaa"]
+[ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="5_5ivpr"]
+[ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="6_s0lp8"]
+[ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="7_behug"]
+[ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_143xt"]
+[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_sy8yo"]
+[ext_resource type="Resource" uid="uid://ckgjgr0b6220c" path="res://Resources/Traits/Armas/cazarrecompensas.tres" id="10_iqsfj"]
+[ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="10_rtwhb"]
+
+[resource]
+script = ExtResource("6_s0lp8")
+attack = 13
+traits = Array[ExtResource("9_sy8yo")]([ExtResource("10_rtwhb"), ExtResource("10_iqsfj")])
+nivel = 4
+element_type = 8
+element = ExtResource("4_reiaa")
+backsprite = ExtResource("2_cyd4k")
+escena = ExtResource("5_5ivpr")
+sprite = ExtResource("7_behug")
+metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"

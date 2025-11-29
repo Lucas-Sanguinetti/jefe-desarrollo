@@ -1,11 +1,19 @@
 extends Carta
 class_name CartaHechizo
 
+#UI
 var spell_description: Label 
 var imagen_hechizo: TextureRect
+var one_time_indicator: Panel #Agregar el nuevo panel para este efecto 
 
-signal spell_cast_requested(target)
+#Estados
+var is_used: bool = false  # Para hechizos de uso único
+var cost_paid: bool = false  # Si ya se pagó el coste
+
+
 @onready var death: AudioStreamPlayer = $Death
+
+var death_sound:AudioStream 
 
 # Doble click
 var click_timer: float = 0.0
@@ -16,6 +24,7 @@ func _initialize_references() -> void:
 	super._initialize_references()
 	spell_description = get_node_or_null("SpellDescript")
 	imagen_hechizo = get_node_or_null("BackSprite")
+	one_time_indicator = get_node_or_null("OneTimeIndicator")
 	
 	if not spell_description:
 		push_error("CartaHechizo: Falta nodo 'Descripcion'")
@@ -31,19 +40,73 @@ func _setup_specific_ui() -> void:
 		spell_description.text = spell_data.descripcion
 	if imagen_hechizo:
 		imagen_hechizo.texture = spell_data.backsprite
+	death_sound = spell_data.death
 	_apply_data_to_ui()
 	update_visual_by_target_type()
 
 func _apply_data_to_ui() -> void:
-	pass
+	var spell_data = data as SpellCardData
+	if not spell_data:
+		return
+	
+	# Mostrar indicador de uso único
+	if one_time_indicator:
+		one_time_indicator.visible = spell_data.one_time_use
+		
+		if spell_data.one_time_use:
+			# Estilo especial: borde dorado brillante
+			var style = StyleBoxFlat.new()
+			style.bg_color = Color.TRANSPARENT
+			style.border_color = Color(1.0, 0.84, 0.0, 1.0)  # Dorado
+			style.set_border_width_all(3)
+			one_time_indicator.add_theme_stylebox_override("panel", style)
+
+func can_be_cast() -> bool:
+	if is_used:
+		return false
+	var spell_data = data as SpellCardData
+	# Verificar coste de monedas
+	if spell_data.cost_money > 0 and MoneyManager.get_money() < spell_data.cost_money:
+		return false
+	
+	return true
+
+func mark_as_used():
+	is_used = true
+	set_card_state(CardState.CANNOT_ATTACK)
+
+func pay_cost():
+	if cost_paid:
+		return
+	
+	var spell_data = data as SpellCardData
+	if not spell_data:
+		return
+	
+	if spell_data.cost_money > 0:
+		MoneyManager.perderMonedas(spell_data.cost_money)
+		cost_paid = true
 
 #Coloreado especial por tipo de hechizo
 func update_visual_by_target_type():
-	match data.target_type:
-		SpellCardData.TargetType.SELF:
-			modulate = Color(0.7, 1.0, 0.7)  # Verde para jugador
-		SpellCardData.TargetType.ENEMY:
-			modulate = Color(1.0, 0.7, 0.7)  # Rojo para enemigo
+	var spell_data = data as SpellCardData
+	if not spell_data:
+		return
+	
+	# Colorear según categoría
+	match spell_data.effect_category:
+		SpellCardData.EffectCategory.DAMAGE:
+			modulate = Color(1.0, 0.7, 0.7)  # Rojo
+		SpellCardData.EffectCategory.HEALING:
+			modulate = Color(0.7, 1.0, 0.7)  # Verde
+		SpellCardData.EffectCategory.BUFF:
+			modulate = Color(0.7, 0.7, 1.0)  # Azul
+		SpellCardData.EffectCategory.UTILITY:
+			modulate = Color(1.0, 1.0, 0.7)  # Amarillo
+		SpellCardData.EffectCategory.SUMMON:
+			modulate = Color(0.8, 0.5, 1.0)  # Púrpura
+		SpellCardData.EffectCategory.ECONOMY:
+			modulate = Color(1.0, 0.84, 0.0)  # Dorado
 
 # Manejo del Doble Click
 func _process(delta: float) -> void:
@@ -68,23 +131,16 @@ func _handle_click() -> void:
 		click_timer = 0
 
 func _on_double_click() -> void:
-	
 	var spell_data = data as SpellCardData
 	if not spell_data:
 		return
 	
-	# Dependiendo del tipo de objetivo, manejar de forma diferente
-	match spell_data.target_type:
-		SpellCardData.TargetType.SELF:
-			emit_signal("card_double_clicked", self)
-		SpellCardData.TargetType.ENEMY:
-			print("CartaHechizo: Requiere seleccionar objetivo manualmente")
+	print("CartaHechizo: Doble click en '%s'" % spell_data.name)
+	emit_signal("card_double_clicked", self)
 			
 	
 
 #Metodo para saber si puede ser usada
-func can_be_cast() -> bool:
-	return current_state != CardState.CANNOT_ATTACK
 
 #Resaltado visual al seleccionar la carta
 func highlight(enabled: bool) -> void:
@@ -96,8 +152,6 @@ func highlight(enabled: bool) -> void:
 func die() -> void:
 	emit_signal("card_died")
 	_play_death_animation()
-	
-	
 	if parent_grid and parent_grid.has_method("update_on_card_death"):
 		parent_grid.update_on_card_death(self)
 		
@@ -106,21 +160,26 @@ func actLabel(label: Label) -> void:
 	if not spell_data:
 		return
 		
-	var text = "Hechizo: %s\n" % [spell_data.name]
-	text += "Descripción: %s\n" % [spell_data.descripcion]
-	text += "Tipo: "
-	
-	match spell_data.target_type:
-		SpellCardData.TargetType.SELF:
-			text += "Auto\n"
-		SpellCardData.TargetType.ENEMY:
-			text += "Enemigo\n"
-	
-	text += "Efecto: "
-	match spell_data.effect_type:
-		SpellCardData.EffectType.DAMAGE:
-			text += "Daño (%d)\n" % spell_data.effect_value
-		SpellCardData.EffectType.HEAL:
-			text += "Curación (%d)\n" % spell_data.effect_value
+	var text = ""
+	if spell_data.get_target_type_string() != "Auto":
+		text += "Objetivo: %s\n" % [spell_data.get_target_type_string()]
+		text += "\n"
+	text += "%s\n" % [spell_data.descripcion]
+
+
+	if spell_data.secondary_value != 0:
+		text += "Valor 2: %d\n" % [spell_data.secondary_value]
+	if spell_data.tertiary_value != 0:
+		text += "Valor 3: %d\n" % [spell_data.tertiary_value]
 	
 	label.text = text
+
+func death_sound_play():
+	death.playSound(death_sound)
+	
+func normalize_text(text: String) -> String:
+	var regex := RegEx.new()
+	regex.compile("\\s+")
+	var collapsed = regex.sub(text, " ", true)
+	return collapsed.strip_edges()
+	

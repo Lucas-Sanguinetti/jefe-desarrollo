@@ -1,32 +1,47 @@
-[gd_scene load_steps=19 format=3 uid="uid://r3uw2a7pd3o6"]
+[gd_scene load_steps=40 format=3 uid="uid://r3uw2a7pd3o6"]
 
 [ext_resource type="Script" uid="uid://cli218hw4m8vd" path="res://singleton/monster_deck.gd" id="1_svbph"]
-[ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/Lvl3/monstruo1.tres" id="2_3hl6n"]
+[ext_resource type="Resource" uid="uid://1chp51lvkq0q" path="res://Resources/Monstruos/LVL1/monstruo1Naturaleza.tres" id="2_3hl6n"]
+[ext_resource type="Resource" uid="uid://cob03m6rf4rty" path="res://Resources/Monstruos/LVL1/tutorialMonstruo.tres" id="2_3wp63"]
 [ext_resource type="Script" uid="uid://bc4y8iqy4olrb" path="res://Entidades/Monstruos/MonsterCardData.gd" id="2_46c8m"]
-[ext_resource type="PackedScene" uid="uid://dihc5ihgsnvy3" path="res://Entidades/Monstruos/Monstruo.tscn" id="2_v7a3c"]
-[ext_resource type="Resource" uid="uid://cwcsd2cagjb73" path="res://Resources/Monstruos/Lvl2/monstruo2.tres" id="3_ukxup"]
-[ext_resource type="Texture2D" uid="uid://d0uky38qmk1t8" path="res://Assets/cards/monster/monsterCardIce.png" id="4_8jsbe"]
-[ext_resource type="Resource" uid="uid://b38mrmntoefr5" path="res://Resources/Monstruos/Lvl1/monstruo3.tres" id="5_iaqll"]
-[ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="5_l382o"]
-[ext_resource type="Resource" uid="uid://chendedgm7761" path="res://Resources/Monstruos/Lvl2/monstruo4.tres" id="6_mk08i"]
-[ext_resource type="Resource" uid="uid://b2xpawi6cr1dm" path="res://Resources/Monstruos/Lvl4/monstruo5.tres" id="7_h2b5e"]
-[ext_resource type="Resource" uid="uid://c4wnahibut2rw" path="res://Resources/Monstruos/Lvl2/monstruo6.tres" id="8_v7a3c"]
-[ext_resource type="Resource" uid="uid://bccsvhqd20i5a" path="res://Resources/Monstruos/Lvl3/monstruo7.tres" id="9_iaqll"]
-[ext_resource type="Resource" uid="uid://bo022cyiinb25" path="res://Resources/Monstruos/Lvl2/monsterRenacer2.tres" id="13_vb4c2"]
-[ext_resource type="Resource" uid="uid://cg6fjol8t3xhl" path="res://Resources/Monstruos/Lvl2/monsterRenacer3.tres" id="14_5kv46"]
-[ext_resource type="Resource" uid="uid://bllttghbleotb" path="res://Resources/Monstruos/Lvl2/monsterRenacer.tres" id="15_f8opl"]
-[ext_resource type="Resource" uid="uid://bx8vi3e5gsiq2" path="res://Resources/Monstruos/Lvl3/monsterValiente2.tres" id="16_o4a1j"]
-[ext_resource type="Resource" uid="uid://bdgq4bv4lchoy" path="res://Resources/Monstruos/Lvl3/monsterValiente.tres" id="17_l0c54"]
-
-[sub_resource type="Resource" id="Resource_jej3k"]
-script = ExtResource("2_46c8m")
-hp = 5
-attack = 5
-escena = ExtResource("2_v7a3c")
-sprite = ExtResource("4_8jsbe")
-metadata/_custom_type_script = "uid://bc4y8iqy4olrb"
+[ext_resource type="Resource" uid="uid://bkkxhomjvob0s" path="res://Resources/Monstruos/LVL1/monstruo1Agua.tres" id="9_jej3k"]
+[ext_resource type="Resource" uid="uid://ctvld27skmeui" path="res://Resources/Monstruos/LVL1/monstruo1Fuego.tres" id="10_q3knx"]
+[ext_resource type="Resource" uid="uid://cphpjpiknqgi1" path="res://Resources/Monstruos/LVL1/monstruo1Viento.tres" id="11_vb4c2"]
+[ext_resource type="Resource" uid="uid://bxjlpdjgllbs7" path="res://Resources/Monstruos/LVL1/monstruo1Veneno.tres" id="12_5kv46"]
+[ext_resource type="Resource" uid="uid://dqkienoutvmak" path="res://Resources/Monstruos/LVL1/monstruo1Tecnologia.tres" id="14_f8opl"]
+[ext_resource type="Resource" uid="uid://cv0tswuct5brs" path="res://Resources/Monstruos/LVL2/monster2Agua.tres" id="15_bsx0u"]
+[ext_resource type="Resource" uid="uid://cptr6cm7lsqb5" path="res://Resources/Monstruos/LVL2/monster2Hielo.tres" id="16_7m32e"]
+[ext_resource type="Resource" uid="uid://bo022cyiinb25" path="res://Resources/Monstruos/LVL2/monster2Tierra.tres" id="17_5vlmi"]
+[ext_resource type="Resource" uid="uid://cuidvvhprbngo" path="res://Resources/Monstruos/LVL2/monster2Naturaleza.tres" id="18_pt7av"]
+[ext_resource type="Resource" uid="uid://db5p64i8kdlpb" path="res://Resources/Monstruos/LVL2/monster2Oscuridad.tres" id="19_1m7e0"]
+[ext_resource type="Resource" uid="uid://cstd7stv13mo5" path="res://Resources/Monstruos/LVL2/monster2Electricidad.tres" id="20_7hluh"]
+[ext_resource type="Resource" uid="uid://temvhs26xsn6" path="res://Resources/Monstruos/LVL3/monster3Fuego.tres" id="21_771ry"]
+[ext_resource type="Resource" uid="uid://b1l1fck1n1b0o" path="res://Resources/Monstruos/LVL3/monster3Hielo.tres" id="22_0gstw"]
+[ext_resource type="Resource" uid="uid://bx8vi3e5gsiq2" path="res://Resources/Monstruos/LVL3/monster3Tierra.tres" id="23_65vk5"]
+[ext_resource type="Resource" uid="uid://c2m2rmm4n6ps8" path="res://Resources/Monstruos/LVL3/monster3Veneno.tres" id="24_3c4rb"]
+[ext_resource type="Resource" uid="uid://16p1hacr64ih" path="res://Resources/Monstruos/LVL3/monster3Viento.tres" id="25_poi6w"]
+[ext_resource type="Resource" uid="uid://6c2x1abkdj80" path="res://Resources/Monstruos/LVL3/monster3Tecnologia.tres" id="26_en05l"]
+[ext_resource type="Resource" uid="uid://cmlvio6e3xao0" path="res://Resources/Monstruos/LVL4/monstruo4Agua.tres" id="27_jsw1l"]
+[ext_resource type="Resource" uid="uid://bp03ugtgttat2" path="res://Resources/Monstruos/LVL4/monstruo4Hielo.tres" id="28_3evc0"]
+[ext_resource type="Resource" uid="uid://ws7k5dsbqnye" path="res://Resources/Monstruos/LVL4/monstruo4Veneno.tres" id="29_0jvme"]
+[ext_resource type="Resource" uid="uid://bdmi1g1mvj7m4" path="res://Resources/Monstruos/LVL4/monstruo4Oscuridad.tres" id="30_u0x7c"]
+[ext_resource type="Resource" uid="uid://dj0usfpy7wmch" path="res://Resources/Monstruos/LVL4/monstruo4Naturaleza.tres" id="31_e3eed"]
+[ext_resource type="Resource" uid="uid://bnpbgevlsqev5" path="res://Resources/Monstruos/LVL4/monstruo4Electricidad.tres" id="32_vsbw2"]
+[ext_resource type="Resource" uid="uid://bks48oxvevt1r" path="res://Resources/Monstruos/LVL5/monstruo5Fuego.tres" id="33_bolex"]
+[ext_resource type="Resource" uid="uid://dlg3s3oks76gx" path="res://Resources/Monstruos/LVL5/monstruo5Tierra.tres" id="34_ce1pp"]
+[ext_resource type="Resource" uid="uid://bh0kkfppf8ci5" path="res://Resources/Monstruos/LVL5/monstruo5Viento.tres" id="35_kvy50"]
+[ext_resource type="Resource" uid="uid://dpbjfluo1x5a1" path="res://Resources/Monstruos/LVL5/monstruo5Oscuridad.tres" id="36_ltjpy"]
+[ext_resource type="Resource" uid="uid://dh8pjxuexuhm6" path="res://Resources/Monstruos/LVL5/monstruo5Tecnologia.tres" id="37_yvlu6"]
+[ext_resource type="Resource" uid="uid://l7oextjg277" path="res://Resources/Monstruos/LVL5/monstruo5Electricidad.tres" id="38_c7767"]
+[ext_resource type="Resource" uid="uid://b75q2cmab68kh" path="res://Resources/Monstruos/BOSS/monstruo6Agua.tres" id="39_pdn7r"]
+[ext_resource type="Resource" uid="uid://cbnhnx2enw602" path="res://Resources/Monstruos/BOSS/monstruo6Hielo.tres" id="40_tchk0"]
+[ext_resource type="Resource" uid="uid://21habj0wckk2" path="res://Resources/Monstruos/BOSS/monstruo6Veneno.tres" id="41_gk841"]
+[ext_resource type="Resource" uid="uid://dg5q61wk54lxm" path="res://Resources/Monstruos/BOSS/monstruo6Viento.tres" id="42_2be5a"]
+[ext_resource type="Resource" uid="uid://iihapx0vxpgy" path="res://Resources/Monstruos/BOSS/monstruo6Oscuridad.tres" id="43_8xnh6"]
+[ext_resource type="Resource" uid="uid://bbu4wat2haept" path="res://Resources/Monstruos/BOSS/monstruo6Electricidad.tres" id="44_yndt1"]
 
 [node name="MonsterDeck" type="Node"]
 script = ExtResource("1_svbph")
-tutorial_monster = SubResource("Resource_jej3k")
-monster_data_cards = Array[ExtResource("2_46c8m")]([ExtResource("2_3hl6n"), ExtResource("3_ukxup"), ExtResource("5_iaqll"), ExtResource("6_mk08i"), ExtResource("7_h2b5e"), ExtResource("8_v7a3c"), ExtResource("9_iaqll"), ExtResource("13_vb4c2"), ExtResource("14_5kv46"), ExtResource("15_f8opl"), ExtResource("16_o4a1j"), ExtResource("17_l0c54")])
+tutorial_monster = ExtResource("2_3wp63")
+monster_data_cards = Array[ExtResource("2_46c8m")]([ExtResource("9_jej3k"), ExtResource("10_q3knx"), ExtResource("11_vb4c2"), ExtResource("12_5kv46"), ExtResource("2_3hl6n"), ExtResource("14_f8opl"), ExtResource("15_bsx0u"), ExtResource("16_7m32e"), ExtResource("17_5vlmi"), ExtResource("18_pt7av"), ExtResource("19_1m7e0"), ExtResource("20_7hluh"), ExtResource("21_771ry"), ExtResource("22_0gstw"), ExtResource("23_65vk5"), ExtResource("24_3c4rb"), ExtResource("25_poi6w"), ExtResource("26_en05l"), ExtResource("27_jsw1l"), ExtResource("28_3evc0"), ExtResource("29_0jvme"), ExtResource("30_u0x7c"), ExtResource("31_e3eed"), ExtResource("32_vsbw2"), ExtResource("33_bolex"), ExtResource("34_ce1pp"), ExtResource("35_kvy50"), ExtResource("36_ltjpy"), ExtResource("37_yvlu6"), ExtResource("38_c7767")])
+monster_bosses_data = Array[ExtResource("2_46c8m")]([ExtResource("39_pdn7r"), ExtResource("40_tchk0"), ExtResource("41_gk841"), ExtResource("42_2be5a"), ExtResource("43_8xnh6"), ExtResource("44_yndt1")])

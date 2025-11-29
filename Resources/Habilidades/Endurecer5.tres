@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponAbilityData" load_steps=2 format=3 uid="uid://c5acklindsd5h"]
+
+[ext_resource type="Script" uid="uid://cqy0018jajlma" path="res://Entidades/Armas/Habilidades/WeaponAbilityData.gd" id="1_uqno2"]
+
+[resource]
+script = ExtResource("1_uqno2")
+ability_name = "Endurecer"
+ability_description = "Aumenta tu armadura en 5  hasta el final del turno"
+ability_id = "Endurecer"
+value_1 = 5
+metadata/_custom_type_script = "uid://cqy0018jajlma"

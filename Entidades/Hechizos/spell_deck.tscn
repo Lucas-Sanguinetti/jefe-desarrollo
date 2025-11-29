@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcdxqcei3yuhm"]
+[gd_scene load_steps=7 format=3 uid="uid://bcdxqcei3yuhm"]
 
 [ext_resource type="Script" uid="uid://b1s8ny2xnw232" path="res://Entidades/Hechizos/spell_deck.gd" id="1_0upkq"]
 [ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="2_5r840"]
-[ext_resource type="Resource" uid="uid://c2bkuv7nntasy" path="res://Resources/Hechizos/BasicHeal.tres" id="3_liyh4"]
+[ext_resource type="Resource" uid="uid://bel45xqiao1k8" path="res://Resources/Hechizos/Afilar3.tres" id="3_8hwgk"]
+[ext_resource type="Resource" uid="uid://df11r4yorlkrf" path="res://Resources/Hechizos/Batery.tres" id="4_c0du7"]
+[ext_resource type="Resource" uid="uid://c31wuxj801fkc" path="res://Resources/Hechizos/Cambiazo.tres" id="5_hvktm"]
+[ext_resource type="Resource" uid="uid://feya8fnypm4v" path="res://Resources/Hechizos/LuckyRing.tres" id="6_0a4fi"]
 
 [node name="SpellDeck" type="Node"]
 script = ExtResource("1_0upkq")
-starting_spells = Array[ExtResource("2_5r840")]([ExtResource("3_liyh4"), ExtResource("3_liyh4"), ExtResource("3_liyh4")])
+spell_Deck = Array[ExtResource("2_5r840")]([ExtResource("3_8hwgk"), ExtResource("4_c0du7"), ExtResource("5_hvktm")])
+starting_spells = Array[ExtResource("2_5r840")]([ExtResource("6_0a4fi")])

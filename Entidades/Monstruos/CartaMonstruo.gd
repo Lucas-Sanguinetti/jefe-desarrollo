@@ -9,17 +9,19 @@ var niveles_sprite: Sprite2D
 var element_sprite: TextureRect
 var backsprite_sprite: TextureRect
 
-var backsprite: Texture2D
-var element:Texture2D
+var element: MonsterCardData.ElementType
 var hp_actual:int
 var ataque:int
 var max_hp:int
 var nivel:int 
 var rasgos:Array
 
+var death_sound: AudioStream
+
 var is_targetable: bool = false
 @onready var death: AudioStreamPlayer = $Death
 
+signal boss_died()
 
 func _initialize_references() -> void:
 	super._initialize_references()
@@ -49,10 +51,10 @@ func _setup_specific_ui() -> void:
 	hp_actual = monster_data.hp
 	ataque = monster_data.attack
 	max_hp = monster_data.hp
+	element = monster_data.element_type
 	nivel = monster_data.nivel
 	rasgos = monster_data.traits
-	element = monster_data.element
-	backsprite = monster_data.backsprite
+	death_sound = monster_data.death
 	if traits_label:
 		traits_label.text = _get_traits_text(monster_data)
 	if niveles_sprite:
@@ -60,9 +62,9 @@ func _setup_specific_ui() -> void:
 	if ataque_label:
 		ataque_label.text = str(ataque)
 	if element_sprite:
-		element_sprite.texture = element
+		element_sprite.texture = monster_data.element
 	if backsprite_sprite:
-		backsprite_sprite.texture = backsprite
+		backsprite_sprite.texture = monster_data.backsprite
 	_apply_data_to_ui()
 
 func _apply_data_to_ui() -> void:
@@ -96,6 +98,10 @@ func can_be_targeted() -> bool:
 					if adj_trait is Valiente:
 						print("DEBUG: %s está protegido por Valiente en [%d,%d]" % [name, check_x, check_y])
 						return false
+	for rasgo in rasgos:
+		if rasgo is Escurridizo:
+			return rasgo.can_be_targeted_override(self)
+			
 	return true 
 
 
@@ -121,7 +127,7 @@ func take_damage(damage: int, attacker: Carta = null) -> void:
 
 func die() -> void:
 	print("CartaMonstruo: %s ha muerto" % [name])
-	death.play()
+	death.playSound(death_sound)
 	await get_tree().create_timer(0.5).timeout
 	MoneyManager.ganarMonedas(nivel)
 	
@@ -129,6 +135,9 @@ func die() -> void:
 		if rasgo is Renacer:
 			rasgo.on_monster_death(self)
 	emit_signal("card_died")
+	
+	if data.boss:
+		emit_signal("boss_died")
 	
 	if parent_grid and parent_grid.has_node("MonsterGridVisuals"):
 		var visuals = parent_grid.get_node("MonsterGridVisuals")
@@ -161,7 +170,7 @@ func _on_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -
 func _get_traits_text(monster_data: MonsterCardData) -> String:
 	var texto: String = ""
 	for traits in monster_data.traits:
-		texto += "* %s\n" % [traits.trait_name]
+		texto += " %s\n" % [traits.trait_name]
 	return texto
 
 #Utilidad de info
@@ -172,12 +181,20 @@ func actLabel(label: Label) -> void:
 	if not rasgos.is_empty():
 		for rasgo in rasgos:
 			if rasgo is Endurecer:
-				text += "* %s " % [rasgo.trait_name]
+				text += "%s : " % [rasgo.trait_name]
 				text += "  %s\n" % [rasgo.resistencia]
 			else:
-				text += "* %s\n" % [rasgo.trait_name]
+				text += "%s :\n" % [rasgo.trait_name]
 			text += " %s\n" % [rasgo.trait_description]
 	else:
-		text += "Sin traits\n"
+		text += "Sin pasivas\n"
 		
 	label.text = text
+
+func get_display_resource() -> Resource:
+	var copy = data.duplicate()
+	
+	copy.attack = ataque
+	copy.hp = hp_actual
+
+	return copy
