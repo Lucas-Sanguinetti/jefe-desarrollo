@@ -11,7 +11,7 @@ func draw():
 	match turno:
 		_ when turno < 10:
 			return MonsterDeck.draw1()
-		_ when turno < 19:
+		_ when turno < 20:
 			return MonsterDeck.draw2()
 		_ when turno == 20:
 			return MonsterDeck.draw3()
