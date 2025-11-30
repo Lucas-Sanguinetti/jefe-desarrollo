@@ -77,13 +77,13 @@ func _apply_data_to_ui() -> void:
 func _update_charge_indicator():
 	if can_attack:
 		set_card_state(CardState.NORMAL)
-		rotation_degrees = 0  # ✅ Posición normal
-		modulate = Color.WHITE  # ✅ Color normal
+		#rotation_degrees = 0  # ✅ Posición normal
+		#modulate = Color.WHITE  # ✅ Color normal
 		print("%s: Cambiando de CardState a Normal" % name)
 	else:
 		set_card_state(CardState.CANNOT_ATTACK)
-		rotation_degrees = 90  # ✅ Voltear arma
-		modulate = Color(0.7, 0.7, 0.7)  # ✅ Color apagado
+		#rotation_degrees = 90  # ✅ Voltear arma
+		#modulate = Color(0.7, 0.7, 0.7)  # ✅ Color apagado
 		print("%s: Cambiando de CardState a CANNOT_ATTACK" % name)
 	_update_visual_state()
 
