@@ -102,6 +102,52 @@ func clear_escurridizo_overlays():
 			overlay.queue_free()
 	escurridizo_overlays.clear()
 	
+# PROTECTOR
+func update_protector_overlay():
+	"""Actualiza el overlay visual del monstruo Protector"""
+	clear_protector_overlay()
+	
+	# Buscar si hay un Protector activo
+	var protector_monster = TurnManager.forced_target
+	if not protector_monster:
+		return
+	
+	# Crear overlay dorado brillante
+	var protector_overlay = Panel.new()
+	protector_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color(1.0, 0.84, 0.0, 0.3)  # Dorado semitransparente
+	style.border_color = Color(1.0, 0.84, 0.0, 1.0)  # Dorado brillante
+	style.set_border_width_all(4)
+	protector_overlay.add_theme_stylebox_override("panel", style)
+	
+	var grid_pos = protector_monster.grid_pos
+	var world_pos = grid.grid_to_world(int(grid_pos.x), int(grid_pos.y))
+	protector_overlay.position = world_pos - Vector2(42, 62)
+	protector_overlay.size = Vector2(84, 124)
+	
+	grid.add_child(protector_overlay)
+	
+	protection_overlays.append(protector_overlay)
+	# Animación pulsante
+	animate_protector_pulse(protector_overlay)
+	
+	print("MonsterGridVisuals: Protector activo en %s" % protector_monster.name)
+
+func clear_protector_overlay():
+	for protector_overlay in protection_overlays:
+		if is_instance_valid(protector_overlay):
+			protector_overlay.queue_free()
+		protector_overlay = null
+
+func animate_protector_pulse(overlay: Panel):
+	"""Animación pulsante para el Protector"""
+	var tween = create_tween()
+	tween.set_loops()
+	tween.tween_property(overlay, "modulate:a", 0.5, 0.8)
+	tween.tween_property(overlay, "modulate:a", 1.0, 0.8)
+
 func animate_overlay_appear(overlay: Panel):
 	overlay.modulate.a = 0.0
 	var tween = create_tween()

@@ -72,6 +72,9 @@ func _apply_data_to_ui() -> void:
 		vida_label.text = str(hp_actual)
 
 func can_be_targeted() -> bool:
+	if not TurnManager.can_attack_monster(self):
+		return false
+	
 	for rasgo in rasgos:
 		if rasgo is Valiente:
 			return true
@@ -112,6 +115,8 @@ func take_damage(damage: int, attacker: Carta = null) -> void:
 		for rasgo in rasgos:
 			damage = rasgo.take_damage(attacker, self, damage)
 	
+	apply_acorazado()
+	
 	hp_actual -= damage
 	_apply_data_to_ui()  # Actualizar vida en pantalla
 	if parent_grid and parent_grid.has_node("MonsterGridVisuals"):
@@ -131,10 +136,11 @@ func die() -> void:
 	await get_tree().create_timer(0.5).timeout
 	MoneyManager.ganarMonedas(nivel)
 	
-	for rasgo in rasgos:
-		if rasgo is Renacer:
-			rasgo.on_monster_death(self)
 	emit_signal("card_died")
+	
+	for rasgo in rasgos:
+		if rasgo.has_method("on_monster_death"):
+			rasgo.on_monster_death(self)
 	
 	if data.boss:
 		emit_signal("boss_died")
@@ -167,6 +173,11 @@ func _on_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -
 
 
 # UTILIDADES PRIVADAS
+func apply_acorazado():
+	for rasgo in data.traits:
+		if rasgo is Acorazado:
+			rasgo.buff_resistance(self)
+
 func _get_traits_text(monster_data: MonsterCardData) -> String:
 	var texto: String = ""
 	for traits in monster_data.traits:

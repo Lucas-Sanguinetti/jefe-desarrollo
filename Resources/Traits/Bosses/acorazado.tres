@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b8354dsdrsgec"]
+
+[ext_resource type="Script" uid="uid://d3iqcrbjfglf4" path="res://Traits/bosses/acorazado.gd" id="1_pevgc"]
+
+[resource]
+script = ExtResource("1_pevgc")
+trait_name = "Acorazado"
+trait_description = "Gana endurecer 5 cada vez que es golpeado hasta el final del turno"
+metadata/_custom_type_script = "uid://cy584ew032i43"

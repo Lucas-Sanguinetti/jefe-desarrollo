@@ -10,7 +10,8 @@ func set_vida(value):
 	emit_signal("vida_cambiada", vida)
 
 func gainLife(cant: int ):
-	set_vida(vida + cant)
+	if TurnManager.can_player_heal():
+		set_vida(vida + cant)
 	
 func looseLife(cant: int):
 	set_vida(vida - cant)

@@ -24,6 +24,7 @@ func _ready():
 			grid[x].append(null)
 	visuals.update_valiente_overlays()
 	visuals.update_escurridizo_overlays()
+	visuals.update_protector_overlay()
 	add_to_group("MonsterGrid")
 
 # Convierte posición lógica (x,y) en coordenada de pantalla
@@ -51,8 +52,13 @@ func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
 	
 	cardPiece.boss_died.connect(_on_boss_died)
 	
+	for rasgo in cardData.traits:
+		if rasgo.has_method("on_monster_spawned"):
+			rasgo.on_monster_spawned(cardPiece)
+	
 	visuals.update_escurridizo_overlays()
 	visuals.update_valiente_overlays()
+	visuals.update_protector_overlay()
 	
 	return true
 
@@ -82,6 +88,7 @@ func _on_monster_died(monster: Carta):
 	emit_signal("monster_died",monster)
 	visuals.update_escurridizo_overlays()
 	visuals.update_valiente_overlays()
+	visuals.update_protector_overlay()
 
 func _on_boss_died():
 	emit_signal("boss_died")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Antivida" load_steps=2 format=3 uid="uid://cnkioq7m24pe2"]
+
+[ext_resource type="Script" uid="uid://b22k1q1ix4f50" path="res://Traits/bosses/antivida.gd" id="1_ltx3y"]
+
+[resource]
+script = ExtResource("1_ltx3y")
+trait_name = "Antivida"
+trait_description = "El jugador no se puede curar"
+metadata/_custom_type_script = "uid://cy584ew032i43"

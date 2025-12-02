@@ -83,7 +83,7 @@ func cancel_weapon_selection():
 	print("Selección de arma cancelada")
 
 func attack_target(weapon: Carta, target: Carta):
-	if weapon.attack(target):
+	if weapon.attack(target) && TurnManager.can_attack_monster(target):
 		print("¡Ataque exitoso!")
 		# Resetear el estado de combate
 		selected_weapon = null

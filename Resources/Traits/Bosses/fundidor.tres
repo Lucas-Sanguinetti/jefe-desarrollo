@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Fundidor" load_steps=2 format=3 uid="uid://noo8a4cloj2y"]
+
+[ext_resource type="Script" uid="uid://6cvf0efqdc32" path="res://Traits/bosses/fundidor.gd" id="1_itt0t"]
+
+[resource]
+script = ExtResource("1_itt0t")
+trait_name = "Fundidor"
+trait_description = "No se pueden comprar armas mientras esté en la mesa"
+metadata/_custom_type_script = "uid://cy584ew032i43"

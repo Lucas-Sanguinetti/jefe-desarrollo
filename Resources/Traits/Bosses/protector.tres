@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Protector" load_steps=2 format=3 uid="uid://dqer5vcmh0d1p"]
+
+[ext_resource type="Script" uid="uid://cft5xfoqnt4vq" path="res://Traits/bosses/protector.gd" id="1_sp0ly"]
+
+[resource]
+script = ExtResource("1_sp0ly")
+trait_name = "Protector"
+trait_description = "No se puede atacar a ningún otro monstruo en la mesa"
+metadata/_custom_type_script = "uid://cy584ew032i43"

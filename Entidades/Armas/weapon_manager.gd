@@ -20,13 +20,6 @@ func _ready():
 	add_to_group("WeaponManager")
 
 func initialize_grids():
-	#var parent = get_parent()
-	#if parent is Tutorial:
-		#weapon_spawner = get_node("../WeaponSpawner")
-		#if weapon_spawner:
-			#weapon_grid = weapon_spawner.get_node_or_null("WeaponGrid")
-	#else:
-		## Buscar WeaponGrid
 	weapon_spawner = get_node("../WeaponSpawner")
 	if weapon_spawner:
 		weapon_grid = weapon_spawner.get_node_or_null("WeaponGrid")
@@ -59,6 +52,10 @@ func _on_monster_die(monster: Carta):
 # Mover un arma del WeaponGrid al PlayerWeaponGrid
 func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 	if !verificar_transferencia(from_x, from_y):
+		return false
+	
+	if not TurnManager.can_buy_weapon():
+		print("Restriccion de compra por Monstruo Fundidor")
 		return false
 	
 	# Tomar arma del almacén
