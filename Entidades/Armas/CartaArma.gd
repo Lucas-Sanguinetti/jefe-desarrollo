@@ -330,6 +330,7 @@ func _apply_lifesteal(weapon_attack: int, target: CartaMonstruo, monster_hp: int
 	
 	if lifesteal_amount > 0 and LifeManager.get_life() > 0:
 		LifeManager.gainLife(lifesteal_amount)
+		
 
 func _get_traits_text(weapon_data: WeaponCardData) -> String:
 	var texto: String = ""

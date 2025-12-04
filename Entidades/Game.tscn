@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://mviq3k54n5sp"]
+[gd_scene load_steps=39 format=3 uid="uid://cqr642exc2fnt"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -31,6 +31,9 @@
 [ext_resource type="Resource" uid="uid://daaaus262s43j" path="res://Resources/Hechizos/moneda1.tres" id="25_jqfhg"]
 [ext_resource type="Resource" uid="uid://cccawjs6d11c7" path="res://Resources/Hechizos/Summon1.tres" id="26_2wdbc"]
 [ext_resource type="PackedScene" uid="uid://b7bbxxh388bpu" path="res://pause_menu.tscn" id="31_2wdbc"]
+[ext_resource type="Shader" uid="uid://d0xmvwx8wpvdf" path="res://Entidades/game.gdshader" id="32_uceh8"]
+[ext_resource type="Script" uid="uid://dkjc8srug5u5f" path="res://Entidades/canvas_layer.gd" id="32_xpiqv"]
+[ext_resource type="Script" uid="uid://b6relp2vxhbwl" path="res://Entidades/color_rect.gd" id="34_0c1ae"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2jhs2"]
 font_size = 12
@@ -44,6 +47,14 @@ font = ExtResource("10_ohvqk")
 font_size = 100
 outline_size = 50
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rmy74"]
+shader = ExtResource("32_uceh8")
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+shader_parameter/intensity = 1.0
+shader_parameter/edge_power = 2.5
+shader_parameter/inner_ratio = 0.75
+shader_parameter/feather = 0.4
 
 [node name="Game" type="Node"]
 script = ExtResource("1_a0hfb")
@@ -220,3 +231,22 @@ text = "Felicitaciones
 Haz derrotado al Boss
 Ganaste "
 label_settings = SubResource("LabelSettings_gxhcr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("32_xpiqv")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_rmy74")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("34_0c1ae")
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+wait_time = 0.2
+
+[connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]

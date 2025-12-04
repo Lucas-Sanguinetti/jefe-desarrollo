@@ -17,6 +17,8 @@ class_name Game
 @onready var card_info: Node2D = $InfoDisplay
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var pause_menu: PauseMenu = $PauseMenu
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
+
 
 
 var cartaSeleccionada
@@ -56,7 +58,7 @@ func _ready() -> void:
 
 func _on_turn_started(turn_number: int):
 	print("Game: ===== TURNO %d =====" % turn_number)
-	turn_label.text = "TURNO: " + str(turn_number) + "/20"
+	turn_label.text = "TURNO: " + str(turn_number) + "/12"
 	_spawn_cards()
 	reset_player_weapons()
 	reset_monster_traits()
@@ -101,6 +103,12 @@ func reset_monster_traits():
 			monster.reset_traits_for_new_turn()
 #Vida
 func _on_vida_cambiada(nueva_vida: int):
+	if LifeManager.get_life() < LifeManager.get_vidaAnterior():
+		print("vida actual")
+		print(LifeManager.get_life())
+		print("vida anterior")
+		print(LifeManager.get_vidaAnterior())
+		canvas_layer.action()
 	if nueva_vida <= 0:
 		game_over()
 		
@@ -169,3 +177,7 @@ func _on_pause_restart():
 	
 func _on_pause_main_menu():
 	get_tree().change_scene_to_file("res://Entidades/main.tscn")
+
+
+func _on_timer_timeout() -> void:
+	canvas_layer.hide()

@@ -8,6 +8,7 @@ var armas_reset
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	randomize()
 	weapons_data_cards.shuffle()
 	arma_tutorial_reset = tutorialWeapon.duplicate(true)
 	armas_reset = weapons_data_cards.duplicate(true)

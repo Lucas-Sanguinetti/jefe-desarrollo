@@ -9,13 +9,13 @@ func _ready() -> void:
 func draw():
 	var turno = TurnManager.get_current_turn()
 	match turno:
-		_ when turno < 10:
+		_ when turno < 7:
 			return MonsterDeck.draw1()
-		_ when turno < 19:
+		_ when turno < 11:
 			return MonsterDeck.draw2()
-		_ when turno == 20:
+		_ when turno == 12:
 			return MonsterDeck.draw3()
-		_ when turno > 20:
+		_ when turno > 12:
 			return
 	
 	
