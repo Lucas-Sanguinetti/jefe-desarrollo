@@ -11,11 +11,13 @@ func set_vida(value):
 	emit_signal("vida_cambiada", vida)
 
 func gainLife(cant: int ):
-	vida_anterior = vida
 	set_vida(vida + cant)
 	
 func looseLife(cant: int):
 	set_vida(vida - cant)
+	
+func snapshot_vida():
+	vida_anterior = vida
 
 func get_maxLife():
 	return vidaMaxima

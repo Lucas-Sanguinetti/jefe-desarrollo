@@ -103,12 +103,14 @@ func reset_monster_traits():
 			monster.reset_traits_for_new_turn()
 #Vida
 func _on_vida_cambiada(nueva_vida: int):
-	if LifeManager.get_life() < LifeManager.get_vidaAnterior():
-		print("vida actual")
-		print(LifeManager.get_life())
-		print("vida anterior")
-		print(LifeManager.get_vidaAnterior())
-		canvas_layer.action()
+	var vida_previa = LifeManager.get_vidaAnterior()
+	if nueva_vida < vida_previa:
+		#push_error("Recibiste daño neto: %d → %d" % [vida_previa, nueva_vida])
+		canvas_layer.damage()  # Shader rojo
+	elif nueva_vida > vida_previa:
+		#push_warning("Te curaste: %d → %d" % [vida_previa, nueva_vida])
+		canvas_layer.curar() 
+		
 	if nueva_vida <= 0:
 		game_over()
 		
@@ -180,4 +182,8 @@ func _on_pause_main_menu():
 
 
 func _on_timer_timeout() -> void:
+	canvas_layer.hide()
+
+
+func _on_curar_timer_timeout() -> void:
 	canvas_layer.hide()

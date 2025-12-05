@@ -14,7 +14,6 @@ func _ready() -> void:
 	armas_reset = weapons_data_cards.duplicate(true)
 
 func draw():
-	push_warning("robe una carta")
 	var weapon:WeaponCardData = weapons_data_cards[0]
 	weapons_data_cards.remove_at(0)
 	return weapon

@@ -166,6 +166,8 @@ func attack(target: CartaMonstruo) -> bool:
 	if not target.can_be_targeted():
 		return false
 	
+	LifeManager.snapshot_vida()
+	
 	var weapon_data = data as WeaponCardData
 	var weapon_attack = ataque
 	var monster_hp = target.hp_actual
