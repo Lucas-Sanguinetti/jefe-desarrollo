@@ -126,23 +126,23 @@ script = ExtResource("28_mbvpg")
 visible = false
 
 [node name="ColorArma" type="ColorRect" parent="SelecArma"]
-offset_left = 286.0
+offset_left = 290.0
 offset_top = 1.0
-offset_right = 617.0
+offset_right = 612.0
 offset_bottom = 629.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorArma2" type="ColorRect" parent="SelecArma"]
 offset_top = -1.0
 offset_right = 290.0
 offset_bottom = 867.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorArma3" type="ColorRect" parent="SelecArma"]
 offset_left = 612.0
 offset_right = 1584.0
 offset_bottom = 871.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="SelecArma" type="Label" parent="SelecArma"]
 texture_filter = 1
@@ -159,24 +159,24 @@ una de tus armas para usarla"
 visible = false
 
 [node name="ColorAtaque" type="ColorRect" parent="Ataque"]
-offset_left = 66.0
-offset_top = 172.0
-offset_right = 1452.0
-offset_bottom = 871.0
-color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+offset_left = 305.0
+offset_top = 173.0
+offset_right = 538.0
+offset_bottom = 867.0
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorAtaque2" type="ColorRect" parent="Ataque"]
 offset_left = -2.0
 offset_top = 2.0
 offset_right = 305.0
 offset_bottom = 867.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorAtaque3" type="ColorRect" parent="Ataque"]
 offset_left = 538.0
 offset_right = 1579.0
 offset_bottom = 868.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="AtacarMonstruo" type="Label" parent="Ataque"]
 texture_filter = 1
@@ -194,24 +194,24 @@ y recibir monedas por matarlo"
 visible = false
 
 [node name="ColorVida" type="ColorRect" parent="Vida"]
-offset_left = 1000.0
+offset_left = 1068.0
 offset_top = 2.0
-offset_right = 1272.0
+offset_right = 1205.0
 offset_bottom = 700.0
-color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorVida2" type="ColorRect" parent="Vida"]
 offset_left = -1.0
 offset_top = 2.0
 offset_right = 1068.0
 offset_bottom = 867.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorVida3" type="ColorRect" parent="Vida"]
 offset_left = 1205.0
 offset_right = 1579.0
 offset_bottom = 868.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="Vida" type="Label" parent="Vida"]
 texture_filter = 1
@@ -249,20 +249,21 @@ offset_left = -2.0
 offset_top = 2.0
 offset_right = 800.0
 offset_bottom = 866.0
-color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect2" type="ColorRect" parent="Compra"]
-offset_left = 186.0
-offset_top = 327.0
-offset_right = 1187.0
-offset_bottom = 868.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+offset_left = 800.0
+offset_top = 326.0
+offset_right = 1019.0
+offset_bottom = 867.0
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect3" type="ColorRect" parent="Compra"]
 offset_left = 1019.0
+offset_top = -1.0
 offset_right = 1582.0
-offset_bottom = 868.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+offset_bottom = 867.0
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ComprarArma" type="Label" parent="Compra"]
 texture_filter = 1
@@ -284,20 +285,20 @@ offset_left = -2.0
 offset_top = 2.0
 offset_right = 309.0
 offset_bottom = 867.0
-color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect2" type="ColorRect" parent="Habilidad"]
-offset_left = 172.0
+offset_left = 308.0
 offset_top = 1.0
-offset_right = 1173.0
+offset_right = 752.0
 offset_bottom = 642.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect3" type="ColorRect" parent="Habilidad"]
 offset_left = 752.0
 offset_right = 1581.0
 offset_bottom = 868.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="UsarHabilidad" type="Label" parent="Habilidad"]
 texture_filter = 1
@@ -317,24 +318,22 @@ visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Hechizos"]
 offset_left = -1.0
-offset_top = 2.0
 offset_right = 127.0
-offset_bottom = 868.0
-color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+offset_bottom = 293.0
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect2" type="ColorRect" parent="Hechizos"]
-offset_left = 277.0
-offset_top = 1.0
+offset_left = 290.0
+offset_top = -1.0
 offset_right = 1580.0
-offset_bottom = 869.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+offset_bottom = 293.0
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect3" type="ColorRect" parent="Hechizos"]
-offset_left = 2.0
 offset_top = 293.0
-offset_right = 1580.0
+offset_right = 1583.0
 offset_bottom = 869.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="UsarHechizo" type="Label" parent="Hechizos"]
 texture_filter = 1
@@ -353,22 +352,22 @@ visible = false
 
 [node name="ColorRect" type="ColorRect" parent="TerminarTutorial"]
 offset_left = -2.0
-offset_top = 2.0
+offset_top = 641.0
 offset_right = 1198.0
-offset_bottom = 867.0
-color = Color(0.20187145, 0.19711676, 0.19711676, 1)
+offset_bottom = 875.0
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect2" type="ColorRect" parent="TerminarTutorial"]
-offset_left = 62.0
-offset_right = 1436.0
+offset_left = -42.0
+offset_right = 1424.0
 offset_bottom = 641.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect3" type="ColorRect" parent="TerminarTutorial"]
 offset_left = 1424.0
 offset_right = 1581.0
 offset_bottom = 868.0
-color = Color(0.2, 0.19607843, 0.19607843, 1)
+color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="Finalizar" type="Label" parent="TerminarTutorial"]
 texture_filter = 1
