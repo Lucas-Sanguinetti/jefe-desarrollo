@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bx6yw2qj5stmb"]
+[gd_scene load_steps=5 format=3 uid="uid://bx6yw2qj5stmb"]
 
 [ext_resource type="Script" uid="uid://ccqiahj7m75df" path="res://Entidades/Visuales/monedero_hud.gd" id="1_5ae7i"]
 [ext_resource type="Texture2D" uid="uid://btgcql670tj7e" path="res://Assets/elements_In_Board/monedero.png" id="1_wtq5b"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_5ae7i"]
-[ext_resource type="Texture2D" uid="uid://dxeklb8d44dtw" path="res://Assets/elements_In_Board/moneds.png" id="4_i7jxw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i7jxw"]
 font = ExtResource("2_5ae7i")
@@ -28,10 +27,3 @@ label_settings = SubResource("LabelSettings_i7jxw")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-
-[node name="Coin" type="Sprite2D" parent="."]
-z_index = 1
-texture_filter = 1
-position = Vector2(26, 0)
-scale = Vector2(2, 2)
-texture = ExtResource("4_i7jxw")

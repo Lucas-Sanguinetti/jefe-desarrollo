@@ -17,8 +17,7 @@ class_name Game
 @onready var card_info: Node2D = $InfoDisplay
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var pause_menu: PauseMenu = $PauseMenu
-@onready var canvas_layer: CanvasLayer = $CanvasLayer
-@onready var weapon_animation_manager: WeaponAnimationManager = $WeaponAnimationManager
+
 
 var cartaSeleccionada
 var current_turn = 1
@@ -49,8 +48,6 @@ func _ready() -> void:
 		pause_menu.restart_pressed.connect(_on_pause_restart)
 		pause_menu.main_menu_pressed.connect(_on_pause_main_menu)
 	
-	_setup_weapon_animations()
-	
 	# Robar mano inicial
 	var initial_cards = spell_deck.draw_initial_hand()
 	for card in initial_cards:
@@ -59,7 +56,7 @@ func _ready() -> void:
 
 func _on_turn_started(turn_number: int):
 	print("Game: ===== TURNO %d =====" % turn_number)
-	turn_label.text = "TURNO: " + str(turn_number) + "/12"
+	turn_label.text = "TURNO: " + str(turn_number) + "/20"
 	_spawn_cards()
 	reset_player_weapons()
 	reset_monster_traits()
@@ -104,12 +101,6 @@ func reset_monster_traits():
 			monster.reset_traits_for_new_turn()
 #Vida
 func _on_vida_cambiada(nueva_vida: int):
-	if LifeManager.get_life() < LifeManager.get_vidaAnterior():
-		print("vida actual")
-		print(LifeManager.get_life())
-		print("vida anterior")
-		print(LifeManager.get_vidaAnterior())
-		canvas_layer.action()
 	if nueva_vida <= 0:
 		game_over()
 		
@@ -137,20 +128,7 @@ func _reset_game():
 	WeaponDeck.reset()
 	TurnManager.reset()
 	
-#Animaciones
-func _setup_weapon_animations():
-	if not weapon_animation_manager:
-		push_error("Game: No se encontró WeaponAnimationManager")
-		return
 	
-	# Registrar animación de Disparo
-	weapon_animation_manager.register_animation("Disparo", 
-		weapon_animation_manager.animate_disparo)
-	
-	# Aquí puedes agregar más animaciones en el futuro:
-	# weapon_animation_manager.register_animation("NombreTrait", callback)
-	
-	print("Game: Sistema de animaciones configurado")
 	
 #Hechizos
 func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):
@@ -191,7 +169,3 @@ func _on_pause_restart():
 	
 func _on_pause_main_menu():
 	get_tree().change_scene_to_file("res://Entidades/main.tscn")
-
-
-func _on_timer_timeout() -> void:
-	canvas_layer.hide()
