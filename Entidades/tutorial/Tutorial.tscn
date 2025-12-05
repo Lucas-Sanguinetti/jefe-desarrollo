@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c3fqcbncv77to"]
+[gd_scene load_steps=35 format=3 uid="uid://c3fqcbncv77to"]
 
 [ext_resource type="Script" uid="uid://cphl4pmuuqorw" path="res://Entidades/tutorial/tutorial.gd" id="1_pmcij"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_lyuau"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://b7bbxxh388bpu" path="res://pause_menu.tscn" id="28_71nlq"]
 [ext_resource type="Script" uid="uid://bhqx1i7kvx2oe" path="res://Entidades/Armas/Habilidades/AbilitySystem.gd" id="28_mbvpg"]
 [ext_resource type="Script" uid="uid://bla8utaoi01kd" path="res://Entidades/tutorial/panel_invisible.gd" id="29_rwgvw"]
+[ext_resource type="PackedScene" uid="uid://bx6yw2qj5stmb" path="res://Entidades/Visuales/monederoHud.tscn" id="33_1o2ct"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02tf7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -384,3 +385,6 @@ acabar con este mini tutorial."
 
 [node name="PauseMenu" parent="." instance=ExtResource("28_71nlq")]
 visible = false
+
+[node name="MonederoHUD" parent="." instance=ExtResource("33_1o2ct")]
+position = Vector2(1356, 801)

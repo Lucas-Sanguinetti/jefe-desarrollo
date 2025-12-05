@@ -7,6 +7,5 @@ func _ready() -> void:
 
 
 func draw():
-	print("LLegue hasta el DeckDrawner Tutorial")
 	return MonsterDeck.drawTutorial()
 	

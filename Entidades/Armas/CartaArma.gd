@@ -80,7 +80,8 @@ func _apply_data_to_ui() -> void:
 func _get_animation_manager():
 	animation_manager = get_tree().get_first_node_in_group("WeaponAnimationManager")
 	if not animation_manager:
-		push_warning("CartaArma: No se encontró WeaponAnimationManager")
+		return
+		#push_warning("CartaArma: No se encontró WeaponAnimationManager")
 
 # SISTEMA DE CARGAS
 func _update_charge_indicator():
@@ -177,7 +178,7 @@ func attack(target: CartaMonstruo) -> bool:
 	
 	LifeManager.snapshot_vida()
 	
-	var weapon_data = data as WeaponCardData
+
 	var weapon_attack = ataque
 	var monster_hp = target.hp_actual
 	

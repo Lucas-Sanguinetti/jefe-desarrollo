@@ -21,8 +21,7 @@ class_name Tutorial
 #Paneles
 @onready var panel_invisible: Panel = $Vida/PanelInvisible
 
-
-var armaSelected = false
+var stepArma = true
 var current_turn = 1.
 
 func _ready() -> void:
@@ -50,7 +49,8 @@ func _ready() -> void:
 	$Habilidad.visible = false
 	$Hechizos.visible = false
 	$TerminarTutorial.visible = false
-
+	
+	monster_spawner.place_monster_tutorial()
 # Funcionalidad necesaria para el progreso y finalizado
 
 func _reset_game():
@@ -97,13 +97,16 @@ func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):
 func _on_arma_seleccionada():
 	$SelecArma.visible = false
 	$Ataque.visible = true
-	monster_spawner.place_monster_tutorial()
+	
 
 func _on_arma_esdseleccionada():
+	if not stepArma:
+		return
 	$SelecArma.visible = true
 	$Ataque.visible = false
 
 func _on_arma_usada():
+	stepArma = false
 	ocultar_canva_arma()
 	$SelecArma.visible = false
 	$Ataque.visible = false

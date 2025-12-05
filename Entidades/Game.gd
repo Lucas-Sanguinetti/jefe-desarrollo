@@ -125,11 +125,12 @@ func game_over():
 	
 #Victoria
 func victory():
-	block_player_weapons()
-	$Ventanas/Victory.visible = true
-	await get_tree().create_timer(2.0).timeout
-	_reset_game()
-	get_tree().change_scene_to_file("res://Entidades/main.tscn")
+	if LifeManager.get_life() > 0 :
+		block_player_weapons()
+		$Ventanas/Victory.visible = true
+		await get_tree().create_timer(2.0).timeout
+		_reset_game()
+		get_tree().change_scene_to_file("res://Entidades/main.tscn")
 	
 #Resear Juego
 func _reset_game():
@@ -142,17 +143,13 @@ func _reset_game():
 #Animaciones
 func _setup_weapon_animations():
 	if not weapon_animation_manager:
-		push_error("Game: No se encontró WeaponAnimationManager")
+		#push_error("Game: No se encontró WeaponAnimationManager")
 		return
 	
 	# Registrar animación de Disparo
 	weapon_animation_manager.register_animation("Disparo", 
 		weapon_animation_manager.animate_disparo)
-	
-	# Aquí puedes agregar más animaciones en el futuro:
-	# weapon_animation_manager.register_animation("NombreTrait", callback)
-	
-	print("Game: Sistema de animaciones configurado")
+
 	
 #Hechizos
 func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):

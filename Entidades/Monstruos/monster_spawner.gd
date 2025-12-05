@@ -18,7 +18,7 @@ func draw():
 
 func sin_monstruos() -> int:
 	var cant_monsters = grid_monstruos.get_all_monsters().size()
-	if TurnManager.current_turn == 20:
+	if TurnManager.current_turn == 12:
 		return 1
 	if cant_monsters < 1:
 		return 2
@@ -38,8 +38,6 @@ func _on_boss_died():
 
 func place_monster_tutorial():
 	var monster:MonsterCardData
-	print("Le estoy pidiendo algo al deck drawer tutorial")
 	monster = deck_drawer.draw()
 	if monster:
-		print("El DeckDrawner Tutorial me devolvio algo")
 		grid_monstruos.invoke_random_piece(monster)
