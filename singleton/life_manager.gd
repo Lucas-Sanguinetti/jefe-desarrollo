@@ -4,12 +4,14 @@ signal vida_cambiada(nueva_vida)
 
 var vida: int = 50 
 var vidaMaxima:int = 50
+var vida_anterior: int = 50
 
 func set_vida(value):
 	vida = clamp(value, 0, 50)
 	emit_signal("vida_cambiada", vida)
 
 func gainLife(cant: int ):
+	vida_anterior = vida
 	set_vida(vida + cant)
 	
 func looseLife(cant: int):
@@ -21,6 +23,9 @@ func get_maxLife():
 func get_life():
 	return vida
 
+func get_vidaAnterior():
+	return vida_anterior
+	
 #Debug
 func life():
 	print(vida)

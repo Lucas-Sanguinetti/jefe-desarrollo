@@ -37,6 +37,7 @@ func initialize_deck():
 	is_first_turn = true
 
 func shuffle_deck():
+	randomize()
 	deck.shuffle()
 # ============================================
 # ROBAR CARTAS
