@@ -13,14 +13,16 @@ func on_monster_death(dead_monster: Carta):
 	
 	# Guardar la posición del monstruo muerto
 	var spawn_position = dead_monster.grid_pos
+	var monsterSpawner = grid.get_parent()
+	var monsterDeck = monsterSpawner.deck_drawer
 	
 	# Verificar si el mazo tiene cartas
-	if not MonsterDeck or MonsterDeck.size() <= 0:
+	if not monsterDeck or monsterDeck.size() <= 0:
 		print("Renacer: Mazo vacío, fallo silencioso")
 		return
 	
 	# Robar monstruo del mazo
-	var new_monster_data = MonsterDeck.draw1()
+	var new_monster_data = monsterDeck.draw()
 	if not new_monster_data:
 		push_error("Renacer: No se pudo robar carta del mazo")
 		return

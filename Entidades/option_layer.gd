@@ -1,8 +1,6 @@
 extends CanvasLayer
 
 # Referencias a nodos
-@onready var panel_container: PanelContainer = $PanelContainer
-
 @onready var master_slider: HSlider = $VBoxContainer/MasterVolume/HBoxContainer/MasterSlider
 @onready var master_label: Label = $VBoxContainer/MasterVolume/HBoxContainer/MasterValue
 
@@ -12,13 +10,10 @@ extends CanvasLayer
 @onready var effects_slider: HSlider = $VBoxContainer/EffectsVolume/HBoxContainer/EffectsSlider
 @onready var effects_label: Label = $VBoxContainer/EffectsVolume/HBoxContainer/EffectsValue
 
-
-@onready var resume_button: Button = $PanelContainer/VBoxContainer/ResumeButton
-
+@onready var resume_button: Button = $VBoxContainer/ResumeButton
 
 # Señales
 signal resume_pressed
-
 
 # Estado
 var is_paused: bool = false

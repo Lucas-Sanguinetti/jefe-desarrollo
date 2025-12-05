@@ -31,6 +31,8 @@ func place_monster(repeticiones:int):
 		if monster:
 			grid_monstruos.invoke_random_piece(monster)
 
+
+
 func _on_boss_died():
 	emit_signal("victory")
 
