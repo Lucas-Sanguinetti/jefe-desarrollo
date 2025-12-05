@@ -332,9 +332,6 @@ func _on_card_hover(card: Carta):
 	if card not in get_all_cards():
 		return
 	
-	if waiting_for_target and card == selected_spell:
-		return
-	
 	emit_signal("mouseEntered", card)
 	
 	var tween = create_tween()
@@ -345,14 +342,13 @@ func _on_card_hover(card: Carta):
 
 func _on_card_unhover():
 	for card in get_all_cards():
-		if card == selected_spell and waiting_for_target:
-			continue
-		var original_pos = grid_to_world(int(card.grid_pos.x), int(card.grid_pos.y))
-		var tween = create_tween()
-		tween.set_parallel(true)
-		tween.tween_property(card, "position", original_pos, 0.2).set_ease(Tween.EASE_OUT)
-		tween.tween_property(card, "scale", Vector2.ONE, 0.2)
-		card.z_index = 0
+		if card != selected_spell:
+			var original_pos = grid_to_world(int(card.grid_pos.x), int(card.grid_pos.y))
+			var tween = create_tween()
+			tween.set_parallel(true)
+			tween.tween_property(card, "position", original_pos, 0.2).set_ease(Tween.EASE_OUT)
+			tween.tween_property(card, "scale", Vector2.ONE, 0.2)
+			card.z_index = 0
 
 # ============================================
 # UTILIDADES
