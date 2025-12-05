@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://pwbwd62peuya"]
+
+[ext_resource type="Script" uid="uid://bstgl4lbg3uvx" path="res://Entidades/Armas/Animaciones/projectile.gd" id="1_pevls"]
+[ext_resource type="Texture2D" uid="uid://dlkvnm4rr3tlv" path="res://Assets/cards/spark-preview2.png" id="2_f84dx"]
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_pevls")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.06666667, 0.06666667, 0.06666667, 0.06666667)
+texture = ExtResource("2_f84dx")

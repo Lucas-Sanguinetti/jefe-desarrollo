@@ -128,7 +128,7 @@ func get_all_weapons() -> Array:
 func reset_all_weapons():
 	var weapons = get_all_weapons()
 	first_attack_of_turn = true
-	
+	print("El primer ataque esta disponible",first_attack_of_turn)
 	for weapon in weapons:
 		if weapon.has_method("reset_for_new_turn"):
 			weapon.reset_for_new_turn()
