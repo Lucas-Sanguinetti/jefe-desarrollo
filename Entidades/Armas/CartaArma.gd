@@ -31,6 +31,9 @@ var click_count: int = 0
 var draw_sword_sound: AudioStream
 var sword_hit_sound: AudioStream
 
+#Animaciones
+var animation_manager: WeaponAnimationManager = null
+
 #Señales
 signal ability_activated(weapon: CartaArma)
 signal weapon_recharged(weapon: CartaArma)	
@@ -45,6 +48,7 @@ func _initialize_references() -> void:
 	element_sprite = get_node_or_null("Element")
 	backsprite_sprite = get_node_or_null("BackSprite")
 	
+	call_deferred("_get_animation_manager")
 
 func _setup_specific_ui() -> void:
 	var weapon_data = data as WeaponCardData
@@ -72,6 +76,11 @@ func _setup_specific_ui() -> void:
 func _apply_data_to_ui() -> void:
 	if ataque_label:
 		ataque_label.text = str(ataque)
+
+func _get_animation_manager():
+	animation_manager = get_tree().get_first_node_in_group("WeaponAnimationManager")
+	if not animation_manager:
+		push_warning("CartaArma: No se encontró WeaponAnimationManager")
 
 # SISTEMA DE CARGAS
 func _update_charge_indicator():
@@ -166,41 +175,56 @@ func attack(target: CartaMonstruo) -> bool:
 	if not target.can_be_targeted():
 		return false
 	
-	var weapon_data = data as WeaponCardData
 	var weapon_attack = ataque
 	var monster_hp = target.hp_actual
 	
-	# Aplicar traits del arma
-	for traits in weapon_data.traits:
-		weapon_attack = traits.do_damage(self, target, weapon_attack)
+	# Verificar si hay animación especial para esta arma
+	var has_animation = false
+	if animation_manager:
+		has_animation = animation_manager.play_attack_animation(self, target)
 	
-	# Calcular daño al jugador
-	var player_damage = _calculate_player_damage(target)
+	# Si hay animación, esperar a que termine antes de aplicar daño
+	if has_animation:
+		# Conectar señal para aplicar daño cuando el proyectil impacte
+		if not animation_manager.projectile_hit.is_connected(_on_projectile_hit):
+			animation_manager.projectile_hit.connect(_on_projectile_hit)
+		
+		# Guardar datos del ataque para aplicar después
+		set_meta("pending_attack_target", target)
+		set_meta("pending_attack_damage", weapon_attack)
+		set_meta("pending_monster_hp", monster_hp)
+		
+		# Reproducir sonido de disparo
+		draw_sword.playSound(draw_sword_sound)
+		
+		return true
+	else:
+		# Ataque normal sin animación especial
+		return _execute_attack(target, weapon_attack, monster_hp)
+		
+func _on_projectile_hit(hit_target: Carta):
+	# Verificar que sea nuestro objetivo
+	#var pending_target = get_meta("pending_attack_target", null)
+	var pending_target = get_meta("pending_attack_target")
+	if hit_target != pending_target:
+		return
 	
-	# Aplicar daño
-	if player_damage != 0:
-		LifeManager.looseLife(player_damage)
+	# Obtener datos del ataque pendiente
+	var weapon_attack = get_meta("pending_attack_damage", 0)
+	var monster_hp = get_meta("pending_monster_hp", 0)
 	
-	# Aplicar habilidades de estado
-	weapon_attack = _apply_attack_abilities(weapon_attack)
+	# Limpiar metadatos
+	remove_meta("pending_attack_target")
+	remove_meta("pending_attack_damage")
+	remove_meta("pending_monster_hp")
 	
-	target.take_damage(weapon_attack, self)
-	
-	# Lifesteal
-	_apply_lifesteal(weapon_attack, target, monster_hp)
-	
-	#Primer ataque
-	if parent_grid and parent_grid is PlayerWeaponGrid:
-		parent_grid.mark_attack_used()
-	
-	# Bloquear arma
-	discharge()
-	
-	create_attack_effect(target)
-	
+	if animation_manager and animation_manager.projectile_hit.is_connected(_on_projectile_hit):
+		animation_manager.projectile_hit.disconnect(_on_projectile_hit)
+	# Ejecutar el daño
+	_apply_attack_damage(hit_target, weapon_attack, monster_hp)
+	# Reproducir sonido de impacto
 	sword_hit.playSound(sword_hit_sound)
-	return true
-
+	
 # REINICIOS
 
 func reset_for_new_turn():
@@ -290,7 +314,7 @@ func _calculate_player_damage(target: Carta) -> int:
 	var player_damage = monster_data.attack
 	
 	# Aplicar traits del arma sobre el daño recibido
-	for traits in data.traits:
+	for traits in rasgos:
 		player_damage = traits.on_player_damage(player_damage, target)
 	
 	# Aplicar traits del monstruo
@@ -322,7 +346,7 @@ func _apply_attack_abilities(weapon_damage: int):
 
 func _apply_lifesteal(weapon_attack: int, target: CartaMonstruo, monster_hp: int) -> void:
 	var lifesteal_amount = 0
-	for traits in data.traits:
+	for traits in rasgos:
 		if traits is RobaVida:
 			lifesteal_amount = traits.get_lifesteal_amount(self,weapon_attack, target)
 	
@@ -333,12 +357,75 @@ func _apply_lifesteal(weapon_attack: int, target: CartaMonstruo, monster_hp: int
 
 func _get_traits_text(weapon_data: WeaponCardData) -> String:
 	var texto: String = ""
-	for traits in weapon_data.traits:
+	for traits in rasgos:
 		texto += " %s \n" % [traits.trait_name]
 	if weapon_data.ability:
 		texto += " %s \n" % [weapon_data.ability.ability_name]
 	return texto
 
+func _apply_attack_damage(target: Carta, weapon_attack: int, monster_hp: int):
+	var final_damage = weapon_attack
+	
+	# Aplicar traits del arma
+	for rasgo in rasgos:
+		final_damage = rasgo.do_damage(self, target, final_damage)
+	# Calcular daño al jugador
+	var player_damage = _calculate_player_damage(target)
+	
+	# Aplicar daño al jugador
+	if player_damage != 0:
+		LifeManager.looseLife(player_damage)
+	
+	# Aplicar habilidades de estado
+	final_damage = _apply_attack_abilities(final_damage)
+	
+	# Aplicar daño al monstruo
+	target.take_damage(final_damage, self)
+	
+	# Lifesteal
+	_apply_lifesteal(final_damage, target, monster_hp)
+	
+	if parent_grid and parent_grid is PlayerWeaponGrid:
+			parent_grid.mark_attack_used()
+			
+	discharge()
+
+func _execute_attack(target: CartaMonstruo, weapon_attack: int, monster_hp: int) -> bool:
+	# Aplicar traits del arma
+	for traits in rasgos:
+		weapon_attack = traits.do_damage(self, target, weapon_attack)
+	
+	# Calcular daño al jugador
+	var player_damage = _calculate_player_damage(target)
+	
+	# Aplicar daño al jugador
+	if player_damage != 0:
+		LifeManager.looseLife(player_damage)
+	
+	# Aplicar habilidades de estado
+	weapon_attack = _apply_attack_abilities(weapon_attack)
+	
+	# Aplicar daño al monstruo
+	target.take_damage(weapon_attack, self)
+	
+	# Lifesteal
+	_apply_lifesteal(weapon_attack, target, monster_hp)
+	
+	# Marcar ataque usado
+	if parent_grid and parent_grid is PlayerWeaponGrid:
+		parent_grid.mark_attack_used()
+	
+	# Bloquear arma
+	discharge()
+	
+	# Efectos visuales
+	create_attack_effect(target)
+	
+	# Audio
+	sword_hit.playSound(sword_hit_sound)
+	
+	return true
+	
 #UTILIDADES PUBLICAS
 func actualizar_Ataque(bonus: int):
 	ataque = ataque + bonus
