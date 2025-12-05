@@ -46,6 +46,12 @@ func drawTutorial():
 func size():
 	return monster_data_cards.size()
 
+func size1():
+	return wave1Monsters.size()
+	
+func size2():
+	return wave2Monsters.size()
+
 func reset():
 	tutorial_monster = monstruo_tutoria_reset
 	monster_data_cards.clear()

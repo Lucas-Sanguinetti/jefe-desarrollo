@@ -1,7 +1,7 @@
 extends Sprite2D
 
 @export var nivel: int = 1 : set = set_nivel
-@export var total_niveles: int = 5
+@export var total_niveles: int = 6
 @export var textura_base: Texture2D = preload("uid://bychpqody2ohj")
 
 func _ready():

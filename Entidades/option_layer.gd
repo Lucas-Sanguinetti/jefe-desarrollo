@@ -18,7 +18,6 @@ extends CanvasLayer
 # Señales
 signal resume_pressed
 
-
 # Estado
 var is_paused: bool = false
 

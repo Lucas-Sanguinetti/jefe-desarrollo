@@ -18,8 +18,7 @@ class_name Game
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var pause_menu: PauseMenu = $PauseMenu
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
-
-
+@onready var weapon_animation_manager: WeaponAnimationManager = $WeaponAnimationManager
 
 var cartaSeleccionada
 var current_turn = 1
@@ -49,6 +48,8 @@ func _ready() -> void:
 		pause_menu.resume_pressed.connect(_on_pause_resume)
 		pause_menu.restart_pressed.connect(_on_pause_restart)
 		pause_menu.main_menu_pressed.connect(_on_pause_main_menu)
+	
+	_setup_weapon_animations()
 	
 	# Robar mano inicial
 	var initial_cards = spell_deck.draw_initial_hand()
@@ -138,7 +139,20 @@ func _reset_game():
 	WeaponDeck.reset()
 	TurnManager.reset()
 	
+#Animaciones
+func _setup_weapon_animations():
+	if not weapon_animation_manager:
+		push_error("Game: No se encontró WeaponAnimationManager")
+		return
 	
+	# Registrar animación de Disparo
+	weapon_animation_manager.register_animation("Disparo", 
+		weapon_animation_manager.animate_disparo)
+	
+	# Aquí puedes agregar más animaciones en el futuro:
+	# weapon_animation_manager.register_animation("NombreTrait", callback)
+	
+	print("Game: Sistema de animaciones configurado")
 	
 #Hechizos
 func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://8aa4kw1uryol"]
+[gd_scene load_steps=42 format=3 uid="uid://cqr642exc2fnt"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -30,6 +30,7 @@
 [ext_resource type="Resource" uid="uid://dwr0vwdapddxr" path="res://Resources/Hechizos/GreatHeal.tres" id="24_tr8el"]
 [ext_resource type="Resource" uid="uid://daaaus262s43j" path="res://Resources/Hechizos/moneda1.tres" id="25_jqfhg"]
 [ext_resource type="Resource" uid="uid://cccawjs6d11c7" path="res://Resources/Hechizos/Summon1.tres" id="26_2wdbc"]
+[ext_resource type="Script" uid="uid://7kx2i5jf2v6t" path="res://Entidades/Armas/Animaciones/weapon_animation_manager.gd" id="30_uceh8"]
 [ext_resource type="PackedScene" uid="uid://b7bbxxh388bpu" path="res://pause_menu.tscn" id="31_2wdbc"]
 [ext_resource type="Shader" uid="uid://d0xmvwx8wpvdf" path="res://Entidades/game.gdshader" id="32_uceh8"]
 [ext_resource type="Script" uid="uid://dkjc8srug5u5f" path="res://Entidades/canvas_layer.gd" id="32_xpiqv"]
@@ -175,6 +176,9 @@ script = ExtResource("20_hf2jd")
 
 [node name="AbilitySystem" type="Node" parent="."]
 script = ExtResource("21_2jhs2")
+
+[node name="WeaponAnimationManager" type="Node" parent="."]
+script = ExtResource("30_uceh8")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_8hmk7")
