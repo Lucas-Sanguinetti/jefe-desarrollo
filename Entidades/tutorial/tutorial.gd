@@ -36,7 +36,6 @@ func _ready() -> void:
 	spell_effects.effect_finished.connect(_on_spell_used)
 	hand.card_played.connect(_on_spell_cast)
 	
-	print("Le pedi algo al monsterSpawner desde el tutorial")
 	if pause_menu:
 		pause_menu.resume_pressed.connect(_on_pause_resume)
 		pause_menu.restart_pressed.connect(_on_pause_restart)
@@ -74,7 +73,6 @@ func block_player_weapons():
 func _on_vida_cambiada(nueva_vida: int):
 	if nueva_vida <= 0:
 		block_player_weapons()
-		print("Game Over - Sin vida, armas bloqueadas")
 	
 func reset_monster_traits():
 	var monster_grid = monster_spawner.get_node_or_null("MonsterGrid")

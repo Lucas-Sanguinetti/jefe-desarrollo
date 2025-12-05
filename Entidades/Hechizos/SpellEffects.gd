@@ -79,6 +79,7 @@ func _generic_damage(target: CartaMonstruo, value: int) -> bool:
 	return true
 
 func _generic_heal(value: int) -> bool:
+	LifeManager.snapshot_vida()
 	if not TurnManager.can_heal:
 		push_warning("SpellEffects: Curación bloqueada")
 		return false
