@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_fblog")
 ability_name = "Bateria"
-ability_description = "Elige y recarga un arma"
+ability_description = "Elige y reusa un arma"
 target_type = 1
 ability_id = "Bateria"
 metadata/_custom_type_script = "uid://cqy0018jajlma"

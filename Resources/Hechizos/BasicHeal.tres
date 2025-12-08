@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SpellCardData" load_steps=6 format=3 uid="uid://c2bkuv7nntasy"]
 
 [ext_resource type="Texture2D" uid="uid://cnnvkko1g8omt" path="res://Assets/cards/spell/spells/pocion.png" id="1_fcy0u"]
-[ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="2_aydsg"]
+[ext_resource type="AudioStream" uid="uid://5df3i5eq2fi0" path="res://Audio/SFX/potion.wav" id="2_fcy0u"]
 [ext_resource type="PackedScene" uid="uid://bncxpxagsydh3" path="res://Entidades/Hechizos/Hechizo.tscn" id="2_wp12y"]
 [ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="3_fcy0u"]
 [ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="4_fcy0u"]
@@ -10,6 +10,7 @@
 script = ExtResource("3_fcy0u")
 descripcion = "Curate 10 puntos de vida"
 backsprite = ExtResource("1_fcy0u")
+death = ExtResource("2_fcy0u")
 effect_category = 1
 effect_value = 10
 escena = ExtResource("2_wp12y")

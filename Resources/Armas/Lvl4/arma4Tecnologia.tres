@@ -2,12 +2,12 @@
 
 [ext_resource type="Resource" uid="uid://c5acklindsd5h" path="res://Resources/Habilidades/Endurecer5.tres" id="1_1kq2b"]
 [ext_resource type="Texture2D" uid="uid://b8mj3cc0uc8e4" path="res://Assets/cards/weapon/armas/tecnologia/arma3.png" id="2_1kq2b"]
-[ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="3_817pe"]
+[ext_resource type="AudioStream" uid="uid://qd3gh4kspgo8" path="res://Audio/SFX/bowDraw.mp3" id="3_05joa"]
 [ext_resource type="Texture2D" uid="uid://bd7brlkgtryv8" path="res://Assets/element/tech.png" id="4_uwns2"]
 [ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="5_jfcka"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="6_phua2"]
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="7_lb1cm"]
-[ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="8_ra10h"]
+[ext_resource type="AudioStream" uid="uid://eds3xifbaawg" path="res://Audio/SFX/crossBowHit.mp3" id="8_1kq2b"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_c5fum"]
 [ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="10_lyv6o"]
 
@@ -19,6 +19,8 @@ nivel = 4
 element_type = 7
 element = ExtResource("4_uwns2")
 backsprite = ExtResource("2_1kq2b")
+drawSword = ExtResource("3_05joa")
+swordHit = ExtResource("8_1kq2b")
 ability = ExtResource("1_1kq2b")
 escena = ExtResource("5_jfcka")
 sprite = ExtResource("7_lb1cm")

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SpellCardData" load_steps=6 format=3 uid="uid://daaaus262s43j"]
 
 [ext_resource type="Texture2D" uid="uid://72ve85xfgog1" path="res://Assets/cards/spell/spells/magia1.png" id="1_y0gbe"]
-[ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="2_gd478"]
+[ext_resource type="AudioStream" uid="uid://c2fxf05sd17jp" path="res://Audio/SFX/coin.mp3" id="2_63cbh"]
 [ext_resource type="PackedScene" uid="uid://bncxpxagsydh3" path="res://Entidades/Hechizos/Hechizo.tscn" id="3_7d6se"]
 [ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="3_63cbh"]
 [ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="5_flctl"]
@@ -10,6 +10,7 @@
 script = ExtResource("3_63cbh")
 descripcion = "Consigues una moneda"
 backsprite = ExtResource("1_y0gbe")
+death = ExtResource("2_63cbh")
 effect_category = 5
 effect_value = 1
 escena = ExtResource("3_7d6se")
