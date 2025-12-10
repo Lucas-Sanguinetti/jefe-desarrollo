@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SpellCardData" load_steps=6 format=3 uid="uid://bel45xqiao1k8"]
 
 [ext_resource type="Texture2D" uid="uid://ky5gahecvwmx" path="res://Assets/cards/spell/spells/piedraDeAfilar.png" id="1_o0lp6"]
-[ext_resource type="AudioStream" uid="uid://qebi602vn81l" path="res://Audio/SFX/sharpen.wav" id="2_o0lp6"]
+[ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="2_o0lp6"]
 [ext_resource type="PackedScene" uid="uid://bncxpxagsydh3" path="res://Entidades/Hechizos/Hechizo.tscn" id="3_aaa4r"]
 [ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="3_o0lp6"]
 [ext_resource type="Texture2D" uid="uid://cd8sxwbwn3ho3" path="res://Assets/cards/spell/SpellCard.png" id="5_bdw4a"]
@@ -10,7 +10,6 @@
 script = ExtResource("3_o0lp6")
 descripcion = "elige y afila un   arma en 10 por 3 monedas"
 backsprite = ExtResource("1_o0lp6")
-death = ExtResource("2_o0lp6")
 target_type = 1
 effect_category = 2
 effect_value = 10

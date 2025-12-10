@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ctgxvq6wqqism"]
+[gd_scene load_steps=43 format=3 uid="uid://ctgxvq6wqqism"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://byhk8raqtbh4h" path="res://Audio/SFX/button-pressed.mp3" id="10_xugfq"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_2jhs2"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0w1ek"]
+[ext_resource type="StyleBox" uid="uid://dqvd7s1bo3s8v" path="res://Entidades/Visuales/normal_turn_buttom.tres" id="12_haohm"]
 [ext_resource type="AudioStream" uid="uid://d0686mu6qgmo7" path="res://Audio/musica/Game.mp3" id="13_8hmk7"]
 [ext_resource type="PackedScene" uid="uid://bx6yw2qj5stmb" path="res://Entidades/Visuales/monederoHud.tscn" id="13_cgrtl"]
 [ext_resource type="Script" uid="uid://btt6r2o0q7am0" path="res://Entidades/sellButtom.gd" id="14_ohvqk"]
@@ -110,6 +111,7 @@ offset_right = 1167.0599
 offset_bottom = 254.16595
 theme_override_fonts/font = ExtResource("10_ohvqk")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = ExtResource("12_haohm")
 text = "Terminar
 Turno"
 script = ExtResource("10_eq8nk")

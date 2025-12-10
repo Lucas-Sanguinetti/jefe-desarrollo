@@ -36,7 +36,7 @@ var animation_manager: WeaponAnimationManager = null
 
 #Señales
 signal ability_activated(weapon: CartaArma)
-signal weapon_recharged(weapon: CartaArma)	
+signal weapon_recharged(weapon: CartaArma)
 signal weapon_discharged(weapon: CartaArma)
 
 # IMPLEMENTACIÓN DE MÉTODOS VIRTUALES
