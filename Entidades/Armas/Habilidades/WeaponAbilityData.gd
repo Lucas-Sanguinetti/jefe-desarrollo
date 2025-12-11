@@ -3,7 +3,8 @@ class_name WeaponAbilityData
 # TIPOS DE OBJETIVO
 enum TargetType {
 	NONE,      # Auto-cast (self-buff)
-	WEAPON     # Selecciona otra arma equipada
+	WEAPON,     # Selecciona otra arma equipada
+	MONSTER
 }
 
 # PROPIEDADES BÁSICAS
@@ -27,6 +28,8 @@ func is_valid_target(target) -> bool:
 	match target_type:
 		TargetType.WEAPON:
 			return target is CartaArma
+		TargetType.MONSTER:
+			return target is CartaMonstruo
 	
 	return false
 

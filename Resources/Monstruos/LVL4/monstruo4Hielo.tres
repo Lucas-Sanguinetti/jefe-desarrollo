@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="6_w0ulu"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="7_ui36l"]
 [ext_resource type="Resource" uid="uid://d4iev8cfekme0" path="res://Resources/Traits/Monstruos/valiente.tres" id="8_mwp0s"]
-[ext_resource type="Resource" uid="uid://cltr6rwpeyoa0" path="res://Resources/Traits/aprovechar.tres" id="9_ljda1"]
+[ext_resource type="Resource" uid="uid://cltr6rwpeyoa0" path="res://Resources/Traits/Monstruos/aprovechar.tres" id="9_ljda1"]
 
 [resource]
 script = ExtResource("5_kj676")

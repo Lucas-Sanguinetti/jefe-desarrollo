@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="WeaponCardData" load_steps=9 format=3 uid="uid://y0y458bf6yjj"]
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=11 format=3 uid="uid://y0y458bf6yjj"]
 
+[ext_resource type="Resource" uid="uid://b4qluqmhar7nt" path="res://Resources/Habilidades/Berserk.tres" id="1_277eh"]
 [ext_resource type="Texture2D" uid="uid://o7cgfsua6hq2" path="res://Assets/cards/weapon/armas/veneno/arma1.png" id="2_alw3k"]
 [ext_resource type="AudioStream" uid="uid://saalgqj02ulo" path="res://Audio/SFX/swordDraw2.wav" id="2_xqdgx"]
 [ext_resource type="PackedScene" uid="uid://denw6r4uahlvf" path="res://Entidades/Armas/Arma.tscn" id="4_178jb"]
@@ -8,13 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="6_wy3ny"]
 [ext_resource type="AudioStream" uid="uid://box1cwy2ha3ex" path="res://Audio/SFX/sword-cut.mp3" id="7_qyri0"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="8_nrb3p"]
+[ext_resource type="Resource" uid="uid://dc3pp4q8hs2u8" path="res://Resources/Traits/Armas/aprovecharA.tres" id="9_277eh"]
 
 [resource]
 script = ExtResource("5_lss1o")
 attack = 5
+traits = Array[ExtResource("8_nrb3p")]([ExtResource("9_277eh")])
 element_type = 6
 element = ExtResource("4_oopaq")
 backsprite = ExtResource("2_alw3k")
+ability = ExtResource("1_277eh")
 escena = ExtResource("4_178jb")
 sprite = ExtResource("6_wy3ny")
 metadata/_custom_type_script = "uid://c7dwh0hqpxh8s"
