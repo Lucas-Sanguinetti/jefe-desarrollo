@@ -15,13 +15,16 @@ class_name Game
 @onready var spell_effects: SpellEffects = $SpellEffects
 #Otros
 @onready var card_info: Node2D = $InfoDisplay
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var musica: AudioStreamPlayer = $Musica
+@onready var musica_jefe: AudioStreamPlayer = $MusicaJefe
 @onready var pause_menu: PauseMenu = $PauseMenu
+@export var canciones:Array[AudioStream]
 #Animaciones y Estilado
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var weapon_animation_manager: WeaponAnimationManager = $WeaponAnimationManager
 @export var normal_style = preload("uid://dqvd7s1bo3s8v")
 @export var ready_style = preload("uid://gtb6l3ilt1to")
+@onready var cambio_de_vida: Label = $cambioDeVida
 
 
 
@@ -29,6 +32,7 @@ var cartaSeleccionada
 var current_turn = 1
 
 func _ready() -> void:
+	var musicIndex = RandomNumberGenerator.new().randi_range(1, canciones.size())
 	turn_button.pressed.connect(_on_turn_button_pressed)
 	sell_button.pressed.connect(_on_sell_button_pressed)
 	turn_button.add_to_group("UI")
@@ -47,7 +51,7 @@ func _ready() -> void:
 	
 	LifeManager.vida_cambiada.connect(_on_vida_cambiada)
 	hand.card_played.connect(_on_spell_cast)
-	audio_stream_player.play()
+	musica.playSound(canciones[musicIndex - 1])
 	
 	# Conectar señales PauseMenu
 	if pause_menu:
@@ -65,7 +69,10 @@ func _ready() -> void:
 
 func _on_turn_started(turn_number: int):
 	print("Game: ===== TURNO %d =====" % turn_number)
-	turn_label.text = "TURNO: " + str(turn_number) + "/16"
+	turn_label.actLabel(turn_number)
+	if turn_number == 18:
+		musica.stop()
+		musica_jefe.play()
 	_spawn_cards()
 	reset_player_weapons()
 	reset_monster_traits()
@@ -124,9 +131,11 @@ func _on_vida_cambiada(nueva_vida: int):
 	var vida_previa = LifeManager.get_vidaAnterior()
 	if nueva_vida < vida_previa:
 		#push_error("Recibiste daño neto: %d → %d" % [vida_previa, nueva_vida])
+		cambio_de_vida.loseLife(vida_previa - nueva_vida)
 		canvas_layer.damage()  # Shader rojo
 	elif nueva_vida > vida_previa:
 		#push_warning("Te curaste: %d → %d" % [vida_previa, nueva_vida])
+		cambio_de_vida.winLife(abs(vida_previa - nueva_vida))
 		canvas_layer.curar() 
 		
 	if nueva_vida <= 0:
