@@ -4,6 +4,7 @@ extends Node
 signal turn_started(turn_number: int)
 signal turn_ended(turn_number: int)
 signal game_end_for_turns()
+signal last_turn
 
 # Restricciones activadas/desactivadas
 signal restriction_changed(restriction_name: String, active: bool)
@@ -21,7 +22,7 @@ func start_new_turn():
 	current_turn += 1
 	emit_signal("turn_started", current_turn)
 	print("TurnManager: ===== TURNO %d INICIADO =====" % current_turn)
-	if current_turn == 17:
+	if current_turn == 19:
 		emit_signal("game_end_for_turns")
 		
 

@@ -16,21 +16,21 @@ func size():
 func draw_resucitado():
 	var turno = TurnManager.get_current_turn()
 	match turno:
-		_ when turno < 15:
+		_ when turno < 10:
 			return MonsterDeck.draw1()
-		_ when turno >= 16:
+		_ when turno >= 19:
 			return MonsterDeck.draw2()
 
 func draw():
 	var turno = TurnManager.get_current_turn()
 	match turno:
-		_ when turno < 8:
+		_ when turno < 10:
 			return MonsterDeck.draw1()
-		_ when turno < 15:
+		_ when turno < 18:
 			return MonsterDeck.draw2()
-		_ when turno == 16:
+		_ when turno == 18:
 			return MonsterDeck.draw3()
-		_ when turno > 16:
+		_ when turno > 18:
 			return
 	
 	

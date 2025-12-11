@@ -1,8 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://bvjol1xk8b2nl"]
+[gd_scene load_steps=49 format=3 uid="uid://dynohqidhiit8"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
+[ext_resource type="AudioStream" uid="uid://cda7wddsykecp" path="res://Audio/musica/Game2.mp3" id="3_c24qg"]
 [ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="3_cgrtl"]
+[ext_resource type="AudioStream" uid="uid://ecggmfsjalwu" path="res://Audio/musica/Game3.mp3" id="4_lpvco"]
 [ext_resource type="PackedScene" uid="uid://7rgw566lpfxe" path="res://Entidades/Monstruos/monster_spawner.tscn" id="4_xugfq"]
 [ext_resource type="PackedScene" uid="uid://c0ah8qij8o442" path="res://singleton/weapon_deck.tscn" id="5_eq8nk"]
 [ext_resource type="PackedScene" uid="uid://r3uw2a7pd3o6" path="res://singleton/monster_deck.tscn" id="6_gxhcr"]
@@ -37,13 +39,57 @@
 [ext_resource type="Script" uid="uid://dkjc8srug5u5f" path="res://Entidades/canvas_layer.gd" id="32_xpiqv"]
 [ext_resource type="Script" uid="uid://b6relp2vxhbwl" path="res://Entidades/color_rect.gd" id="34_0c1ae"]
 [ext_resource type="Shader" uid="uid://bf5hrb1rc5rf5" path="res://Entidades/curar.gdshader" id="35_0c1ae"]
+[ext_resource type="AudioStream" uid="uid://c6k14vyms8v0q" path="res://Audio/musica/BossMusic.mp3" id="35_1u8ma"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2jhs2"]
 font_size = 12
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="GDScript" id="GDScript_1u8ma"]
+script/source = "extends Label
+
+func actLabel(turn):
+	if (9 <= turn) and (turn <= 17):
+		add_theme_color_override(\"font_color\", Color.DARK_ORANGE)
+	if turn == 18:
+		add_theme_color_override(\"font_color\", Color.RED)
+	text = str(turn)	
+"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jhs2"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_jfau5"]
+script/source = "extends Label
+
+@onready var cambio_de_vida_timer: Timer = $CambioDeVidaTimer 
+
+func _ready(): 
+	hide() 
+	
+func winLife(life): 
+	show() 
+	add_theme_color_override(\"font_color\", Color(\"#00FF00\")) 
+	text = \"+\" + str(life) 
+	cambio_de_vida_timer.start() 
+	
+func loseLife(life): 
+	show() 
+	add_theme_color_override(\"font_color\", Color(\"#FF0000\")) 
+	text = \"-\" + str(life) 
+	cambio_de_vida_timer.start() 
+	
+func _on_cambio_de_vida_timer_timeout() -> void: 
+	hide()
+"
+
+[sub_resource type="GDScript" id="GDScript_lpvco"]
+script/source = "extends AudioStreamPlayer
+
+func playSound(sound: AudioStream):
+	stream = sound
+	play()
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_gxhcr"]
 font = ExtResource("10_ohvqk")
@@ -67,8 +113,9 @@ shader_parameter/edge_power = 2.5
 shader_parameter/inner_ratio = 0.75
 shader_parameter/feather = 0.4
 
-[node name="Game" type="Node"]
+[node name="Game2" type="Node"]
 script = ExtResource("1_a0hfb")
+canciones = Array[AudioStream]([ExtResource("13_8hmk7"), ExtResource("3_c24qg"), ExtResource("4_lpvco")])
 
 [node name="Board" parent="." instance=ExtResource("2_8hmk7")]
 layer = -1
@@ -120,6 +167,23 @@ script = ExtResource("10_eq8nk")
 stream = ExtResource("10_xugfq")
 bus = &"Effects"
 
+[node name="Turno" type="Label" parent="Botones"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.65500003
+anchor_right = 0.123
+anchor_bottom = 0.77300006
+offset_left = 1175.62
+offset_top = 158.76996
+offset_right = 1081.66
+offset_bottom = 83.58197
+theme_override_fonts/font = ExtResource("10_ohvqk")
+theme_override_font_sizes/font_size = 12
+text = "TURNO:
+"
+label_settings = SubResource("LabelSettings_2jhs2")
+
 [node name="ContadorTurno" type="Label" parent="Botones"]
 texture_filter = 1
 anchors_preset = -1
@@ -127,13 +191,31 @@ anchor_left = 0.011000001
 anchor_top = 0.65500003
 anchor_right = 0.123
 anchor_bottom = 0.77300006
-offset_left = 1179.62
-offset_top = 155.76996
-offset_right = 1085.66
-offset_bottom = 65.58197
+offset_left = 1227.62
+offset_top = 158.76996
+offset_right = 1133.66
+offset_bottom = 68.58197
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_ohvqk")
 theme_override_font_sizes/font_size = 12
-text = "TURNO: 1/20"
+text = "1"
+script = SubResource("GDScript_1u8ma")
+
+[node name="TurnoMaximo" type="Label" parent="Botones"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.65500003
+anchor_right = 0.123
+anchor_bottom = 0.77300006
+offset_left = 1241.62
+offset_top = 143.76996
+offset_right = 1147.66
+offset_bottom = 68.58197
+theme_override_fonts/font = ExtResource("10_ohvqk")
+theme_override_font_sizes/font_size = 12
+text = "
+/18"
 label_settings = SubResource("LabelSettings_2jhs2")
 
 [node name="Vender" type="Button" parent="Botones"]
@@ -161,6 +243,18 @@ bus = &"Effects"
 [node name="LifeHUD" parent="." instance=ExtResource("11_2jhs2")]
 position = Vector2(1134, 773)
 
+[node name="cambioDeVida" type="Label" parent="."]
+offset_left = 1119.0
+offset_top = 707.0
+offset_right = 1148.0
+offset_bottom = 732.0
+theme_override_fonts/font = ExtResource("10_ohvqk")
+theme_override_font_sizes/font_size = 22
+script = SubResource("GDScript_jfau5")
+
+[node name="CambioDeVidaTimer" type="Timer" parent="cambioDeVida"]
+wait_time = 0.5
+
 [node name="InfoDisplay" parent="." instance=ExtResource("12_0w1ek")]
 position = Vector2(1238, 228)
 
@@ -182,10 +276,15 @@ script = ExtResource("21_2jhs2")
 [node name="WeaponAnimationManager" type="Node" parent="."]
 script = ExtResource("30_uceh8")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Musica" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_8hmk7")
-volume_db = -20.0
 bus = &"Music"
+script = SubResource("GDScript_lpvco")
+
+[node name="MusicaJefe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_1u8ma")
+bus = &"Music"
+script = SubResource("GDScript_lpvco")
 
 [node name="PauseMenu" parent="." instance=ExtResource("31_2wdbc")]
 
@@ -279,5 +378,6 @@ script = ExtResource("34_0c1ae")
 
 [node name="CurarTimer" type="Timer" parent="CanvasLayer"]
 
+[connection signal="timeout" from="cambioDeVida/CambioDeVidaTimer" to="cambioDeVida" method="_on_cambio_de_vida_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/CurarTimer" to="." method="_on_curar_timer_timeout"]
