@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvtbctljo4ol3"]
 
-[ext_resource type="Texture2D" uid="uid://squjm64babve" path="res://Assets/background/newBackground.png" id="1_jlxkg"]
+[ext_resource type="Texture2D" uid="uid://bx8k0nhm3vd5v" path="res://Assets/background/backgroundRelease.png" id="1_jlxkg"]
 [ext_resource type="Texture2D" uid="uid://c8gaxpugvi0gq" path="res://Assets/cards/deckArmas.png" id="2_jlxkg"]
 [ext_resource type="Texture2D" uid="uid://4meheoaljcjk" path="res://Assets/cards/deck.png" id="3_pkwy2"]
 
