@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Aprovechar" load_steps=2 format=3 uid="uid://cltr6rwpeyoa0"]
 
-[ext_resource type="Script" uid="uid://bsjrhifcm3k1q" path="res://Traits/aprovechar.gd" id="1_gu3qk"]
+[ext_resource type="Script" uid="uid://bsjrhifcm3k1q" path="res://Traits/monstruos/aprovechar.gd" id="1_gu3qk"]
 
 [resource]
 script = ExtResource("1_gu3qk")

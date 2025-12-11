@@ -15,6 +15,7 @@ func _ready() -> void:
 	wave2Monsters = filtrarMonstruos(4,5,monster_data_cards)
 	
 	#luego se mezclan los mazos
+	randomize()
 	wave1Monsters.shuffle()
 	wave2Monsters.shuffle()
 	monster_bosses_data.shuffle()

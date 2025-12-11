@@ -177,6 +177,7 @@ func _get_traits_text(monster_data: MonsterCardData) -> String:
 func actLabel(label: Label) -> void:
 	var text = "Ataque: %d\n" % [ataque]
 	text += "Vida: %d\n" % [hp_actual]
+	text += "Recompensa: %d monedas\n" % [nivel]
 	# Agregar traits
 	if not rasgos.is_empty():
 		for rasgo in rasgos:

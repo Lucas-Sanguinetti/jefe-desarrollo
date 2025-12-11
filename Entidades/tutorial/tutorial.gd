@@ -22,6 +22,7 @@ class_name Tutorial
 @onready var panel_invisible: Panel = $Vida/PanelInvisible
 
 var stepArma = true
+var stepHabilidad = true
 var current_turn = 1.
 
 func _ready() -> void:
@@ -95,6 +96,8 @@ func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):
 
 # Funciones de seguimiento del tutorial
 func _on_arma_seleccionada():
+	if not stepHabilidad:
+		return
 	$SelecArma.visible = false
 	$Ataque.visible = true
 	
@@ -123,6 +126,7 @@ func _on_vida_tutorial():
 	$Compra.visible = true
 
 func _on_arma_transferida():
+	stepHabilidad = false
 	ocultar_canva_arma()
 	$Compra.visible = false
 	$Habilidad.visible = true

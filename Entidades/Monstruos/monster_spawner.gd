@@ -18,7 +18,7 @@ func draw():
 
 func sin_monstruos() -> int:
 	var cant_monsters = grid_monstruos.get_all_monsters().size()
-	if TurnManager.current_turn == 12:
+	if TurnManager.current_turn == 16:
 		return 1
 	if cant_monsters < 1:
 		return 2

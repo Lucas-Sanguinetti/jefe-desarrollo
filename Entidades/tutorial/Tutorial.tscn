@@ -76,10 +76,10 @@ anchor_left = -0.081
 anchor_top = 0.44900003
 anchor_right = 0.143
 anchor_bottom = 0.59800005
-offset_left = 1439.98
-offset_top = 328.166
-offset_right = 1168.0599
-offset_bottom = 254.16595
+offset_left = 1213.98
+offset_top = 268.166
+offset_right = 958.06
+offset_bottom = 180.13196
 theme_override_fonts/font = ExtResource("10_3db23")
 theme_override_font_sizes/font_size = 16
 text = "Terminar
@@ -96,19 +96,19 @@ anchor_left = 0.011000001
 anchor_top = 0.65500003
 anchor_right = 0.123
 anchor_bottom = 0.77300006
-offset_left = 1199.62
-offset_top = 151.76996
-offset_right = 1192.652
-offset_bottom = 98.573975
+offset_left = 1181.62
+offset_top = 153.76996
+offset_right = 1174.652
+offset_bottom = 100.573975
 theme_override_colors/font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
 theme_override_fonts/font = ExtResource("10_3db23")
 text = "Turno: 1"
 
 [node name="LifeHUD" parent="." instance=ExtResource("11_lglcu")]
-position = Vector2(1138, 769)
+position = Vector2(1135, 769)
 
 [node name="InfoDisplay" parent="." instance=ExtResource("12_0rbba")]
-position = Vector2(1192, 228)
+position = Vector2(1238, 228)
 
 [node name="SpellDeck" parent="." instance=ExtResource("17_8avlq")]
 spell_Deck = Array[ExtResource("18_mbvpg")]([ExtResource("19_71nlq"), ExtResource("19_71nlq"), ExtResource("19_71nlq"), ExtResource("20_rwgvw"), ExtResource("20_rwgvw"), ExtResource("20_rwgvw"), ExtResource("21_02tf7"), ExtResource("21_02tf7"), ExtResource("21_02tf7"), ExtResource("22_5ebip"), ExtResource("22_5ebip"), ExtResource("22_5ebip"), ExtResource("23_1o2ct"), ExtResource("24_mhjqv"), ExtResource("25_5g5f7")])
@@ -349,23 +349,22 @@ un hechizo.
 hazle doble click para usarlo."
 
 [node name="TerminarTutorial" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="TerminarTutorial"]
 offset_left = -2.0
-offset_top = 641.0
-offset_right = 1198.0
+offset_top = 632.0
+offset_right = 1069.0
 offset_bottom = 875.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect2" type="ColorRect" parent="TerminarTutorial"]
 offset_left = -42.0
 offset_right = 1424.0
-offset_bottom = 641.0
+offset_bottom = 632.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect3" type="ColorRect" parent="TerminarTutorial"]
-offset_left = 1424.0
+offset_left = 1286.0
 offset_right = 1581.0
 offset_bottom = 868.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
@@ -380,11 +379,11 @@ theme_override_fonts/font = ExtResource("10_3db23")
 theme_override_font_sizes/font_size = 40
 text = "Perfecto, parece que te ha sanado.
 Haz click izquierdo en el boton 
-de Terminar el turno para 
-acabar con este mini tutorial."
+de terminar el turno y poder 
+volver a usar tus armas"
 
 [node name="PauseMenu" parent="." instance=ExtResource("28_71nlq")]
 visible = false
 
 [node name="MonederoHUD" parent="." instance=ExtResource("33_1o2ct")]
-position = Vector2(1356, 801)
+position = Vector2(1340, 741)

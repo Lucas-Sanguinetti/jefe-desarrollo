@@ -61,6 +61,10 @@ func activate_weapon_ability(weapon: CartaArma):
 		WeaponAbilityData.TargetType.WEAPON:
 			# Iniciar selección de objetivo
 			_start_target_selection(weapon, ability)
+			
+		WeaponAbilityData.TargetType.MONSTER:
+			# Iniciar selección de objetivo
+			_start_target_selection(weapon, ability)
 
 
 @warning_ignore("unused_parameter")
@@ -84,6 +88,10 @@ func _can_use_ability_now(weapon: CartaArma, ability: WeaponAbilityData)-> bool:
 		"Mercenario":
 			if MoneyManager.get_money() < 1:
 				print("AbilitySystem: ✗ Mercenario requiere 1 moneda (tienes %d)" % MoneyManager.get_money())
+				return false
+		"Berserk":
+			var monster_grid = _get_monster_grid()
+			if monster_grid.get_all_monsters().size() < 1:
 				return false
 
 	return true
@@ -123,16 +131,23 @@ func _start_target_selection(weapon: CartaArma, ability: WeaponAbilityData):
 func _execute_ability(weapon: CartaArma, ability: WeaponAbilityData, target):
 	print("AbilitySystem: Ejecutando '%s'" % ability.ability_name)
 	
-	# Buscar efecto personalizado
-	if ability.ability_id != "" and ability.ability_id in custom_abilities:
-		var callback = custom_abilities[ability.ability_id]
-		callback.call(weapon, ability, target)
-	else:
+	# Buscar la función de la habilidad
+	if ability.ability_id == "" or ability.ability_id not in custom_abilities:
 		push_warning("AbilitySystem: Habilidad '%s' sin implementar" % ability.ability_id)
-	cancel_selection()
-	weapon.discharge()
+		cancel_selection()
+		return
 	
-	emit_signal("ability_executed", weapon, ability, target)
+	var callback = custom_abilities[ability.ability_id]
+	var success = callback.call(weapon, ability, target)
+	
+	if success:
+		cancel_selection()
+		weapon.discharge()
+		emit_signal("ability_executed", weapon, ability, target)
+		print("AbilitySystem: ✓ Habilidad ejecutada exitosamente")
+	else:
+		# NO cancelar selección ni descargar arma si falló
+		print("AbilitySystem: ✗ Habilidad falló - arma NO descargada")
 	
 # HABILIDADES IMPLEMENTADAS
 
@@ -140,6 +155,9 @@ func _execute_ability(weapon: CartaArma, ability: WeaponAbilityData, target):
 @warning_ignore("unused_parameter")
 func _ability_recharge_weapon(weapon: CartaArma, _ability , target: CartaArma)-> bool:
 	if not target or not target is CartaArma:
+		return false
+	
+	if target == weapon:
 		return false
 	
 	if target.is_charged():
@@ -177,6 +195,8 @@ func _ability_draw_spell(weapon: CartaArma, ability: WeaponAbilityData, _target)
 func _ability_mercenario(weapon: CartaArma, ability: WeaponAbilityData , target: CartaArma)-> bool:
 	if not target or not target is CartaArma:
 		return false
+	if target == weapon:
+		return false
 	if not target.is_charged():
 		return false
 	if MoneyManager.get_money() < 1:
@@ -186,11 +206,16 @@ func _ability_mercenario(weapon: CartaArma, ability: WeaponAbilityData , target:
 	return true
 	
 @warning_ignore("unused_parameter")
-func _ability_berserk(weapon: CartaArma, ability: WeaponAbilityData, _target) -> bool:
-	weapon.set_trait_state("berserk_active", true)
+func _ability_berserk(weapon: CartaArma, ability: WeaponAbilityData, target: CartaMonstruo) -> bool:
+	if not target or not target is CartaMonstruo:
+		return false
+	var weapon_attack = weapon.ataque * 2
+	var monster_attack = target.ataque * 2
 	
-	# Duplicar el ataque
-	weapon.actualizar_Ataque(weapon.ataque)
+	target.take_damage(weapon_attack)
+	
+	LifeManager.looseLife(monster_attack)
+	
 	return true
 
 @warning_ignore("unused_parameter")
@@ -238,6 +263,9 @@ func _raycast_check_for_target():
 				WeaponAbilityData.TargetType.WEAPON:
 					if collider_parent is CartaArma:
 						return collider_parent as CartaArma
+				WeaponAbilityData.TargetType.MONSTER:
+					if collider_parent is CartaMonstruo:
+						return collider_parent as CartaMonstruo
 	
 	return null
 
@@ -250,6 +278,9 @@ func _get_player_spells():
 	
 func _get_spell_deck():
 	return get_tree().get_first_node_in_group("SpellDeck")
+	
+func _get_monster_grid():
+	return get_tree().get_first_node_in_group("MonsterGrid")
 
 func get_all_other_weapons():
 	var player_grid = get_tree().get_first_node_in_group("PlayerWeaponGrid")

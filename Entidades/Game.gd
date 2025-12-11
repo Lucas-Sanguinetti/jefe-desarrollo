@@ -17,8 +17,13 @@ class_name Game
 @onready var card_info: Node2D = $InfoDisplay
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var pause_menu: PauseMenu = $PauseMenu
+#Animaciones y Estilado
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var weapon_animation_manager: WeaponAnimationManager = $WeaponAnimationManager
+@export var normal_style = preload("uid://dqvd7s1bo3s8v")
+@export var ready_style = preload("uid://gtb6l3ilt1to")
+
+
 
 var cartaSeleccionada
 var current_turn = 1
@@ -38,6 +43,7 @@ func _ready() -> void:
 	
 	card_manager.armaSeleccionadaVenta.connect(_on_arma_seleccionada)
 	card_manager.armaDeseleccionada.connect(_on_arma_deseleccionada)
+	card_manager.armaUsada.connect(_on_arma_usada)
 	
 	LifeManager.vida_cambiada.connect(_on_vida_cambiada)
 	hand.card_played.connect(_on_spell_cast)
@@ -59,10 +65,23 @@ func _ready() -> void:
 
 func _on_turn_started(turn_number: int):
 	print("Game: ===== TURNO %d =====" % turn_number)
-	turn_label.text = "TURNO: " + str(turn_number) + "/12"
+	turn_label.text = "TURNO: " + str(turn_number) + "/16"
 	_spawn_cards()
 	reset_player_weapons()
 	reset_monster_traits()
+	_apply_normal_style()
+
+func _on_arma_usada():
+	var player_weapons = player_weapon_spawner.player_grid.get_all_weapons()
+	var finish_turn = true
+	for weapon in player_weapons:
+		if weapon.is_charged(): 
+			finish_turn = false
+			break
+	if finish_turn:
+		_apply_ready_style()
+	else:
+		_apply_normal_style()
 
 func _on_turn_ended(turn_number: int):
 	print("Game: Turno %d finalizado" % turn_number)
@@ -72,8 +91,6 @@ func _on_turn_ended(turn_number: int):
 func _spawn_cards():
 	# Invocar monstruo
 	monster_spawner.draw()
-	
-	
 	# Robar hechizo
 	if not hand.is_full():
 		var new_card = spell_deck.draw_turn_card()
@@ -154,7 +171,6 @@ func _setup_weapon_animations():
 #Hechizos
 func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):
 	var success = spell_effects.apply_spell_effect(hechizo,target)
-	print("%s", success)
 	if success:
 		card.pay_cost()
 		card.mark_as_used()
@@ -162,6 +178,8 @@ func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):
 		spell_deck.discard_card(hechizo)
 	else:
 		print("Game: Hechizo '%s' falló - NO se descarta" % hechizo.name)
+	if hechizo.effect_id == "bateria":
+		_apply_normal_style()
 
 # Venta de armas
 # ============================================
@@ -195,6 +213,14 @@ func _on_pause_main_menu():
 func _on_timer_timeout() -> void:
 	canvas_layer.hide()
 
-
 func _on_curar_timer_timeout() -> void:
 	canvas_layer.hide()
+
+func _apply_ready_style():
+	if ready_style:
+		turn_button.add_theme_stylebox_override("normal", ready_style)
+
+
+func _apply_normal_style():
+	if normal_style:
+		turn_button.add_theme_stylebox_override("normal", normal_style)

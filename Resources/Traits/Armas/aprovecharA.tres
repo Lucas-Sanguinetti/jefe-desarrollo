@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AprovecharArma" load_steps=2 format=3 uid="uid://dc3pp4q8hs2u8"]
+
+[ext_resource type="Script" uid="uid://bksu6t2q8wge3" path="res://Traits/armas/aprovecharArma.gd" id="1_gldwr"]
+
+[resource]
+script = ExtResource("1_gldwr")
+trait_name = "Aprovechar"
+trait_description = "Duplica el ataque si golpea aun objetivo herido"
+metadata/_custom_type_script = "uid://cy584ew032i43"

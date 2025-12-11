@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("3_b83lv")
-descripcion = "Recarga una de    tus armas"
+descripcion = "elige y reusa un arma"
 backsprite = ExtResource("1_b83lv")
 target_type = 1
 effect_category = 2

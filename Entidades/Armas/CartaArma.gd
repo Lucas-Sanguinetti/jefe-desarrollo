@@ -36,7 +36,7 @@ var animation_manager: WeaponAnimationManager = null
 
 #Señales
 signal ability_activated(weapon: CartaArma)
-signal weapon_recharged(weapon: CartaArma)	
+signal weapon_recharged(weapon: CartaArma)
 signal weapon_discharged(weapon: CartaArma)
 
 # IMPLEMENTACIÓN DE MÉTODOS VIRTUALES
@@ -178,7 +178,6 @@ func attack(target: CartaMonstruo) -> bool:
 	
 	LifeManager.snapshot_vida()
 	
-
 	var weapon_attack = ataque
 	var monster_hp = target.hp_actual
 	
@@ -203,8 +202,13 @@ func attack(target: CartaMonstruo) -> bool:
 		
 		return true
 	else:
-		# Ataque normal sin animación especial
-		return _execute_attack(target, weapon_attack, monster_hp)
+		# Ataque
+		_execute_attack(target, weapon_attack, monster_hp)
+		#Animacion generica
+		create_attack_effect(target)
+		# Audio
+		sword_hit.playSound(sword_hit_sound)
+		return true
 		
 func _on_projectile_hit(hit_target: Carta):
 	# Verificar que sea nuestro objetivo
@@ -225,7 +229,7 @@ func _on_projectile_hit(hit_target: Carta):
 	if animation_manager and animation_manager.projectile_hit.is_connected(_on_projectile_hit):
 		animation_manager.projectile_hit.disconnect(_on_projectile_hit)
 	# Ejecutar el daño
-	_apply_attack_damage(hit_target, weapon_attack, monster_hp)
+	_execute_attack(hit_target, weapon_attack, monster_hp)
 	# Reproducir sonido de impacto
 	sword_hit.playSound(sword_hit_sound)
 	
@@ -237,7 +241,6 @@ func reset_for_new_turn():
 		print("%s: Ahora se puede vender" % name)
 	reset_attack_ability()
 	reset_attack_stats()
-	reset_abilities_states()
 
 func reset_attack_ability() -> void:
 	recharge()
@@ -246,10 +249,6 @@ func reset_attack_stats() -> void:
 	var weapon_data = data as WeaponCardData
 	ataque = weapon_data.attack
 	_apply_data_to_ui()
-
-func reset_abilities_states():
-	if get_trait_state("berserk_active", false):
-		clear_trait_state("berserk_active")
 
 func block_attack_ability() -> void:
 	discharge()
@@ -333,20 +332,11 @@ func _calculate_player_damage(target: Carta) -> int:
 func _apply_state_damage_abilities(player_damage: int):
 	var playerWeapons = get_tree().get_first_node_in_group("PlayerWeapons")
 	
-	if get_trait_state("berserk_active", false):
-		player_damage = player_damage * 2
-	
 	if playerWeapons.enduranceState:
 		player_damage = max(player_damage - playerWeapons.resistencia, 0)
 	
 	return player_damage
 
-func _apply_attack_abilities(weapon_damage: int):
-	
-	if get_trait_state("berserk_active", false):
-		weapon_damage = weapon_damage * 2
-	
-	return weapon_damage
 
 func _apply_lifesteal(weapon_attack: int, target: CartaMonstruo, monster_hp: int) -> void:
 	var lifesteal_amount = 0
@@ -368,48 +358,18 @@ func _get_traits_text(weapon_data: WeaponCardData) -> String:
 		texto += " %s \n" % [weapon_data.ability.ability_name]
 	return texto
 
-func _apply_attack_damage(target: Carta, weapon_attack: int, monster_hp: int):
-	var final_damage = weapon_attack
-	
+func _execute_attack(target: CartaMonstruo, weapon_attack: int, monster_hp: int):
 	# Aplicar traits del arma
 	for rasgo in rasgos:
-		final_damage = rasgo.do_damage(self, target, final_damage)
+		weapon_attack = rasgo.do_damage(self, target, weapon_attack)
+	
 	# Calcular daño al jugador
 	var player_damage = _calculate_player_damage(target)
 	
 	# Aplicar daño al jugador
 	if player_damage != 0:
 		LifeManager.looseLife(player_damage)
-	
-	# Aplicar habilidades de estado
-	final_damage = _apply_attack_abilities(final_damage)
-	
-	# Aplicar daño al monstruo
-	target.take_damage(final_damage, self)
-	
-	# Lifesteal
-	_apply_lifesteal(final_damage, target, monster_hp)
-	
-	if parent_grid and parent_grid is PlayerWeaponGrid:
-			parent_grid.mark_attack_used()
-			
-	discharge()
 
-func _execute_attack(target: CartaMonstruo, weapon_attack: int, monster_hp: int) -> bool:
-	# Aplicar traits del arma
-	for traits in rasgos:
-		weapon_attack = traits.do_damage(self, target, weapon_attack)
-	
-	# Calcular daño al jugador
-	var player_damage = _calculate_player_damage(target)
-	
-	# Aplicar daño al jugador
-	if player_damage != 0:
-		LifeManager.looseLife(player_damage)
-	
-	# Aplicar habilidades de estado
-	weapon_attack = _apply_attack_abilities(weapon_attack)
-	
 	# Aplicar daño al monstruo
 	target.take_damage(weapon_attack, self)
 	
@@ -422,14 +382,6 @@ func _execute_attack(target: CartaMonstruo, weapon_attack: int, monster_hp: int)
 	
 	# Bloquear arma
 	discharge()
-	
-	# Efectos visuales
-	create_attack_effect(target)
-	
-	# Audio
-	sword_hit.playSound(sword_hit_sound)
-	
-	return true
 	
 #UTILIDADES PUBLICAS
 func actualizar_Ataque(bonus: int):

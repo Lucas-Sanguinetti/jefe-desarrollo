@@ -114,8 +114,7 @@ func remove_card(card: CartaHechizo) -> SpellCardData:
 	
 	# Animación de salida
 	_animate_card_exit(card)
-	
-	spell_cast.play()
+	spell_cast.playSound(spell_data.death)
 	emit_signal("hand_has_space")
 	
 	print("Hand: Carta removida '%s'" % spell_data.name)

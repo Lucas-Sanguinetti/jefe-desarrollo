@@ -6,5 +6,5 @@
 script = ExtResource("1_54ob3")
 resistencia = 2
 trait_name = "Endurecer"
-trait_description = "Reduce el daño recibido en 2"
+trait_description = "Reduce el golpe recibido en 2"
 metadata/_custom_type_script = "uid://br8i4gwwpmh7n"
