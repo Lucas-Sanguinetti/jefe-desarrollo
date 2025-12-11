@@ -24,7 +24,7 @@ var style_cannot_attack: StyleBoxFlat
 
 # SEÑALES COMUNES
 signal mouseSobreCarta(carta: Carta)
-signal mouseFueraCarta
+signal mouseFueraCarta(carta: Carta)
 signal card_died
 signal card_double_clicked(carta: Carta)
 @warning_ignore("unused_signal")
@@ -197,7 +197,7 @@ func _on_area_mouse_entered() -> void:
 	emit_signal("mouseSobreCarta", self)
 
 func _on_area_mouse_exited() -> void:
-	emit_signal("mouseFueraCarta")
+	emit_signal("mouseFueraCarta", self)
 
 func _on_double_click():
 	print("Carta: Doble click detectado en ", name)

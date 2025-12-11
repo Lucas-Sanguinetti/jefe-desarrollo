@@ -311,7 +311,18 @@ func can_sell() -> bool:
 	
 	return can_be_sold
 
-# UTILIDADES PRIVADAS
+# UTILIDADES
+func calculate_total_damage_to(target: CartaMonstruo) -> int:
+	if not target or not target is CartaMonstruo:
+		return 0
+	
+	var total_damage = ataque
+
+	for rasgo in rasgos:
+		total_damage = rasgo.do_damage(self, target, total_damage)
+	
+	return total_damage
+	
 func _calculate_player_damage(target: Carta) -> int:
 	var monster_data = target.data as MonsterCardData
 	var player_damage = monster_data.attack

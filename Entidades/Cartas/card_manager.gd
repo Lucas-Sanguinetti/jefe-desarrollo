@@ -15,6 +15,9 @@ signal armaSeleccionadaVenta(carta:CartaArma)
 signal armaDeseleccionada
 signal armaUsada
 
+func _ready():
+	add_to_group("CardManager")
+
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
@@ -95,9 +98,9 @@ func attack_target(weapon: Carta, target: Carta):
 
 func connect_card_signals(card):
 	if not card.mouseSobreCarta.is_connected(on_hovered_over_card):
-		card.connect("mouseSobreCarta",on_hovered_over_card)
+		card.connect("mouseSobreCarta", on_hovered_over_card)
 	if not card.mouseFueraCarta.is_connected(on_hovered_off_card):
-		card.connect("mouseFueraCarta",on_hovered_off_card)
+		card.connect("mouseFueraCarta", on_hovered_off_card)
 	
 func connect_combat_signals(card):
 	if not card.card_selected_for_attack.is_connected(_on_card_selected_for_attack):
@@ -113,11 +116,20 @@ func _on_card_targeted_for_attack(attacker: Carta, target: Carta):
 	attack_target(attacker, target)
 
 func on_hovered_over_card(card):
-	agrandar_carta(card,true)
+	#agrandar_carta(card,true)
+	
+	if combat_state == CombatState.WEAPON_SELECTED and selected_weapon and card is CartaMonstruo:
+		var monster = card as CartaMonstruo
+		if monster.would_be_killed_by(selected_weapon):
+			monster.show_death_preview(true)
 
 func on_hovered_off_card(card):
-	agrandar_carta(card,false)
-		
+	#agrandar_carta(card,false)
+	
+	if card is CartaMonstruo:
+		var monster = card as CartaMonstruo
+		monster.show_death_preview(false)
+
 func agrandar_carta(card,mouseSobre):
 	if mouseSobre:
 		card.scale = Vector2(1.05,1.05)

@@ -342,7 +342,7 @@ func _on_card_hover(card: Carta):
 	tween.tween_property(card, "scale", Vector2(1.1, 1.1), 0.2)
 	card.z_index = 100
 
-func _on_card_unhover():
+func _on_card_unhover(_carta):
 	for card in get_all_cards():
 		if card == selected_spell and waiting_for_target:
 			continue

@@ -2,8 +2,6 @@ extends CanvasLayer
 class_name PauseMenu
 
 # Referencias a nodos
-@onready var panel_container: PanelContainer = $PanelContainer
-
 @onready var music_slider: HSlider = $VBoxContainer/MusicVolume/HBoxContainer/MusicSlider
 @onready var music_label: Label = $VBoxContainer/MusicVolume/HBoxContainer/MusicValue
 

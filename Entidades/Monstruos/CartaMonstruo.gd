@@ -1,26 +1,25 @@
 extends Carta
 class_name CartaMonstruo
-
-
+#Visuales
 var vida_label: Label
 var ataque_label: Label
 var traits_label: Label
 var niveles_sprite: Sprite2D 
 var element_sprite: TextureRect
 var backsprite_sprite: TextureRect
-
+var death_preview: TextureRect
+# Datos 
 var element: MonsterCardData.ElementType
 var hp_actual:int
 var ataque:int
 var max_hp:int
 var nivel:int 
 var rasgos:Array
-
+#Sonidos
 var death_sound: AudioStream
-
-var is_targetable: bool = false
 @onready var death: AudioStreamPlayer = $Death
-
+#Signals & States
+var is_targetable: bool = false
 signal boss_died()
 
 func _initialize_references() -> void:
@@ -31,6 +30,7 @@ func _initialize_references() -> void:
 	niveles_sprite = get_node_or_null("Niveles")
 	element_sprite = get_node_or_null("Element")
 	backsprite_sprite = get_node_or_null("BackSprite")
+	death_preview = get_node_or_null("DeathPreview") 
 	
 	# Validación
 	if not vida_label:
@@ -41,6 +41,8 @@ func _initialize_references() -> void:
 		push_error("CartaMonstruo: Falta nodo 'MonsterTraits'")
 	if not niveles_sprite:
 		push_error("CartaArma: Falta nodo 'Niveles'")
+	if not death_preview:
+		push_error("CartaMonstruo: Falta nodo 'DeathPreview'")
 
 func _setup_specific_ui() -> void:
 	var monster_data = data as MonsterCardData
@@ -166,12 +168,37 @@ func _on_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -
 			return
 
 
-# UTILIDADES PRIVADAS
-func _get_traits_text(monster_data: MonsterCardData) -> String:
-	var texto: String = ""
-	for traits in monster_data.traits:
-		texto += " %s\n" % [traits.trait_name]
-	return texto
+# UTILIDADES 
+func calculate_damage_from(weapon: CartaArma) -> int:
+	if not weapon or not weapon is CartaArma:
+		return 0
+	
+	# Obtener el daño del arma 
+	var incoming_damage = weapon.calculate_total_damage_to(self)
+	
+	# Aplicar reducción de traits del monstruo
+	for rasgo in rasgos:
+		incoming_damage = rasgo.take_damage(weapon, self, incoming_damage)
+	
+	return incoming_damage
+
+# Verifica si el arma puede matar a este monstruo de un golpe
+func would_be_killed_by(weapon: CartaArma) -> bool:
+	if not weapon or not weapon is CartaArma:
+		return false
+	
+	# Si el monstruo está protegido por otros (Valiente, Escurridizo), no puede morir
+	if not can_be_targeted():
+		return false
+	
+	var total_damage = calculate_damage_from(weapon)
+	return total_damage >= hp_actual
+
+# Muestra u oculta el indicador de muerte
+@warning_ignore("shadowed_variable_base_class")
+func show_death_preview(show: bool) -> void:
+	if death_preview:
+		death_preview.visible = show
 
 #Utilidad de info
 func actLabel(label: Label) -> void:
@@ -191,7 +218,13 @@ func actLabel(label: Label) -> void:
 		text += "Sin pasivas\n"
 		
 	label.text = text
-
+	
+func _get_traits_text(monster_data: MonsterCardData) -> String:
+	var texto: String = ""
+	for traits in monster_data.traits:
+		texto += " %s\n" % [traits.trait_name]
+	return texto
+	
 func get_display_resource() -> Resource:
 	var copy = data.duplicate()
 	

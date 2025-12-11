@@ -51,6 +51,10 @@ func place_piece(x: int, y: int, cardData: MonsterCardData) -> bool:
 	
 	cardPiece.boss_died.connect(_on_boss_died)
 	
+	var card_manager = get_tree().get_first_node_in_group("CardManager")
+	if card_manager and card_manager.has_method("connect_card_signals"):
+		card_manager.connect_card_signals(cardPiece)
+	
 	visuals.update_escurridizo_overlays()
 	visuals.update_valiente_overlays()
 	
