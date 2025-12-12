@@ -8,14 +8,14 @@ class_name RerollButton
 @onready var press_sound: AudioStreamPlayer = $press if has_node("press") else null
 
 # Configuración
-@export var base_cost: int = 1
-@export var cost_increment: int = 1
+@export var base_cost: int = 3
+@export var cost_increment: int = 3
 @export var button_title: String = "Reroll"
 
 # Colores para el panel interno
-const COLOR_AVAILABLE = Color(0.8, 0.2, 0.2, 1.0)
+const COLOR_AVAILABLE = Color(0, 1, 0, 1.0)
 const COLOR_DISABLED = Color(0.3, 0.3, 0.3, 1.0)
-const COLOR_HOVER = Color(1.0, 0.3, 0.3, 1.0)
+const COLOR_HOVER = Color(0, 1, 0, 1.0)
 
 # Estado
 var current_cost: int = 1
