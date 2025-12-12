@@ -87,13 +87,67 @@ func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 	emit_signal("armaTransferida")
 	return true
 
-# Modificar para deck segun decision empresarial
+# AGREGAR esta función en WeaponManager.gd
+
+# Devuelve todas las armas de la tienda al mazo y genera nuevas
+func reroll_shop_weapons() -> bool:
+	if not weapon_grid:
+		push_error("WeaponManager: No hay WeaponGrid disponible")
+		return false
+	
+	print("WeaponManager: Iniciando reroll de tienda...")
+	
+	# 1. Obtener todas las armas actuales en el grid
+	var weapons_to_return = []
+	for x in range(weapon_grid.GRID_COLLUMNS):
+		for y in range(weapon_grid.GRID_ROWS):
+			if weapon_grid.grid[x][y] != null:
+				var weapon = weapon_grid.grid[x][y]
+				weapons_to_return.append(weapon)
+	
+	print("WeaponManager: Encontradas %d armas en tienda" % weapons_to_return.size())
+	
+	# 2. Devolver cada arma al mazo
+	for weapon in weapons_to_return:
+		var weapon_data = weapon.data as WeaponCardData
+		if weapon_data:
+			# Devolver la carta al mazo
+			WeaponDeck.return_card_to_deck(weapon_data)
+			print("  → Devuelta: %s" % weapon_data.name)
+		
+		# Limpiar la posición en el grid
+		var pos = weapon.grid_pos
+		if pos.x >= 0 and pos.y >= 0:
+			weapon_grid.grid[int(pos.x)][int(pos.y)] = null
+		
+		# Destruir la instancia visual
+		weapon.queue_free()
+	
+	# 3. Esperar un frame para que se liberen los nodos
+	await get_tree().process_frame
+	
+	# 4. Mezclar el mazo para que salgan cartas diferentes
+	WeaponDeck.shuffle_deck()
+	
+	# 5. Generar nuevas armas en la tienda
+	if weapon_spawner and weapon_spawner.has_method("turn_loader"):
+		weapon_spawner.turn_loader()
+		print("WeaponManager: ✅ Nuevas armas generadas")
+	else:
+		push_error("WeaponManager: No se pudo acceder al weapon_spawner")
+		return false
+	
+	print("WeaponManager: Reroll completado exitosamente")
+	return true
+
+
+# MODIFICAR la función return_weapon_to_storage para que use una nueva función auxiliar
 func return_weapon_to_storage(from_x: int, from_y: int) -> bool:
 	if not weapon_grid or not player_grid:
 		return false
 	
 	# Verificar si hay espacio en el almacén
-	if weapon_grid.get_empty_slots_count() <= 0:
+	if weapon_grid.get_empty_slots().is_empty():
 		print("WeaponManager: WeaponGrid está lleno")
 		return false
 	
@@ -102,13 +156,19 @@ func return_weapon_to_storage(from_x: int, from_y: int) -> bool:
 	if not weapon:
 		return false
 	
-	# Agregar al almacén
+	# Devolver al almacén
+	return_single_weapon_to_shop(weapon)
+	
+	return true
+
+# Nueva función auxiliar para devolver una sola arma a la tienda
+func return_single_weapon_to_shop(weapon: Carta):
+	if not weapon or not weapon_grid:
+		return
+	
 	var weapon_data = weapon.data as WeaponCardData
 	weapon.queue_free()  # Destruir la instancia vieja
 	weapon_grid.invoke_random_piece(weapon_data)  # Crear nueva en el almacén
-	
-
-	return true
 
 
 func venderArma(carta:CartaArma):

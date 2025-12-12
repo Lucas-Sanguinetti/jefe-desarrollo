@@ -4,6 +4,9 @@ class_name Game
 @onready var turn_button: Button = $Botones/PasarTurno
 @onready var turn_label: Label = $Botones/ContadorTurno
 @onready var sell_button: Button = $Botones/Vender
+@onready var reroll_spells_button: RerollButton = $Botones/RerollSpells
+@onready var reroll_weapons_button: RerollButton = $Botones/RerollWeapons
+
 #Managers y spawners
 @onready var card_manager = $CardManager
 @onready var weapon_manager: WeaponManager = $WeaponManager
@@ -59,6 +62,13 @@ func _ready() -> void:
 		pause_menu.restart_pressed.connect(_on_pause_restart)
 		pause_menu.main_menu_pressed.connect(_on_pause_main_menu)
 	
+	# Configurar botón de hechizos
+	if reroll_spells_button:
+		reroll_spells_button.button_used.connect(_on_reroll_spells_pressed)
+	
+	if reroll_weapons_button:
+		reroll_weapons_button.button_used.connect(_on_reroll_weapons_pressed)
+	
 	_setup_weapon_animations()
 	
 	# Robar mano inicial
@@ -77,6 +87,8 @@ func _on_turn_started(turn_number: int):
 	reset_player_weapons()
 	reset_monster_traits()
 	_apply_normal_style()
+	
+	_reset_reroll_buttons()
 
 func _on_arma_usada():
 	var player_weapons = player_weapon_spawner.player_grid.get_all_weapons()
@@ -206,6 +218,40 @@ func _on_sell_button_pressed():
 		weapon_manager.venderArma(cartaSeleccionada)
 	sell_button.set_disabled(true)
 
+# Reroll
+
+func _on_reroll_spells_pressed(cost: int):
+	print("Game: Reroll de hechizos usado - Costo: %d" % cost)
+	var hechizos = hand.get_all_cards()
+	var cant_robar = hechizos.size()
+	
+	for hechizo in hechizos:
+		hand.remove_card(hechizo)
+	
+	for i in cant_robar:
+		var new_card = spell_deck.draw_turn_card()
+		if new_card:
+			hand.add_card(new_card)
+
+func _on_reroll_weapons_pressed(cost: int):
+	print("Game: Reroll de armas usado - Costo: %d" % cost)
+	
+	# Verificar que haya suficientes cartas en el mazo
+	var slots_to_fill = weapon_manager.weapon_grid.GRID_COLLUMNS * weapon_manager.weapon_grid.GRID_ROWS
+	if not WeaponDeck.can_reroll(slots_to_fill):
+		push_warning("Game: No hay suficientes cartas en el mazo para reroll")
+		return
+	
+	# Usar la función del WeaponManager para hacer el reroll
+	await weapon_manager.reroll_shop_weapons()
+	
+	print("Game: ✅ Reroll de armas completado")
+func _reset_reroll_buttons():
+	if reroll_spells_button:
+		reroll_spells_button.reset_for_new_turn()
+	
+	if reroll_weapons_button:
+		reroll_weapons_button.reset_for_new_turn()
 # Funciones del Menu
 # ============================================
 func _on_pause_resume():
@@ -228,7 +274,6 @@ func _on_curar_timer_timeout() -> void:
 func _apply_ready_style():
 	if ready_style:
 		turn_button.add_theme_stylebox_override("normal", ready_style)
-
 
 func _apply_normal_style():
 	if normal_style:

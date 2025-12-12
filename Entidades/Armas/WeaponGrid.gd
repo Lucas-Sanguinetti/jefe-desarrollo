@@ -79,6 +79,9 @@ func get_empty_slots() -> Array:
 				empty_cells.append(Vector2(x, y))
 	return empty_cells
 
+func get_empty_slots_count() -> int:
+	return get_empty_slots().size()
+
 func get_all_weapons() -> Array:
 	var weapons = []
 	for x in range(GRID_COLLUMNS):

@@ -20,7 +20,7 @@ func _on_tutorial_pressed() -> void:
 	timer_tutorial.start()
 	
 func _on_timer_game_timeout() -> void:
-	get_tree().change_scene_to_file("res://Entidades/Game.tscn")
+	get_tree().change_scene_to_file("res://Entidades/Menus/Game.tscn")
 
 
 func _on_timer_tutorial_timeout() -> void:
@@ -36,4 +36,4 @@ func _on_pause_resume():
 
 
 func _on_creditos_pressed() -> void:
-	get_tree().change_scene_to_file("res://Entidades/creditos.tscn")
+	get_tree().change_scene_to_file("res://Entidades/Menus/creditos.tscn")

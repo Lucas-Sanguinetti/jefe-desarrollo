@@ -1,6 +1,6 @@
-[gd_scene load_steps=49 format=3 uid="uid://dynohqidhiit8"]
+[gd_scene load_steps=50 format=3 uid="uid://dynohqidhiit8"]
 
-[ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Game.gd" id="1_a0hfb"]
+[ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Menus/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
 [ext_resource type="AudioStream" uid="uid://cda7wddsykecp" path="res://Audio/musica/Game2.mp3" id="3_c24qg"]
 [ext_resource type="PackedScene" uid="uid://oioljwj0qhiu" path="res://Entidades/Cartas/card_manager.tscn" id="3_cgrtl"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bmeoueu10fxj2" path="res://Entidades/Armas/weapon_spawner.tscn" id="7_00onx"]
 [ext_resource type="PackedScene" uid="uid://dfmm3iy8hd5vr" path="res://Entidades/Armas/player_weapon_spawner.tscn" id="8_rwqrq"]
 [ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="9_hf2jd"]
-[ext_resource type="Script" uid="uid://2bc043lq2daj" path="res://Entidades/press.gd" id="10_eq8nk"]
+[ext_resource type="Script" uid="uid://2bc043lq2daj" path="res://Entidades/Botones/press.gd" id="10_eq8nk"]
 [ext_resource type="AudioStream" uid="uid://df1guwtyjobyt" path="res://Audio/SFX/blacksmith-hammer.mp3" id="10_gxhcr"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_ohvqk"]
 [ext_resource type="AudioStream" uid="uid://byhk8raqtbh4h" path="res://Audio/SFX/button-pressed.mp3" id="10_xugfq"]
@@ -20,9 +20,10 @@
 [ext_resource type="StyleBox" uid="uid://dqvd7s1bo3s8v" path="res://Entidades/Visuales/normal_turn_buttom.tres" id="12_haohm"]
 [ext_resource type="AudioStream" uid="uid://d0686mu6qgmo7" path="res://Audio/musica/Game.mp3" id="13_8hmk7"]
 [ext_resource type="PackedScene" uid="uid://bx6yw2qj5stmb" path="res://Entidades/Visuales/monederoHud.tscn" id="13_cgrtl"]
-[ext_resource type="Script" uid="uid://btt6r2o0q7am0" path="res://Entidades/sellButtom.gd" id="14_ohvqk"]
+[ext_resource type="Script" uid="uid://btt6r2o0q7am0" path="res://Entidades/Botones/sellButtom.gd" id="14_ohvqk"]
 [ext_resource type="PackedScene" uid="uid://bcdxqcei3yuhm" path="res://Entidades/Hechizos/spell_deck.tscn" id="17_rwqrq"]
 [ext_resource type="PackedScene" uid="uid://da50i6nw27x40" path="res://Entidades/Hechizos/player_spells.tscn" id="18_hf2jd"]
+[ext_resource type="PackedScene" uid="uid://duoajg55whdex" path="res://Entidades/Botones/RerollButtom.tscn" id="19_obq28"]
 [ext_resource type="Script" uid="uid://c5klust30h4bq" path="res://Entidades/Hechizos/SpellCardData.gd" id="19_u4kpe"]
 [ext_resource type="Script" uid="uid://bxljb7ons4bf2" path="res://Entidades/Hechizos/SpellEffects.gd" id="20_hf2jd"]
 [ext_resource type="Resource" uid="uid://df11r4yorlkrf" path="res://Resources/Hechizos/Batery.tres" id="20_xr7dm"]
@@ -35,10 +36,10 @@
 [ext_resource type="Resource" uid="uid://cccawjs6d11c7" path="res://Resources/Hechizos/Summon1.tres" id="26_2wdbc"]
 [ext_resource type="Script" uid="uid://7kx2i5jf2v6t" path="res://Entidades/Armas/Animaciones/weapon_animation_manager.gd" id="30_uceh8"]
 [ext_resource type="PackedScene" uid="uid://b7bbxxh388bpu" path="res://pause_menu.tscn" id="31_2wdbc"]
-[ext_resource type="Shader" uid="uid://d0xmvwx8wpvdf" path="res://Entidades/game.gdshader" id="32_uceh8"]
-[ext_resource type="Script" uid="uid://dkjc8srug5u5f" path="res://Entidades/canvas_layer.gd" id="32_xpiqv"]
-[ext_resource type="Script" uid="uid://b6relp2vxhbwl" path="res://Entidades/color_rect.gd" id="34_0c1ae"]
-[ext_resource type="Shader" uid="uid://bf5hrb1rc5rf5" path="res://Entidades/curar.gdshader" id="35_0c1ae"]
+[ext_resource type="Shader" uid="uid://d0xmvwx8wpvdf" path="res://Entidades/Visuales/game.gdshader" id="32_uceh8"]
+[ext_resource type="Script" uid="uid://dkjc8srug5u5f" path="res://Entidades/Visuales/canvas_layer.gd" id="32_xpiqv"]
+[ext_resource type="Script" uid="uid://b6relp2vxhbwl" path="res://Entidades/Visuales/color_rect.gd" id="34_0c1ae"]
+[ext_resource type="Shader" uid="uid://bf5hrb1rc5rf5" path="res://Entidades/Visuales/curar.gdshader" id="35_0c1ae"]
 [ext_resource type="AudioStream" uid="uid://c6k14vyms8v0q" path="res://Audio/musica/BossMusic.mp3" id="35_1u8ma"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2jhs2"]
@@ -113,7 +114,7 @@ shader_parameter/edge_power = 2.5
 shader_parameter/inner_ratio = 0.75
 shader_parameter/feather = 0.4
 
-[node name="Game2" type="Node"]
+[node name="Game" type="Node"]
 script = ExtResource("1_a0hfb")
 canciones = Array[AudioStream]([ExtResource("13_8hmk7"), ExtResource("3_c24qg"), ExtResource("4_lpvco")])
 
@@ -240,6 +241,16 @@ script = ExtResource("14_ohvqk")
 stream = ExtResource("10_xugfq")
 bus = &"Effects"
 
+[node name="RerollSpells" parent="Botones" instance=ExtResource("19_obq28")]
+button_title = "Reroll Spells"
+
+[node name="RerollWeapons" parent="Botones" instance=ExtResource("19_obq28")]
+offset_left = 914.0
+offset_top = 117.0
+offset_right = 1009.42
+offset_bottom = 172.134
+button_title = "Reroll Weapons"
+
 [node name="LifeHUD" parent="." instance=ExtResource("11_2jhs2")]
 position = Vector2(1134, 773)
 
@@ -287,6 +298,7 @@ bus = &"Music"
 script = SubResource("GDScript_lpvco")
 
 [node name="PauseMenu" parent="." instance=ExtResource("31_2wdbc")]
+visible = false
 
 [node name="Ventanas" type="CanvasLayer" parent="."]
 layer = 100

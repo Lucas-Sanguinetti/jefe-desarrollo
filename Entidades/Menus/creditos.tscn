@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://48r7qwwy1jqq"]
 
 [ext_resource type="Texture2D" uid="uid://ypgau6wifkoa" path="res://Assets/elements_In_Board/pause2.png" id="1_7flbs"]
-[ext_resource type="Script" uid="uid://56g6q5hqooyk" path="res://Entidades/creditos.gd" id="1_l7vgd"]
+[ext_resource type="Script" uid="uid://56g6q5hqooyk" path="res://Entidades/Menus/creditos.gd" id="1_l7vgd"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_alf7g"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_3rtis"]
