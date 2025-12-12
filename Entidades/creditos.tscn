@@ -1,0 +1,177 @@
+[gd_scene load_steps=7 format=3 uid="uid://48r7qwwy1jqq"]
+
+[ext_resource type="Texture2D" uid="uid://ypgau6wifkoa" path="res://Assets/elements_In_Board/pause2.png" id="1_7flbs"]
+[ext_resource type="Script" uid="uid://56g6q5hqooyk" path="res://Entidades/creditos.gd" id="1_l7vgd"]
+[ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_alf7g"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3rtis"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_cysqe"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3rbuu"]
+
+[node name="Creditos" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_l7vgd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 530.0
+offset_top = 100.0
+offset_right = 940.0
+offset_bottom = 550.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_7flbs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 114.0
+offset_right = 1027.0
+offset_bottom = 647.0
+theme_override_constants/separation = 55
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_3rtis")
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 32
+text = "CREDITOS"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Titulo" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 24
+text = "Programadores"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_3rtis")
+
+[node name="Integrante1" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 18
+text = "Lautaro Galvez Monge"
+
+[node name="Integrante2" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 18
+text = "Lucas Sanguinnetti"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Titulo" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 24
+text = "Musica"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_3rtis")
+
+[node name="Integrante1" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 18
+text = "Lautaro Galvez Monge"
+
+[node name="Integrante2" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 18
+text = "Lucas Sanguinnetti"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Titulo" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 24
+text = "Testeo"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_cysqe")
+
+[node name="Integrante1" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 18
+text = "Lautaro Galvez Monge"
+
+[node name="Integrante2" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 18
+text = "Lucas Sanguinnetti"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Titulo" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 24
+text = "Diseño artistico"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_3rbuu")
+
+[node name="Integrante2" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 18
+text = "Lucas Sanguinnetti"
+
+[node name="Integrante3" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 18
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alf7g")
+theme_override_font_sizes/font_size = 20
+text = "Menu Principal"
+
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
