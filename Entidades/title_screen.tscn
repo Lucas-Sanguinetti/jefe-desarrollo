@@ -68,6 +68,18 @@ script = ExtResource("4_iwsvx")
 stream = ExtResource("5_g8iy6")
 bus = &"Effects"
 
+[node name="Creditos" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_iwsvx")
+theme_override_font_sizes/font_size = 24
+text = "Creditos"
+script = ExtResource("4_iwsvx")
+
+[node name="press" type="AudioStreamPlayer" parent="VBoxContainer/Creditos"]
+stream = ExtResource("5_g8iy6")
+bus = &"Effects"
+
 [node name="TimerGame" type="Timer" parent="."]
 wait_time = 0.25
 
@@ -85,5 +97,6 @@ transform = Transform2D(1, 0, 0, 1, 635, 270)
 [connection signal="pressed" from="VBoxContainer/Jugar" to="." method="_on_jugar_pressed"]
 [connection signal="pressed" from="VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="VBoxContainer/opciones" to="." method="_on_opciones_pressed"]
+[connection signal="pressed" from="VBoxContainer/Creditos" to="." method="_on_creditos_pressed"]
 [connection signal="timeout" from="TimerGame" to="." method="_on_timer_game_timeout"]
 [connection signal="timeout" from="TimerTutorial" to="." method="_on_timer_tutorial_timeout"]

@@ -33,3 +33,7 @@ func _on_opciones_pressed() -> void:
 
 func _on_pause_resume():
 	pass
+
+
+func _on_creditos_pressed() -> void:
+	get_tree().change_scene_to_file("res://Entidades/creditos.tscn")
