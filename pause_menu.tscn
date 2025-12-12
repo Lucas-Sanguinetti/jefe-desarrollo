@@ -1,18 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7bbxxh388bpu"]
+[gd_scene load_steps=4 format=3 uid="uid://b7bbxxh388bpu"]
 
 [ext_resource type="Script" uid="uid://71seu6vw6mhh" path="res://pause_menu.gd" id="1_hdmo1"]
 [ext_resource type="Texture2D" uid="uid://ypgau6wifkoa" path="res://Assets/elements_In_Board/pause2.png" id="2_05uyy"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_nwcfo"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05uyy"]
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [node name="PauseMenu" type="CanvasLayer"]
 layer = 100
@@ -26,11 +16,11 @@ offset_bottom = 634.0
 texture = ExtResource("2_05uyy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 592.0
-offset_top = 185.0
-offset_right = 988.0
-offset_bottom = 681.0
-theme_override_constants/separation = 22
+offset_left = 598.0
+offset_top = 193.0
+offset_right = 982.0
+offset_bottom = 624.0
+theme_override_constants/separation = 21
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -48,13 +38,14 @@ layout_mode = 2
 
 [node name="MasterVolume" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/MasterVolume"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nwcfo")
 theme_override_font_sizes/font_size = 18
-text = "Volumen General"
+text = "  Volumen General"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MasterVolume"]
 layout_mode = 2
@@ -80,7 +71,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nwcfo")
 theme_override_font_sizes/font_size = 18
-text = "Musica"
+text = "  Musica"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MusicVolume"]
 layout_mode = 2
@@ -106,7 +97,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nwcfo")
 theme_override_font_sizes/font_size = 18
-text = "Efectos"
+text = "  Efectos"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/EffectsVolume"]
 layout_mode = 2
@@ -145,19 +136,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nwcfo")
 theme_override_font_sizes/font_size = 20
 text = "Menu Principal"
-
-[node name="PanelContainer" type="PanelContainer" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -250.0
-offset_right = 200.0
-offset_bottom = 250.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_05uyy")
 
 [connection signal="value_changed" from="VBoxContainer/MasterVolume/HBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/MusicVolume/HBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]

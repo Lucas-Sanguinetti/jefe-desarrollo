@@ -8,10 +8,11 @@ var can_be_sold: bool = true
 
 # Referencias UI
 var ataque_label: Label
-var traits_label: Label 
 var niveles_sprite: Sprite2D
 var element_sprite: TextureRect
 var backsprite_sprite: TextureRect
+var container: VBoxContainer 
+@onready var small_font := preload("uid://jv50m8p7i6as")
 
 #Variables de la Escena
 var ataque:int 
@@ -43,7 +44,7 @@ signal weapon_discharged(weapon: CartaArma)
 func _initialize_references() -> void:
 	super._initialize_references()
 	ataque_label = get_node_or_null("Ataque")
-	traits_label = get_node_or_null("WeaponTraits")
+	container = get_node_or_null("VBoxContainer")
 	niveles_sprite = get_node_or_null("Niveles")
 	element_sprite = get_node_or_null("Element")
 	backsprite_sprite = get_node_or_null("BackSprite")
@@ -56,8 +57,8 @@ func _setup_specific_ui() -> void:
 		return
 	ataque = weapon_data.attack
 	element = weapon_data.element_type
-	if traits_label:
-		traits_label.text = _get_traits_text(weapon_data)
+	if container:
+		display_traits(weapon_data)
 	nivel = weapon_data.nivel
 	rasgos = weapon_data.traits
 	sword_hit_sound = weapon_data.swordHit
@@ -311,7 +312,18 @@ func can_sell() -> bool:
 	
 	return can_be_sold
 
-# UTILIDADES PRIVADAS
+# UTILIDADES
+func calculate_total_damage_to(target: CartaMonstruo) -> int:
+	if not target or not target is CartaMonstruo:
+		return 0
+	
+	var total_damage = ataque
+
+	for rasgo in rasgos:
+		total_damage = rasgo.do_damage(self, target, total_damage)
+	
+	return total_damage
+	
 func _calculate_player_damage(target: Carta) -> int:
 	var monster_data = target.data as MonsterCardData
 	var player_damage = monster_data.attack
@@ -357,6 +369,98 @@ func _get_traits_text(weapon_data: WeaponCardData) -> String:
 	if weapon_data.ability:
 		texto += " %s \n" % [weapon_data.ability.ability_name]
 	return texto
+
+func display_traits(weapon_data: WeaponCardData):
+	# Limpiar traits previos
+	for child in container.get_children():
+		child.queue_free()
+
+	# Añadir traits de arma
+	for rasgo in rasgos:
+		add_trait_to_container(rasgo.trait_name)
+
+	# Añadir habilidad
+	if weapon_data.ability:
+		add_trait_to_container(weapon_data.ability.ability_name)
+
+
+func add_trait_to_container(text: String):
+	if not container:
+		return
+	
+	# Crear el panel contenedor
+	var panel := PanelContainer.new()  # Usar PanelContainer en lugar de Panel
+	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	panel.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	
+	# Crear el StyleBox para el fondo
+	var style := StyleBoxFlat.new()
+	
+	# Opción B — usar un color más desaturado (recomendado):
+	var base_color = get_element_color()
+	style.bg_color = base_color.lerp(Color.GRAY, 0.30)
+
+	# Bordes rectos (sin radio)
+	style.set_corner_radius_all(0)
+
+	# Borde blanco muy fino
+	style.border_color = Color.WHITE
+	style.border_width_left = 1
+	style.border_width_right = 1
+	style.border_width_top = 1
+	style.border_width_bottom = 1
+
+	# Márgenes internos
+	style.content_margin_left = 4
+	style.content_margin_right = 4
+	style.content_margin_top = 2
+	style.content_margin_bottom = 2
+
+	panel.add_theme_stylebox_override("panel", style)
+	
+	# Crear el label
+	var label := Label.new()
+	label.text = text
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
+	label.size_flags_vertical = Control.SIZE_EXPAND
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.add_theme_font_override("font", small_font)
+	label.add_theme_font_size_override("font_size", 8)
+	label.add_theme_color_override("font_color", Color.WHITE)  # Texto blanco
+	
+	# Agregar label al panel
+	panel.add_child(label)
+	
+	# Agregar panel al container
+	container.add_child(panel)
+
+func get_element_color() -> Color:
+	match element:
+		WeaponCardData.ElementType.FIRE:
+			return Color(1.0, 0.0, 0.0) # Rojo
+		WeaponCardData.ElementType.ELECTRIC:
+			return Color(1.0, 1.0, 0.0) # Amarillo
+		WeaponCardData.ElementType.NATURE:
+			return Color(0.0, 0.4, 0.0) # Verde oscuro
+		WeaponCardData.ElementType.WIND:
+			return Color(0.6, 0.9, 0.6) # Verde claro / agua
+		WeaponCardData.ElementType.POISON:
+			return Color(0.7, 1.0, 0.0) # Verde lima
+		WeaponCardData.ElementType.DARK:
+			return Color(0.2, 0.0, 0.3) # Violeta oscuro
+		WeaponCardData.ElementType.TECH:
+			return Color(0.5, 0.5, 0.5) # Gris
+		WeaponCardData.ElementType.WATER:
+			return Color(0.0, 0.3, 1.0) # Azul
+		WeaponCardData.ElementType.ICE:
+			return Color(0.5, 0.8, 1.0) # Celeste
+		WeaponCardData.ElementType.EARTH:
+			return Color(0.4, 0.26, 0.13) # Marrón
+		_:
+			return Color(1, 1, 1) # Fallback
+
 
 func _execute_attack(target: CartaMonstruo, weapon_attack: int, monster_hp: int):
 	# Aplicar traits del arma

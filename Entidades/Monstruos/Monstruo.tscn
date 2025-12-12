@@ -1,13 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dihc5ihgsnvy3"]
+[gd_scene load_steps=9 format=3 uid="uid://dihc5ihgsnvy3"]
 
 [ext_resource type="Script" uid="uid://dbec7owv5q16" path="res://Entidades/Monstruos/CartaMonstruo.gd" id="1_57kje"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_4opp7"]
 [ext_resource type="Texture2D" uid="uid://by452ho46kenb" path="res://Assets/cards/monster/monsterCard.png" id="2_gqsfx"]
 [ext_resource type="Script" uid="uid://cedwwo3v8rwn6" path="res://Entidades/Cartas/niveles.gd" id="3_014nb"]
 [ext_resource type="AudioStream" uid="uid://dns6okc5us4st" path="res://Audio/SFX/monster-Death.wav" id="5_014nb"]
+[ext_resource type="Texture2D" uid="uid://4twwyjjbvfgl" path="res://Assets/cards/monster/calavera.png" id="6_81oo5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3ok"]
-size = Vector2(42, 62)
+size = Vector2(41.5, 62)
 
 [sub_resource type="GDScript" id="GDScript_014nb"]
 script/source = "extends AudioStreamPlayer
@@ -51,6 +52,7 @@ script = ExtResource("3_014nb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 texture_filter = 1
+position = Vector2(-0.5, 0)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_xu3ok")
 
@@ -80,23 +82,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="MonsterTraits" type="Label" parent="."]
-texture_filter = 1
-offset_left = -31.0
-offset_top = 16.0
-offset_right = 30.0
-offset_bottom = 46.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 0.03529412, 0.05490196, 1)
-theme_override_constants/outline_size = 0
-theme_override_fonts/font = ExtResource("2_4opp7")
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 1
-
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_014nb")
 bus = &"Effects"
 script = SubResource("GDScript_014nb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = -31.0
+offset_top = 12.0
+offset_right = 31.0
+offset_bottom = 41.0
+size_flags_horizontal = 4
+theme_override_constants/separation = 3
+
+[node name="DeathPreview" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+offset_left = -30.0
+offset_top = -59.0
+offset_right = 30.0
+offset_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("6_81oo5")
 
 [connection signal="mouseSobreCarta" from="." to="." method="_on_mouse_sobre_carta"]
 [connection signal="input_event" from="Area" to="." method="_on_area_input_event"]

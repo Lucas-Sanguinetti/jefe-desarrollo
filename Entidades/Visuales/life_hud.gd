@@ -28,6 +28,7 @@ func _on_vida_cambiada(valor: int):
 		shaking = false
 		position = original_position   # vuelve a su lugar
 
+@warning_ignore("unused_parameter")
 func _process(delta):
 	if shaking:
 		position = original_position + Vector2(
