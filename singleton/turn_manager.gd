@@ -4,7 +4,7 @@ extends Node
 signal turn_started(turn_number: int)
 signal turn_ended(turn_number: int)
 signal game_end_for_turns()
-signal last_turn
+#signal last_turn
 
 # Restricciones activadas/desactivadas
 signal restriction_changed(restriction_name: String, active: bool)
