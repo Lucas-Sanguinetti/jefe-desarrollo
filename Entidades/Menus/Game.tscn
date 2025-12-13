@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dynohqidhiit8"]
+[gd_scene load_steps=51 format=3 uid="uid://dynohqidhiit8"]
 
 [ext_resource type="Script" uid="uid://b41j7ju2yb5t5" path="res://Entidades/Menus/Game.gd" id="1_a0hfb"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_8hmk7"]
@@ -91,6 +91,9 @@ func playSound(sound: AudioStream):
 	stream = sound
 	play()
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gku7i"]
+bg_color = Color(0, 0, 0, 0.8235294)
 
 [sub_resource type="LabelSettings" id="LabelSettings_gxhcr"]
 font = ExtResource("10_ohvqk")
@@ -312,6 +315,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gku7i")
 
 [node name="Label" type="Label" parent="Ventanas/GameOver"]
 layout_mode = 1
@@ -320,14 +324,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -287.5
-offset_top = -101.5
-offset_right = 287.5
-offset_bottom = 101.5
+offset_left = -553.0
+offset_top = -132.0
+offset_right = 579.0
+offset_bottom = 71.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Haz sido
-derrotado"
+text = "El boss se ha escapado
+Perdiste tu oportunidad"
 label_settings = SubResource("LabelSettings_gxhcr")
 
 [node name="Victory" type="Panel" parent="Ventanas"]
@@ -339,6 +343,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gku7i")
 
 [node name="Label" type="Label" parent="Ventanas/Victory"]
 layout_mode = 1

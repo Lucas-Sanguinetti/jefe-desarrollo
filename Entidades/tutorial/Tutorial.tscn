@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c3fqcbncv77to"]
+[gd_scene load_steps=37 format=3 uid="uid://c3fqcbncv77to"]
 
 [ext_resource type="Script" uid="uid://cphl4pmuuqorw" path="res://Entidades/tutorial/tutorial.gd" id="1_pmcij"]
 [ext_resource type="PackedScene" uid="uid://cvtbctljo4ol3" path="res://Entidades/Visuales/board.tscn" id="2_lyuau"]
@@ -32,7 +32,9 @@
 [ext_resource type="PackedScene" uid="uid://b7bbxxh388bpu" path="res://pause_menu.tscn" id="28_71nlq"]
 [ext_resource type="Script" uid="uid://bhqx1i7kvx2oe" path="res://Entidades/Armas/Habilidades/AbilitySystem.gd" id="28_mbvpg"]
 [ext_resource type="Script" uid="uid://bla8utaoi01kd" path="res://Entidades/tutorial/panel_invisible.gd" id="29_rwgvw"]
+[ext_resource type="FontFile" uid="uid://coa34fop4q7rp" path="res://Fuente/Aquarius-Regular.ttf" id="32_5g5f7"]
 [ext_resource type="PackedScene" uid="uid://bx6yw2qj5stmb" path="res://Entidades/Visuales/monederoHud.tscn" id="33_1o2ct"]
+[ext_resource type="FontFile" uid="uid://3q377aj000n0" path="res://Fuente/MedodicaRegular.otf" id="33_80brj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02tf7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -123,13 +125,16 @@ script = ExtResource("27_hn7sl")
 [node name="AbilitySystem" type="Node" parent="."]
 script = ExtResource("28_mbvpg")
 
+[node name="MonederoHUD" parent="." instance=ExtResource("33_1o2ct")]
+position = Vector2(1340, 741)
+
 [node name="SelecArma" type="CanvasLayer" parent="."]
 visible = false
 
 [node name="ColorArma" type="ColorRect" parent="SelecArma"]
 offset_left = 290.0
 offset_top = 1.0
-offset_right = 612.0
+offset_right = 1041.0
 offset_bottom = 629.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
@@ -140,12 +145,12 @@ offset_bottom = 867.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorArma3" type="ColorRect" parent="SelecArma"]
-offset_left = 612.0
+offset_left = 1042.0
 offset_right = 1584.0
 offset_bottom = 871.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
-[node name="SelecArma" type="Label" parent="SelecArma"]
+[node name="informacion" type="Label" parent="SelecArma"]
 texture_filter = 1
 offset_left = 349.0
 offset_top = 520.0
@@ -156,13 +161,24 @@ theme_override_font_sizes/font_size = 40
 text = "Haz click izquierdo sobre 
 una de tus armas para usarla"
 
+[node name="SelecArma" type="Label" parent="SelecArma"]
+texture_filter = 1
+offset_left = 343.0
+offset_top = 397.0
+offset_right = 968.0
+offset_bottom = 480.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 40
+text = "Este es el apartado de tus armas
+Se recargan al inicio de cada turno"
+
 [node name="Ataque" type="CanvasLayer" parent="."]
 visible = false
 
 [node name="ColorAtaque" type="ColorRect" parent="Ataque"]
 offset_left = 305.0
-offset_top = 173.0
-offset_right = 538.0
+offset_top = 630.0
+offset_right = 765.0
 offset_bottom = 867.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
@@ -174,17 +190,29 @@ offset_bottom = 867.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorAtaque3" type="ColorRect" parent="Ataque"]
-offset_left = 538.0
+offset_left = 765.0
 offset_right = 1579.0
 offset_bottom = 868.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="AtacarMonstruo" type="Label" parent="Ataque"]
 texture_filter = 1
-offset_left = 307.0
-offset_top = 194.0
-offset_right = 932.0
-offset_bottom = 320.0
+offset_left = 800.0
+offset_top = 39.0
+offset_right = 1425.0
+offset_bottom = 165.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 40
+text = "Este es el tablero de monstruos
+Apareceran mostruos al inicio
+de cada turno"
+
+[node name="Informacion" type="Label" parent="Ataque"]
+texture_filter = 1
+offset_left = 785.0
+offset_top = 230.0
+offset_right = 1410.0
+offset_bottom = 356.0
 theme_override_fonts/font = ExtResource("10_3db23")
 theme_override_font_sizes/font_size = 40
 text = "Haz click izquierdo sobre 
@@ -192,13 +220,12 @@ el monstruo para atacarlo
 y recibir monedas por matarlo"
 
 [node name="Vida" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorVida" type="ColorRect" parent="Vida"]
 offset_left = 1068.0
 offset_top = 2.0
-offset_right = 1205.0
-offset_bottom = 700.0
+offset_right = 1400.0
+offset_bottom = 702.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorVida2" type="ColorRect" parent="Vida"]
@@ -209,22 +236,35 @@ offset_bottom = 867.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorVida3" type="ColorRect" parent="Vida"]
-offset_left = 1205.0
+offset_left = 1400.0
 offset_right = 1579.0
 offset_bottom = 868.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="Vida" type="Label" parent="Vida"]
 texture_filter = 1
-offset_left = 942.0
-offset_top = 544.0
-offset_right = 1395.0
-offset_bottom = 670.0
-theme_override_fonts/font = ExtResource("10_3db23")
+offset_left = 453.0
+offset_top = 568.0
+offset_right = 948.0
+offset_bottom = 694.0
+theme_override_fonts/font = ExtResource("32_5g5f7")
+theme_override_font_sizes/font_size = 25
+text = "Parece que al golpear un
+monstruos pierdes vida.
+"
+
+[node name="Informacion" type="Label" parent="Vida"]
+texture_filter = 1
+offset_left = 958.0
+offset_top = 566.0
+offset_right = 1508.0
+offset_bottom = 735.0
+theme_override_fonts/font = ExtResource("33_80brj")
 theme_override_font_sizes/font_size = 40
-text = "Oh, parece que haz 
-perdido vida al golpear 
-al monstruo"
+text = "Tu vida maxima es 50, asi
+que habra que ser cauteloso
+al golpearlos.
+"
 
 [node name="Aviso" type="Label" parent="Vida"]
 texture_filter = 1
@@ -237,6 +277,7 @@ theme_override_font_sizes/font_size = 30
 text = "Haz click para continuar..."
 
 [node name="PanelInvisible" type="Panel" parent="Vida"]
+visible = false
 offset_right = 1580.0
 offset_bottom = 867.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_02tf7")
@@ -247,14 +288,14 @@ visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Compra"]
 offset_left = -2.0
-offset_top = 2.0
+offset_top = -3.0
 offset_right = 800.0
 offset_bottom = 866.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect2" type="ColorRect" parent="Compra"]
 offset_left = 800.0
-offset_top = 326.0
+offset_top = 666.0
 offset_right = 1019.0
 offset_bottom = 867.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
@@ -266,12 +307,25 @@ offset_right = 1582.0
 offset_bottom = 867.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
+[node name="Informacion" type="Label" parent="Compra"]
+texture_filter = 1
+offset_left = 1035.0
+offset_top = 82.0
+offset_right = 1488.0
+offset_bottom = 251.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 40
+text = "Esta es la tienda.
+Apareceran nuevas 
+armas a medida que 
+vayas comprando"
+
 [node name="ComprarArma" type="Label" parent="Compra"]
 texture_filter = 1
-offset_left = 1041.0
-offset_top = 202.0
-offset_right = 1494.0
-offset_bottom = 371.0
+offset_left = 1032.0
+offset_top = 365.0
+offset_right = 1485.0
+offset_bottom = 534.0
 theme_override_fonts/font = ExtResource("10_3db23")
 theme_override_font_sizes/font_size = 40
 text = "Haz doble click 
@@ -301,13 +355,26 @@ offset_right = 1581.0
 offset_bottom = 868.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
+[node name="Informacion" type="Label" parent="Habilidad"]
+texture_filter = 1
+offset_left = 317.0
+offset_top = 265.0
+offset_right = 958.0
+offset_bottom = 434.0
+theme_override_fonts/font = ExtResource("32_5g5f7")
+theme_override_font_sizes/font_size = 25
+text = "Hay armas que tienen 
+habilidades
+Estas habilidades se describen
+en la informacion de la carta"
+
 [node name="UsarHabilidad" type="Label" parent="Habilidad"]
 texture_filter = 1
-offset_left = 527.0
-offset_top = 444.0
-offset_right = 1015.0
-offset_bottom = 613.0
-theme_override_fonts/font = ExtResource("10_3db23")
+offset_left = 314.0
+offset_top = 449.0
+offset_right = 802.0
+offset_bottom = 618.0
+theme_override_fonts/font = ExtResource("33_80brj")
 theme_override_font_sizes/font_size = 40
 text = "Este arma parece tener 
 una habilidad.
@@ -319,36 +386,41 @@ visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Hechizos"]
 offset_left = -1.0
-offset_right = 127.0
-offset_bottom = 293.0
+offset_right = 137.0
+offset_bottom = 871.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect2" type="ColorRect" parent="Hechizos"]
-offset_left = 290.0
+offset_left = 278.0
 offset_top = -1.0
 offset_right = 1580.0
-offset_bottom = 293.0
-color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
-
-[node name="ColorRect3" type="ColorRect" parent="Hechizos"]
-offset_top = 293.0
-offset_right = 1583.0
 offset_bottom = 869.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
-[node name="UsarHechizo" type="Label" parent="Hechizos"]
+[node name="UsarHechizo2" type="Label" parent="Hechizos"]
 texture_filter = 1
 offset_left = 306.0
-offset_top = 40.0
-offset_right = 866.0
-offset_bottom = 209.0
+offset_top = 217.0
+offset_right = 871.0
+offset_bottom = 275.0
 theme_override_fonts/font = ExtResource("10_3db23")
 theme_override_font_sizes/font_size = 40
-text = "Parece que haz recibido 
-un hechizo.
-hazle doble click para usarlo."
+text = "Hazle doble click para usarlo."
+
+[node name="UsarHechizo" type="Label" parent="Hechizos"]
+texture_filter = 1
+offset_left = 309.0
+offset_top = 38.0
+offset_right = 869.0
+offset_bottom = 207.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 40
+text = "Este es el apartado de hechizos
+Recibiras uno al inicio de cada
+turno"
 
 [node name="TerminarTutorial" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="TerminarTutorial"]
 offset_left = -2.0
@@ -358,8 +430,8 @@ offset_bottom = 875.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="ColorRect2" type="ColorRect" parent="TerminarTutorial"]
-offset_left = -42.0
-offset_right = 1424.0
+offset_left = -44.0
+offset_right = 1286.0
 offset_bottom = 632.0
 color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
@@ -371,19 +443,28 @@ color = Color(0.2, 0.19607843, 0.19607843, 0.8666667)
 
 [node name="Finalizar" type="Label" parent="TerminarTutorial"]
 texture_filter = 1
-offset_left = 862.0
-offset_top = 441.0
-offset_right = 1564.0
-offset_bottom = 610.0
+offset_left = 323.0
+offset_top = 646.0
+offset_right = 1063.0
+offset_bottom = 858.0
 theme_override_fonts/font = ExtResource("10_3db23")
 theme_override_font_sizes/font_size = 40
-text = "Perfecto, parece que te ha sanado.
-Haz click izquierdo en el boton 
-de terminar el turno y poder 
-volver a usar tus armas"
+text = "Haz click izquierdo en el boton para
+terminar el tutorial
+Por ahora el objetivo de cada partida
+es derrotar al boss al final. 
+Que no se te escape !"
+
+[node name="Finalizar2" type="Label" parent="TerminarTutorial"]
+texture_filter = 1
+offset_left = 804.0
+offset_top = 511.0
+offset_right = 1517.0
+offset_bottom = 594.0
+theme_override_fonts/font = ExtResource("10_3db23")
+theme_override_font_sizes/font_size = 40
+text = "Como indicaba el hechizo, te sanaste
+"
 
 [node name="PauseMenu" parent="." instance=ExtResource("28_71nlq")]
 visible = false
-
-[node name="MonederoHUD" parent="." instance=ExtResource("33_1o2ct")]
-position = Vector2(1340, 741)
