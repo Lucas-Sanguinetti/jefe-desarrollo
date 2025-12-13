@@ -82,6 +82,12 @@ func discard_card(hechizo: SpellCardData):
 		discard_pile.append(hechizo)
 		print("SpellDeck: '%s' descartada" % hechizo.name)
 
+func return_card(hechizo: SpellCardData):
+	if not hechizo:
+		return
+	discard_pile.append(hechizo)
+
+
 # ============================================
 # QUERIES
 # ============================================

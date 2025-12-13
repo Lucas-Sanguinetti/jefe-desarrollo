@@ -2,7 +2,7 @@ extends Node
 class_name AbilitySystem 
 
 # SEÑALES
-signal ability_executed(weapon: CartaArma, ability: WeaponAbilityData, target)
+signal ability_executed()
 
 # ESTADO
 var active_weapon: CartaArma = null
@@ -143,7 +143,7 @@ func _execute_ability(weapon: CartaArma, ability: WeaponAbilityData, target):
 	if success:
 		cancel_selection()
 		weapon.discharge()
-		emit_signal("ability_executed", weapon, ability, target)
+		emit_signal("ability_executed")
 		print("AbilitySystem: ✓ Habilidad ejecutada exitosamente")
 	else:
 		# NO cancelar selección ni descargar arma si falló

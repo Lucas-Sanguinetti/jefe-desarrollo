@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("3_qdmk6")
-descripcion = "Vende un arma usable por       todo su valor"
+descripcion = "Vende un arma usable por todo su valor"
 backsprite = ExtResource("1_qdmk6")
 death = ExtResource("2_qdmk6")
 target_type = 1

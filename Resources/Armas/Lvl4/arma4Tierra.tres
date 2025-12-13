@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponCardData" load_steps=12 format=3 uid="uid://dpgums16lds27"]
+[gd_resource type="Resource" script_class="WeaponCardData" load_steps=11 format=3 uid="uid://dpgums16lds27"]
 
 [ext_resource type="Texture2D" uid="uid://6s60b1qwf0lx" path="res://Assets/cards/weapon/armas/tierra/arma3.png" id="2_4631u"]
 [ext_resource type="AudioStream" uid="uid://dwte5fos0bb4o" path="res://Audio/SFX/spellDraw.wav" id="2_nyguf"]
@@ -8,17 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://dp1ske3lphppj" path="res://Assets/cards/weapon/weaponrCard.png" id="7_c8gey"]
 [ext_resource type="AudioStream" uid="uid://d17faolx3o0y1" path="res://Audio/SFX/spellCast.mp3" id="7_og0a1"]
 [ext_resource type="Script" uid="uid://cy584ew032i43" path="res://Traits/BaseTrait.gd" id="9_6cib7"]
-[ext_resource type="Script" uid="uid://bsjrhifcm3k1q" path="res://Traits/monstruos/aprovechar.gd" id="10_nyguf"]
+[ext_resource type="Resource" uid="uid://dc3pp4q8hs2u8" path="res://Resources/Traits/Armas/aprovecharA.tres" id="10_nyguf"]
 [ext_resource type="Resource" uid="uid://b1o6qcjvrniro" path="res://Resources/Traits/Armas/disparo.tres" id="10_rtm8d"]
-
-[sub_resource type="Resource" id="Resource_og0a1"]
-script = ExtResource("10_nyguf")
-metadata/_custom_type_script = "uid://bsjrhifcm3k1q"
 
 [resource]
 script = ExtResource("6_dvj6h")
 attack = 8
-traits = Array[ExtResource("9_6cib7")]([ExtResource("10_rtm8d"), SubResource("Resource_og0a1")])
+traits = Array[ExtResource("9_6cib7")]([ExtResource("10_rtm8d"), ExtResource("10_nyguf")])
 nivel = 4
 element_type = 1
 element = ExtResource("4_72hee")
