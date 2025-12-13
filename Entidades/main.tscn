@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c328vnnnt73tq"]
 
 [ext_resource type="Script" uid="uid://pgx30kniklgg" path="res://Entidades/main.gd" id="1_qh4lx"]
-[ext_resource type="PackedScene" uid="uid://ddaywssni5aim" path="res://Entidades/title_screen.tscn" id="1_tpj8x"]
+[ext_resource type="PackedScene" uid="uid://ddaywssni5aim" path="res://Entidades/Menus/title_screen.tscn" id="1_tpj8x"]
 [ext_resource type="PackedScene" uid="uid://b7bbxxh388bpu" path="res://pause_menu.tscn" id="3_fighu"]
 
 [node name="Main" type="Node"]

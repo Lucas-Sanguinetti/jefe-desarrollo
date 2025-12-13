@@ -14,7 +14,7 @@
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_3db23"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_lglcu"]
 [ext_resource type="PackedScene" uid="uid://drh5ob8gcaoa7" path="res://Entidades/Cartas/card_info.tscn" id="12_0rbba"]
-[ext_resource type="Script" uid="uid://2bc043lq2daj" path="res://Entidades/press.gd" id="13_ba64b"]
+[ext_resource type="Script" uid="uid://2bc043lq2daj" path="res://Entidades/Botones/press.gd" id="13_ba64b"]
 [ext_resource type="AudioStream" uid="uid://byhk8raqtbh4h" path="res://Audio/SFX/button-pressed.mp3" id="14_23ku3"]
 [ext_resource type="AudioStream" uid="uid://df1guwtyjobyt" path="res://Audio/SFX/blacksmith-hammer.mp3" id="14_rbkq8"]
 [ext_resource type="PackedScene" uid="uid://bcdxqcei3yuhm" path="res://Entidades/Hechizos/spell_deck.tscn" id="17_8avlq"]

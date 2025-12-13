@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://ddaywssni5aim"]
 
-[ext_resource type="Script" uid="uid://b24fvhjuw8eh" path="res://Entidades/title_screen.gd" id="1_3ygur"]
+[ext_resource type="Script" uid="uid://b24fvhjuw8eh" path="res://Entidades/Menus/title_screen.gd" id="1_3ygur"]
 [ext_resource type="Texture2D" uid="uid://h4vjbuke760x" path="res://Assets/background/titleScreen.png" id="2_g8iy6"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="3_iwsvx"]
-[ext_resource type="Script" uid="uid://2bc043lq2daj" path="res://Entidades/press.gd" id="4_iwsvx"]
+[ext_resource type="Script" uid="uid://2bc043lq2daj" path="res://Entidades/Botones/press.gd" id="4_iwsvx"]
 [ext_resource type="AudioStream" uid="uid://byhk8raqtbh4h" path="res://Audio/SFX/button-pressed.mp3" id="5_g8iy6"]
 [ext_resource type="AudioStream" uid="uid://btwj2b8xsdp64" path="res://Audio/musica/MainMenu.mp3" id="6_g8iy6"]
-[ext_resource type="PackedScene" uid="uid://dt7hrfjpqjjng" path="res://Entidades/option_layer.tscn" id="7_v4euy"]
+[ext_resource type="PackedScene" uid="uid://dt7hrfjpqjjng" path="res://Entidades/Menus/option_layer.tscn" id="7_v4euy"]
 
 [node name="TitleScreen" type="PanelContainer"]
 offset_right = 989.0

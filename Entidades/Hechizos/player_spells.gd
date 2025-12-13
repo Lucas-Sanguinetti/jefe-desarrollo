@@ -198,17 +198,9 @@ func _cast_spell(card: CartaHechizo, target):
 	
 	print("Hand: Lanzando '%s'" % spell_data.name)
 	
-	# Pagar coste
-	#card.pay_cost()
-	
-	# Marcar como usada (estado mutable en la carta)
-	#card.mark_as_used()
-	
 	# Emitir señal (Game.gd lo captura)
 	emit_signal("card_played",card, spell_data, target)
 	
-	# Remover carta
-	#remove_card(card)
 	cancel_selection()
 
 # ============================================
