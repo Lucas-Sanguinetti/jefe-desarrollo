@@ -12,6 +12,7 @@ class_name Game
 @onready var weapon_manager: WeaponManager = $WeaponManager
 @onready var player_weapon_spawner = $PlayerWeaponSpawner
 @onready var monster_spawner = $MonsterSpawner
+@onready var ability_system: AbilitySystem = $AbilitySystem
 #Hechizos
 @onready var spell_deck: SpellDeck = $SpellDeck
 @onready var hand: Hand = $PlayerSpells
@@ -52,6 +53,8 @@ func _ready() -> void:
 	card_manager.armaDeseleccionada.connect(_on_arma_deseleccionada)
 	card_manager.armaUsada.connect(_on_arma_usada)
 	
+	ability_system.ability_executed.connect(_on_ability_used)
+	
 	LifeManager.vida_cambiada.connect(_on_vida_cambiada)
 	hand.card_played.connect(_on_spell_cast)
 	musica.playSound(canciones[musicIndex - 1])
@@ -91,6 +94,12 @@ func _on_turn_started(turn_number: int):
 	_reset_reroll_buttons()
 
 func _on_arma_usada():
+	revisar_estado_armas_jugador()
+	
+func _on_ability_used():
+	revisar_estado_armas_jugador()
+
+func revisar_estado_armas_jugador():
 	var player_weapons = player_weapon_spawner.player_grid.get_all_weapons()
 	var finish_turn = true
 	for weapon in player_weapons:
@@ -199,8 +208,8 @@ func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):
 		spell_deck.discard_card(hechizo)
 	else:
 		print("Game: Hechizo '%s' falló - NO se descarta" % hechizo.name)
-	if hechizo.effect_id == "bateria":
-		_apply_normal_style()
+	if hechizo.TargetType.WEAPON:
+		revisar_estado_armas_jugador()
 
 # Venta de armas
 # ============================================
@@ -226,7 +235,8 @@ func _on_reroll_spells_pressed(cost: int):
 	var cant_robar = hechizos.size()
 	
 	for hechizo in hechizos:
-		hand.remove_card(hechizo)
+		var spellData = hand.remove_card(hechizo)
+		spell_deck.return_card(spellData)
 	
 	for i in cant_robar:
 		var new_card = spell_deck.draw_turn_card()
