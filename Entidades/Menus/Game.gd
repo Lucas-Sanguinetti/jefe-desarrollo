@@ -93,20 +93,38 @@ func _on_turn_started(turn_number: int):
 	
 	_reset_reroll_buttons()
 
-func _on_arma_usada():
-	revisar_estado_armas_jugador()
+func _on_arma_usada(arma:CartaArma):
+	revisar_estado_armas_jugador(arma)
 	
-func _on_ability_used():
-	revisar_estado_armas_jugador()
+func _on_ability_used(arma:CartaArma):
+	revisar_estado_armas_jugador(arma)
 
-func revisar_estado_armas_jugador():
+func revisar_estado_armas_jugador(arma:CartaArma):
 	var player_weapons = player_weapon_spawner.player_grid.get_all_weapons()
 	var finish_turn = true
 	for weapon in player_weapons:
+		if weapon == arma:
+			continue
+			
 		if weapon.is_charged(): 
 			finish_turn = false
 			break
+
 	if finish_turn:
+		_apply_ready_style()
+	else:
+		_apply_normal_style()
+
+func recalcular_estado_armas_jugador():
+	var player_weapons = player_weapon_spawner.player_grid.get_all_weapons()
+	var quedan_armas_activas := false
+
+	for weapon in player_weapons:
+		if weapon.is_charged():
+			quedan_armas_activas = true
+			break
+
+	if not quedan_armas_activas:
 		_apply_ready_style()
 	else:
 		_apply_normal_style()
@@ -207,9 +225,9 @@ func _on_spell_cast(card:CartaHechizo, hechizo: SpellCardData, target):
 		hand.remove_card(card)
 		spell_deck.discard_card(hechizo)
 	else:
-		print("Game: Hechizo '%s' falló - NO se descarta" % hechizo.name)
+		print("Game: Hechizo '%s' falló - NO se descarta" % hechizo.name)		
 	if hechizo.TargetType.WEAPON:
-		revisar_estado_armas_jugador()
+		recalcular_estado_armas_jugador()
 
 # Venta de armas
 # ============================================

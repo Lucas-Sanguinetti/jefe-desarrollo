@@ -13,7 +13,7 @@ var selected_weapon: Carta = null
 signal armaSeleccionada
 signal armaSeleccionadaVenta(carta:CartaArma)
 signal armaDeseleccionada
-signal armaUsada
+signal armaUsada(carta:CartaArma)
 
 func _ready():
 	add_to_group("CardManager")
@@ -91,7 +91,7 @@ func attack_target(weapon: Carta, target: Carta):
 		# Resetear el estado de combate
 		selected_weapon = null
 		combat_state = CombatState.NORMAL
-		emit_signal("armaUsada")
+		emit_signal("armaUsada",weapon)
 		emit_signal("armaDeseleccionada")
 	else:
 		print("No se pudo realizar el ataque")

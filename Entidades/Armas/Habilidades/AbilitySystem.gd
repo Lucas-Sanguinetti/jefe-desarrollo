@@ -143,7 +143,7 @@ func _execute_ability(weapon: CartaArma, ability: WeaponAbilityData, target):
 	if success:
 		cancel_selection()
 		weapon.discharge()
-		emit_signal("ability_executed")
+		emit_signal("ability_executed",weapon)
 		print("AbilitySystem: ✓ Habilidad ejecutada exitosamente")
 	else:
 		# NO cancelar selección ni descargar arma si falló

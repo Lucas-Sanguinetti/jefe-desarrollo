@@ -108,7 +108,7 @@ func _on_arma_esdseleccionada():
 	$SelecArma.visible = true
 	$Ataque.visible = false
 
-func _on_arma_usada():
+func _on_arma_usada(_carta):
 	stepArma = false
 	ocultar_canva_arma()
 	$SelecArma.visible = false
@@ -131,7 +131,7 @@ func _on_arma_transferida():
 	$Compra.visible = false
 	$Habilidad.visible = true
 	
-func _on_ability_used(_weapon, _ability, _target):
+func _on_ability_used(_weapon):
 	ocultar_canva_arma()
 	$Habilidad.visible = false
 	$Hechizos.visible = true
