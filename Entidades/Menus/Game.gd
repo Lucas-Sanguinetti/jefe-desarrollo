@@ -175,7 +175,7 @@ func _on_vida_cambiada(nueva_vida: int):
 	elif nueva_vida > vida_previa:
 		#push_warning("Te curaste: %d → %d" % [vida_previa, nueva_vida])
 		cambio_de_vida.winLife(abs(vida_previa - nueva_vida))
-		canvas_layer.curar() 
+		canvas_layer.curar()
 		
 	if nueva_vida <= 0:
 		game_over()

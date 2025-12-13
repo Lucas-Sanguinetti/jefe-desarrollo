@@ -9,7 +9,7 @@ signal projectile_hit(target: Carta)
 var registered_animations: Dictionary = {}
 
 # SCENE DEL PROYECTIL
-var projectile_scene: PackedScene = preload("res://Entidades/Armas/Animaciones/Projectile.tscn")
+var projectile_scene: PackedScene = preload("uid://pwbwd62peuya")
 
 func _ready():
 	add_to_group("WeaponAnimationManager")

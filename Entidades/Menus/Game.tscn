@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://bxljb7ons4bf2" path="res://Entidades/Hechizos/SpellEffects.gd" id="20_hf2jd"]
 [ext_resource type="Resource" uid="uid://df11r4yorlkrf" path="res://Resources/Hechizos/Batery.tres" id="20_xr7dm"]
 [ext_resource type="Script" uid="uid://bhqx1i7kvx2oe" path="res://Entidades/Armas/Habilidades/AbilitySystem.gd" id="21_2jhs2"]
+[ext_resource type="Script" uid="uid://c61go06rwpaln" path="res://Entidades/Menus/cambio_de_vida.gd" id="21_6lcob"]
 [ext_resource type="Resource" uid="uid://c31wuxj801fkc" path="res://Resources/Hechizos/Cambiazo.tres" id="21_423gc"]
 [ext_resource type="Resource" uid="uid://bel45xqiao1k8" path="res://Resources/Hechizos/Afilar3.tres" id="22_ye2mg"]
 [ext_resource type="Resource" uid="uid://c2bkuv7nntasy" path="res://Resources/Hechizos/BasicHeal.tres" id="23_1dqht"]
@@ -59,30 +60,6 @@ func actLabel(turn):
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jhs2"]
 bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="GDScript" id="GDScript_jfau5"]
-script/source = "extends Label
-
-@onready var cambio_de_vida_timer: Timer = $CambioDeVidaTimer 
-
-func _ready(): 
-	hide() 
-	
-func winLife(life): 
-	show() 
-	add_theme_color_override(\"font_color\", Color(\"#00FF00\")) 
-	text = \"+\" + str(life) 
-	cambio_de_vida_timer.start() 
-	
-func loseLife(life): 
-	show() 
-	add_theme_color_override(\"font_color\", Color(\"#FF0000\")) 
-	text = \"-\" + str(life) 
-	cambio_de_vida_timer.start() 
-	
-func _on_cambio_de_vida_timer_timeout() -> void: 
-	hide()
-"
 
 [sub_resource type="GDScript" id="GDScript_lpvco"]
 script/source = "extends AudioStreamPlayer
@@ -261,7 +238,7 @@ offset_right = 1148.0
 offset_bottom = 732.0
 theme_override_fonts/font = ExtResource("10_ohvqk")
 theme_override_font_sizes/font_size = 22
-script = SubResource("GDScript_jfau5")
+script = ExtResource("21_6lcob")
 
 [node name="CambioDeVidaTimer" type="Timer" parent="cambioDeVida"]
 wait_time = 0.5
