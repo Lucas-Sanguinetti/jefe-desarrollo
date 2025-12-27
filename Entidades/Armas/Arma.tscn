@@ -63,9 +63,9 @@ shape = SubResource("RectangleShape2D_xu3ok")
 
 [node name="Ataque" type="Label" parent="."]
 texture_filter = 1
-offset_left = 24.0
+offset_left = 23.0
 offset_top = 47.0
-offset_right = 40.0
+offset_right = 39.0
 offset_bottom = 63.0
 theme_override_fonts/font = ExtResource("2_54r67")
 theme_override_font_sizes/font_size = 12

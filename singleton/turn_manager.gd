@@ -33,6 +33,14 @@ func end_turn():
 func get_current_turn() -> int:
 	return current_turn
 
+
+func get_limit_low_level_turn() -> int:
+	return 10
+
+#boss turn
+func get_limit_high_level_turn() -> int:
+	return 18
+
 # RESTRICCIONES
 # ========================================
 # 1. FUNDIDOR: ¿Se pueden comprar armas?

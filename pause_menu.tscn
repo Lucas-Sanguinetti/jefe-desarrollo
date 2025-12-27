@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7bbxxh388bpu"]
+[gd_scene load_steps=5 format=3 uid="uid://b7bbxxh388bpu"]
 
 [ext_resource type="Script" uid="uid://71seu6vw6mhh" path="res://pause_menu.gd" id="1_hdmo1"]
 [ext_resource type="Texture2D" uid="uid://ypgau6wifkoa" path="res://Assets/elements_In_Board/pause2.png" id="2_05uyy"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="2_nwcfo"]
+[ext_resource type="FontFile" uid="uid://che5fqwy3nb63" path="res://Fuente/Aquarius-Bold.ttf" id="3_p81d2"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 layer = 100
@@ -19,21 +20,21 @@ texture = ExtResource("2_05uyy")
 offset_left = 598.0
 offset_top = 193.0
 offset_right = 982.0
-offset_bottom = 624.0
-theme_override_constants/separation = 21
+offset_bottom = 621.0
+theme_override_constants/separation = 16
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_nwcfo")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("3_p81d2")
+theme_override_font_sizes/font_size = 25
 text = "MENU"
 horizontal_alignment = 1
 vertical_alignment = 3
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="MasterVolume" type="VBoxContainer" parent="VBoxContainer"]
@@ -43,8 +44,8 @@ alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/MasterVolume"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_nwcfo")
-theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_p81d2")
 text = "  Volumen General"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MasterVolume"]
@@ -69,8 +70,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/MusicVolume"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_nwcfo")
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("3_p81d2")
 text = "  Musica"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MusicVolume"]
@@ -95,8 +95,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/EffectsVolume"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_nwcfo")
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("3_p81d2")
 text = "  Efectos"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/EffectsVolume"]
@@ -121,20 +120,17 @@ layout_mode = 2
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_nwcfo")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("3_p81d2")
 text = "Continuar"
 
 [node name="RestartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_nwcfo")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("3_p81d2")
 text = "Reiniciar Partida"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_nwcfo")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("3_p81d2")
 text = "Menu Principal"
 
 [connection signal="value_changed" from="VBoxContainer/MasterVolume/HBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]

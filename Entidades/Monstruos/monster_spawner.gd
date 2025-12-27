@@ -6,7 +6,7 @@ class_name MonsterSpawner
 @onready var turn_button = $"../Botones/PasarTurno"
 
 var cards_per_turn: int = 1  # Cantidad de cartas por turno
-
+var boss_turn = TurnManager.get_limit_high_level_turn()
 signal victory()
 
 func _ready() -> void:
@@ -18,7 +18,7 @@ func draw():
 
 func sin_monstruos() -> int:
 	var cant_monsters = grid_monstruos.get_all_monsters().size()
-	if TurnManager.current_turn == 16:
+	if TurnManager.current_turn == boss_turn:
 		return 1
 	if cant_monsters < 1:
 		return 2

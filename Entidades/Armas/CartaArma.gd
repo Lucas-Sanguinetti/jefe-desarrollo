@@ -13,7 +13,7 @@ var element_sprite: TextureRect
 var backsprite_sprite: TextureRect
 var container: VBoxContainer 
 @onready var small_font := preload("uid://jv50m8p7i6as")
-
+#
 #Variables de la Escena
 var ataque:int 
 var nivel:int 
