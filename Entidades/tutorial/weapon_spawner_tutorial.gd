@@ -17,5 +17,6 @@ func turn_loader():
 	place_weapon()
 
 func place_weapon():
+	print("Ya me puse en el grid")
 	var weapon:WeaponCardData = WeaponDeck.drawTutorial()
 	grid.invoke_random_piece(weapon)

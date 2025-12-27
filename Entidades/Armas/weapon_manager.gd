@@ -1,11 +1,12 @@
 extends Node
 class_name WeaponManager
 
+@export var tutorial:bool = false
+
 var weapon_grid: WeaponGrid = null  # "Almacén"
 var player_grid: PlayerWeaponGrid = null  # "Equipadas"
 var monster_grid: MonsterGrid = null
 var weapon_spawner = null
-
 
 @onready var blacksmith: AudioStreamPlayer = $Blacksmith
 
@@ -20,13 +21,6 @@ func _ready():
 	add_to_group("WeaponManager")
 
 func initialize_grids():
-	#var parent = get_parent()
-	#if parent is Tutorial:
-		#weapon_spawner = get_node("../WeaponSpawner")
-		#if weapon_spawner:
-			#weapon_grid = weapon_spawner.get_node_or_null("WeaponGrid")
-	#else:
-		## Buscar WeaponGrid
 	weapon_spawner = get_node("../WeaponSpawner")
 	if weapon_spawner:
 		weapon_grid = weapon_spawner.get_node_or_null("WeaponGrid")
@@ -86,7 +80,6 @@ func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 	emit_signal("armaTransferida")
 	return true
 
-# AGREGAR esta función en WeaponManager.gd
 
 # Devuelve todas las armas de la tienda al mazo y genera nuevas
 func reroll_shop_weapons() -> bool:
@@ -140,7 +133,6 @@ func reroll_shop_weapons() -> bool:
 	return true
 
 
-# MODIFICAR la función return_weapon_to_storage para que use una nueva función auxiliar
 func return_weapon_to_storage(from_x: int, from_y: int) -> bool:
 	if not weapon_grid or not player_grid:
 		return false
@@ -197,7 +189,8 @@ func verificar_transferencia(from_x: int, from_y: int) -> bool:
 func _on_carta_clikeada(carta:Carta):
 	var postion = carta.grid_pos
 	var success = transfer_weapon_to_player(postion.x, postion.y)
-	weapon_spawner.place_weapon()
+	if not tutorial:
+		weapon_spawner.place_weapon()
 	if success:
 		print("WeaponManager: Arma equipada exitosamente mediante doble click")
 	else:

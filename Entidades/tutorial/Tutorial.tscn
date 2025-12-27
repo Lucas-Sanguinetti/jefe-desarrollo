@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bmlfbb0u38130" path="res://Entidades/tutorial/monster_spawner_tutorial.tscn" id="6_rbkq8"]
 [ext_resource type="Script" uid="uid://c7dwh0hqpxh8s" path="res://Entidades/Armas/WeaponCardData.gd" id="8_5ebip"]
 [ext_resource type="PackedScene" uid="uid://dfmm3iy8hd5vr" path="res://Entidades/Armas/player_weapon_spawner.tscn" id="8_eh68h"]
-[ext_resource type="Resource" uid="uid://7c8i2632wiru" path="res://Resources/Armas/LVL5/arma5Hielo.tres" id="9_1o2ct"]
 [ext_resource type="PackedScene" uid="uid://b1v3dtr6skm1n" path="res://Entidades/tutorial/weapon_spawner_tutorial.tscn" id="9_lyuau"]
+[ext_resource type="Resource" uid="uid://ci3pnt5q56q0c" path="res://Resources/Armas/LVL1/armaTutorial.tres" id="9_mhjqv"]
 [ext_resource type="Script" uid="uid://cbnmcobl5j1at" path="res://Entidades/Armas/weapon_manager.gd" id="9_vv73i"]
 [ext_resource type="FontFile" uid="uid://jv50m8p7i6as" path="res://Fuente/Minecraft.ttf" id="10_3db23"]
 [ext_resource type="PackedScene" uid="uid://bs1jxfpbg20dx" path="res://Entidades/Visuales/LifeHud.tscn" id="11_lglcu"]
@@ -55,7 +55,7 @@ position = Vector2(381, 101)
 
 [node name="PlayerWeaponSpawner" parent="." instance=ExtResource("8_eh68h")]
 position = Vector2(391, 753)
-initial_weapons = Array[ExtResource("8_5ebip")]([ExtResource("9_1o2ct")])
+initial_weapons = Array[ExtResource("8_5ebip")]([ExtResource("9_mhjqv")])
 
 [node name="WeaponSpawner" parent="." instance=ExtResource("9_lyuau")]
 position = Vector2(859, 253)
@@ -63,6 +63,7 @@ position = Vector2(859, 253)
 [node name="WeaponManager" type="Node2D" parent="."]
 position = Vector2(44, 136)
 script = ExtResource("9_vv73i")
+tutorial = true
 
 [node name="Blacksmith" type="AudioStreamPlayer" parent="WeaponManager"]
 stream = ExtResource("14_rbkq8")
@@ -128,6 +129,7 @@ script = ExtResource("28_mbvpg")
 position = Vector2(1340, 741)
 
 [node name="SelecArma" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorArma" type="ColorRect" parent="SelecArma"]
 offset_left = 290.0
