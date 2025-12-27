@@ -25,20 +25,28 @@ func _ready() -> void:
 	bosses_reset = monster_bosses_data.duplicate(true)
 
 func draw1():
-	var monster:MonsterCardData = wave1Monsters[0]
-	wave1Monsters.remove_at(0)
-	return monster
+	if wave1Monsters.size() > 1:
+		var monster:MonsterCardData = wave1Monsters[0]
+		wave1Monsters.remove_at(0)
+		return monster
 
 func draw2():
-	var monster:MonsterCardData = wave2Monsters[0]
-	wave2Monsters.remove_at(0)
-	return monster
+	if wave2Monsters.size() > 1:
+		var monster:MonsterCardData = wave2Monsters[0]
+		wave2Monsters.remove_at(0)
+		return monster
 
 func draw3():
 	var monster:MonsterCardData = monster_bosses_data[0]
 	monster_bosses_data.remove_at(0)
 	return monster
-	
+
+func draw():
+	if TurnManager.get_current_turn() < TurnManager.get_limit_low_level_turn():
+		return draw1()
+	else:
+		return draw2()
+
 ##funcion para el state
 func drawTutorial():
 	print("LLegue hasta el MonsterDeck")

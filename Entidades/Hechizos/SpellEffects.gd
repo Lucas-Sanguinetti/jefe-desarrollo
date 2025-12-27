@@ -104,7 +104,7 @@ func _generic_summon_monster()-> bool:
 		push_warning("SpellEffects: No hay espacio para invocar")
 		return false
 	
-	var monster_data = MonsterDeck.draw1()
+	var monster_data = MonsterDeck.draw()
 	if not monster_data:
 		push_warning("SpellEffects: Mazo de monstruos vacío")
 		return false

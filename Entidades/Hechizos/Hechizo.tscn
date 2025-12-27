@@ -51,15 +51,15 @@ shape = SubResource("RectangleShape2D_xu3ok")
 [node name="SpellDescript" type="Label" parent="."]
 texture_filter = 1
 offset_left = -34.0
-offset_top = 19.0
+offset_top = 13.0
 offset_right = 33.0
-offset_bottom = 62.0
+offset_bottom = 56.0
 theme_override_fonts/font = ExtResource("4_53kgd")
 theme_override_font_sizes/font_size = 14
-text = "adasdasdasdadasdasdasdasdasdasdasdasdasdasdadasdasdasdda"
+text = "hola mundo todo bien soy el usador de recursos"
 label_settings = SubResource("LabelSettings_v1hku")
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_4c8c3")

@@ -320,7 +320,10 @@ func calculate_total_damage_to(target: CartaMonstruo) -> int:
 	var total_damage = ataque
 
 	for rasgo in rasgos:
-		total_damage = rasgo.do_damage(self, target, total_damage)
+		if rasgo is Cazarrecompensas:
+			total_damage = total_damage
+		else:
+			total_damage = rasgo.do_damage(self, target, total_damage)
 	
 	return total_damage
 	

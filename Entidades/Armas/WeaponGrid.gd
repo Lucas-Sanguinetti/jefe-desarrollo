@@ -63,7 +63,11 @@ func invoke_random_piece(carta: WeaponCardData):
 # Para agarrar un arma particular
 func take_weapon(x: int, y: int):
 	var weapon = grid[x][y]
-	grid[x][y] = null
+	if weapon:
+		grid[x][y] = null
+		armas_por_celda.erase(Vector2i(x, y))
+		if weapon.get_parent() == self:
+			remove_child(weapon)
 	return weapon
 
 func _on_weapon_double_clicked(carta: Carta):

@@ -131,7 +131,7 @@ func _on_arma_transferida():
 	$Compra.visible = false
 	$Habilidad.visible = true
 	
-func _on_ability_used(_weapon, _ability, _target):
+func _on_ability_used():
 	ocultar_canva_arma()
 	$Habilidad.visible = false
 	$Hechizos.visible = true

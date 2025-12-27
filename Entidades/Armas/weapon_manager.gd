@@ -60,7 +60,7 @@ func _on_monster_die(monster: Carta):
 func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 	if !verificar_transferencia(from_x, from_y):
 		return false
-	
+	var arma_nivel = weapon_grid.obtener_arma_en(Vector2i(from_x, from_y)).nivel
 	# Tomar arma del almacén
 	var weapon = weapon_grid.take_weapon(from_x, from_y)
 	if not weapon:
@@ -76,8 +76,7 @@ func transfer_weapon_to_player(from_x: int, from_y: int) -> bool:
 		return false
 	
 	# Reducir monedas
-	var arma = weapon_grid.obtener_arma_en(Vector2i(from_x,from_y))
-	MoneyManager.perderMonedas(arma.nivel)
+	MoneyManager.perderMonedas(arma_nivel)
 	
 	# Marcar como comprada en este turno
 	weapon.mark_as_purchased()
